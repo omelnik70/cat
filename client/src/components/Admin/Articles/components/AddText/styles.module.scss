@@ -1,0 +1,24 @@
+@import '../../../../../global.scss';
+
+/* mobile */
+.container {
+    width: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    @include input;
+}
+
+.textarea {
+    @include input;
+    min-height: fit-content;
+}
+
+button {
+    @include button;
+}
+/* tablets */
+
+@media (min-width: 768px) {}

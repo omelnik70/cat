@@ -1,0 +1,15 @@
+{
+  "name": "cat",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.6.0",
+    "graphql-import": "^1.0.2",
+    "mongoose": "^6.5.2",
+    "nodemon": "^2.0.19"
+  },
+  "scripts": {
+    "dev": "nodemon server/server.js"
+  }
+}

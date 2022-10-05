@@ -1,0 +1,75 @@
+@import '../../global.scss';
+
+/* mobile */
+
+.container {
+    @include container;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.titleSite {
+    @include logo;
+}
+
+.navigation {
+    flex: 0 1 auto;
+}
+
+.lang {
+    display: flex;
+    justify-content: space-between;
+}
+
+.account {
+    width: 25px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+li::after {
+    content: '|';
+    padding: 0 5px;
+    font-weight: 700;
+}
+
+li:last-child::after {
+    content: '';
+    padding: 0;
+}
+
+.login {
+    display: flex;
+    margin: 0 0 0 10px;
+    & li {
+        text-transform: lowercase;
+    }
+}
+
+/* tablets */
+
+@media (min-width: 768px) {
+    .container {
+        margin: 0;
+    }
+
+    .navigation {
+        flex: 1 0 auto;
+    }
+
+    .titleSite {
+        font-size: $font-size-average;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        margin: 0 2%;
+    }
+}
+
+@media (min-width: 1440px) {
+    .container {
+        margin: 0 10%;
+    }
+}

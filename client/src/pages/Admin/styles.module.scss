@@ -1,0 +1,20 @@
+@import '../../global.scss';
+
+.container {
+  width: inherit;
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 5%;
+}
+
+.navbar {
+  padding: 1%;
+  flex: 0 1 20%;
+  z-index: 1;
+}
+
+.list {
+  padding: 1%;
+  flex: 1 1 auto;
+}

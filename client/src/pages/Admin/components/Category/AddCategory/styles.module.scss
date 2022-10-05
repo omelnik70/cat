@@ -1,0 +1,28 @@
+@import '../../../../../global.scss';
+
+.container {
+  position: relative;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input {
+
+    @include input;
+  }
+
+  .lang {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  p input {
+    margin-right: 10px;
+  }
+
+  .close {
+    @include buttonClose;
+}

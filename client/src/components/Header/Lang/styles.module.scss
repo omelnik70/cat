@@ -1,0 +1,37 @@
+@import '../../../global.scss';
+
+/* mobile */
+
+.activeLang {
+    position: relative;
+    cursor: pointer;
+    &:hover .list {
+        opacity: 1;
+        transition: all 1s;
+    }
+    & img {
+        width: 20px;
+    }
+}
+
+.list {
+    position: absolute;
+    top: -18px;
+    right: 20px;
+    opacity: 0;
+    z-index: 1;
+}
+
+.img:after {
+    content: "";
+}
+
+.img img {
+    width: 20px;
+    cursor: pointer;
+}
+
+.img:nth-child(2) {
+    margin: 4px 0;
+}
+/* Показать выпадающее меню при наведении курсора */

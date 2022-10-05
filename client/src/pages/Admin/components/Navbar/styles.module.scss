@@ -1,0 +1,42 @@
+@import '../../../../global.scss';
+
+.list li {
+  @include menu;
+}
+
+.list {
+  position: relative;
+  border-radius: 5px;
+  &:hover .sublist {
+    opacity: 1;
+    top: 0;
+    transition: opacity 1s;
+  }
+}
+
+.list li::after {
+  content: "";
+}
+
+//дизайн при наличии подменю
+
+// .list li,
+// .sublist li {
+//   background-color: black;
+//   border-bottom: 2px solid rgb(59, 59, 59);
+//   transition: 0.5s all;
+//   &:hover {
+//     background-color: rgb(59, 59, 59);
+//     padding: 10px 0 10px 20px;
+//   }
+// }
+
+
+// .sublist {
+//   width: 100%;
+//   position: absolute;
+//   top: -9999em;
+//   left: 100%;
+//   border-left: 2px solid transparent;
+//   opacity: 0;
+// }

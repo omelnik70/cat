@@ -1,0 +1,35 @@
+@import '../../../../global.scss';
+
+/* mobile */
+.container {
+    width: 80vw;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title, .content {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.content {
+    hyphens: auto;
+    flex: 1 1 auto;
+}
+
+.button {
+    @include button;
+    align-self: center;
+    width: 50%;
+
+}
+/* tablets */
+
+@media (min-width: 768px) {
+    .container {
+        width: 60vw;
+    }
+}

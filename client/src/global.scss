@@ -1,0 +1,252 @@
+/*Обнуление*/
+*{
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+*,*:before,*:after{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+
+nav,footer,header,aside{display: block;}
+
+html,body #root{
+	font-family: 'Open Sans', sans-serif;
+	min-height: 100vh;
+	width: 100%;
+	font-size: 100%;
+	line-height: 1;
+	font-size: 14px;
+	-ms-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+
+input,button,textarea{font-family:inherit;}
+
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding:0;border:0;}
+a, a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
+/*--------------------*/
+
+/*--- Fonts ---*/
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+/*--------------------*/
+
+/*--- Colors-Text ---*/
+
+$text-onBlack: rgba(255, 250, 250, 0.8);
+$color-text-button: #d4d9db;
+$color-text: #8f9699;
+$color-title: #264f87;
+
+/*--- Backgrounds ---*/
+$background-black: black;
+$background-white: white;
+$color-background: #d4d9db;
+$color-border: #8f9699;
+$color-subtitle: #633d9c;
+
+/*--- Baorders ---*/
+$border-menu: #F98866;
+
+
+$color-link-hover: #8f9699;
+$color-link: #264f87;
+$color-background-light: #faffff;
+$color-secondary-b-4: #faffff;
+
+
+/* RGBA коды */
+$color-background-opacity: rgba(143, 150, 153, 0.8);
+$color-background-focus: rgba(212, 217, 219, 0.4);
+
+/*--------------------*/
+
+/*--- --- Font size --- ---*/
+
+$font-size-small: 10px;
+$font-size-little: 12px;
+$font-size-normal: 16px;
+$font-size-average: 20px;
+$font-size-big: 24px;
+/*--------------------*/
+
+/*--- --- Font weight --- ---*/
+
+$font-weight-lighter: 200px;
+$font-weight-normal: 400px;
+$font-weight-bolder: 700px;
+/*--------------------*/
+
+/*--- --- @mixins --- ---*/
+
+@mixin subtitle {
+	font-size: $font-size-average;
+	color: $color-subtitle;
+}
+
+@mixin text {
+	font-size: $font-size-small;
+	color: $color-text;
+}
+
+@mixin link {
+	font-size: $font-size-little;
+	color: $color-link;
+	&:hover {
+		color: $color-link-hover;
+	}
+}
+
+@mixin mainmenu {
+	font-size: $font-size-normal;
+	color: $text-onBlack;
+	font-weight: $font-weight-bolder;
+	text-decoration: none;
+	border-bottom: 2px solid $border-menu;
+	padding: 5px;
+	&:hover {
+		cursor: pointer;
+		color: $border-menu;
+	}
+}
+
+@mixin button {
+	font-weight: $font-weight-bolder;
+    font-size: $font-size-small;
+    border: 1px solid $color-border;
+    border-radius: 10px;
+    background-color: $color-link;
+	padding: 8px;
+	text-transform: uppercase;
+	color: $color-text-button;
+	margin: 10px;
+	&:hover {
+		background-color: $color-background-light;
+		box-shadow: 2px 2px 5px $color-background;
+		color: $color-link;
+	}
+}
+
+@mixin input {
+	padding: 5px 10px;
+    border: 1px solid $color-border;
+    border-radius: 10px;
+    margin: 10px;
+	&:focus {
+		background-color: $color-background-focus;
+	}
+}
+
+@mixin hide {
+	opacity: 0;
+	visibility: hidden;
+}
+
+@mixin buttonClose {
+	display: block;
+	font-family:Arial, Helvetica, sans-serif;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    border: 1px solid $color-link;
+    border-radius: 50%;
+    text-transform: uppercase;
+    font-weight: $font-weight-bolder;
+    color: $color-link;
+    padding: 2px;
+	&:hover {
+		cursor: pointer;
+		background-color: $color-link;
+		color: $color-text-button;
+	}
+}
+
+@mixin buttonUpdate {
+	font-size: 16px;
+	color: green;
+	cursor: pointer;
+	align-self: center;
+	flex: 0 1 auto;
+	&:hover {
+		font-size: 20px;
+		color: red;
+	}
+}
+
+@mixin menu {
+	background-color: $background-black;
+	border-bottom: 2px solid rgb(59, 59, 59);
+	transition: 0.5s all;
+	font-size: $font-size-normal;
+	color: $text-onBlack;
+	text-transform: lowercase;
+	padding: 10px;
+	cursor: pointer;
+	&::first-letter {
+		text-transform: uppercase;
+	}
+	&:hover {
+		background-color: rgb(59, 59, 59);
+		padding: 10px 0 10px 20px;
+	}
+	& a {
+		color: $text-onBlack;
+		text-transform: lowercase;
+	}
+}
+
+@mixin logo {
+	
+	font-size: $font-size-normal;
+	font-weight: 700;
+	color: #FF420E;
+	padding: 0 5px 4px 3px;
+	border-radius: 10px;
+	background: white;
+	text-transform: capitalize;
+	letter-spacing: 2px;
+	&::first-letter {
+		background: #FF420E;
+		color: white;
+		padding: 0 5px 0 4px;
+		font-size: 2.5rem;
+		border-radius: 30%;
+		margin: 0 2px;
+	}
+}
+
+@mixin container {
+	display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 1%;
+}
+/*--------------------*/
+
+/*---Animation---*/
+
+@keyframes slidein {
+    from {
+        transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+        opacity: 1;
+    }
+}
+
+/*--------------------*/

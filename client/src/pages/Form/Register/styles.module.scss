@@ -1,0 +1,19 @@
+@import '../../../global.scss';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title {
+    @include subtitle;
+}
+
+.text {
+    @include text;
+}
+
+.link {
+    @include link;
+}

@@ -1,0 +1,25 @@
+@import '../../../../../global.scss';
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+}
+
+.input {
+  @include input;
+  flex: 1 1 40%
+}
+
+.update {
+@include buttonUpdate;
+  padding: 5px;
+  margin: 5px 5px 5px 0;
+}
+
+  .close {
+    @include buttonClose;
+    flex: 0 1 auto;
+    color: red;
+    align-self: center;
+}

@@ -1,0 +1,73 @@
+@import '../../../global.scss';
+
+/* mobile */
+
+.container {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.faqTitle {
+    font-size: $font-size-average;
+    margin-bottom: 5px;
+    &::first-letter {
+        text-transform: uppercase;
+    }
+}
+
+.faqMenu li{
+    line-height: 1.5;
+    }
+
+.faqMenu li::after {
+    content: '';
+}
+
+.faqMenu a {
+    text-transform: capitalize;
+}
+
+.image {
+    display: none;
+}
+
+.image img{
+    padding: 15px;
+    width: 90%;
+}
+
+.plus:hover {
+    cursor: pointer;
+}
+/* tablets */
+
+@media (min-width: 768px) {
+    .faqMenuBox {
+        flex: 0 0 100%;
+    }
+
+    .image img{
+        align-items: center;
+        padding: 15px;
+        width: 90%;
+    }
+}
+
+@media (min-width: 1440px) {
+    .image {
+        flex: 0 0 40%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .faqMenuBox {
+        flex: 0 0 60%;
+    }
+
+    .image img{
+        align-items: center;
+        padding: 15px;
+        width: 90%;
+    }
+}
