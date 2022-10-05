@@ -1,0 +1,24 @@
+@import '../../../../../../global.scss';
+
+.container {
+  & h2 {
+    font-size: 25px;
+    text-align: center;
+    margin: 10px 0;
+  }
+  & p {
+    line-height: 1.5;
+    margin: 0 0 5px 0;
+  }
+  & img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: auto;
+  }
+  & ul>li {
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+}

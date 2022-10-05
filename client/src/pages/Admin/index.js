@@ -6,6 +6,7 @@ import TextSiteList from '../Admin/components/TextSite/TextSiteList';
 import ArticleList from '../Admin/components/Article/ArticleList';
 import CategoryList from '../Admin/components/Category/CategoryList';
 import Container from '../../components/Container';
+import Prewiew from './components/Article/components/Prewiew';
 
 import styles from './styles.module.scss';
 
@@ -35,6 +36,7 @@ function Admin() {
         <Container active={active.article}>
           <ArticleList setActive={setActive} />
         </Container>
+        <Prewiew />
       </div>
     </div>
   );
