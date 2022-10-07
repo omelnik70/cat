@@ -6,6 +6,7 @@ import Menu from "../models/site/menu.js";
 import Article from "../models/article.js";
 import Category from "../models/category.js";
 import TextSite from "../models/site/textSite.js";
+import Content from "../models/content.js";
 
 //graphql types
 import { 
@@ -14,6 +15,7 @@ import {
     TextSiteType,
     CategoryType,
     ArticleType, 
+    ContentType,
 } from "./types.js";
 
 //graphql classes
@@ -208,6 +210,69 @@ const {
                 return Article.findByIdAndUpdate(
                     id, 
                     { $set: { title, rating, previews, like, dislike } },
+                    { new: true },
+                );
+            },
+        },
+
+        //content
+        addContent: {
+            type: ContentType,
+            args: {
+                text_1: { type: GraphQLString },
+                text_2: { type: GraphQLString },
+                li_1: { type: GraphQLString },
+                li_2: { type: GraphQLString },
+                strong: { type: GraphQLString },
+                imgSrc: { type: GraphQLString },
+                imgTitle: { type: GraphQLString },
+                aHref: { type: GraphQLString },
+                aText: { type: GraphQLString },
+                articleId: { type: GraphQLID },
+            },
+            resolve(parent, { text_1, text_2, li_1, li_2, strong, imgSrc, imgTitle, aHref, aText, articleId }) {
+                const content = new Content({
+                    text_1,
+                    text_2,
+                    li_1,
+                    li_2,
+                    strong,
+                    imgSrc,
+                    imgTitle,
+                    aHref,
+                    aText,
+                    articleId,
+                });
+                return content.save();
+            },
+        },
+
+        deleteContent: {
+            type: ContentType,
+            args: { id: { type: GraphQLID } },
+            resolve(parent, {id}) {
+                return Content.findByIdAndRemove(id);
+            },
+        },
+
+        updateContent: {
+            type: ContentType,
+            args: {
+                id: { type: GraphQLID },
+                text_1: { type: GraphQLString },
+                text_2: { type: GraphQLString },
+                li_1: { type: GraphQLString },
+                li_2: { type: GraphQLString },
+                strong: { type: GraphQLString },
+                imgSrc: { type: GraphQLString },
+                imgTitle: { type: GraphQLString },
+                aHref: { type: GraphQLString },
+                aText: { type: GraphQLString },
+            },
+            resolve(parent, { id, text_1, text_2, li_1, li_2, strong, imgSrc, imgTitle, aHref, aText }) {
+                return Content.findByIdAndUpdate(
+                    id, 
+                    { $set: { text_1, text_2, li_1, li_2, strong, imgSrc, imgTitle, aHref, aText } },
                     { new: true },
                 );
             },

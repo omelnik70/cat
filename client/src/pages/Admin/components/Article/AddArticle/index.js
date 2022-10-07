@@ -10,7 +10,6 @@ import Context from '../../../../../Context';
 import { ADD_ARTICLE_MUTATION } from '../../../../../apollo/mutations';
 import { ARTICLES_QUERY } from '../../../../../apollo/queries';
 import { currentCat } from '../../../../../data/actions';
-import Paragraph from '../components/Paragraph';
 
 import styles from './styles.module.scss';
 
@@ -81,6 +80,7 @@ function AddArticle() {
                     value={inputs.title}
                 />
                 <div className={styles.category}>
+                    <h3>Выберите категорию</h3>
                     <select
                         ref={categoryRef}
                         onChange={changeCat}
@@ -97,7 +97,6 @@ function AddArticle() {
                     Добавить статью
                 </button>
             </div>
-            <Paragraph />
         </div>
     );
 };

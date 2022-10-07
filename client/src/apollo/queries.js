@@ -74,6 +74,51 @@ const ARTICLES_QUERY = gql`
     }
 `;
 
+const CONTENTS_QUERY = gql`
+    query {
+        contents {
+            id
+            text_1
+            text_2
+            li_1
+            li_2
+            strong
+            imgSrc
+            imgTitle
+            aHref
+            aText
+            article {
+                id
+            }
+        }
+    }
+`;
+
+const ARTICLE_QUERY = gql`
+    query($id: ID) {
+        article(id: $id) {
+            id
+            title
+            rating
+            previews
+            like
+            dislike
+            content {
+                id
+                text_1
+                text_2
+                li_1
+                li_2
+                strong
+                imgSrc
+                imgTitle
+                aHref
+                aText
+            }
+        }
+    }
+`;
+
 const LANGS_QUERY = gql`
     query {
         langs {
@@ -93,6 +138,8 @@ export {
     LANGS_QUERY,
     MENUS_QUERY,
     ARTICLES_QUERY,
+    ARTICLE_QUERY,
     CATEGORIES_QUERY,
-    TEXTSITES_QUERY
+    CONTENTS_QUERY,
+    TEXTSITES_QUERY,
 };

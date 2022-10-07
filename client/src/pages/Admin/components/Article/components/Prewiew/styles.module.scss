@@ -10,15 +10,22 @@
     line-height: 1.5;
     margin: 0 0 5px 0;
   }
-  & img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-    height: auto;
-  }
   & ul>li {
     list-style-type: disc;
     list-style-position: inside;
+  }
+}
+
+.containerImg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & img {
+    width: 90%;
+    height: auto;
+  }
+  & span {
+    font-size: 10px;
+    color: gray;
   }
 }

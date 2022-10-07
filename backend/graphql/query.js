@@ -6,6 +6,7 @@ import Menu from "../models/site/menu.js";
 import Article from "../models/article.js";
 import Category from "../models/category.js";
 import TextSite from "../models/site/textSite.js";
+import Content from "../models/content.js";
 
 import { 
     LangType,
@@ -13,6 +14,7 @@ import {
     TextSiteType,
     CategoryType,
     ArticleType, 
+    ContentType,
 } from "./types.js";
 
 //graphql classes
@@ -110,6 +112,24 @@ const {
             type: new GraphQLList(ArticleType),
             resolve(parent, args) {
                 return Article.find({});
+            },
+
+        },
+
+        //Content
+        content: {
+            type: ContentType,
+            args: { id: { type: GraphQLID } },
+            resolve(parent, {id}) {
+                return Content.findById(id);
+            },
+
+        },
+
+        contents: {
+            type: new GraphQLList(ContentType),
+            resolve(parent, args) {
+                return Content.find({});
             },
 
         },

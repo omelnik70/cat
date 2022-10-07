@@ -1,4 +1,4 @@
-import { CURRENTCAT, CURRENTLANG } from "./boilerplate";
+import { CURRENTCAT, CURRENTART, CURRENTLANG } from "./boilerplate";
 
 //создаем action генераторы
 const currentCat = (payload) => ({
@@ -11,7 +11,13 @@ const currentLang = (payload) => ({
     payload,
 });
 
+const currentArt = (payload) => ({
+    type: CURRENTART,
+    payload,
+});
+
 export { 
     currentCat,
+    currentArt,
     currentLang
 };

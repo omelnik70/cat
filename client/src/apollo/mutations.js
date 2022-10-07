@@ -32,32 +32,19 @@ const UPDATE_CATEGORY_MUTATION = gql`
     }
 `;
 
-const UPDATE_PARAGRAPH_MUTATION = gql`
-    mutation($id: ID, $text: String!) {
-        updateParagraph(id: $id, text: $text) {
+const UPDATE_CONTENT_MUTATION = gql`
+    mutation($id: ID, $text_1: String, $text_2: String, $li_1: String, $li_2: String, $strong: String, $imgSrc: String, $imgTitle: String, $aHref: String, $aText: String) {
+        updateContent(id: $id, text_1: $text_1, text_2: $text_2, li_1: $li_1, li_2: $li_2, strong: $strong, imgSrc: $imgSrc, imgTitle: $imgTitle, aHref: $aHref, aText: $aText) {
             id
-            text
-        }
-    }
-`;
-
-const UPDATE_LINK_MUTATION = gql`
-    mutation($id: ID, $text: String!, $href: String!) {
-        updateLink(id: $id, text: $text, href: $href) {
-            id
-            text
-            href
-        }
-    }
-`;
-
-const UPDATE_IMG_MUTATION = gql`
-    mutation($id: ID, $text: String!, $src: String!, $alt: String!) {
-        updateImg(id: $id, text: $text, src: $src, alt: $alt) {
-            id
-            text
-            src
-            alt
+            text_1
+            text_2
+            li_1
+            li_2
+            strong
+            imgSrc
+            imgTitle
+            aHref
+            aText
         }
     }
 `;
@@ -132,39 +119,20 @@ const ADD_ARTICLE_MUTATION = gql`
     }
 `;
 
-const ADD_PARAGRAPH_MUTATION = gql`
-    mutation($text: String!, $articleId: ID) {
-        newParagraph: addParagraph(text: $text, articleId: $articleId) {
+const ADD_CONTENT_MUTATION = gql`
+    mutation($text_1: String, $text_2: String, $li_1: String, $li_2: String, $strong: String, $imgSrc: String, $imgTitle: String, $aHref: String, $aText: String, $articleId: ID) {
+        newContent: addContent(text_1: $text_1, text_2: $text_2, li_1: $li_1, li_2: $li_2, strong: $strong, imgSrc: $imgSrc, imgTitle: $imgTitle, aHref: $aHref, aText: $aText, articleId: $articleId) {
             id
-            text
+            text_1
+            text_2
+            li_1
+            li_2
+            strong
+            imgSrc
+            imgTitle
+            aHref
+            aText
             article {
-                id
-            }
-        }
-    }
-`;
-
-const ADD_LINK_MUTATION = gql`
-    mutation($text: String!, $href: String!, $paragraphId: ID) {
-        newLink: addLink(text: $text, href: $href, paragraphId: $paragraphId) {
-            id
-            text
-            href
-            paragraph {
-                id
-            }
-        }
-    }
-`;
-
-const ADD_IMG_MUTATION = gql`
-    mutation($text: String!, $src: String!, $alt: String!, $paragraphId: ID) {
-        newImg: addImg(text: $text, src: $src, alt: $alt, paragraphId: $paragraphId) {
-            id
-            text
-            src
-            alt
-            paragraph {
                 id
             }
         }
@@ -195,25 +163,9 @@ const REMOVE_CATEGORY_MUTATION = gql`
     }
 `;
 
-const REMOVE_PARAGRAPH_MUTATION = gql`
+const REMOVE_CONTENT_MUTATION = gql`
     mutation($id: ID) {
-        deleteParagraph(id: $id) {
-            id
-        }
-    }
-`;
-
-const REMOVE_LINK_MUTATION = gql`
-    mutation($id: ID) {
-        deleteLink(id: $id) {
-            id
-        }
-    }
-`;
-
-const REMOVE_IMG_MUTATION = gql`
-    mutation($id: ID) {
-        deleteImg(id: $id) {
+        deleteContent(id: $id) {
             id
         }
     }
@@ -228,25 +180,19 @@ const REMOVE_ARTICLE_MUTATION = gql`
 `;
 
 export { 
-    ADD_IMG_MUTATION,
-    ADD_LINK_MUTATION,
     ADD_MENU_MUTATION,
     ADD_ARTICLE_MUTATION,
     ADD_TEXTSITE_MUTATION,
     ADD_CATEGORY_MUTATION,
-    ADD_PARAGRAPH_MUTATION,
-    UPDATE_IMG_MUTATION,
+    ADD_CONTENT_MUTATION,
     UPDATE_MENU_MUTATION,
     UPDATE_ARTICLE_MUTATION,
     UPDATE_TEXTSITE_MUTATION,
     UPDATE_CATEGORY_MUTATION,
-    UPDATE_PARAGRAPH_MUTATION,
-    UPDATE_LINK_MUTATION,
+    UPDATE_CONTENT_MUTATION,
     REMOVE_MENU_MUTATION,
     REMOVE_ARTICLE_MUTATION,
     REMOVE_TEXTSITE_MUTATION,
     REMOVE_CATEGORY_MUTATION,
-    REMOVE_PARAGRAPH_MUTATION,
-    REMOVE_LINK_MUTATION,
-    REMOVE_IMG_MUTATION,
+    REMOVE_CONTENT_MUTATION,
  };

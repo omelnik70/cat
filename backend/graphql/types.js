@@ -6,6 +6,7 @@ import Menu from "../models/site/menu.js";
 import Article from "../models/article.js";
 import Category from "../models/category.js";
 import TextSite from "../models/site/textSite.js";
+import Content from "../models/content.js";
 
 //graphql classes
 const { 
@@ -112,6 +113,34 @@ const {
                 return Category.findById(categoryId);
             } 
         },
+        content: {
+            type: new GraphQLList(ContentType),
+            resolve({id}, args) {
+                return Content.find({articleId: id});
+            },
+        },
+    }),
+ });
+
+ const ContentType = new GraphQLObjectType({
+    name: "Content",
+    fields: () => ({
+        id: { type: GraphQLID },
+        text_1: { type: GraphQLString },
+        text_2: { type: GraphQLString },
+        li_1: { type: GraphQLString },
+        li_2: { type: GraphQLString },
+        strong: { type: GraphQLString },
+        imgSrc: { type: GraphQLString },
+        imgTitle: { type: GraphQLString },
+        aHref: { type: GraphQLString },
+        aText: { type: GraphQLString },
+        article: { 
+            type: ArticleType,
+            resolve({articleId}, args) {
+                return Article.findById(articleId);
+            } 
+        },
     }),
  });
 
@@ -121,4 +150,5 @@ const {
     TextSiteType,
     CategoryType,
     ArticleType,
+    ContentType,
 };

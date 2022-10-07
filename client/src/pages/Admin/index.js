@@ -5,15 +5,16 @@ import MenuList from '../Admin/components/Menu/MenuList';
 import TextSiteList from '../Admin/components/TextSite/TextSiteList';
 import ArticleList from '../Admin/components/Article/ArticleList';
 import CategoryList from '../Admin/components/Category/CategoryList';
+import ContentList from './components/Article/components/Content/ContentList';
 import Container from '../../components/Container';
-import Prewiew from './components/Article/components/Prewiew';
 
 import styles from './styles.module.scss';
 
 function Admin() {
   const [active, setActive] = useState({
     menu: null,
-    article: null,
+    articleTitle: null,
+    articleDescription: null,
     category: null,
     textSite: null,
   });
@@ -33,10 +34,12 @@ function Admin() {
         <Container active={active.category}>
           <CategoryList setActive={setActive} />
         </Container>
-        <Container active={active.article}>
+        <Container active={active.articleTitle}>
           <ArticleList setActive={setActive} />
         </Container>
-        <Prewiew />
+        <Container active={active.articleDescription}>
+          <ContentList setActive={setActive} />
+        </Container>
       </div>
     </div>
   );

@@ -1,0 +1,42 @@
+@import '../../../../../../../global.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  & button {
+    width: 100%;
+  }
+}
+
+.textBlock {
+    width: 100%;
+    & textarea {
+      width: 100%;
+    }
+}
+
+.inputBlock {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  & input {
+    width: 100%;
+  }
+}
+
+.selectBlock {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 5px 0;
+  & h3 {
+    margin: 0 0 5px 0;
+  }
+}
+
+.input {
+  @include input;
+}

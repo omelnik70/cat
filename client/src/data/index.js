@@ -7,6 +7,11 @@ const DATA = {
       cat: "",
     },
 
+    //перечень статей
+    article: {
+      art: "",
+    },
+
     //язык сайта
     lang: browserLangId,
 

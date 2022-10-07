@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 
 
 function Content () {
-    const { state, dataCat, dataSite } = useContext(Context);
+    const { state, dataCat, dataArt, dataContent, dataSite } = useContext(Context);
     const { lang } = state;
     const [screenWidth, setScreenWidth] = useState(window.screen.width);
 
@@ -31,7 +31,7 @@ function Content () {
 
             <div className={styles.contentBox}>
                 <Search titleSearch={content} />
-                <Faq titlePopularArticles={content} />
+                <Faq titlePopularArticles={content} article={dataArt} content={dataContent} />
             </div>
             </>) :
             (<div className={styles.contentBox}>
