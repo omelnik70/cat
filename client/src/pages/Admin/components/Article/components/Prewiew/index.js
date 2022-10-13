@@ -3,44 +3,7 @@ import React from 'react';
 import styles from './styles.module.scss';
 
 function Prewiew({ article, content }) {
-    const contentArticle = content.contents.filter(cont => cont.article.id === article.articles[0].id)
-
-    console.log(article, content);
-    // const arr = [
-    //     {
-    //         text_1: "",
-    //         text_2: "",
-    //         li_1: "TTTTTTTTTTTTTTTTTTTttttttttttttttttt ",
-    //         li_2: "KKKKKKKKKKKKKKKKKKKKKKK",
-    //         strong: "ffffffffffffffffffffff ",
-    //         imgSrc: "",
-    //         imgTitle: "",
-    //         aHref: "",
-    //         aText: "",
-    //     },
-    //     {
-    //         text_1: " d;d;dldldlktjttjtjjt ",
-    //         text_2: " d;d;dldldlktjttjtjjt ",
-    //         li_1: "",
-    //         li_2: "",
-    //         strong: "",
-    //         imgSrc: "https://i.obozrevatel.com/gallery/2022/9/25/3084258931663071594009388168966323601392584n.jpg",
-    //         imgTitle: "Картинка №1",
-    //         aHref: "https://goggle.com/",
-    //         aText: "tttttttttttttttttttttt",
-    //     },
-    //     {
-    //         text_1: "",
-    //         text_2: "",
-    //         li_1: "",
-    //         li_2: "adadadadadadadadadd",
-    //         strong: "ahhthti7i7i7i7i7i7",
-    //         imgSrc: "",
-    //         imgTitle: "",
-    //         aHref: "",
-    //         aText: "",
-    //     },
-    // ];
+    const contentArticle = content.contents.filter(cont => cont.article.id === article.articles[0].id);
 
     return (
         <div className={styles.container}>

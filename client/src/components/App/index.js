@@ -14,8 +14,6 @@ import {
 import Header from '../Header';
 import Content from '../Content';
 import Footer from '../Footer';
-import Category from '../Content/Category';
-import Post from '../Content/Category/Post';
 import Admin from '../../pages/Admin';
 import Error from '../../pages/Error';
 import DATA from '../../data';
@@ -60,10 +58,10 @@ function App() {
       <div className={styles.container}>
         <div className={styles.header}><Header /></div>
           <Routes>
-            <Route exact path="/" element={<Content/>} />
+            <Route path="/" element={<Content/>} />
             <Route path="/admin" element={<Admin />} />
-              <Route path="/:category" element={<Category />} />
-                <Route path="/:category/:post" element={<Post />} />
+            <Route path="/:category" element={<Content />} />
+            <Route path="/:category/:post" element={<Content />} />
             <Route path="*" element={<Error />} />
           </Routes>
         <div className={styles.footer}><Footer /></div>
