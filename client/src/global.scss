@@ -233,6 +233,12 @@ $font-weight-bolder: 700px;
     margin-right: 10%;
     padding: 1%;
 }
+
+h3 {
+	font-size: $font-size-normal;
+	color: $color-link;
+	line-height: 1.5;
+}
 /*--------------------*/
 
 /*---Animation---*/

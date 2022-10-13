@@ -1,10 +1,36 @@
 @import '../../../../global.scss';
 
-/* mobile */
+.container {
+  & h2 {
+    @include subtitle;
+    margin: 0 0 5px 0;
+  }
+  & p {
+    line-height: 1.5;
+    margin: 0 0 5px 0;
+  }
+  & ul>li {
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+}
 
+.text {
+	font-size: $font-size-normal;
+	color: $color-text;
+    line-height: 1.5;
+}
 
-/* tablets */
-
-@media (min-width: 768px) {
-    
+.containerImg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & img {
+    width: 90%;
+    height: auto;
+  }
+  & span {
+    font-size: 10px;
+    color: gray;
+  }
 }

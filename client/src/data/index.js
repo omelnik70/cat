@@ -7,10 +7,8 @@ const DATA = {
       cat: "",
     },
 
-    //перечень статей
-    article: {
-      art: "",
-    },
+    //текущая статья
+    art: "",
 
     //язык сайта
     lang: browserLangId,

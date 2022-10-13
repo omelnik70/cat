@@ -14,7 +14,7 @@ import styles from './styles.module.scss';
 function Content () {
     const { state, dataCat, dataArt, dataContent, dataSite } = useContext(Context);
     const { category, post } = useParams();
-    const { lang } = state;
+    const { lang, art } = state;
     const [screenWidth, setScreenWidth] = useState(window.screen.width);
 
     window.addEventListener('resize', () => setScreenWidth(window.screen.width));
@@ -32,7 +32,7 @@ function Content () {
             {category && !post ? 
             (<Category data={articleCurrent} href={category} />) :
             post ?
-            (<Post />) :
+            (<Post id={art} />) :
             (<div className={styles.contentBox}>
                 <Search titleSearch={content} />
                 <Faq titlePopularArticles={content} article={dataArt} content={dataContent} />
