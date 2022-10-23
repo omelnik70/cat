@@ -24,6 +24,8 @@ function ArticleList({ setActive }) {
         },
     });
 
+    console.log(dataArt);
+
     return (
         <div className={styles.container}>
             <div

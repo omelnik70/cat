@@ -103,6 +103,7 @@ const {
     fields: () => ({
         id: { type: GraphQLID },
         title: { type: new GraphQLNonNull(GraphQLString) },
+        link: { type: GraphQLString },
         rating: { type: GraphQLInt },
         previews: { type: GraphQLInt },
         like: { type: GraphQLInt },

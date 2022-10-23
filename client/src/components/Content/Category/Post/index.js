@@ -1,23 +1,49 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
+import React, { useState } from 'react';
 
-import Loading from '../../../Loading';
-import { ARTICLE_QUERY } from '../../../../apollo/queries';
 import styles from "./styles.module.scss";
 
 
-function Post ({ id }) {
-    const { loading, data } = useQuery(ARTICLE_QUERY, {
-        variables: { id: id },
-      });
-      
-      if (loading) return <Loading />;
-      const { article } = data;
-      const { title, content } = article;
+function Post ({ contents, articles, lang, post }) {
+    
+    const article = articles.articles.filter(item => post === item.link);
+    const currentArticle = article.filter(item => lang === item.category.lang.id)[0];
+    const content = contents.contents.filter(item => item.article.id === currentArticle.id);
+    const { like, dislike, previews, rating } = currentArticle;
+
+    const [propertiesArt, setPropertiesArt] = useState({
+        like: like,
+        dislike: dislike,
+        previews: previews,
+        rating: rating,
+        likeHide: false,
+        dislikeHide: false,
+    });
+
+    const handleLike = () => {
+        setPropertiesArt({ 
+            ...propertiesArt, 
+            like: propertiesArt.like + 1,
+            likeHide: true,
+            dislikeHide: true,
+        });
+    };
+
+    const handleDislike = () => {
+        setPropertiesArt({ 
+            ...propertiesArt, 
+            dislike: propertiesArt.dislike + 1,
+            likeHide: true,
+            dislikeHide: true,
+        });
+    };
+
+    const { likeHide, dislikeHide } = propertiesArt;
+
+    console.log(propertiesArt);
 
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>{title}</h2>
+            <h2 className={styles.title}>{currentArticle.title}</h2>
             {content.map((item, index) => (
                 <div className={styles.text} key={index}>
                     {item.text_1 && item.text_1}
@@ -36,6 +62,15 @@ function Post ({ id }) {
                     )}
                 </div>
             ))}
+            <div className={styles.line}></div>
+            <div className={styles.likeContainer}>
+                <h4>Была ли информация полезной?</h4>
+                <div  className={styles.likes}>
+                    {(likeHide || dislikeHide) && (<p className={styles.message} >Ваше мнение учтено, спасибо за участие в опросе!</p>)}
+                    <button onClick={handleLike} disabled={propertiesArt.likeHide}>Полезно</button>
+                    <button  onClick={handleDislike}  disabled={propertiesArt.dislikeHide}>Бесполезно</button>
+                </div>
+            </div>
         </div>
     );
 }

@@ -169,15 +169,17 @@ const {
             type: ArticleType,
             args: {
                 title: { type: new GraphQLNonNull(GraphQLString) },
+                link: { type: GraphQLString },
                 rating: { type: GraphQLInt },
                 previews: { type: GraphQLInt },
                 like: { type: GraphQLInt },
                 dislike: { type: GraphQLInt },
                 categoryId: { type: GraphQLID },
             },
-            resolve(parent, { title, rating, previews, like, dislike, categoryId }) {
+            resolve(parent, { title, link, rating, previews, like, dislike, categoryId }) {
                 const article = new Article({
                     title,
+                    link,
                     rating,
                     previews,
                     like,
@@ -201,15 +203,16 @@ const {
             args: {
                 id: { type: GraphQLID },
                 title: { type: new GraphQLNonNull(GraphQLString) },
+                link: { type: GraphQLString },
                 rating: { type: GraphQLInt },
                 previews: { type: GraphQLInt },
                 like: { type: GraphQLInt },
                 dislike: { type: GraphQLInt },
             },
-            resolve(parent, { id, title, rating, previews, like, dislike }) {
+            resolve(parent, { id, title, link, rating, previews, like, dislike }) {
                 return Article.findByIdAndUpdate(
                     id, 
-                    { $set: { title, rating, previews, like, dislike } },
+                    { $set: { title, link, rating, previews, like, dislike } },
                     { new: true },
                 );
             },

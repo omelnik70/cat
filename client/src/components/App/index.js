@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import Context from '../../Context';
 
@@ -59,6 +59,7 @@ function App() {
         <div className={styles.header}><Header /></div>
           <Routes>
             <Route path="/" element={<Content/>} />
+            <Route path="/shop" element={<Navigate to="https://s.zbanx.com/r/DAujDHRTt8P9" replace />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/:category" element={<Content />} />
             <Route path="/:category/:post" element={<Content />} />

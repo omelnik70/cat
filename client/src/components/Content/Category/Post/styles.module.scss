@@ -1,9 +1,11 @@
 @import '../../../../global.scss';
 
 .container {
+  width: 100%;
   & h2 {
     @include subtitle;
-    margin: 0 0 5px 0;
+    margin: 0 0 15px 0;
+    text-align: center;
   }
   & p {
     line-height: 1.5;
@@ -19,6 +21,7 @@
 	font-size: $font-size-normal;
 	color: $color-text;
     line-height: 1.5;
+    margin: 0 0 10px 0;
 }
 
 .containerImg {
@@ -32,5 +35,62 @@
   & span {
     font-size: 10px;
     color: gray;
+  }
+}
+
+.line {
+  height: 2px;
+  width: 70%;
+  background-color: $color-text;
+  margin: 5px auto;
+}
+
+.likeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0 0 0;
+  & h4 {
+    color: $color-text;
+  }
+}
+
+.likes {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  & button {
+    width: 100px;
+  }
+}
+
+.message {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  top: 50px;
+  animation: showMessage 1s linear forwards;
+  animation: hideMessage 5s linear forwards;
+}
+
+@keyframes showMessage {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hideMessage {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

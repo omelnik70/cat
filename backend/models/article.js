@@ -3,6 +3,7 @@ const { Schema, model } = mongoose;
 
 const ArticleSchema = new Schema({
     title: String,
+    link: String,
     rating: Number,
     previews: Number,
     like: Number,

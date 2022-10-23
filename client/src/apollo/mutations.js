@@ -50,10 +50,11 @@ const UPDATE_CONTENT_MUTATION = gql`
 `;
 
 const UPDATE_ARTICLE_MUTATION = gql`
-    mutation($id: ID, $title: String!, $rating: Int, $previews: Int, $like: Int, $dislike: Int) {
-        updateArticle(id: $id, title: $title, rating: $rating, previews: $previews, like: $like, dislike: $dislike) {
+    mutation($id: ID, $title: String!, $link: String, $rating: Int, $previews: Int, $like: Int, $dislike: Int) {
+        updateArticle(id: $id, title: $title, link: $link, rating: $rating, previews: $previews, like: $like, dislike: $dislike) {
             id
             title
+            link
             rating
             previews
             like
@@ -104,10 +105,11 @@ const ADD_CATEGORY_MUTATION = gql`
 `;
 
 const ADD_ARTICLE_MUTATION = gql`
-    mutation($title: String!, $rating: Int, $previews: Int, $like: Int, $dislike: Int, $categoryId: ID) {
-        newArticle: addArticle(title: $title, rating: $rating, previews: $previews, like: $like, dislike: $dislike, categoryId: $categoryId) {
+    mutation($title: String!, $link: String, $rating: Int, $previews: Int, $like: Int, $dislike: Int, $categoryId: ID) {
+        newArticle: addArticle(title: $title, link: $link, rating: $rating, previews: $previews, like: $like, dislike: $dislike, categoryId: $categoryId) {
             id
             title
+            link
             rating
             previews
             like

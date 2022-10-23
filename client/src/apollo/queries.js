@@ -38,6 +38,7 @@ const CATEGORIES_QUERY = gql`
             article {
                 id
                 title
+                link
             }
         }
     }
@@ -63,12 +64,16 @@ const ARTICLES_QUERY = gql`
         articles {
             id
             title
+            link
             rating
             previews
             like
             dislike
             category {
                 id
+                lang {
+                    id
+                }
             }
         }
     }
@@ -99,6 +104,7 @@ const ARTICLE_QUERY = gql`
         article(id: $id) {
             id
             title
+            link
             rating
             previews
             like

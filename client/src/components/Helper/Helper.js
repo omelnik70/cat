@@ -50,3 +50,7 @@ export const transliter = ( str ) => {
  
   return n_str.join('');
 };
+
+export const createLink = ( str ) => {
+  return str.toLowerCase().replace(/ /g,"_").replace(/[\s.,%?]/g, '');
+};

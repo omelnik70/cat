@@ -10,6 +10,7 @@ import Context from '../../../../../Context';
 import { ADD_ARTICLE_MUTATION } from '../../../../../apollo/mutations';
 import { ARTICLES_QUERY } from '../../../../../apollo/queries';
 import { currentCat } from '../../../../../data/actions';
+import { createLink } from '../../../../../components/Helper/Helper';
 
 import styles from './styles.module.scss';
 
@@ -21,6 +22,7 @@ function AddArticle() {
     const categoryRef = useRef();
     const [inputs, setInputs] = useState({
         title: "Введите название статьи",
+        link: "Введите название статьи на английском",
     });
 
     useEffect(() => {
@@ -49,6 +51,7 @@ function AddArticle() {
         addArticle({
             variables: {
                 title: inputs.title,
+                link: createLink(inputs.link),
                 rating: 0,
                 previews: 0,
                 like: 0,
@@ -59,6 +62,7 @@ function AddArticle() {
         setInputs({
             ...inputs,
             title: "Введите название статьи",
+            link: "Введите название статьи на английском",
         });
     };
 
@@ -78,6 +82,12 @@ function AddArticle() {
                     className={styles.input} 
                     type="text" 
                     value={inputs.title}
+                />
+                <input 
+                    onChange={(e) => setInputs({...inputs, link: e.target.value})}
+                    className={styles.input} 
+                    type="text" 
+                    value={inputs.link}
                 />
                 <div className={styles.category}>
                     <h3>Выберите категорию</h3>
