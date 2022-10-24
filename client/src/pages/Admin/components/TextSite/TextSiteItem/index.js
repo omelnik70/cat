@@ -8,6 +8,9 @@ function TextSiteItem({
     descriptionSite,
     titleSearch,
     titlePopularArticles, 
+    likeInfo,
+    like,
+    dislike,
     onUpdate, 
     onRemove 
 }) {
@@ -17,7 +20,12 @@ function TextSiteItem({
         descriptionSite: descriptionSite,
         titleSearch: titleSearch,
         titlePopularArticles: titlePopularArticles,
+        likeInfo: likeInfo,
+        like: like,
+        dislike: dislike,
     });
+
+    console.log(input);
 
     const handleUpdateTextSite = () => {
         onUpdate({
@@ -27,6 +35,9 @@ function TextSiteItem({
                 descriptionSite: input.descriptionSite,
                 titleSearch: input.titleSearch,
                 titlePopularArticles: input.titlePopularArticles,
+                likeInfo: input.likeInfo,
+                like: input.like,
+                dislike: input.dislike,
             },
         });
     };
@@ -44,32 +55,56 @@ function TextSiteItem({
             <input 
                 onChange={(e) => setInput({ ...input, titleSite: e.target.value })}
                 className={styles.input}
-                type="text" value={input.titleSite}
+                type="text" 
+                value={input.titleSite}
             />
             <input 
                 onChange={(e) => setInput({ ...input, descriptionSite: e.target.value })}
                 className={styles.input}
-                type="text" value={input.descriptionSite}
+                type="text" 
+                value={input.descriptionSite}
             />
             <input 
                 onChange={(e) => setInput({ ...input, titleSearch: e.target.value })}
                 className={styles.input}
-                type="text" value={input.titleSearch}
+                type="text" 
+                value={input.titleSearch}
             />
             <input 
                 onChange={(e) => setInput({ ...input, titlePopularArticles: e.target.value })}
                 className={styles.input}
-                type="text" value={input.titlePopularArticles}
+                type="text" 
+                value={input.titlePopularArticles}
             />
-            <div 
-                onClick={handleUpdateTextSite}
-                className={styles.update}>
-                &#10004;
-            </div>
-            <div 
-                onClick={handleRemoveTextSite}
-                className={styles.close}>
-                &times;
+            <input 
+                onChange={(e) => setInput({ ...input, likeInfo: e.target.value })}
+                className={styles.input}
+                type="text" 
+                value={input.likeInfo}
+            />
+            <input 
+                onChange={(e) => setInput({ ...input, like: e.target.value })}
+                className={styles.input}
+                type="text" 
+                value={input.like}
+            />
+            <input 
+                onChange={(e) => setInput({ ...input, dislike: e.target.value })}
+                className={styles.input}
+                type="text" 
+                value={input.dislike}
+            />
+            <div className={styles.btn}>
+                <div 
+                    onClick={handleUpdateTextSite}
+                    className={styles.update}>
+                    &#10004;
+                </div>
+                <div 
+                    onClick={handleRemoveTextSite}
+                    className={styles.close}>
+                    &times;
+                </div>
             </div>
         </div>
     );

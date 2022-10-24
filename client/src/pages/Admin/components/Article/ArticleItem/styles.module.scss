@@ -3,17 +3,17 @@
 .container {
   position: relative;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .inputBlock {
   flex: 1 1 80%;
   display: flex;
-  flex-direction: column;
 }
 
 .input {
   @include input;
+  flex: 1 1 auto;
 }
 
 .update {

@@ -3,12 +3,18 @@
 .container {
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
 }
 
 .input {
   @include input;
   flex: 1 1 40%
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
 }
 
 .update {

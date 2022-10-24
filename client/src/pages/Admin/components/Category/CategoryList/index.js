@@ -9,7 +9,8 @@ import { UPDATE_CATEGORY_MUTATION, REMOVE_CATEGORY_MUTATION } from '../../../../
 import styles from './styles.module.scss';
 
 function CategoryList({ setActive }) {
-    const { lang, dataCat } = useContext(Context);
+    const { state, dataCat } = useContext(Context);
+    const { lang } = state;
     const [updateCategory] = useMutation(UPDATE_CATEGORY_MUTATION);
     const [removeCategory] = useMutation(REMOVE_CATEGORY_MUTATION, {
         update(cache, { data: { deleteCategory } }) {

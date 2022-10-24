@@ -68,6 +68,9 @@ const {
         descriptionSite: { type: new GraphQLNonNull(GraphQLString) },
         titleSearch: { type: new GraphQLNonNull(GraphQLString) },
         titlePopularArticles: { type: new GraphQLNonNull(GraphQLString) },
+        likeInfo: { type: GraphQLString },
+        like: { type: GraphQLString },
+        dislike: { type: GraphQLString },
         lang: { 
             type: LangType,
             resolve({langId}, args) {
@@ -102,7 +105,7 @@ const {
     name: "Article",
     fields: () => ({
         id: { type: GraphQLID },
-        title: { type: new GraphQLNonNull(GraphQLString) },
+        title: { type: GraphQLString },
         link: { type: GraphQLString },
         rating: { type: GraphQLInt },
         previews: { type: GraphQLInt },

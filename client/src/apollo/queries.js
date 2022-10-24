@@ -52,6 +52,9 @@ const TEXTSITES_QUERY = gql`
         descriptionSite
         titleSearch
         titlePopularArticles
+        likeInfo
+        like
+        dislike
         lang {
             id
         }

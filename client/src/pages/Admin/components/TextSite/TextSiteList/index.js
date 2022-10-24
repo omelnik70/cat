@@ -10,7 +10,8 @@ import { TEXTSITES_QUERY } from '../../../../../apollo/queries';
 import styles from './styles.module.scss';
 
 function TextSiteList({ setActive }) {
-    const { lang } = useContext(Context);
+    const { state } = useContext(Context);
+    const { lang } = state;
     const { loading ,error, data } = useQuery(TEXTSITES_QUERY);
     const [updateTextSite, { error: updateError }] = useMutation(UPDATE_TEXTSITE_MUTATION);
     const [removeTextSite, { error: removeError }] = useMutation(REMOVE_TEXTSITE_MUTATION, {
@@ -27,6 +28,8 @@ function TextSiteList({ setActive }) {
  
     if (loading) return <h2>loading...</h2>
     if (error || updateError || removeError) return `Error! ${error.message}`;
+
+    console.log(data.textsites);
 
     return (
         <div className={styles.container}>

@@ -82,14 +82,20 @@ const {
                 descriptionSite: { type: new GraphQLNonNull(GraphQLString) },
                 titleSearch: { type: new GraphQLNonNull(GraphQLString) },
                 titlePopularArticles: { type: new GraphQLNonNull(GraphQLString) },
+                likeInfo: { type: GraphQLString },
+                like: { type: GraphQLString },
+                dislike: { type: GraphQLString },
                 langId: { type: GraphQLID },
             },
-            resolve(parent, { titleSite, descriptionSite, titleSearch, titlePopularArticles, langId }) {
+            resolve(parent, { titleSite, descriptionSite, titleSearch, titlePopularArticles, likeInfo, like, dislike, langId }) {
                 const textSite = new TextSite({
                     titleSite,
                     descriptionSite,
                     titleSearch,
                     titlePopularArticles,
+                    likeInfo,
+                    like,
+                    dislike,
                     langId,
                 });
                 return textSite.save();
@@ -112,11 +118,14 @@ const {
                 descriptionSite: { type: new GraphQLNonNull(GraphQLString) },
                 titleSearch: { type: new GraphQLNonNull(GraphQLString) },
                 titlePopularArticles: { type: new GraphQLNonNull(GraphQLString) },
+                likeInfo: { type: GraphQLString },
+                like: { type: GraphQLString },
+                dislike: { type: GraphQLString },
             },
-            resolve(parent, { id, titleSite, descriptionSite, titleSearch, titlePopularArticles }) {
+            resolve(parent, { id, titleSite, descriptionSite, titleSearch, titlePopularArticles, likeInfo, like, dislike }) {
                 return TextSite.findByIdAndUpdate(
                     id, 
-                    { $set: { titleSite, descriptionSite, titleSearch, titlePopularArticles } },
+                    { $set: { titleSite, descriptionSite, titleSearch, titlePopularArticles, likeInfo, like, dislike } },
                     { new: true },
                 );
             },
@@ -168,7 +177,7 @@ const {
         addArticle: {
             type: ArticleType,
             args: {
-                title: { type: new GraphQLNonNull(GraphQLString) },
+                title: { type: GraphQLString },
                 link: { type: GraphQLString },
                 rating: { type: GraphQLInt },
                 previews: { type: GraphQLInt },
@@ -202,7 +211,7 @@ const {
             type: ArticleType,
             args: {
                 id: { type: GraphQLID },
-                title: { type: new GraphQLNonNull(GraphQLString) },
+                title: { type: GraphQLString },
                 link: { type: GraphQLString },
                 rating: { type: GraphQLInt },
                 previews: { type: GraphQLInt },

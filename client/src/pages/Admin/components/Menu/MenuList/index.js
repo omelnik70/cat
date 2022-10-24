@@ -10,7 +10,8 @@ import { MENUS_QUERY } from '../../../../../apollo/queries';
 import styles from './styles.module.scss';
 
 function MenuList({ setActive }) {
-    const { lang } = useContext(Context);
+    const { state } = useContext(Context);
+    const { lang } = state;
     const { loading, error, data } = useQuery(MENUS_QUERY);
     const [updateMenu, { error: updateError }] = useMutation(UPDATE_MENU_MUTATION);
     const [removeMenu, { error: removeError }] = useMutation(REMOVE_MENU_MUTATION, {

@@ -24,8 +24,6 @@ function ContentList({ setActive }) {
         },
     });
 
-    console.log(dataContent, art);
-
     return (
         <div className={styles.container}>
             <div

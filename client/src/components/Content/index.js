@@ -33,7 +33,7 @@ function Content () {
             {category && !post ? 
             (<Category data={articleCurrent} href={category} />) :
             post ?
-            (<Post contents={dataContent} articles={dataArt} lang={lang} post={post} />) :
+            (<Post contents={dataContent} articles={dataArt} lang={lang} post={post} site={dataSite} />) :
             (<div className={styles.contentBox}>
                 <Search titleSearch={content} />
                 <Faq titlePopularArticles={content} article={dataArt} content={dataContent} />

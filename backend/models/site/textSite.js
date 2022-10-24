@@ -6,6 +6,9 @@ const TextSiteSchema = new Schema({
     descriptionSite: String,
     titleSearch: String,
     titlePopularArticles: String,
+    likeInfo: String,
+    like: String,
+    dislike: String,
     langId: String,
 });
 

@@ -11,13 +11,16 @@ const UPDATE_MENU_MUTATION = gql`
 `;
 
 const UPDATE_TEXTSITE_MUTATION = gql`
-    mutation UpdateTextSite ($id: ID, $titleSite: String!, $descriptionSite: String!, $titleSearch: String!, $titlePopularArticles: String!){
-        updateTextSite(id: $id, titleSite: $titleSite, descriptionSite: $descriptionSite, titleSearch: $titleSearch, titlePopularArticles: $titlePopularArticles) {
+    mutation UpdateTextSite ($id: ID, $titleSite: String!, $descriptionSite: String!, $titleSearch: String!, $titlePopularArticles: String!, $likeInfo: String, $like: String, $dislike: String){
+        updateTextSite(id: $id, titleSite: $titleSite, descriptionSite: $descriptionSite, titleSearch: $titleSearch, titlePopularArticles: $titlePopularArticles, likeInfo: $likeInfo, like: $like, dislike: $dislike) {
             id
             titleSite
             descriptionSite
             titleSearch
             titlePopularArticles
+            likeInfo
+            like
+            dislike
         },
     }
 `;
@@ -50,7 +53,7 @@ const UPDATE_CONTENT_MUTATION = gql`
 `;
 
 const UPDATE_ARTICLE_MUTATION = gql`
-    mutation($id: ID, $title: String!, $link: String, $rating: Int, $previews: Int, $like: Int, $dislike: Int) {
+    mutation($id: ID, $title: String, $link: String, $rating: Int, $previews: Int, $like: Int, $dislike: Int) {
         updateArticle(id: $id, title: $title, link: $link, rating: $rating, previews: $previews, like: $like, dislike: $dislike) {
             id
             title
@@ -77,13 +80,16 @@ const ADD_MENU_MUTATION = gql`
 `;
 
 const ADD_TEXTSITE_MUTATION = gql`
-    mutation AddTextSite ($titleSite: String!, $descriptionSite: String!, $titleSearch: String!, $titlePopularArticles: String!, $langId: ID){
-        newTextSite: addTextSite(titleSite: $titleSite, descriptionSite: $descriptionSite, titleSearch: $titleSearch, titlePopularArticles: $titlePopularArticles, langId: $langId) {
+    mutation AddTextSite ($titleSite: String!, $descriptionSite: String!, $titleSearch: String!, $titlePopularArticles: String!, $likeInfo: String, $like: String, $dislike: String, $langId: ID){
+        newTextSite: addTextSite(titleSite: $titleSite, descriptionSite: $descriptionSite, titleSearch: $titleSearch, titlePopularArticles: $titlePopularArticles, likeInfo: $likeInfo, like: $like, dislike: $dislike, langId: $langId) {
             id
             titleSite
             descriptionSite
             titleSearch
             titlePopularArticles
+            likeInfo
+            like
+            dislike
             lang {
               id
             }
@@ -105,7 +111,7 @@ const ADD_CATEGORY_MUTATION = gql`
 `;
 
 const ADD_ARTICLE_MUTATION = gql`
-    mutation($title: String!, $link: String, $rating: Int, $previews: Int, $like: Int, $dislike: Int, $categoryId: ID) {
+    mutation($title: String, $link: String, $rating: Int, $previews: Int, $like: Int, $dislike: Int, $categoryId: ID) {
         newArticle: addArticle(title: $title, link: $link, rating: $rating, previews: $previews, like: $like, dislike: $dislike, categoryId: $categoryId) {
             id
             title

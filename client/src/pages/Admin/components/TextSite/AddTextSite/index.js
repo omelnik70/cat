@@ -14,6 +14,9 @@ function AddTextSite() {
         descriptionSite: "Введите краткое описание сайта до 50 символов",
         titleSearch: "Введите название поискового окна",
         titlePopularArticles: "Введите название популярных статей",
+        likeInfo: "Была ли информация полезной?",
+        like: "Полезно",
+        dislike: "Бесполезно",
         langId: lang
     });
 
@@ -42,6 +45,9 @@ function AddTextSite() {
                 descriptionSite: inputs.descriptionSite,
                 titleSearch: inputs.titleSearch,
                 titlePopularArticles: inputs.titlePopularArticles,
+                likeInfo: inputs.likeInfo,
+                like: inputs.like,
+                dislike: inputs.dislike,
                 langId: inputs.langId
             },
         });
@@ -51,6 +57,9 @@ function AddTextSite() {
             descriptionSite: "Введите краткое описание сайта до 50 символов",
             titleSearch: "Введите название поискового окна",
             titlePopularArticles: "Введите название популярных статей",
+            likeInfo: "Была ли информация полезной?",
+            like: "Полезно",
+            dislike: "Бесполезно",
         });
     };
 
@@ -86,6 +95,24 @@ function AddTextSite() {
                     className={styles.input} 
                     type="text" 
                     value={inputs.titlePopularArticles}
+                />
+                <input 
+                    onChange={(e) => setInputs({...inputs, likeInfo: e.target.value})}
+                    className={styles.input} 
+                    type="text" 
+                    value={inputs.likeInfo}
+                />
+                <input 
+                    onChange={(e) => setInputs({...inputs, like: e.target.value})}
+                    className={styles.input} 
+                    type="text" 
+                    value={inputs.like}
+                />
+                <input 
+                    onChange={(e) => setInputs({...inputs, dislike: e.target.value})}
+                    className={styles.input} 
+                    type="text" 
+                    value={inputs.dislike}
                 />
                 <div className={styles.lang}>
                     {dataLangs.langs.map(lang => (

@@ -16,7 +16,7 @@ import styles from './styles.module.scss';
 function AddContent() {
     
     const { dataArt, dataCat, state, dispatch } = useContext(Context);
-    const { lang, cat, art } = state;
+    const { lang, cat } = state;
     const catCurrent = dataCat.categories.filter(cat => cat.lang.id === lang);
     const artCurrent = dataArt.articles.filter(art => art.category.id === cat);
     const articleRef = useRef();
@@ -32,8 +32,6 @@ function AddContent() {
         aHref: "",
         aText: "",
     });
-
-    console.log(art);
 
     useEffect(() => {
         dispatch(currentArt(articleRef.current.value));
