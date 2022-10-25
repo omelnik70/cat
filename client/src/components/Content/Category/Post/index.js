@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { UPDATE_ARTICLE_MUTATION } from '../../../../apollo/mutations';
+import { wilsonScore } from '../../../Helper/Helper';
 
 import styles from "./styles.module.scss";
 
@@ -14,32 +15,43 @@ function Post ({ contents, articles, lang, post, site }) {
     const { id, like, dislike, previews, rating } = currentArticle;
 
     const [propertiesArt, setPropertiesArt] = useState({
-        id: id,
-        like: like,
-        dislike: dislike,
-        previews: previews,
-        rating: rating,
+        id,
+        like,
+        dislike,
+        previews,
+        rating,
         likeHide: false,
         dislikeHide: false,
     });
 
+    console.log(propertiesArt);
+
     const [updateArticle] = useMutation(UPDATE_ARTICLE_MUTATION);
 
-    const couterPreviews = () => {
-        setPropertiesArt({...propertiesArt, previews: propertiesArt.previews + 1})
-    };
+    useEffect(() => {
+        setPropertiesArt({
+            ...propertiesArt, 
+            id: id,
+            like: like,
+            dislike: dislike,
+            rating: wilsonScore(like, dislike),
+        })
+    }, [id, like, dislike]);
 
     useEffect(() => {
-        couterPreviews();
+        setPropertiesArt({...propertiesArt, previews: propertiesArt.previews + 1});
+    }, []);
+
+    useEffect(() => {
         updateArticle({
             variables: {
                 id: propertiesArt.id,
                 previews: propertiesArt.previews,
+                like: propertiesArt.like,
+                dislike: propertiesArt.dislike,
             },
         });
-    }, []);
-
-    console.log(site.textsites.filter(item => lang === item.lang.id)[0]);
+    }, [updateArticle, propertiesArt.id, propertiesArt.previews, propertiesArt.like, propertiesArt.dislike]);
 
     const handleLike = () => {
         setPropertiesArt({ 
@@ -47,12 +59,6 @@ function Post ({ contents, articles, lang, post, site }) {
             like: propertiesArt.like + 1,
             likeHide: true,
             dislikeHide: true,
-        });
-        updateArticle({
-            variables: {
-                id: propertiesArt.id,
-                like: propertiesArt.like,
-            },
         });
     };
 
@@ -62,12 +68,6 @@ function Post ({ contents, articles, lang, post, site }) {
             dislike: propertiesArt.dislike + 1,
             likeHide: true,
             dislikeHide: true,
-        });
-        updateArticle({
-            variables: {
-                id: propertiesArt.id,
-                dislike: propertiesArt.dislike,
-            },
         });
     };
 
@@ -94,13 +94,15 @@ function Post ({ contents, articles, lang, post, site }) {
                     )}
                 </div>
             ))}
-            <div className={styles.line}></div>
+            <div className={styles.line1}></div>
+            <div className={styles.line2}></div>
+            <div className={styles.line3}></div>
             <div className={styles.likeContainer}>
                 <h4>{likeBlock.likeInfo}</h4>
                 <div  className={styles.likes}>
                     {(likeHide || dislikeHide) && (<p className={styles.message} >Ваше мнение учтено, спасибо за участие в опросе!</p>)}
-                    <button onClick={handleLike} disabled={propertiesArt.likeHide}>{likeBlock.like}</button>
-                    <button  onClick={handleDislike}  disabled={propertiesArt.dislikeHide}>{likeBlock.dislike}</button>
+                    <button className={styles.like} onClick={handleLike} disabled={propertiesArt.likeHide}>&#128077; {likeBlock.like}<span>{like}</span></button>
+                    <button className={styles.dislike}  onClick={handleDislike}  disabled={propertiesArt.dislikeHide}>&#128078; {likeBlock.dislike}<span>{dislike}</span></button>
                 </div>
             </div>
         </div>

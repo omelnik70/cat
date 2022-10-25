@@ -38,11 +38,21 @@
   }
 }
 
-.line {
+.line1,
+.line2,
+.line3 {
+  width: 90%;
   height: 2px;
-  width: 70%;
   background-color: $color-text;
   margin: 5px auto;
+}
+
+.line2 {
+  width: 70%;
+}
+
+.line3 {
+  width: 50%;
 }
 
 .likeContainer {
@@ -63,7 +73,14 @@
   align-items: center;
   justify-content: space-evenly;
   & button {
-    width: 120px;
+    min-width: 100px;
+    width: auto;
+    & span {
+      border: 1px solid $color-text;
+      border-radius: 5px;
+      padding: 2px 5px;
+      margin-left: 5px;
+    }
   }
 }
 
