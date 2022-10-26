@@ -25,8 +25,6 @@ function TextSiteItem({
         dislike: dislike,
     });
 
-    console.log(input);
-
     const handleUpdateTextSite = () => {
         onUpdate({
             variables: {

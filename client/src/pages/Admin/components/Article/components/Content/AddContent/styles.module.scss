@@ -10,6 +10,10 @@
   }
 }
 
+.input {
+  @include input;
+}
+
 .textBlock {
     width: 100%;
     & textarea {
@@ -17,26 +21,59 @@
     }
 }
 
-.inputBlock {
+.inputBlock,
+.linkBlock,
+.selectBlock {
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   & input {
     width: 100%;
   }
 }
 
-.selectBlock {
-  width: 100%;
+.inputBlock {
+  padding: 3px;
+  border: 1px solid black;
+  margin: 5px 0;
+}
+
+.imgPreviews {
+  width: inherit;
+  & img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.srcImgBlock {
   display: flex;
+  flex-direction: row;
+}
+
+.linkBlock {
+  flex-direction: row;
+}
+
+.uploadBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  & button {
+    max-width: 100px;
+  }
+  & input {
+    @include button;
+    width: auto;
+    border: none;
+  }
+}
+
+.selectBlock {
   flex-direction: row;
   justify-content: space-evenly;
   margin: 5px 0;
   & h3 {
     margin: 0 0 5px 0;
   }
-}
-
-.input {
-  @include input;
 }

@@ -29,8 +29,6 @@ function TextSiteList({ setActive }) {
     if (loading) return <h2>loading...</h2>
     if (error || updateError || removeError) return `Error! ${error.message}`;
 
-    console.log(data.textsites);
-
     return (
         <div className={styles.container}>
             <div

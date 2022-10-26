@@ -31,7 +31,11 @@ function AddContent() {
         imgTitle: "",
         aHref: "",
         aText: "",
+        arrImg: [],
     });
+
+    const { arrImg } = inputs; 
+    console.log(inputs.arrImg);
 
     useEffect(() => {
         dispatch(currentArt(articleRef.current.value));
@@ -94,6 +98,33 @@ function AddContent() {
     const changeArticle = (e) => dispatch(currentArt(e.target.value));
     const changeCat = (e) => dispatch(currentCat(e.target.value));
 
+    const handleChangeImg = (e) => {
+        const files = Array.from(e.target.files);
+        setInputs({ 
+            ...inputs, 
+            arrImg: [],
+            imgSrc: "",
+         });
+        files.forEach(file => {
+            //проверяем, является ли файл картинкой
+            if(!file.type.match('image')) {
+                return;
+            };
+            const reader = new FileReader();
+            reader.onload = ev => {
+                const src = ev.currentTarget.result;
+                arrImg.push(src);
+                setInputs({
+                    ...inputs, 
+                    arrImg: arrImg,
+                    imgSrc: file.name
+                });
+                console.log(file);
+            }
+            reader.readAsDataURL(file);
+        })
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.textBlock}>
@@ -147,23 +178,37 @@ function AddContent() {
             </div>
             
             <div className={styles.inputBlock}>
-                <input 
-                    onChange={(e) => setInputs({ ...inputs, imgSrc: e.target.value })}
-                    className={styles.input}
-                    type="text" 
-                    placeholder='Введите ссылку для картинки'
-                    value={inputs.imgSrc}
-                />
-                <input 
-                    onChange={(e) => setInputs({ ...inputs, imgTitle: e.target.value })}
-                    className={styles.input}
-                    type="text" 
-                    placeholder='Введите текст картинки'
-                    value={inputs.imgTitle}
-                />
+                <div className={styles.uploadBlock}>
+                    <input 
+                        onChange={(e) => handleChangeImg(e)}
+                        multiple
+                        type="file" 
+                        accept=".jpeg,.png,.webp,.svg,.jpg"
+                    />
+                    <button>Загрузить</button>
+                </div>
+                <div className={styles.imgPreviews}>
+                    {arrImg && arrImg.map(src => (<img src={src} alt=''></img>))}
+                </div>
+                <div className={styles.srcImgBlock}>
+                    <input 
+                        onChange={(e) => setInputs({ ...inputs, imgSrc: e.target.value })}
+                        className={styles.input}
+                        type="text" 
+                        placeholder='Введите ссылку для картинки'
+                        value={inputs.imgSrc}
+                    />
+                    <input 
+                        onChange={(e) => setInputs({ ...inputs, imgTitle: e.target.value })}
+                        className={styles.input}
+                        type="text" 
+                        placeholder='Введите текст картинки'
+                        value={inputs.imgTitle}
+                    />
+                </div>
             </div>
             
-            <div className={styles.inputBlock}>
+            <div className={styles.linkBlock}>
                 <input 
                     onChange={(e) => setInputs({ ...inputs, aHref: e.target.value })}
                     className={styles.input}
