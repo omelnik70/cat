@@ -34,8 +34,8 @@ function AddContent() {
         arrImg: [],
     });
 
-    const { arrImg } = inputs; 
-    console.log(inputs.arrImg);
+    const inputRef = useRef();
+    const { arrImg } = inputs;
 
     useEffect(() => {
         dispatch(currentArt(articleRef.current.value));
@@ -119,10 +119,20 @@ function AddContent() {
                     arrImg: arrImg,
                     imgSrc: file.name
                 });
-                console.log(file);
             }
             reader.readAsDataURL(file);
         })
+    };
+
+    const handleCloseImg = (index) => {
+        arrImg.splice(index, 1);
+        setInputs({
+            ...inputs, 
+            arrImg: arrImg,
+            imgSrc: "",
+        });
+        const files = inputRef.current;
+        files.value = "";
     };
 
     return (
@@ -180,15 +190,24 @@ function AddContent() {
             <div className={styles.inputBlock}>
                 <div className={styles.uploadBlock}>
                     <input 
+                        ref={inputRef}
                         onChange={(e) => handleChangeImg(e)}
-                        multiple
                         type="file" 
                         accept=".jpeg,.png,.webp,.svg,.jpg"
                     />
-                    <button>Загрузить</button>
+                    {Boolean(arrImg.length) && (<button>Загрузить</button>)}
                 </div>
                 <div className={styles.imgPreviews}>
-                    {arrImg && arrImg.map(src => (<img src={src} alt=''></img>))}
+                    {arrImg && arrImg.map((item, index) => (
+                    <div key={index} className={styles.imgBlock}>
+                        <img src={item} alt=''></img>
+                        <div 
+                            onClick={() => handleCloseImg(index)}
+                            className={styles.close}>
+                            &times;
+                        </div>
+                    </div>
+                    ))}
                 </div>
                 <div className={styles.srcImgBlock}>
                     <input 
