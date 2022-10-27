@@ -94,9 +94,11 @@ function Post ({ contents, articles, lang, post, site }) {
                     )}
                 </div>
             ))}
-            <div className={styles.line1}></div>
-            <div className={styles.line2}></div>
-            <div className={styles.line3}></div>
+            <div className={styles.lines}>
+                <div className={styles.line1}></div>
+                <div className={styles.line2}></div>
+                <div className={styles.line3}></div>
+            </div>
             <div className={styles.likeContainer}>
                 <h4>{likeBlock.likeInfo}</h4>
                 <div  className={styles.likes}>

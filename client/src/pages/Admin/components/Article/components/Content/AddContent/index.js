@@ -6,6 +6,8 @@ import React, {
 } from 'react';
 import { useMutation } from '@apollo/client';
 
+import { storage } from '../../../../../../../firebase';
+import { ref, uploadBytes, getDownloadURL, uploadBytesResumable, deleteObject } from "firebase/storage";
 import Context from '../../../../../../../Context';
 import { ADD_CONTENT_MUTATION } from '../../../../../../../apollo/mutations';
 import { CONTENTS_QUERY } from '../../../../../../../apollo/queries';
@@ -32,14 +34,16 @@ function AddContent() {
         aHref: "",
         aText: "",
         arrImg: [],
+        file: null,
+        uploaded: false,
     });
 
     const inputRef = useRef();
-    const { arrImg } = inputs;
+    const { arrImg, file, uploaded } = inputs;
 
     useEffect(() => {
         dispatch(currentArt(articleRef.current.value));
-        dispatch(currentCat(categoryRef.current.value));
+        //dispatch(currentCat(categoryRef.current.value));
     }, [lang, cat, dispatch]);
 
     const [addContent, { error }] = useMutation(ADD_CONTENT_MUTATION, {
@@ -86,7 +90,12 @@ function AddContent() {
             imgTitle: "",
             aHref: "",
             aText: "",
+            arrImg: [],
+            file: null,
+            uploaded: false,
         });
+        const files = inputRef.current;
+        files.value = "";
     };
 
     const handleKey = (e) => {
@@ -103,7 +112,7 @@ function AddContent() {
         setInputs({ 
             ...inputs, 
             arrImg: [],
-            imgSrc: "",
+            file: null,
          });
         files.forEach(file => {
             //проверяем, является ли файл картинкой
@@ -117,7 +126,7 @@ function AddContent() {
                 setInputs({
                     ...inputs, 
                     arrImg: arrImg,
-                    imgSrc: file.name
+                    file: file,
                 });
             }
             reader.readAsDataURL(file);
@@ -125,14 +134,61 @@ function AddContent() {
     };
 
     const handleCloseImg = (index) => {
+        const desertRef = ref(storage, `images/${file.name}`);
+        (uploaded &&
+        deleteObject(desertRef).then(() => {
+            //console.log('File deleted successfully');
+          }).catch((error) => {
+            //console.log('Uh-oh, an error occurred!', error)
+          }));
         arrImg.splice(index, 1);
         setInputs({
             ...inputs, 
             arrImg: arrImg,
             imgSrc: "",
+            file: null
         });
         const files = inputRef.current;
         files.value = "";
+    };
+
+    const handleUploadImg = () => {
+        const storageRef = ref(storage, `images/${file.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+        uploadBytes(storageRef, file).then((snapshot) => {
+            //console.log('Uploaded a blob or file!');
+        });
+        uploadTask.on('state_changed', 
+            (snapshot) => {
+                // Observe state change events such as progress, pause, and resume
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                // const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                // console.log('Upload is ' + progress + '% done');
+                // switch (snapshot.state) {
+                // case 'paused':
+                //     //console.log('Upload is paused');
+                //     break;
+                // case 'running':
+                //     //console.log('Upload is running');
+                //     break;
+                // }
+            }, 
+            (error) => {
+                //console.log('error', error);
+            }, 
+            () => {
+                // Handle successful uploads on complete
+                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setInputs({
+                        ...inputs, 
+                        imgSrc: downloadURL,
+                        uploaded: true,
+                    });
+                    //console.log('File available at', imgSrc);
+                });
+            }
+        );
     };
 
     return (
@@ -195,7 +251,7 @@ function AddContent() {
                         type="file" 
                         accept=".jpeg,.png,.webp,.svg,.jpg"
                     />
-                    {Boolean(arrImg.length) && (<button>Загрузить</button>)}
+                    {Boolean(arrImg.length) && (<button onClick={handleUploadImg}>Загрузить</button>)}
                 </div>
                 <div className={styles.imgPreviews}>
                     {arrImg && arrImg.map((item, index) => (

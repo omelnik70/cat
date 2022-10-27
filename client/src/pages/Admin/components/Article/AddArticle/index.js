@@ -1,8 +1,8 @@
 import React, { 
     useState, 
     useContext, 
-    useRef, 
-    useEffect 
+    useRef,
+    useEffect,
 } from 'react';
 import { useMutation } from '@apollo/client';
 
@@ -17,18 +17,18 @@ import styles from './styles.module.scss';
 function AddArticle() {
     
     const { dataCat, state, dispatch } = useContext(Context);
-    const { lang } = state;
+    const { lang, cat } = state;
     const catCurrent = dataCat.categories.filter(cat => cat.lang.id === lang);
     const categoryRef = useRef();
     const [inputs, setInputs] = useState({
-        title: "Введите название статьи",
-        link: "Введите название статьи на английском",
+        title: "",
+        link: "",
     });
 
     useEffect(() => {
-        dispatch(currentCat(categoryRef.current.value))
+        dispatch(currentCat(categoryRef.current.value));
     }, [lang, dispatch]);
-
+    
     const [addArticle, { error }] = useMutation(ADD_ARTICLE_MUTATION, {
         //новый запрос всего списка с сервера 
         // refetchQueries: [
@@ -56,13 +56,13 @@ function AddArticle() {
                 previews: 0,
                 like: 0,
                 dislike: 0,
-                categoryId: state.cat
+                categoryId: cat
             },
         });
         setInputs({
             ...inputs,
-            title: "Введите название статьи",
-            link: "Введите название статьи на английском",
+            title: "",
+            link: "",
         });
     };
 
@@ -72,8 +72,6 @@ function AddArticle() {
 
     if (error) return `Error! ${error.message}`;
 
-    const changeCat = (e) => dispatch(currentCat(e.target.value));
-
     return (
         <div className={styles.container}>
             <div className={styles.form}>
@@ -81,19 +79,21 @@ function AddArticle() {
                     onChange={(e) => setInputs({...inputs, title: e.target.value})}
                     className={styles.input} 
                     type="text" 
+                    placeholder="Введите название статьи"
                     value={inputs.title}
                 />
                 <input 
                     onChange={(e) => setInputs({...inputs, link: e.target.value})}
                     className={styles.input} 
                     type="text" 
+                    placeholder="Введите название статьи на английском"
                     value={inputs.link}
                 />
                 <div className={styles.category}>
                     <h3>Выберите категорию</h3>
                     <select
                         ref={categoryRef}
-                        onChange={changeCat}
+                        onChange={() => dispatch(currentCat(categoryRef.current.value))}
                     >
                         {catCurrent.map(cat => (
                             <option key={cat.id} value={cat.id}>{cat.name}</option>

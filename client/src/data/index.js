@@ -3,9 +3,7 @@ import { browserLangId } from '../components/Helper/Helper';
 
 const DATA = {
     //категории статей
-    category: {
-      cat: "",
-    },
+    cat: "",
 
     //текущая статья
     art: "",
