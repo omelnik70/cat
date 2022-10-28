@@ -70,7 +70,7 @@ function AddContent() {
                 text_1: inputs.text_1,
                 text_2: inputs.text_2,
                 li_1: inputs.li_1,
-                li_2: inputs.text_2,
+                li_2: inputs.li_2,
                 strong: inputs.strong,
                 imgSrc: inputs.imgSrc,
                 imgTitle: inputs.imgTitle,
