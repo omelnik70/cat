@@ -10,8 +10,8 @@ function AddCategory() {
     const { dataLangs, lang } = useContext(Context);
 
     const [inputs, setInputs] = useState({
-        name: "Введите название категории",
-        link: "Введите ссылку",
+        name: "",
+        link: "",
         langId: lang,
     });
 
@@ -43,8 +43,8 @@ function AddCategory() {
         });
         setInputs({
             ...inputs,
-            name: "Введите название категории",
-            link: "Введите ссылку",
+            name: "",
+            link: "",
         });
     };
 
@@ -61,12 +61,14 @@ function AddCategory() {
                     onChange={(e) => setInputs({...inputs, name: e.target.value})}
                     className={styles.input} 
                     type="text" 
+                    placeholder="Введите название категории"
                     value={inputs.name}
                 />
                 <input 
                     onChange={(e) => setInputs({...inputs, link: e.target.value})}
                     className={styles.input} 
                     type="text" 
+                    placeholder="Введите ссылку"
                     value={inputs.link}
                 />
                 <div className={styles.lang}>
