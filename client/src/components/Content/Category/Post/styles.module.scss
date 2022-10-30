@@ -38,27 +38,6 @@
   }
 }
 
-.lines {
-  margin: 20px 0;
-}
-
-.line1,
-.line2,
-.line3 {
-  width: 90%;
-  height: 2px;
-  background-color: $color-text;
-  margin: 5px auto;
-}
-
-.line2 {
-  width: 70%;
-}
-
-.line3 {
-  width: 50%;
-}
-
 .likeContainer {
   display: flex;
   flex-direction: column;

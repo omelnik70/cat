@@ -249,7 +249,7 @@ function AddContent() {
                         ref={inputRef}
                         onChange={(e) => handleChangeImg(e)}
                         type="file" 
-                        accept=".jpeg,.png,.webp,.svg,.jpg"
+                        accept=".jpeg,.png,.webp,.svg,.jpg,.gif"
                     />
                     {Boolean(arrImg.length) && (<button onClick={handleUploadImg}>Загрузить</button>)}
                 </div>

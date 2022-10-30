@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { UPDATE_ARTICLE_MUTATION } from '../../../../apollo/mutations';
 import { wilsonScore } from '../../../Helper/Helper';
+import Separator from '../../../Separator';
 
 import styles from "./styles.module.scss";
 
@@ -23,8 +24,6 @@ function Post ({ contents, articles, lang, post, site }) {
         likeHide: false,
         dislikeHide: false,
     });
-
-    console.log(propertiesArt);
 
     const [updateArticle] = useMutation(UPDATE_ARTICLE_MUTATION);
 
@@ -94,11 +93,7 @@ function Post ({ contents, articles, lang, post, site }) {
                     )}
                 </div>
             ))}
-            <div className={styles.lines}>
-                <div className={styles.line1}></div>
-                <div className={styles.line2}></div>
-                <div className={styles.line3}></div>
-            </div>
+            <Separator />
             <div className={styles.likeContainer}>
                 <h4>{likeBlock.likeInfo}</h4>
                 <div  className={styles.likes}>

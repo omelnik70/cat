@@ -92,7 +92,7 @@ $font-weight-bolder: 700px;
 /*--- --- @mixins --- ---*/
 
 @mixin subtitle {
-	font-size: $font-size-average;
+	font-size: $font-size-big;
 	color: $color-subtitle;
 }
 
@@ -234,10 +234,16 @@ $font-weight-bolder: 700px;
     padding: 1%;
 }
 
-h3 {
-	font-size: $font-size-normal;
+h2 {
+	font-size: $font-size-big;
 	color: $color-link;
-	line-height: 1.5;
+	line-height: 2;
+}
+
+h3 {
+	font-size: $font-size-average;
+	color: $color-link;
+	line-height: 2;
 }
 /*--------------------*/
 

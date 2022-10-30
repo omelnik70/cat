@@ -18,6 +18,10 @@
 .link {
     @include menu;
 }
+
+.activ {
+    background-color: $border-menu;
+}
 /* tablets */
 
 @media (min-width: 768px) {
