@@ -7,10 +7,6 @@
     margin: 0 0 15px 0;
     text-align: center;
   }
-  & p {
-    line-height: 1.5;
-    margin: 0 0 5px 0;
-  }
   & ul>li {
     margin-left: 20px;
     list-style-position: inside;
@@ -22,6 +18,9 @@
 	color: $color-text;
     line-height: 1.5;
     margin: 0 0 10px 0;
+    & p {
+      margin: 0 0 10px 0;
+    }
 }
 
 .containerImg {
