@@ -77,7 +77,7 @@ function Post ({ contents, articles, lang, post, site }) {
             <h2 className={styles.title}>{currentArticle.title}</h2>
             {content.map((item, index) => (
                 <div className={styles.text} key={index}>
-                    {item.text_1 && <p>{item.text_1}</p>}
+                    {item.text_1 && item.text_1}
                     {item.imgSrc && (<div className={styles.containerImg}><img src={item.imgSrc} alt="" title={item.imgTitle} /><span>{item.imgTitle}</span></div>)}
                     {(item.strong && !(item.li_1 || item.li_2)) && (<strong>{item.strong}</strong>)}
                     {(item.aHref && !(item.li_1 || item.li_2)) && (<a href={item.aHref}>{item.aText}</a>)}

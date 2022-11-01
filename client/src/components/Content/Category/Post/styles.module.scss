@@ -14,13 +14,10 @@
 }
 
 .text {
-	font-size: $font-size-normal;
-	color: $color-text;
+    font-size: $font-size-normal;
+    color: $color-text;
     line-height: 1.5;
     margin: 0 0 10px 0;
-    & p {
-      margin: 0 0 10px 0;
-    }
 }
 
 .containerImg {
