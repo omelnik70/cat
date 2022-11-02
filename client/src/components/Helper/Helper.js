@@ -52,7 +52,7 @@ export const transliter = ( str ) => {
 };
 
 export const createLink = ( str ) => {
-  return str.toLowerCase().replace(/ /g,"_").replace(/[\s.,%?()"']/g, '');
+  return str.toLowerCase().replace(/[ /]/g,"_").replace(/[\s.,%?()"']/g, '').replace(/[-]/g, 'and');
 };
 
 //высчитывает рейтинг по количеству like/dislike
