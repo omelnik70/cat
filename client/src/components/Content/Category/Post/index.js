@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { UPDATE_ARTICLE_MUTATION } from '../../../../apollo/mutations';
 import { wilsonScore } from '../../../Helper/Helper';
@@ -14,6 +15,8 @@ function Post ({ contents, articles, lang, post, site }) {
     const likeBlock = site.textsites.filter(item => lang === item.lang.id)[0];
     const content = contents.contents.filter(item => item.article.id === currentArticle.id);
     const { id, like, dislike, previews, rating } = currentArticle;
+
+    console.log(content);
 
     const [propertiesArt, setPropertiesArt] = useState({
         id,
@@ -80,13 +83,13 @@ function Post ({ contents, articles, lang, post, site }) {
                     {item.text_1 && item.text_1}
                     {item.imgSrc && (<div className={styles.containerImg}><img src={item.imgSrc} alt="" title={item.imgTitle} /><span>{item.imgTitle}</span></div>)}
                     {(item.strong && !(item.li_1 || item.li_2)) && (<strong>{item.strong}</strong>)}
-                    {(item.aHref && !(item.li_1 || item.li_2)) && (<a href={item.aHref}>{item.aText}</a>)}
+                    {(item.aHref && !(item.li_1 || item.li_2)) && (item.aHref.indexOf('http') ? <Link to={item.aHref}>{item.aText}</Link> : <a href={item.aHref}>{item.aText}</a>)}
                     {item.text_2 && item.text_2}
                     {(item.li_1 || item.li_2) && (
                         <ul>
                             <li>{item.li_1 && item.li_1}
                                 {item.strong && (<strong>{item.strong}</strong>)}
-                                {item.aHref && (<a href={item.aHref}>{item.aText}</a>)}
+                                {item.aHref && (item.aHref.indexOf('http') ? <Link to={item.aHref}>{item.aText}</Link> : <a href={item.aHref}>{item.aText}</a>)}
                                 {item.li_2 && item.li_2}
                             </li>
                         </ul>
