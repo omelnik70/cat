@@ -13,9 +13,10 @@
 
 .element {
     position: absolute;
-    top: 30%;
-    left: 45%;
-    transform: translate(-70%, -55%);
+    top: calc(50% - 78px);
+    left: calc(50% - 78px);
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }
 
 @keyframes loding {
