@@ -19,6 +19,8 @@ import Error from '../../pages/Error';
 import DATA from '../../data';
 import Loading from '../Loading';
 import reducer from '../../data/reducer';
+import Login from '../../pages/Form/Login';
+import Register from '../../pages/Form/Register';
 
 import styles from './styles.module.scss';
 
@@ -60,6 +62,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Content/>} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/:category" element={<Content />} />
             <Route path="/:category/:post" element={<Content />} />
             <Route path="*" element={<Error />} />

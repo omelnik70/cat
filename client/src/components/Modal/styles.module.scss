@@ -4,7 +4,6 @@
 .overlay {
     opacity: 0;
     z-index: -1;
-    transition: 0.5s;
 }
 
 .overlay.open {
@@ -15,14 +14,11 @@
 .window {
     opacity: 0;
     z-index: -1;
-    transform: scale(0.5);
-    transition: 0.5s;
 }
 
 .window.open {
     opacity: 1;
     z-index: 1;
-    transform: scale(1);
 }
 
 .overlay {

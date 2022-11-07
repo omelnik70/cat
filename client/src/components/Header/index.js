@@ -22,7 +22,9 @@ function Header () {
         <div className={styles.container}>
             {currentWidth > state.global.SCREENWIDTH ? 
             (<>
-                <h1 className={styles.titleSite}>{title}</h1>
+                <Link to="/">
+                    <h1 className={styles.titleSite}>{title}</h1>
+                </Link>
                 <div className={styles.navigation}>
                     <Navigation />
                 </div>
@@ -30,12 +32,15 @@ function Header () {
                     <Lang data={dataLangs} />
                 </ul>
                 <ul className={styles.login}>
-                    {/* <li><Link to="/register">register</Link></li> */}
-                    <li><Link to="/login"><img className={styles.account} src={assets.ICONS.ACCOUNT} alt="" /></Link></li>
+                    <Link to="/login">
+                        <img className={styles.account} src={assets.ICONS.ACCOUNT} alt="" />
+                    </Link>
                 </ul>
             </>) :
             (<>
-                <h1 className={styles.titleSite}>{title}</h1>
+                <Link to="/">
+                    <h1 className={styles.titleSite}>{title}</h1>
+                </Link>
                 <div className={styles.navigation}>
                     <Navigation />
                 </div>
