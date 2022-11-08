@@ -11,8 +11,6 @@ import styles from "./styles.module.scss";
 function Category ({ data, href }) {
     const { dispatch } = useContext(Context);
     const { name } = data;
-
-    console.log(data, href);
     
     return (
         <div className={styles.container}>

@@ -39,6 +39,22 @@ const CATEGORIES_QUERY = gql`
                 id
                 title
                 link
+                rating
+                previews
+                like
+                dislike
+                content {
+                    id
+                    text_1
+                    text_2
+                    li_1
+                    li_2
+                    strong
+                    imgSrc
+                    imgTitle
+                    aHref
+                    aText
+                }
             }
         }
     }

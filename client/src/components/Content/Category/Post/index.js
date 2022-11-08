@@ -8,15 +8,14 @@ import Separator from '../../../Separator';
 import styles from "./styles.module.scss";
 
 
-function Post ({ contents, articles, lang, post, site }) {
+function Post ({ articles, lang, site }) {
     
-    const article = articles.articles.filter(item => post === item.link);
-    const currentArticle = article.filter(item => lang === item.category.lang.id)[0];
+    //const categoryCurrentLang = articles.categories.filter(item => item.lang.id === lang);
+    //const article = articles.articles.filter(item => post === item.link);
+    //const currentArticle = article.filter(item => lang === item.category.lang.id)[0];
     const likeBlock = site.textsites.filter(item => lang === item.lang.id)[0];
-    const content = contents.contents.filter(item => item.article.id === currentArticle.id);
-    const { id, like, dislike, previews, rating } = currentArticle;
-
-    console.log(content);
+    //const content = contents.contents.filter(item => item.article.id === currentArticle.id);
+    const { id, like, dislike, previews, rating, content, title } = articles;
 
     const [propertiesArt, setPropertiesArt] = useState({
         id,
@@ -77,7 +76,7 @@ function Post ({ contents, articles, lang, post, site }) {
 
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>{currentArticle.title}</h2>
+            <h2 className={styles.title}>{title}</h2>
             {content.map((item, index) => (
                 <div className={styles.text} key={index}>
                     {item.text_1 && item.text_1}

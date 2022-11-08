@@ -17,10 +17,12 @@ import styles from './styles.module.scss';
 
 function AddContent() {
     
-    const { dataArt, dataCat, state, dispatch } = useContext(Context);
+    const { dataCat, state, dispatch } = useContext(Context);
     const { lang, cat } = state;
     const catCurrent = dataCat.categories.filter(cat => cat.lang.id === lang);
-    const artCurrent = dataArt.articles.filter(art => art.category.id === cat);
+    const artCurrent = catCurrent.filter(art => art.id === cat)[0];
+    const {article} = artCurrent ? artCurrent : [];
+
     const articleRef = useRef();
     const categoryRef = useRef();
     const [inputs, setInputs] = useState({
@@ -317,7 +319,7 @@ function AddContent() {
                         ref={articleRef}
                         onChange={changeArticle}
                     >
-                        {artCurrent.map(art => (
+                        {article && article.map(art => (
                             <option key={art.id} value={art.id}>{art.title}</option>
                         ))}
                     </select>

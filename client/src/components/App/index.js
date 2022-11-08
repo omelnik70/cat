@@ -8,8 +8,6 @@ import {
   LANGS_QUERY, 
   CATEGORIES_QUERY, 
   MENUS_QUERY,
-  CONTENTS_QUERY,
-  ARTICLES_QUERY
 } from '../../apollo/queries';
 import Header from '../Header';
 import Content from '../Content';
@@ -30,12 +28,10 @@ function App() {
   const { loading: loadMenu, error: errorMenu, data: dataMenu } = useQuery(MENUS_QUERY);
   const { loading: loadCat, error: errorCat, data: dataCat } = useQuery(CATEGORIES_QUERY);
   const { loading: loadLang, error: errorLang, data: dataLangs } = useQuery(LANGS_QUERY);
-  const { loading: loadArt, error: errorArt, data: dataArt } = useQuery(ARTICLES_QUERY);
-  const { loading: loadCon, error: errorCon, data: dataContent } = useQuery(CONTENTS_QUERY);
   const { lang } = state;
 
-  if (loading || loadLang || loadCat || loadMenu || loadArt || loadCon) return <Loading />;
-  if (error || errorLang || errorCat || errorMenu || errorArt || errorCon) return `Error! ${error.message}`;
+  if (loading || loadLang || loadCat || loadMenu ) return <Loading />;
+  if (error || errorLang || errorCat || errorMenu ) return `Error! ${error.message}`;
 
   const head = document.querySelector('title');
   const metaDiscription = document.getElementsByName("description")[0];
@@ -50,9 +46,7 @@ function App() {
     dataSite,
     dataLangs,
     dataCat,
-    dataContent,
     dataMenu,
-    dataArt,
   };
 
   return (

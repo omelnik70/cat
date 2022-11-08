@@ -12,17 +12,18 @@ import styles from './styles.module.scss';
 
 
 function Content () {
-    const { state, dataCat, dataArt, dataContent, dataSite } = useContext(Context);
-    const { category, post } = useParams();
-    
+    const { state, dataCat, dataSite } = useContext(Context);
     const { lang } = state;
-    const [screenWidth, setScreenWidth] = useState(window.screen.width);
+    const { category, post } = useParams();
 
-    window.addEventListener('resize', () => setScreenWidth(window.screen.width));
-
-    const content = dataSite.textsites.filter(title => title.lang.id === lang)[0];
     const cat = dataCat.categories.filter(cat => cat.lang.id === lang);
-    const articleCurrent = cat.filter(item => item.link === category)[0];
+    const articlesCurrent = cat.filter(item => item.link === category)[0];
+    console.log(articlesCurrent);
+    const articleCurrent = post ? articlesCurrent.article.filter(item => post === item.link)[0] : {};
+    const content = dataSite.textsites.filter(title => title.lang.id === lang)[0];
+
+    const [screenWidth, setScreenWidth] = useState(window.screen.width);
+    window.addEventListener('resize', () => setScreenWidth(window.screen.width));
 
     return (
         <div className={styles.container}>
@@ -31,12 +32,12 @@ function Content () {
             <Navbar data={cat} />
 
             {category && !post ? 
-            (<Category data={articleCurrent} href={category} />) :
+            (<Category data={articlesCurrent} href={category} />) :
             post ?
-            (<Post contents={dataContent} articles={dataArt} lang={lang} post={post} site={dataSite} />) :
+            (<Post articles={articleCurrent} lang={lang} site={dataSite} />) :
             (<div className={styles.contentBox}>
                 <Search titleSearch={content} />
-                <Faq titlePopularArticles={content} article={dataArt} content={dataContent} />
+                <Faq titlePopularArticles={content} article={dataCat} content={dataCat} />
             </div>)}
             </>) :
             (<div className={styles.contentBox}>

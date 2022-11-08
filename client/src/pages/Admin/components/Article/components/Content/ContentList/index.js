@@ -9,8 +9,8 @@ import { UPDATE_CONTENT_MUTATION, REMOVE_CONTENT_MUTATION } from '../../../../..
 import styles from './styles.module.scss';
 
 function ContentList({ setActive }) {
-    const { dataContent, state } = useContext(Context);
-    const { art } = state;
+    const { dataCat, state } = useContext(Context);
+    const { art, lang, cat } = state;
     const [updateContent] = useMutation(UPDATE_CONTENT_MUTATION);
     const [removeContent] = useMutation(REMOVE_CONTENT_MUTATION, {
         update(cache, { data: { deleteContent } }) {
@@ -24,6 +24,12 @@ function ContentList({ setActive }) {
         },
     });
 
+    const currentCatLang = dataCat && lang ? dataCat.categories.filter(item => item.lang.id === lang) : [];
+    const currentArticles = cat && currentCatLang ? currentCatLang.filter(item => item.id === cat)[0] : {};
+    const {article} = currentArticles ? currentArticles : [];
+    const selectArticle = art && article ? article.filter(item => item.id === art)[0] : {};
+    const {content} = selectArticle ? selectArticle : [];
+
     return (
         <div className={styles.container}>
             <div
@@ -32,13 +38,12 @@ function ContentList({ setActive }) {
                 &times;
             </div>
             <AddContent />
-            {dataContent.contents.filter(content => content.article.id === art)
-            .map(content => (
+            {content && content.map(cont => (
                 <ContentItem 
-                    key={content.id}
+                    key={cont.id}
                     onUpdate={updateContent}
                     onRemove={removeContent}
-                    {...content}
+                    {...cont}
                 />
             ))}
         </div>

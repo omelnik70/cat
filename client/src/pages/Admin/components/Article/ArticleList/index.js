@@ -9,9 +9,11 @@ import { UPDATE_ARTICLE_MUTATION, REMOVE_ARTICLE_MUTATION } from '../../../../..
 import styles from './styles.module.scss';
 
 function ArticleList({ setActive }) {
-    const { dataArt, state } = useContext(Context);
+    const { dataCat, state } = useContext(Context);
     const { cat, lang } = state;
-    const cuurentListArticle = dataArt.articles.filter(item => item.category.lang.id === lang);
+    const currentCategoriesLang = dataCat.categories.filter(item => item.lang.id === lang);
+    const selectCategory = currentCategoriesLang ? currentCategoriesLang.filter(item => item.id === cat)[0] : {};
+    const {article} = selectCategory ? selectCategory : [];
     const [updateArticle] = useMutation(UPDATE_ARTICLE_MUTATION);
     const [removeArticle] = useMutation(REMOVE_ARTICLE_MUTATION, {
         update(cache, { data: { deleteArticle } }) {
@@ -33,13 +35,12 @@ function ArticleList({ setActive }) {
                 &times;
             </div>
             <AddArticle />
-            {cuurentListArticle.filter(art => art.category.id === cat)
-            .map(article => (
+            {article && article.map(art => (
                 <ArticleItem 
-                    key={article.id}
+                    key={art.id}
                     onUpdate={updateArticle}
                     onRemove={removeArticle}
-                    {...article}
+                    {...art}
                 />
             ))}
         </div>
