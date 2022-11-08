@@ -11,6 +11,8 @@ import PLUS from "./icons/plus.svg";
 import UA from "./icons/ua.png";
 import RU from "./icons/ru.png";
 import GB from "./icons/gb.png";
+import VISIBILITY from "./icons/visibility.svg";
+import VISIBILITYOFF from "./icons/visibilityoff.svg";
 import ACCOUNT from "./icons/account.png";
 
 const ICONS = {
@@ -26,7 +28,9 @@ const ICONS = {
     PLUS,
     UA,
     RU,
-    GB
+    GB,
+    VISIBILITY,
+    VISIBILITYOFF
 };
 
 const IMAGES = {

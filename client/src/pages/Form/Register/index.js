@@ -11,12 +11,15 @@ const Register = () => {
     return (
         <Modal active={register} setActive={setRegister} >
             <div className={styles.container}>
+                <h3 className={styles.title}>Регистрация</h3>
                 <Form />
-                <h1 className={styles.title}>Register</h1>
+                <button>Зарегистрироваться</button>
+                <button className={styles.reset}>Очистить форму</button>
+                
                 <p className={styles.text}>
-                    Already have an account? 
+                    Вы ужк зарегистрированы? 
                     <Link to="/login">
-                        <span className={styles.link}> Sign in</span>
+                        <span className={styles.link}> Войти</span>
                     </Link>
                 </p>
             </div>

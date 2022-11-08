@@ -1,31 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
+import assets from "../../assets";
 import styles from "./styles.module.scss";
 
-const Form = () => {
+const Form = ({email = 'Email', password = 'Password'}) => {
     const [formState, setFormState] = useState({
-        login: '',
         email: '',
-        password: ''
-    })
+        password: '',
+        visibil: false,
+    });
+
+    const passwordRef = useRef();
+
+    const { emailInput, passwordInput, visibil } = formState;
+    const { ICONS } = assets;
+
+    const handleChange = (e) => {
+        e.target.type === "email" ?
+        setFormState({
+            ...formState,
+            email: e.target.value
+        }) :
+        setFormState({
+            ...formState,
+            password: e.target.value
+        });
+    };
+
+    const handleClickToggle = () => {
+        setFormState({
+            ...formState,
+            visibil: !visibil,
+        });
+        console.log(passwordRef.current);
+        !visibil ? passwordRef.current.type = "text" : passwordRef.current.type = "password";
+    };
+
+    console.log(formState);
 
     return (
         <div className={styles.container}>
-            <input 
-                type="text" 
-                placeholder='Введите Ваш логин'
-                value={(e) => setFormState({...formState, login: e.target.value})}
-            />
-            <input 
-                type="email" 
-                placeholder='Введите Ваш email'
-                value={(e) => setFormState({...formState, email: e.target.value})}
-            />
-            <input 
-                type="password" 
-                placeholder='Введите Ваш пароль'
-                value={(e) => setFormState({...formState, password: e.target.value})}
-            />
+            <div className={styles.inputBlock}>
+                <input 
+                    onChange={(e) => handleChange(e)}
+                    type="email" 
+                    placeholder={email}
+                    value={emailInput}
+                />
+                <input 
+                    ref={passwordRef}
+                    onChange={(e) => handleChange(e)}
+                    type="password" 
+                    placeholder={password}
+                    value={passwordInput}
+                />
+                <img 
+                    onClick={handleClickToggle}
+                    src={visibil ? ICONS.VISIBILITY : ICONS.VISIBILITYOFF} alt="" 
+                />
+            </div>
         </div>
     );
 };

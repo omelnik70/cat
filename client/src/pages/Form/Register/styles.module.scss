@@ -8,6 +8,7 @@
 
 .title {
     @include subtitle;
+    //margin: 0 0 5px 0;
 }
 
 .text {
@@ -16,4 +17,8 @@
 
 .link {
     @include link;
+}
+
+.reset {
+    margin-top: 0;
 }

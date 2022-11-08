@@ -9,3 +9,17 @@
 input {
     @include input;
 }
+
+.inputBlock {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    height: 20px;
+    width: auto;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
