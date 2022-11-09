@@ -1,6 +1,6 @@
 import SEARCH from "./icons/search.svg";
 import FAQ from "./images/faq.svg";
-import COPYRIGHT from "./icons/copyright.png";
+import COPYRIGHT from "./icons/copyright.svg";
 import FACEBOOK from "./icons/facebook.svg";
 import INSTAGRAM from "./icons/instagram.svg";
 import REDDIT from "./icons/reddit.svg";
@@ -13,7 +13,7 @@ import RU from "./icons/ru.png";
 import GB from "./icons/gb.png";
 import VISIBILITY from "./icons/visibility.svg";
 import VISIBILITYOFF from "./icons/visibilityoff.svg";
-import ACCOUNT from "./icons/account.png";
+import ACCOUNT from "./icons/account.svg";
 
 const ICONS = {
     ACCOUNT,
@@ -30,7 +30,7 @@ const ICONS = {
     RU,
     GB,
     VISIBILITY,
-    VISIBILITYOFF
+    VISIBILITYOFF,
 };
 
 const IMAGES = {

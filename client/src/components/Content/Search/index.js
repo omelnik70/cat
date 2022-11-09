@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
+import Context from '../../../Context';
+import { currentSearch } from '../../../data/actions';
 import assets from '../../../assets';
 import styles from './styles.module.scss';
 
 
 function Search ({ titleSearch }) {
+    const { state, dispatch } = useContext(Context);
+    const { search } = state;
+
+    const handleSearch = (e) => {
+        dispatch(currentSearch(e.target.value));
+    };
 
     return (
         <div className={styles.container}>
@@ -13,7 +21,13 @@ function Search ({ titleSearch }) {
                 <div className={styles.searchIcon}>
                     <img src={assets.ICONS.SEARCH} alt="" />
                 </div>
-                <input className={styles.searchInput} type='search' name='search' />
+                <input 
+                    onChange={(e) => handleSearch(e)}
+                    className={styles.searchInput} 
+                    type='text' 
+                    placeholder='Начните вводить Ваш запрос'
+                    value={search}
+                />
             </div>
         </div>
     );

@@ -1,4 +1,4 @@
-import { CURRENTCAT, CURRENTART, CURRENTLANG } from "./boilerplate";
+import { CURRENTCAT, CURRENTART, CURRENTLANG, CURRENTSEARCH } from "./boilerplate";
 
 //создаем кейсы по изменению состояния
 const reducer = (state, action) => {
@@ -21,6 +21,12 @@ const reducer = (state, action) => {
         return {
             ...state,
             art: action.payload,
+        };
+
+        case CURRENTSEARCH: 
+        return {
+            ...state,
+            search: action.payload,
         };
 
         //по умолчанию 

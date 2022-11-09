@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import Search from './Search';
 import Faq from './Faq';
+import SearchResult from './Search/SearchResult';
 import Context from '../../Context';
 import Navbar from './Navbar';
 import Category from './Category';
@@ -13,12 +14,11 @@ import styles from './styles.module.scss';
 
 function Content () {
     const { state, dataCat, dataSite } = useContext(Context);
-    const { lang } = state;
+    const { lang, search } = state;
     const { category, post } = useParams();
 
     const cat = dataCat.categories.filter(cat => cat.lang.id === lang);
     const articlesCurrent = cat.filter(item => item.link === category)[0];
-    console.log(articlesCurrent);
     const articleCurrent = post ? articlesCurrent.article.filter(item => post === item.link)[0] : {};
     const content = dataSite.textsites.filter(title => title.lang.id === lang)[0];
 
@@ -37,12 +37,13 @@ function Content () {
             (<Post articles={articleCurrent} lang={lang} site={dataSite} />) :
             (<div className={styles.contentBox}>
                 <Search titleSearch={content} />
-                <Faq titlePopularArticles={content} article={dataCat} content={dataCat} />
+                <SearchResult />
+                {!search && (<Faq titlePopularArticles={content} article={dataCat} content={dataCat} />)}
             </div>)}
             </>) :
             (<div className={styles.contentBox}>
                 <Search titleSearch={content} />
-                <Faq titlePopularArticles={content} />
+                {!search && (<Faq titlePopularArticles={content} />)}
             </div>
             )}
         </div>

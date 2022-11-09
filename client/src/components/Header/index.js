@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import assets from "../../assets";
+import { ReactComponent as Account } from '../../assets/icons/account.svg';
 import Navigation from './Navigation';
 import Context from '../../Context';
 import Lang from './Lang';
@@ -31,11 +31,9 @@ function Header () {
                 <ul className={styles.lang}>
                     <Lang data={dataLangs} />
                 </ul>
-                <ul className={styles.login}>
-                    <Link to="/login">
-                        <img className={styles.account} src={assets.ICONS.ACCOUNT} alt="" />
-                    </Link>
-                </ul>
+                <Link to="/login">
+                    <Account className={styles.account} />
+                </Link>
             </>) :
             (<>
                 <Link to="/">

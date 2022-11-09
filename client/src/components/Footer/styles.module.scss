@@ -13,28 +13,30 @@
     align-items: center;
 }
 
+.copyrightImg {
+    fill: $text-onBlack;
+}
+
+.socialIcons {
+    width: 20px;
+    height: 20px;
+    fill: $text-onBlack;
+    margin: 0 2px 0 0;
+}
+
+.socialIcons:last-child {
+    margin: 0 0 0 2px;
+}
+
 .copyrightText {
     font-size: $font-size-little;
     color: rgba(255, 250, 250, 0.8);
     margin: 0 2px;
 }
 
-.copyrightBox img,
-.socialLink img
-{
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: white;
-    padding: 2px;
-}
-
 .socialLink {
     display: flex;
     align-items: center;
-    & li::after {
-        content: '';
-    }
 }
 
 @media (min-width: 768px) {

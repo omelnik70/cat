@@ -55,6 +55,9 @@ const CATEGORIES_QUERY = gql`
                     aHref
                     aText
                 }
+                category {
+                    link
+                }
             }
         }
     }

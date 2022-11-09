@@ -14,6 +14,7 @@ const Form = ({email = 'Email', password = 'Password'}) => {
 
     const { emailInput, passwordInput, visibil } = formState;
     const { ICONS } = assets;
+    const { VISIBILITY, VISIBILITYOFF } = ICONS;
 
     const handleChange = (e) => {
         e.target.type === "email" ?
@@ -55,8 +56,9 @@ const Form = ({email = 'Email', password = 'Password'}) => {
                     value={passwordInput}
                 />
                 <img 
+                     className={styles.visibil}
                     onClick={handleClickToggle}
-                    src={visibil ? ICONS.VISIBILITY : ICONS.VISIBILITYOFF} alt="" 
+                    src={visibil ? VISIBILITY : VISIBILITYOFF} alt="" 
                 />
             </div>
         </div>
