@@ -94,6 +94,7 @@ $font-weight-bolder: 700px;
 @mixin subtitle {
 	font-size: $font-size-big;
 	color: $color-subtitle;
+	text-transform: capitalize;
 }
 
 @mixin text {

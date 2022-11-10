@@ -14,6 +14,10 @@ import GB from "./icons/gb.png";
 import VISIBILITY from "./icons/visibility.svg";
 import VISIBILITYOFF from "./icons/visibilityoff.svg";
 import ACCOUNT from "./icons/account.svg";
+import FIRSTPAGE from "./icons/firstPage.svg";
+import LASTPAGE from "./icons/lastPage.svg";
+import NEXTPAGE from "./icons/nextPage.svg";
+import PREVPAGE from "./icons/prevPage.svg";
 
 const ICONS = {
     ACCOUNT,
@@ -31,6 +35,10 @@ const ICONS = {
     GB,
     VISIBILITY,
     VISIBILITYOFF,
+    FIRSTPAGE,
+    LASTPAGE,
+    NEXTPAGE,
+    PREVPAGE
 };
 
 const IMAGES = {

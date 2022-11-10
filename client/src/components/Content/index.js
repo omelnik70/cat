@@ -21,6 +21,7 @@ function Content () {
     const articlesCurrent = cat.filter(item => item.link === category)[0];
     const articleCurrent = post ? articlesCurrent.article.filter(item => post === item.link)[0] : {};
     const content = dataSite.textsites.filter(title => title.lang.id === lang)[0];
+    const { titlePopularArticles } = content;
 
     const [screenWidth, setScreenWidth] = useState(window.screen.width);
     window.addEventListener('resize', () => setScreenWidth(window.screen.width));
@@ -38,12 +39,12 @@ function Content () {
             (<div className={styles.contentBox}>
                 <Search titleSearch={content} />
                 <SearchResult />
-                {!search && (<Faq titlePopularArticles={content} article={dataCat} content={dataCat} />)}
+                {!search && (<Faq title={titlePopularArticles} article={cat} />)}
             </div>)}
             </>) :
             (<div className={styles.contentBox}>
                 <Search titleSearch={content} />
-                {!search && (<Faq titlePopularArticles={content} />)}
+                {!search && (<Faq title={titlePopularArticles} article={cat} />)}
             </div>
             )}
         </div>

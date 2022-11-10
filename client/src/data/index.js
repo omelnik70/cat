@@ -11,7 +11,10 @@ const DATA = {
     lang: browserLangId,
 
     //язык сайта
-    search: "",
+    search: '',
+
+    //текущий список статей при пагинации
+    currentListArticles: [],
 
     //размер экрана для мобильных настроек
     global: {
