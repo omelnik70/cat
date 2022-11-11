@@ -7,72 +7,74 @@ import Separator from '../../../Separator';
 
 import styles from "./styles.module.scss";
 
-
 function Post ({ articles, lang, site }) {
-    
-    //const categoryCurrentLang = articles.categories.filter(item => item.lang.id === lang);
-    //const article = articles.articles.filter(item => post === item.link);
-    //const currentArticle = article.filter(item => lang === item.category.lang.id)[0];
-    const likeBlock = site.textsites.filter(item => lang === item.lang.id)[0];
-    //const content = contents.contents.filter(item => item.article.id === currentArticle.id);
-    const { id, like, dislike, previews, rating, content, title } = articles;
 
     const [propertiesArt, setPropertiesArt] = useState({
-        id,
-        like,
-        dislike,
-        previews,
-        rating,
         likeHide: false,
         dislikeHide: false,
+        styleMessage: true,
     });
+
+    const likeBlock = site.textsites.filter(item => lang === item.lang.id)[0];
+    const { id, like, dislike, previews, content, title } = articles;
+    const { likeHide, dislikeHide, styleMessage } = propertiesArt;
+
+    console.log(likeHide, dislikeHide, styleMessage);
 
     const [updateArticle] = useMutation(UPDATE_ARTICLE_MUTATION);
 
     useEffect(() => {
-        setPropertiesArt({
-            ...propertiesArt, 
-            id: id,
-            like: like,
-            dislike: dislike,
-            rating: wilsonScore(like, dislike),
-        })
-    }, [id, like, dislike]);
-
-    useEffect(() => {
-        setPropertiesArt({...propertiesArt, previews: propertiesArt.previews + 1});
+            updateArticle({
+                variables: {
+                    id,
+                    previews: previews + 1,
+                },
+            });
     }, []);
 
     useEffect(() => {
-        updateArticle({
-            variables: {
-                id: propertiesArt.id,
-                previews: propertiesArt.previews,
-                like: propertiesArt.like,
-                dislike: propertiesArt.dislike,
-            },
-        });
-    }, [updateArticle, propertiesArt.id, propertiesArt.previews, propertiesArt.like, propertiesArt.dislike]);
+        const timer = setTimeout(() => {
+            setPropertiesArt({ 
+                ...propertiesArt, 
+                styleMessage: false,
+            });
+        }, 5000);
+        return () => clearTimeout(timer);
+      }, [likeHide, dislikeHide]);
 
     const handleLike = () => {
+        const likeSum = like + 1;
+        const rate = wilsonScore(likeSum, dislike);
+        updateArticle({
+            variables: {
+                id,
+                like: likeSum,
+                rating: rate,
+            },
+        });
         setPropertiesArt({ 
             ...propertiesArt, 
-            like: propertiesArt.like + 1,
             likeHide: true,
             dislikeHide: true,
         });
     };
 
     const handleDislike = () => {
+        const dislikeSum = dislike + 1;
+        const rate = wilsonScore(like, dislikeSum);
+        updateArticle({
+            variables: {
+                id,
+                dislike: dislikeSum,
+                rating: rate,
+            },
+        });
         setPropertiesArt({ 
             ...propertiesArt, 
-            dislike: propertiesArt.dislike + 1,
             likeHide: true,
             dislikeHide: true,
         });
     };
-
-    const { likeHide, dislikeHide } = propertiesArt;
 
     return (
         <div className={styles.container}>
@@ -98,10 +100,29 @@ function Post ({ articles, lang, site }) {
             <Separator />
             <div className={styles.likeContainer}>
                 <h4>{likeBlock.likeInfo}</h4>
-                <div  className={styles.likes}>
-                    {(likeHide || dislikeHide) && (<p className={styles.message} >Ваше мнение учтено, спасибо за участие в опросе!</p>)}
-                    <button className={styles.like} onClick={handleLike} disabled={propertiesArt.likeHide}>&#128077; {likeBlock.like}<span>{like}</span></button>
-                    <button className={styles.dislike}  onClick={handleDislike}  disabled={propertiesArt.dislikeHide}>&#128078; {likeBlock.dislike}<span>{dislike}</span></button>
+                <div  className={styles.likes} disabled={likeHide || dislikeHide}>
+                    {(likeHide || dislikeHide) && (
+                        <p 
+                            className={styleMessage ? styles.showMessage : styles.hideMessage} 
+                        >
+                            Ваше мнение учтено, спасибо за участие в опросе!
+                        </p>
+                    )}
+                    <button 
+                        className={(likeHide || dislikeHide) ? `${styles.like} ${styles.btnDisabled}` : styles.like} 
+                        onClick={handleLike} 
+                        disabled={likeHide}
+                    >
+                        &#128077; {likeBlock.like}
+                        <span>{like}</span>
+                    </button>
+                    <button 
+                        className={(likeHide || dislikeHide) ? `${styles.like} ${styles.btnDisabled}` : styles.like}  
+                        onClick={handleDislike} 
+                        disabled={dislikeHide}>
+                            &#128078; {likeBlock.dislike}
+                            <span>{dislike}</span>
+                    </button>
                 </div>
             </div>
         </div>

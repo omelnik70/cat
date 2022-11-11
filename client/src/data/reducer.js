@@ -1,4 +1,11 @@
-import { CURRENTCAT, CURRENTART, CURRENTLANG, CURRENTSEARCH, CURRENTLISTARTICLES } from "./boilerplate";
+import { 
+    CURRENTCAT, 
+    CURRENTART, 
+    CURRENTLANG, 
+    CURRENTSEARCH, 
+    CURRENTLISTARTICLES, 
+    RESULTSEARCHARTICLES, 
+} from "./boilerplate";
 
 //создаем кейсы по изменению состояния
 const reducer = (state, action) => {
@@ -32,7 +39,13 @@ const reducer = (state, action) => {
         case CURRENTLISTARTICLES: 
         return {
             ...state,
-            currentListArticles: action.payload,
+            currentListArt: action.payload,
+        };
+
+        case RESULTSEARCHARTICLES: 
+        return {
+            ...state,
+            resultSearchArt: action.payload,
         };
 
         //по умолчанию 

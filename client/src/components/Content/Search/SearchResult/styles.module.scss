@@ -2,7 +2,15 @@
 
 /* mobile */
 
-.container {}
+.articleTitle {
+    line-height: 1.5;
+    text-transform: none;
+}
+
+.searchTitle {
+    @include subtitle;
+    text-align: center;
+}
 /* tablets */
 
 @media (min-width: 768px) {

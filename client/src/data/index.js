@@ -14,7 +14,10 @@ const DATA = {
     search: '',
 
     //текущий список статей при пагинации
-    currentListArticles: [],
+    currentListArt: [],
+
+    //текущий список статей при поиске
+    resultSearchArt: [],
 
     //размер экрана для мобильных настроек
     global: {

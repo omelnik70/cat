@@ -12,6 +12,12 @@
     }
 }
 
+.categoryTitle {
+    @include subtitle;
+    text-align: center;
+    text-transform: none;
+}
+
 /* tablets */
 
 @media (min-width: 768px) {

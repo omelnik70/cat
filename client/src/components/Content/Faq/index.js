@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
+import ShortDescriptionArticle from '../../ShortDescriptionArticle';
 import Context from '../../../Context';
 import Pagination from '../../Pagination';
 import assets from '../../../assets';
@@ -11,9 +12,15 @@ import styles from './styles.module.scss';
 
 function Faq ({ title, article }) {
     const { state } = useContext(Context);
-    const { currentListArticles } = state;
+    const { currentListArt } = state;
+    const LIMITART = 5;
 
-    const articles = article.map(item => item.article.map(i => i)).flat();
+    const byField = (field) => {
+        return (a, b) => a[field] < b[field] ? 1 : -1;
+    };
+
+    const articles = article.map(item => item.article.map(i => i)).flat().sort(byField('rating'));
+    console.log(articles);
 
     return (
         <div className={styles.container}>
@@ -23,30 +30,12 @@ function Faq ({ title, article }) {
             </div>
             <div className={styles.faqMenuBox}>
                 <div className={styles.faqMenu}>
-                    {currentListArticles.map(item => (
+                    {currentListArt.map(item => (
                         <div key={item.id}>
                             <Link to={`/${item.category.link}/${item.link}`}>
                                 <h3 className={styles.articleTitle}>{item.title}</h3>
                             </Link>
-                            <div className={styles.shortDescription}>
-                                {item.content.map(item => (
-                                    <div className={styles.text} key={item.id}>
-                                        {item.text_1 && item.text_1}
-                                        {(item.strong && !(item.li_1 || item.li_2)) && (<strong>{item.strong}</strong>)}
-                                        {(item.aHref && !(item.li_1 || item.li_2)) && (item.aHref.indexOf('http') ? <Link to={item.aHref}>{item.aText}</Link> : <a href={item.aHref}>{item.aText}</a>)}
-                                        {item.text_2 && item.text_2}
-                                        {(item.li_1 || item.li_2) && (
-                                            <ul>
-                                                <li>{item.li_1 && item.li_1}
-                                                    {item.strong && (<strong>{item.strong}</strong>)}
-                                                    {item.aHref && (item.aHref.indexOf('http') ? <Link to={item.aHref}>{item.aText}</Link> : <a href={item.aHref}>{item.aText}</a>)}
-                                                    {item.li_2 && item.li_2}
-                                                </li>
-                                            </ul>
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
+                            <ShortDescriptionArticle item={item} />
                         </div>
                     ))}
                 </div>
@@ -54,7 +43,7 @@ function Faq ({ title, article }) {
                     <img src={assets.IMAGES.FAQ} alt="" />
                 </div>
             </div>
-            <Pagination articles={articles} limit={5} />
+            <Pagination artConstant={articles} limit={LIMITART} />
         </div>
     );
 }

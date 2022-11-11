@@ -51,7 +51,7 @@ function AddContent() {
     const [addContent, { error }] = useMutation(ADD_CONTENT_MUTATION, {
         //новый запрос всего списка с сервера 
         // refetchQueries: [
-        //     { query: MENUS_QUERY }
+        //     { query: CONTENTS_QUERY }
         // ],
 
         //обновление кэша без запроса на сервер 

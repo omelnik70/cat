@@ -10,6 +10,8 @@ function Search ({ titleSearch }) {
     const { state, dispatch } = useContext(Context);
     const { search } = state;
 
+    console.log();
+
     const handleSearch = (e) => {
         dispatch(currentSearch(e.target.value));
     };

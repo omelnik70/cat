@@ -56,10 +56,11 @@ export const createLink = ( str ) => {
 };
 
 //высчитывает рейтинг по количеству like/dislike
-export function wilsonScore(up, down) {
-	if (!up) return -down;
-	var n = up + down;
-	var z = 1.64485; //1.0 = 85%, 1.6 = 95%
-	var phat = up / n;
-	return Math.round((phat+z*z/(2*n)-z*Math.sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n)*1000000000);
+export const wilsonScore = (up, down) => {
+	if (!up) return down;
+	const n = up + down;
+	const z = 1.64485; //1.0 = 85%, 1.6 = 95%
+	const phat = up / n;
+  const rate = Math.round((phat+z*z/(2*n)-z*Math.sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n)*1000000000)
+	return rate;
 };

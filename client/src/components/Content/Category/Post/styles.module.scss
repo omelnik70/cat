@@ -6,6 +6,7 @@
     @include subtitle;
     margin: 0 0 15px 0;
     text-align: center;
+    text-transform: none;
   }
   & ul>li {
     margin-left: 20px;
@@ -63,23 +64,15 @@
   }
 }
 
-.message {
+.hideMessage {
   position: absolute;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  top: 50px;
-  animation: showMessage 1s linear forwards;
-  animation: hideMessage 5s linear forwards;
-}
-
-@keyframes showMessage {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  background-color: rgb(206, 193, 193);
+  padding: 10px;
+  top: -100px;
+  animation: hideMessage 1s linear forwards;
 }
 
 @keyframes hideMessage {
@@ -88,5 +81,31 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+.showMessage {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background-color: rgb(206, 193, 193);
+  padding: 10px;
+  top: -100px;
+  animation: showMessage 1s linear forwards;
+}
+
+.btnDisabled {
+		background-color: $color-background-light;
+		box-shadow: 2px 2px 5px $color-background;
+		color: $color-link;
+}
+
+@keyframes showMessage {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

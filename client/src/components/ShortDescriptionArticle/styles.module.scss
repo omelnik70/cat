@@ -1,0 +1,21 @@
+@import '../../global.scss';
+
+/* mobile */
+
+.shortDescription {
+    line-height: 1.5;
+    text-transform: none;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0 0 15px 0;
+}
+
+.text {
+    font-size: $font-size-normal;
+    color: $color-text;
+    line-height: 1.5;
+    margin: 0 0 10px 0;
+}
