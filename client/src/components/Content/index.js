@@ -13,15 +13,13 @@ import styles from './styles.module.scss';
 
 
 function Content () {
-    const { state, dataCat, dataSite } = useContext(Context);
-    const { lang, search } = state;
+    const { state, dataCat } = useContext(Context);
+    const { lang, search, postText } = state;
     const { category, post } = useParams();
 
     const cat = dataCat.categories.filter(cat => cat.lang.id === lang);
     const articlesCurrent = cat.filter(item => item.link === category)[0];
     const articleCurrent = post ? articlesCurrent.article.filter(item => post === item.link)[0] : {};
-    const content = dataSite.textsites.filter(title => title.lang.id === lang)[0];
-    const { titlePopularArticles } = content;
 
     const [screenWidth, setScreenWidth] = useState(window.screen.width);
     window.addEventListener('resize', () => setScreenWidth(window.screen.width));
@@ -35,16 +33,16 @@ function Content () {
             {category && !post ? 
             (<Category data={articlesCurrent} href={category} />) :
             post ?
-            (<Post articles={articleCurrent} lang={lang} site={dataSite} />) :
+            (<Post articles={articleCurrent} lang={lang} text={postText} />) :
             (<div className={styles.contentBox}>
-                <Search titleSearch={content} />
+                <Search />
                 <SearchResult />
-                {!search && (<Faq title={titlePopularArticles} article={cat} />)}
+                {!search && (<Faq article={cat} />)}
             </div>)}
             </>) :
             (<div className={styles.contentBox}>
-                <Search titleSearch={content} />
-                {!search && (<Faq title={titlePopularArticles} article={cat} />)}
+                <Search />
+                {!search && (<Faq article={cat} />)}
             </div>
             )}
         </div>

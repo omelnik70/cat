@@ -4,10 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 
 
-function Modal ({ active, setActive, children }) {
+function Modal ({ active, setActive, back, children }) {
 
     const navigate = useNavigate();
-    const goBack = () => navigate(-1);
+    const goBack = () => navigate('/');
 
     const handleClick = () => {
         setActive(false);

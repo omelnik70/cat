@@ -12,10 +12,13 @@ import styles from './styles.module.scss';
 
 function SearchResult () {
     const { dataCat, state, dispatch } = useContext(Context);
-    const { lang, search, currentListArt, resultSearchArt } = state;
+    const { lang, search, currentListArt, resultSearchArt, searchTexts } = state;
     const articleLang = dataCat.categories.filter(item => lang === item.lang.id);
     const articles = articleLang.map(item => item.article.map(i => i)).flat();
     const LIMITART = 5;
+    const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
+    const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
+    const { ua, en, ru } = searchTexts;
 
     useEffect(() => {
         dispatch(resultSearchArticles(articles.filter(art => {
@@ -27,7 +30,11 @@ function SearchResult () {
         <div className={styles.container}>
             {search && Boolean(currentListArt.length) && (
                 <>
-                    <h2 className={styles.searchTitle}>Результаты поиска</h2>
+                    <h2 className={styles.searchTitle}>
+                        {langUa ? ua.result : 
+                        langRu ? ru.result :
+                        en.result}
+                    </h2>
                     <Separator />
                 </>
             )}
@@ -43,9 +50,17 @@ function SearchResult () {
             ))}
             {!currentListArt.length && (
                 <>
-                    <h2 className={styles.searchTitle}>Результаты поиска</h2>
+                    <h2 className={styles.searchTitle}>
+                        {langUa ? ua.result : 
+                        langRu ? ru.result :
+                        en.result}
+                    </h2>
                     <Separator />
-                    <p>Ничего не найдено, попробуйте изменить запрос.</p>
+                    <p>
+                        {langUa ? ua.found : 
+                        langRu ? ru.found :
+                        en.found}
+                    </p>
                 </>
             )}
             {search && (<Pagination artChangeable={resultSearchArt} limit={LIMITART} />)}

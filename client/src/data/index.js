@@ -23,6 +23,198 @@ const DATA = {
     global: {
       SCREENWIDTH: 767,
     },
+
+    //форма входа / регистрации
+    registr: {
+      ua: {
+          registration: 'Реєстрація',
+          register: 'Зареєструватися',
+          clearForm: 'Очистити форму',
+          alreadyRegistered: 'Ви вже зареєстровані? ',
+          alreadyLogin: 'Ви ще не зареєстровані? ',
+          signIn: 'Зайти',
+          password: 'Пароль',
+          login: 'Вхід',
+      },
+      en: {
+          registration: 'Registration',
+          register: 'Register',
+          clearForm: 'Clear the form',
+          alreadyRegistered: 'Are you already registered? ',
+          alreadyLogin: 'You are not registered yet? ',
+          signIn: 'Sign in',
+          password: 'Password',
+          login: 'Login',
+      },
+      ru: {
+          registration: 'Регистрация',
+          register: 'Зарегистрироваться',
+          clearForm: 'Очистить форму',
+          alreadyRegistered: 'Вы уже зарегистрированы? ',
+          alreadyLogin: 'Вы еще не зарегистрированы? ',
+          signIn: 'Войти',
+          password: 'Пароль',
+          login: 'Вход',
+      },
+    },
+
+    //поиск и результаты поиска
+    searchTexts: {
+      ua: {
+        result: 'Результати пошуку',
+        found: 'Нічого не знайдено, спробуйте змінити запит.',
+        title: 'задайте своє питання',
+        textInput: 'Почніть вводити Ваш запит'
+      },
+      en: {
+        result: 'Searching results',
+        found: 'Nothing found, try changing your query.',
+        title: 'ask your question',
+        textInput: 'Start typing your request'
+      },
+      ru: {
+        result: 'Результаты поиска',
+        found: 'Ничего не найдено, попробуйте изменить запрос.',
+        title: 'задайте свой вопрос',
+        textInput: 'Начните вводить Ваш запрос'
+      },
+    },
+
+    //тексты для статьи
+    postText: {
+      ua: {
+        message: 'Вашу думку враховано, дякую за участь в опитуванні!',
+        helpful: 'Чи була інформація корисною?',
+        like: 'Корисно',
+        dislike: 'Марно',
+      }, 
+      en: {
+        message: 'Your opinion is taken into account, thanks for participating in the survey!',
+        helpful: 'Was the information helpful?',
+        like: 'Like',
+        dislike: 'Dislike',
+      },
+      ru: {
+        message: 'Ваше мнение учтено, спасибо за участие в опросе!',
+        helpful: 'Была ли информация полезной?',
+        like: 'Нравится',
+        dislike: 'Не нравится',
+      },
+    },
+
+    //Заголовок на главной
+    popularArticles: {
+      ua: 'Популярні статті',
+      en: 'Popular articles',
+      ru: 'Популярные статьи',
+    },
+
+    //шапка сайта
+    header: {
+      ua: {
+        logo: 'Алі Помічник',
+        description: 'Не знаєте як купувати на АліЕкспрес - запитайте у АліПомічника',
+        menu: [
+          {
+            text: 'Крамниця',
+            link: 'https://s.zbanx.com/r/DAujDHRTt8P9',
+          },
+          {
+            text: 'Каталог',
+            link: 'https://s.zbanx.com/r/TGQVIPUQCBbs',
+          },
+          {
+            text: 'Супер пропозиції',
+            link: 'https://s.zbanx.com/r/Zb8gipmyEYx2',
+          },
+          {
+            text: 'Новим покупцям',
+            link: 'https://s.zbanx.com/r/4Y971JOIRIlN',
+          },
+          {
+            text: 'Топ бренди',
+            link: 'https://s.zbanx.com/r/chxbcRcuYP3g',
+          },
+          {
+            text: 'Бестселери',
+            link: 'https://s.zbanx.com/r/DjzfyY8cd9rK',
+          },
+          {
+            text: 'Центр купонів',
+            link: 'https://s.zbanx.com/r/u1nPpwW6iaaB',
+          },
+        ],
+      },
+      en: {
+        logo: 'Ali Helper',
+        description: `Don't know how to buy on Aliexpress - ask Ali Assistant`,
+        menu: [
+          {
+            text: 'Shop',
+            link: 'https://s.zbanx.com/r/DAujDHRTt8P9',
+          },
+          {
+            text: 'Catalogue',
+            link: 'https://s.zbanx.com/r/TGQVIPUQCBbs',
+          },
+          {
+            text: 'Super deals',
+            link: 'https://s.zbanx.com/r/Zb8gipmyEYx2',
+          },
+          {
+            text: 'New buyers',
+            link: 'https://s.zbanx.com/r/4Y971JOIRIlN',
+          },
+          {
+            text: 'Top brands',
+            link: 'https://s.zbanx.com/r/chxbcRcuYP3g',
+          },
+          {
+            text: 'Bestsellers',
+            link: 'https://s.zbanx.com/r/DjzfyY8cd9rK',
+          },
+          {
+            text: 'Coupon center',
+            link: 'https://s.zbanx.com/r/u1nPpwW6iaaB',
+          },
+        ],
+
+      },
+      ru: {
+        logo: 'Али Помощник',
+        description: 'Не знаете как покупать на АлиЭкспресс - спросите у АлиПомощника',
+        menu: [
+          {
+            text: 'Магазин',
+            link: 'https://s.zbanx.com/r/DAujDHRTt8P9',
+          },
+          {
+            text: 'Каталог',
+            link: 'https://s.zbanx.com/r/TGQVIPUQCBbs',
+          },
+          {
+            text: 'Супер предложения',
+            link: 'https://s.zbanx.com/r/Zb8gipmyEYx2',
+          },
+          {
+            text: 'Новым покупателям',
+            link: 'https://s.zbanx.com/r/4Y971JOIRIlN',
+          },
+          {
+            text: 'Топ бренды',
+            link: 'https://s.zbanx.com/r/chxbcRcuYP3g',
+          },
+          {
+            text: 'Бестселлеры',
+            link: 'https://s.zbanx.com/r/DjzfyY8cd9rK',
+          },
+          {
+            text: 'Центр купонов',
+            link: 'https://s.zbanx.com/r/u1nPpwW6iaaB',
+          },
+        ],
+      },
+    },
   };
 
 export default DATA;

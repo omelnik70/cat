@@ -14,10 +14,12 @@ import { ReactComponent as Reddit } from '../../assets/icons/reddit.svg';
 import styles from './styles.module.scss';
 
 function Footer() {
-  const { state, dataSite } = useContext(Context);
-  const { lang } = state;
-
-  const copyright = dataSite.textsites.filter(lan => lan.lang.id === lang)[0].titleSite;
+  const { state } = useContext(Context);
+  const { lang, header } = state;
+  const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
+  const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
+  const { ua, en, ru } = header;
+  const copyright = langUa ? ua.logo : langRu ? ru.logo : en.logo;
 
   return (
     <div className={styles.container}>

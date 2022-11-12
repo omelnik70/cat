@@ -7,7 +7,7 @@ import Separator from '../../../Separator';
 
 import styles from "./styles.module.scss";
 
-function Post ({ articles, lang, site }) {
+function Post ({ articles, lang, text }) {
 
     const [propertiesArt, setPropertiesArt] = useState({
         likeHide: false,
@@ -15,11 +15,15 @@ function Post ({ articles, lang, site }) {
         styleMessage: true,
     });
 
-    const likeBlock = site.textsites.filter(item => lang === item.lang.id)[0];
     const { id, like, dislike, previews, content, title } = articles;
     const { likeHide, dislikeHide, styleMessage } = propertiesArt;
-
-    console.log(likeHide, dislikeHide, styleMessage);
+    const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
+    const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
+    const { ua, en, ru } = text;
+    const textMessage = langUa ? ua.message : langRu ? ru.message : en.message;
+    const helpfulInfo = langUa ? ua.helpful : langRu ? ru.helpful : en.helpful;
+    const likeText = langUa ? ua.like : langRu ? ru.like : en.like;
+    const dislikeText = langUa ? ua.dislike : langRu ? ru.dislike : en.dislike;
 
     const [updateArticle] = useMutation(UPDATE_ARTICLE_MUTATION);
 
@@ -99,28 +103,24 @@ function Post ({ articles, lang, site }) {
             ))}
             <Separator />
             <div className={styles.likeContainer}>
-                <h4>{likeBlock.likeInfo}</h4>
+                <h4>{helpfulInfo}</h4>
                 <div  className={styles.likes} disabled={likeHide || dislikeHide}>
                     {(likeHide || dislikeHide) && (
-                        <p 
-                            className={styleMessage ? styles.showMessage : styles.hideMessage} 
-                        >
-                            Ваше мнение учтено, спасибо за участие в опросе!
-                        </p>
+                        <p className={styleMessage ? styles.showMessage : styles.hideMessage}>{textMessage}</p>
                     )}
                     <button 
                         className={(likeHide || dislikeHide) ? `${styles.like} ${styles.btnDisabled}` : styles.like} 
                         onClick={handleLike} 
                         disabled={likeHide}
                     >
-                        &#128077; {likeBlock.like}
+                        &#128077; {likeText}
                         <span>{like}</span>
                     </button>
                     <button 
                         className={(likeHide || dislikeHide) ? `${styles.like} ${styles.btnDisabled}` : styles.like}  
                         onClick={handleDislike} 
                         disabled={dislikeHide}>
-                            &#128078; {likeBlock.dislike}
+                            &#128078; {dislikeText}
                             <span>{dislike}</span>
                     </button>
                 </div>

@@ -10,20 +10,22 @@ import styles from './styles.module.scss';
 
 
 function Header () {
-    const { state, dataLangs, dataSite } = useContext(Context);
-    const { lang } = state;
+    const { state, dataLangs } = useContext(Context);
+    const { lang, header } = state;
     const [currentWidth, setCurrentWidth] = useState(window.screen.width);
 
     window.addEventListener('resize', () => setCurrentWidth(window.screen.width));
-
-    const title = dataSite.textsites.filter(lan => lan.lang.id === lang)[0].titleSite;
+    const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
+    const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
+    const { ua, en, ru } = header;
+    const title = langUa ? ua.logo : langRu ? ru.logo : en.logo;
 
     return (
         <div className={styles.container}>
             {currentWidth > state.global.SCREENWIDTH ? 
             (<>
                 <Link to="/">
-                    <h1 className={styles.titleSite}>{title}</h1>
+                <h1 className={styles.titleSite}>{title}</h1>
                 </Link>
                 <div className={styles.navigation}>
                     <Navigation />
@@ -37,7 +39,7 @@ function Header () {
             </>) :
             (<>
                 <Link to="/">
-                    <h1 className={styles.titleSite}>{title}</h1>
+                <h1 className={styles.titleSite}>{title}</h1>
                 </Link>
                 <div className={styles.navigation}>
                     <Navigation />

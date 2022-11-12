@@ -7,15 +7,9 @@ function Navbar({ setActive }) {
   return (
     <div className={styles.container}>
         <ul className={styles.list}>
-          <li onClick={()=> setActive({ menu: true })}>Меню</li>
-          <li onClick={()=> setActive({ textSite: true })}>Тексты на сайте</li>
           <li onClick={()=> setActive({ category: true })}>Категории</li>
           <li onClick={()=> setActive({ articleTitle: true })}>Статьи - заголовки</li>
           <li onClick={()=> setActive({ articleDescription: true })}>Статьи - содержание</li>
-          {/* <ul className={styles.sublist}>
-              <li onClick={()=> setActive({ add: true })}>Добавить</li>
-              <li onClick={()=> setActive({ update: true })}>Редактировать</li>
-          </ul> */}
         </ul>
     </div>
   );

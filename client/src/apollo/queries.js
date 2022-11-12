@@ -1,31 +1,5 @@
 import { gql } from '@apollo/client';
 
-const MENU_QUERY = gql`
-    query($id: ID) {
-        lang(id: $id) {
-            id
-            menu{
-                id
-                name
-                link
-            }
-        }
-    }
-`;
-
-const MENUS_QUERY = gql`
-    query {
-        menus {
-            id
-            name
-            link
-            lang {
-                id
-            }
-        }
-    }
-`;
-
 const CATEGORIES_QUERY = gql`
     query {
         categories {
@@ -61,24 +35,6 @@ const CATEGORIES_QUERY = gql`
             }
         }
     }
-`;
-
-const TEXTSITES_QUERY = gql`
-    query {
-    textsites {
-        id
-        titleSite
-        descriptionSite
-        titleSearch
-        titlePopularArticles
-        likeInfo
-        like
-        dislike
-        lang {
-            id
-        }
-    }
-}
 `;
 
 const ARTICLES_QUERY = gql`
@@ -162,12 +118,9 @@ const LANGS_QUERY = gql`
 `;
 
 export { 
-    MENU_QUERY,
     LANGS_QUERY,
-    MENUS_QUERY,
     ARTICLES_QUERY,
     ARTICLE_QUERY,
     CATEGORIES_QUERY,
     CONTENTS_QUERY,
-    TEXTSITES_QUERY,
 };

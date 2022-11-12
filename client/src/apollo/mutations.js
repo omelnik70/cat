@@ -1,30 +1,5 @@
 import { gql } from '@apollo/client';
 
-const UPDATE_MENU_MUTATION = gql`
-    mutation UpdateMenu ($id: ID, $name: String!, $link: String!){
-        updateMenu(id: $id, name: $name, link: $link) {
-            id
-            name
-            link
-        },
-    }
-`;
-
-const UPDATE_TEXTSITE_MUTATION = gql`
-    mutation UpdateTextSite ($id: ID, $titleSite: String!, $descriptionSite: String!, $titleSearch: String!, $titlePopularArticles: String!, $likeInfo: String, $like: String, $dislike: String){
-        updateTextSite(id: $id, titleSite: $titleSite, descriptionSite: $descriptionSite, titleSearch: $titleSearch, titlePopularArticles: $titlePopularArticles, likeInfo: $likeInfo, like: $like, dislike: $dislike) {
-            id
-            titleSite
-            descriptionSite
-            titleSearch
-            titlePopularArticles
-            likeInfo
-            like
-            dislike
-        },
-    }
-`;
-
 const UPDATE_CATEGORY_MUTATION = gql`
     mutation UpdateCategory ($id: ID, $name: String!, $link: String!) {
         updateCategory(id: $id, name: $name, link: $link) {
@@ -63,37 +38,6 @@ const UPDATE_ARTICLE_MUTATION = gql`
             like
             dislike
         }
-    }
-`;
-
-const ADD_MENU_MUTATION = gql`
-    mutation AddMenu ($name: String!, $link: String!, $langId: ID) {
-        newMenu: addMenu(name: $name, link: $link, langId: $langId) {
-            id
-            name
-            link
-            lang {
-              id
-            }
-        },
-    }
-`;
-
-const ADD_TEXTSITE_MUTATION = gql`
-    mutation AddTextSite ($titleSite: String!, $descriptionSite: String!, $titleSearch: String!, $titlePopularArticles: String!, $likeInfo: String, $like: String, $dislike: String, $langId: ID){
-        newTextSite: addTextSite(titleSite: $titleSite, descriptionSite: $descriptionSite, titleSearch: $titleSearch, titlePopularArticles: $titlePopularArticles, likeInfo: $likeInfo, like: $like, dislike: $dislike, langId: $langId) {
-            id
-            titleSite
-            descriptionSite
-            titleSearch
-            titlePopularArticles
-            likeInfo
-            like
-            dislike
-            lang {
-              id
-            }
-        },
     }
 `;
 
@@ -147,22 +91,6 @@ const ADD_CONTENT_MUTATION = gql`
     }
 `;
 
-const REMOVE_MENU_MUTATION = gql`
-    mutation($id: ID) {
-        deleteMenu(id: $id) {
-            id
-        }
-    }
-`;
-
-const REMOVE_TEXTSITE_MUTATION = gql`
-    mutation($id: ID) {
-        deleteTextSite(id: $id) {
-            id
-        }
-    }
-`;
-
 const REMOVE_CATEGORY_MUTATION = gql`
     mutation($id: ID) {
         deleteCategory(id: $id) {
@@ -188,19 +116,13 @@ const REMOVE_ARTICLE_MUTATION = gql`
 `;
 
 export { 
-    ADD_MENU_MUTATION,
     ADD_ARTICLE_MUTATION,
-    ADD_TEXTSITE_MUTATION,
     ADD_CATEGORY_MUTATION,
     ADD_CONTENT_MUTATION,
-    UPDATE_MENU_MUTATION,
     UPDATE_ARTICLE_MUTATION,
-    UPDATE_TEXTSITE_MUTATION,
     UPDATE_CATEGORY_MUTATION,
     UPDATE_CONTENT_MUTATION,
-    REMOVE_MENU_MUTATION,
     REMOVE_ARTICLE_MUTATION,
-    REMOVE_TEXTSITE_MUTATION,
     REMOVE_CATEGORY_MUTATION,
     REMOVE_CONTENT_MUTATION,
  };

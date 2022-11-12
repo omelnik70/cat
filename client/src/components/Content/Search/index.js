@@ -6,11 +6,14 @@ import assets from '../../../assets';
 import styles from './styles.module.scss';
 
 
-function Search ({ titleSearch }) {
+function Search () {
     const { state, dispatch } = useContext(Context);
-    const { search } = state;
-
-    console.log();
+    const { lang, search, searchTexts } = state;
+    const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
+    const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
+    const { ua, en, ru } = searchTexts;
+    const titleSearch = langUa ? ua.title : langRu ? ru.title : en.title;
+    const text = langUa ? ua.textInput : langRu ? ru.textInput : en.textInput;
 
     const handleSearch = (e) => {
         dispatch(currentSearch(e.target.value));
@@ -18,7 +21,7 @@ function Search ({ titleSearch }) {
 
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>{titleSearch.titleSearch}</h2>
+            <h2 className={styles.title}>{titleSearch}</h2>
             <div className={styles.search}>
                 <div className={styles.searchIcon}>
                     <img src={assets.ICONS.SEARCH} alt="" />
@@ -27,7 +30,7 @@ function Search ({ titleSearch }) {
                     onChange={(e) => handleSearch(e)}
                     className={styles.searchInput} 
                     type='text' 
-                    placeholder='Начните вводить Ваш запрос'
+                    placeholder={text}
                     value={search}
                 />
             </div>

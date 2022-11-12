@@ -14,7 +14,7 @@ function Category ({ data, href }) {
     const { dispatch, state } = useContext(Context);
     const { currentListArt } = state;
     const { name, article } = data;
-    const LIMITART = 6;
+    const LIMITART = 5;
     
     return (
         <div className={styles.container}>

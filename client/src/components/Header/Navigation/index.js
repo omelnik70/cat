@@ -7,10 +7,14 @@ import styles from './styles.module.scss';
 
 function Navigation () {
 
-    const { state, dataMenu } = useContext(Context);
-    const { lang } = state;
+    const { state } = useContext(Context);
+    const { lang, header } = state;
     const [currentWidth, setCurrentWidth] = useState(window.screen.width);
     const divRef = useRef();
+    const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
+    const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
+    const { ua, en, ru } = header;
+    const dataMenu = langUa ? ua.menu : langRu ? ru.menu : en.menu;
 
     function addStyle() {
         divRef.current.classList.toggle(styles.change);
@@ -22,8 +26,7 @@ function Navigation () {
         <nav className={styles.container}>
             {currentWidth > state.global.SCREENWIDTH ? (
             <ul className={styles.nav}>
-                {dataMenu.menus.filter(men => men.lang.id === lang)
-                .map(item => <li key={item.id}><a className={styles.mainMenu} href={item.link}>{item.name}</a></li>)}
+                {dataMenu.map((item, index) => <li key={index}><a className={styles.mainMenu} href={item.link}>{item.text}</a></li>)}
             </ul>
             ) :
             (

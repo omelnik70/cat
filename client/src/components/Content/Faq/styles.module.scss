@@ -22,6 +22,7 @@
 .faqTitle {
     @include subtitle;
     text-align: center;
+    text-transform: none;
 }
 
 .articleTitle {

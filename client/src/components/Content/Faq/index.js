@@ -10,17 +10,20 @@ import Separator from '../../Separator';
 import styles from './styles.module.scss';
 
 
-function Faq ({ title, article }) {
+function Faq ({ article }) {
     const { state } = useContext(Context);
-    const { currentListArt } = state;
+    const { currentListArt, popularArticles, lang } = state;
     const LIMITART = 5;
+    const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
+    const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
+    const { ua, en, ru } = popularArticles;
+    const title = langUa ? ua : langRu ? ru : en;
 
     const byField = (field) => {
         return (a, b) => a[field] < b[field] ? 1 : -1;
     };
 
     const articles = article.map(item => item.article.map(i => i)).flat().sort(byField('rating'));
-    console.log(articles);
 
     return (
         <div className={styles.container}>

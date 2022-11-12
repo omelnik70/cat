@@ -2,17 +2,13 @@ import graphql from "graphql";
 
 //mongoDB models
 import Lang from "../models/lang.js";
-import Menu from "../models/site/menu.js";
 import Article from "../models/article.js";
 import Category from "../models/category.js";
-import TextSite from "../models/site/textSite.js";
 import Content from "../models/content.js";
 
 //graphql types
 import { 
     LangType,
-    MenuType,
-    TextSiteType,
     CategoryType,
     ArticleType, 
     ContentType,
@@ -31,105 +27,6 @@ const {
  const Mutation = new GraphQLObjectType({
     name: "Mutation",
     fields: {
-
-        //menu
-        addMenu: {
-            type: MenuType,
-            args: {
-                name: { type: new GraphQLNonNull(GraphQLString) },
-                link: { type: new GraphQLNonNull(GraphQLString) },
-                langId: { type: GraphQLID },
-            },
-            resolve(parent, { name, link, langId }) {
-                const menu = new Menu({
-                    name,
-                    link,
-                    langId,
-                });
-                return menu.save();
-            },
-        },
-
-        deleteMenu: {
-            type: MenuType,
-            args: { id: { type: GraphQLID } },
-            resolve(parent, {id}) {
-                return Menu.findByIdAndRemove(id);
-            },
-        },
-
-        updateMenu: {
-            type: MenuType,
-            args: {
-                id: { type: GraphQLID },
-                name: { type: new GraphQLNonNull(GraphQLString) },
-                link: { type: new GraphQLNonNull(GraphQLString) },
-            },
-            resolve(parent, { id, name, link }) {
-                return Menu.findByIdAndUpdate(
-                    id, 
-                    { $set: { name, link } },
-                    { new: true },
-                );
-            },
-        },
-
-        //textSite
-        addTextSite: {
-            type: TextSiteType,
-            args: {
-                titleSite: { type: new GraphQLNonNull(GraphQLString) },
-                descriptionSite: { type: new GraphQLNonNull(GraphQLString) },
-                titleSearch: { type: new GraphQLNonNull(GraphQLString) },
-                titlePopularArticles: { type: new GraphQLNonNull(GraphQLString) },
-                likeInfo: { type: GraphQLString },
-                like: { type: GraphQLString },
-                dislike: { type: GraphQLString },
-                langId: { type: GraphQLID },
-            },
-            resolve(parent, { titleSite, descriptionSite, titleSearch, titlePopularArticles, likeInfo, like, dislike, langId }) {
-                const textSite = new TextSite({
-                    titleSite,
-                    descriptionSite,
-                    titleSearch,
-                    titlePopularArticles,
-                    likeInfo,
-                    like,
-                    dislike,
-                    langId,
-                });
-                return textSite.save();
-            },
-        },
-
-        deleteTextSite: {
-            type: TextSiteType,
-            args: { id: { type: GraphQLID } },
-            resolve(parent, {id}) {
-                return TextSite.findByIdAndRemove(id);
-            },
-        },
-
-        updateTextSite: {
-            type: TextSiteType,
-            args: {
-                id: { type: GraphQLID },
-                titleSite: { type: new GraphQLNonNull(GraphQLString) },
-                descriptionSite: { type: new GraphQLNonNull(GraphQLString) },
-                titleSearch: { type: new GraphQLNonNull(GraphQLString) },
-                titlePopularArticles: { type: new GraphQLNonNull(GraphQLString) },
-                likeInfo: { type: GraphQLString },
-                like: { type: GraphQLString },
-                dislike: { type: GraphQLString },
-            },
-            resolve(parent, { id, titleSite, descriptionSite, titleSearch, titlePopularArticles, likeInfo, like, dislike }) {
-                return TextSite.findByIdAndUpdate(
-                    id, 
-                    { $set: { titleSite, descriptionSite, titleSearch, titlePopularArticles, likeInfo, like, dislike } },
-                    { new: true },
-                );
-            },
-        },
 
         //category
         addCategory: {

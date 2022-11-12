@@ -1,18 +1,23 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 
+import Context from "../../Context";
 import assets from "../../assets";
 import styles from "./styles.module.scss";
 
-const Form = ({email = 'Email', password = 'Password'}) => {
+const Form = ({ emailPlaceholder = 'Email', btn1 }) => {
     const [formState, setFormState] = useState({
         email: '',
         password: '',
         visibil: false,
     });
-
+    const { email, password, visibil } = formState;
+    const { state } = useContext(Context);
+    const { lang, registr } = state;
+    const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
+    const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
+    const { ua, en, ru } = registr;
     const passwordRef = useRef();
 
-    const { emailInput, passwordInput, visibil } = formState;
     const { ICONS } = assets;
     const { VISIBILITY, VISIBILITYOFF } = ICONS;
 
@@ -33,34 +38,53 @@ const Form = ({email = 'Email', password = 'Password'}) => {
             ...formState,
             visibil: !visibil,
         });
-        console.log(passwordRef.current);
         !visibil ? passwordRef.current.type = "text" : passwordRef.current.type = "password";
     };
 
-    console.log(formState);
+    const handleResetClick = () => {
+        setFormState({
+            ...formState,
+            email: '',
+            password: ''
+        });
+    };
 
+    console.log(btn1);
     return (
         <div className={styles.container}>
             <div className={styles.inputBlock}>
                 <input 
                     onChange={(e) => handleChange(e)}
                     type="email" 
-                    placeholder={email}
-                    value={emailInput}
+                    placeholder={emailPlaceholder}
+                    value={email}
                 />
                 <input 
                     ref={passwordRef}
                     onChange={(e) => handleChange(e)}
                     type="password" 
-                    placeholder={password}
-                    value={passwordInput}
+                    placeholder={
+                        langUa ? ua.password :
+                        langRu ? ru.password :
+                        en.password
+                    }
+                    value={password}
                 />
                 <img 
-                     className={styles.visibil}
+                    className={styles.visibil}
                     onClick={handleClickToggle}
                     src={visibil ? VISIBILITY : VISIBILITYOFF} alt="" 
                 />
             </div>
+            <button>{btn1}</button>
+            <button 
+                onClick={handleResetClick} 
+                className={styles.reset}
+            >
+                {langUa ? ua.clearForm :
+                langRu ? ru.clearForm :
+                en.clearForm}
+            </button>
         </div>
     );
 };

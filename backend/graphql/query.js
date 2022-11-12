@@ -2,16 +2,12 @@ import graphql, { GraphQLList } from "graphql";
 
 //mongoDB models
 import Lang from "../models/lang.js";
-import Menu from "../models/site/menu.js";
 import Article from "../models/article.js";
 import Category from "../models/category.js";
-import TextSite from "../models/site/textSite.js";
 import Content from "../models/content.js";
 
 import { 
     LangType,
-    MenuType,
-    TextSiteType,
     CategoryType,
     ArticleType, 
     ContentType,
@@ -41,42 +37,6 @@ const {
             type: new GraphQLList(LangType),
             resolve(parent, args) {
                 return Lang.find({});
-            },
-
-        },
-
-        //TextSite
-        textSite: {
-            type: TextSiteType,
-            args: { id: { type: GraphQLID } },
-            resolve(parent, {id}) {
-                return TextSite.findById(id);
-            },
-
-        },
-
-        textsites: {
-            type: new GraphQLList(TextSiteType),
-            resolve(parent, args) {
-                return TextSite.find({});
-            },
-
-        },
-
-        //Menu
-        menu: {
-            type: MenuType,
-            args: { id: { type: GraphQLID } },
-            resolve(parent, {id}) {
-                return Menu.findById(id);
-            },
-
-        },
-
-        menus: {
-            type: new GraphQLList(MenuType),
-            resolve(parent, args) {
-                return Menu.find({});
             },
 
         },

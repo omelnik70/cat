@@ -3,12 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import Context from '../../Context';
 
-import { 
-  TEXTSITES_QUERY, 
-  LANGS_QUERY, 
-  CATEGORIES_QUERY, 
-  MENUS_QUERY,
-} from '../../apollo/queries';
+import { LANGS_QUERY, CATEGORIES_QUERY} from '../../apollo/queries';
 import Header from '../Header';
 import Content from '../Content';
 import Footer from '../Footer';
@@ -24,29 +19,29 @@ import styles from './styles.module.scss';
 
 function App() {
   const [state, dispatch] = useReducer(reducer, DATA);
-  const { loading ,error, data: dataSite } = useQuery(TEXTSITES_QUERY);
-  const { loading: loadMenu, error: errorMenu, data: dataMenu } = useQuery(MENUS_QUERY);
   const { loading: loadCat, error: errorCat, data: dataCat } = useQuery(CATEGORIES_QUERY);
-  const { loading: loadLang, error: errorLang, data: dataLangs } = useQuery(LANGS_QUERY);
-  const { lang } = state;
+  const { loading, error, data: dataLangs } = useQuery(LANGS_QUERY);
+  const { lang, header } = state;
+  const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
+  const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
+  const { ua, en, ru } = header;
+  const description = langUa ? ua.description : langRu ? ru.description : en.description;
+  const title = langUa ? ua.logo : langRu ? ru.logo : en.logo;
 
-  if (loading || loadLang || loadCat || loadMenu ) return <Loading />;
-  if (error || errorLang || errorCat || errorMenu ) return `Error! ${error.message}`;
+  if (loading || loadCat ) return <Loading />;
+  if (error || errorCat ) return `Error! ${error.message} ${errorCat.message}`;
 
   const head = document.querySelector('title');
   const metaDiscription = document.getElementsByName("description")[0];
-  const textsSite = dataSite.textsites.filter(lan => lan.lang.id === lang);
   const metaContent = dataCat.categories.filter(lan => lan.lang.id === lang).map(meta => `${meta.name} AliExpress`).join(', ');
-  head.textContent = `${textsSite[0].titleSite} | ${textsSite[0].descriptionSite}`;
+  head.textContent = `${title} | ${description}`;
   metaDiscription.content = `${metaContent}`;
 
   const value = {
     state, 
     dispatch,
-    dataSite,
     dataLangs,
     dataCat,
-    dataMenu,
   };
 
   return (
