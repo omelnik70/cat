@@ -19,6 +19,8 @@ function SearchResult () {
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
     const { ua, en, ru } = searchTexts;
+    const title = langUa ? ua.result : langRu ? ru.result : en.result;
+    const text = langUa ? ua.found : langRu ? ru.found : en.found;
 
     useEffect(() => {
         dispatch(resultSearchArticles(articles.filter(art => {
@@ -27,42 +29,32 @@ function SearchResult () {
     }, [search]);
 
     return (
-        <div className={styles.container}>
-            {search && Boolean(currentListArt.length) && (
-                <>
-                    <h2 className={styles.searchTitle}>
-                        {langUa ? ua.result : 
-                        langRu ? ru.result :
-                        en.result}
-                    </h2>
-                    <Separator />
-                </>
-            )}
-            {search && currentListArt.map(art => (
-                <div key={art.id} >
-                    <Link 
-                        to={`/${art.category.link}/${art.link}`}
-                    >
-                        <h3 className={styles.articleTitle}>{art.title}</h3>
-                    </Link>
-                    <ShortDescriptionArticle item={art} />
-                </div>
-            ))}
-            {!currentListArt.length && (
-                <>
-                    <h2 className={styles.searchTitle}>
-                        {langUa ? ua.result : 
-                        langRu ? ru.result :
-                        en.result}
-                    </h2>
-                    <Separator />
-                    <p>
-                        {langUa ? ua.found : 
-                        langRu ? ru.found :
-                        en.found}
-                    </p>
-                </>
-            )}
+        <div className={search ? styles.container : styles.hide}>
+            <div className={styles.contentBox}>
+                {search && Boolean(currentListArt.length) && (
+                    <>
+                        <h2 className={styles.searchTitle}>{title}</h2>
+                        <Separator />
+                    </>
+                )}
+                {search && currentListArt.map(art => (
+                    <div key={art.id} >
+                        <Link 
+                            to={`/${art.category.link}/${art.link}`}
+                        >
+                            <h3 className={styles.articleTitle}>{art.title}</h3>
+                        </Link>
+                        <ShortDescriptionArticle item={art} />
+                    </div>
+                ))}
+                {!currentListArt.length && (
+                    <>
+                        <h2 className={styles.searchTitle}>{title}</h2>
+                        <Separator />
+                        <p>{text}</p>
+                    </>
+                )}
+            </div>
             {search && (<Pagination artChangeable={resultSearchArt} limit={LIMITART} />)}
         </div>
     );

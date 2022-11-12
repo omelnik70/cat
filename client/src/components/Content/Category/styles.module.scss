@@ -2,6 +2,9 @@
 
 /* mobile */
 .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     & h3:hover {
         color: $color-link-hover;

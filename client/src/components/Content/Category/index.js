@@ -18,19 +18,21 @@ function Category ({ data, href }) {
     
     return (
         <div className={styles.container}>
-            <h2 className={styles.categoryTitle}>{name}</h2>
-            <Separator />
-            {currentListArt.map(art => (
-                <div key={art.id} >
-                    <Link 
-                        key={art.id} 
-                        to={`/${href}/${art.link}`}
-                    >
-                        <h3 onClick={() => dispatch(currentArt(art.id))}>{art.title}</h3>
-                    </Link>
-                    <ShortDescriptionArticle item={art} />
-                </div>
-            ))}
+            <div className={styles.contentBox}>
+                <h2 className={styles.categoryTitle}>{name}</h2>
+                <Separator />
+                {currentListArt.map(art => (
+                    <div key={art.id} >
+                        <Link 
+                            key={art.id} 
+                            to={`/${href}/${art.link}`}
+                        >
+                            <h3 onClick={() => dispatch(currentArt(art.id))}>{art.title}</h3>
+                        </Link>
+                        <ShortDescriptionArticle item={art} />
+                    </div>
+                ))}
+            </div>
             <Pagination artChangeable={article} limit={LIMITART} />
         </div>
     );

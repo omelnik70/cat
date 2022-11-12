@@ -13,7 +13,7 @@ import styles from './styles.module.scss';
 function Faq ({ article }) {
     const { state } = useContext(Context);
     const { currentListArt, popularArticles, lang } = state;
-    const LIMITART = 5;
+    const LIMITART = 4;
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
     const { ua, en, ru } = popularArticles;
@@ -27,23 +27,25 @@ function Faq ({ article }) {
 
     return (
         <div className={styles.container}>
-            <div className={styles.titleBox}>
-                <h2 className={styles.faqTitle}>{title}</h2>
-                <Separator />
-            </div>
-            <div className={styles.faqMenuBox}>
-                <div className={styles.faqMenu}>
-                    {currentListArt.map(item => (
-                        <div key={item.id}>
-                            <Link to={`/${item.category.link}/${item.link}`}>
-                                <h3 className={styles.articleTitle}>{item.title}</h3>
-                            </Link>
-                            <ShortDescriptionArticle item={item} />
-                        </div>
-                    ))}
+            <div className={styles.contentBox}>
+                <div className={styles.titleBox}>
+                    <h2 className={styles.faqTitle}>{title}</h2>
+                    <Separator />
                 </div>
-                <div className={styles.image}>
-                    <img src={assets.IMAGES.FAQ} alt="" />
+                <div className={styles.faqMenuBox}>
+                    <div className={styles.faqMenu}>
+                        {currentListArt.map(item => (
+                            <div key={item.id}>
+                                <Link to={`/${item.category.link}/${item.link}`}>
+                                    <h3 className={styles.articleTitle}>{item.title}</h3>
+                                </Link>
+                                <ShortDescriptionArticle item={item} />
+                            </div>
+                        ))}
+                    </div>
+                    <div className={styles.image}>
+                        <img src={assets.IMAGES.FAQ} alt="" />
+                    </div>
                 </div>
             </div>
             <Pagination artConstant={articles} limit={LIMITART} />
