@@ -13,11 +13,19 @@ const DATA = {
     //язык сайта
     search: '',
 
+    //регистрация / вход
+    email: '',
+    password: '',
+    fnAuth: () => {},
+
     //текущий список статей при пагинации
     currentListArt: [],
 
     //текущий список статей при поиске
     resultSearchArt: [],
+
+    //статус пользователя
+    userValid: false,
 
     //размер экрана для мобильных настроек
     global: {
@@ -35,6 +43,10 @@ const DATA = {
           signIn: 'Зайти',
           password: 'Пароль',
           login: 'Вхід',
+          textEmailInvalid: 'Такий Email не зареєстрований у системі!',
+          textPasswordInvalid: 'Невірний пароль!',
+          textRegistered: 'Дякую за реєстрацію. Тепер Ви можете залишати коментарі до статей!',
+          textUserValid: 'Вітаю! Ви успішно залогінились.',
       },
       en: {
           registration: 'Registration',
@@ -45,6 +57,10 @@ const DATA = {
           signIn: 'Sign in',
           password: 'Password',
           login: 'Login',
+          textEmailInvalid: 'This Email is not registered in the system!',
+          textPasswordInvalid: 'Invalid password!',
+          textRegistered: 'Thanks for signing up. Now you can leave comments on articles!',
+          textUserValid: 'Congratulations! You have successfully logged in.',
       },
       ru: {
           registration: 'Регистрация',
@@ -55,6 +71,10 @@ const DATA = {
           signIn: 'Войти',
           password: 'Пароль',
           login: 'Вход',
+          textEmailInvalid: 'Такой Email не зарегистрирован в системе!',
+          textPasswordInvalid: 'Не верный пароль!',
+          textRegistered: 'Спасибо за регистацию. Теперь Вы можете оставлять комментарии к статьям!',
+          textUserValid: 'Поздравляем! Вы успешно залогинились.',
       },
     },
 

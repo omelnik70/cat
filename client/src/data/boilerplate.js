@@ -5,6 +5,10 @@ const CURRENTART = "currentArt";
 const CURRENTSEARCH = "currentSearch";
 const CURRENTLISTARTICLES = "currentListArticles";
 const RESULTSEARCHARTICLES = "resultSearchArticles";
+const EMAILINPUT = "emailInput";
+const PASSWORDINPUT = "passwordInput";
+const HANDLEAUTHCLICK = "handleAuthClick";
+const USERVALIDSTATUS = "userValidStatus";
 
 export { 
     CURRENTCAT,
@@ -12,5 +16,9 @@ export {
     CURRENTLANG,
     CURRENTSEARCH,
     CURRENTLISTARTICLES,
-    RESULTSEARCHARTICLES
+    RESULTSEARCHARTICLES,
+    EMAILINPUT,
+    PASSWORDINPUT,
+    HANDLEAUTHCLICK,
+    USERVALIDSTATUS
 };

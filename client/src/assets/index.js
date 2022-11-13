@@ -38,7 +38,7 @@ const ICONS = {
     FIRSTPAGE,
     LASTPAGE,
     NEXTPAGE,
-    PREVPAGE
+    PREVPAGE,
 };
 
 const IMAGES = {

@@ -5,6 +5,10 @@ import {
     CURRENTSEARCH, 
     CURRENTLISTARTICLES, 
     RESULTSEARCHARTICLES,
+    EMAILINPUT,
+    PASSWORDINPUT,
+    HANDLEAUTHCLICK,
+    USERVALIDSTATUS
 } from "./boilerplate";
 
 //создаем action генераторы
@@ -38,6 +42,26 @@ const resultSearchArticles = (payload) => ({
     payload,
 });
 
+const emailInput = (payload) => ({
+    type: EMAILINPUT,
+    payload,
+});
+
+const passwordInput = (payload) => ({
+    type: PASSWORDINPUT,
+    payload,
+});
+
+const handleAuthClick = (payload) => ({
+    type: HANDLEAUTHCLICK,
+    payload,
+});
+
+const userValidStatus = (payload) => ({
+    type: USERVALIDSTATUS,
+    payload,
+});
+
 export { 
     currentCat,
     currentArt,
@@ -45,4 +69,8 @@ export {
     currentSearch,
     currentListArticles,
     resultSearchArticles,
+    emailInput,
+    passwordInput,
+    handleAuthClick,
+    userValidStatus
 };

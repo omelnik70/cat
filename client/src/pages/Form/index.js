@@ -1,73 +1,48 @@
 import React, { useState, useRef, useContext } from 'react';
 
+import { emailInput, passwordInput } from "../../data/actions";
 import Context from "../../Context";
 import assets from "../../assets";
 import styles from "./styles.module.scss";
 
 const Form = ({ emailPlaceholder = 'Email', btn1 }) => {
-    const [formState, setFormState] = useState({
-        email: '',
-        password: '',
-        visibil: false,
-    });
-    const { email, password, visibil } = formState;
-    const { state } = useContext(Context);
-    const { lang, registr } = state;
+    const [visibil, setVisibil] = useState(false);
+    const { state, dispatch } = useContext(Context);
+    const { lang, registr, email, password, fnAuth } = state;
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
     const { ua, en, ru } = registr;
+    const pass = langUa ? ua.password : langRu ? ru.password : en.password;
+    const clearForm = langUa ? ua.clearForm : langRu ? ru.clearForm : en.clearForm;
     const passwordRef = useRef();
 
     const { ICONS } = assets;
     const { VISIBILITY, VISIBILITYOFF } = ICONS;
 
-    const handleChange = (e) => {
-        e.target.type === "email" ?
-        setFormState({
-            ...formState,
-            email: e.target.value
-        }) :
-        setFormState({
-            ...formState,
-            password: e.target.value
-        });
-    };
-
     const handleClickToggle = () => {
-        setFormState({
-            ...formState,
-            visibil: !visibil,
-        });
+        setVisibil(!visibil);
         !visibil ? passwordRef.current.type = "text" : passwordRef.current.type = "password";
     };
 
     const handleResetClick = () => {
-        setFormState({
-            ...formState,
-            email: '',
-            password: ''
-        });
+        dispatch(emailInput(''));
+        dispatch(passwordInput(''));
     };
 
-    console.log(btn1);
     return (
         <div className={styles.container}>
             <div className={styles.inputBlock}>
                 <input 
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e) => dispatch(emailInput(e.target.value))}
                     type="email" 
                     placeholder={emailPlaceholder}
                     value={email}
                 />
                 <input 
                     ref={passwordRef}
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e) => dispatch(passwordInput(e.target.value))}
                     type="password" 
-                    placeholder={
-                        langUa ? ua.password :
-                        langRu ? ru.password :
-                        en.password
-                    }
+                    placeholder={pass}
                     value={password}
                 />
                 <img 
@@ -76,14 +51,12 @@ const Form = ({ emailPlaceholder = 'Email', btn1 }) => {
                     src={visibil ? VISIBILITY : VISIBILITYOFF} alt="" 
                 />
             </div>
-            <button>{btn1}</button>
+            <button onClick={fnAuth}>{btn1}</button>
             <button 
                 onClick={handleResetClick} 
                 className={styles.reset}
             >
-                {langUa ? ua.clearForm :
-                langRu ? ru.clearForm :
-                en.clearForm}
+                {clearForm}
             </button>
         </div>
     );

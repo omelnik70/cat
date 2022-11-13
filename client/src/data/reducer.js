@@ -5,6 +5,10 @@ import {
     CURRENTSEARCH, 
     CURRENTLISTARTICLES, 
     RESULTSEARCHARTICLES, 
+    EMAILINPUT,
+    PASSWORDINPUT,
+    HANDLEAUTHCLICK,
+    USERVALIDSTATUS
 } from "./boilerplate";
 
 //создаем кейсы по изменению состояния
@@ -46,6 +50,30 @@ const reducer = (state, action) => {
         return {
             ...state,
             resultSearchArt: action.payload,
+        };
+
+        case EMAILINPUT: 
+        return {
+            ...state,
+            email: action.payload,
+        };
+
+        case PASSWORDINPUT: 
+        return {
+            ...state,
+            password: action.payload,
+        };
+
+        case HANDLEAUTHCLICK: 
+        return {
+            ...state,
+            fnAuth: action.payload,
+        };
+
+        case USERVALIDSTATUS: 
+        return {
+            ...state,
+            userValid: action.payload,
         };
 
         //по умолчанию 

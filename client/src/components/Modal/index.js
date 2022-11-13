@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
+import Context from '../../Context';
+import { emailInput, passwordInput } from '../../data/actions';
 
 import styles from './styles.module.scss';
 
 
-function Modal ({ active, setActive, back, children }) {
+function Modal ({ active, setActive, children }) {
+    const { dispatch } = useContext(Context);
 
     const navigate = useNavigate();
     const goBack = () => navigate('/');
 
     const handleClick = () => {
         setActive(false);
+        dispatch(emailInput(''));
+        dispatch(passwordInput(''));
         goBack();
     };
 
