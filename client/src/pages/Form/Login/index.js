@@ -13,20 +13,19 @@ import styles from "./styles.module.scss";
 
 const Login = () => {
     const [login, setLogin] = useState(true);
+    const [modal, setModal] = useState(true);
     const [errorLogin, setErrorLogin] = useState({
         userEmail: false,
         userPassword: false,
-        styleMessage: true,
+        styleMessage: true
     });
-    const { userEmail, userPassword, styleMessage } = errorLogin;
-
-    const navigate = useNavigate();
-    const goBack = () => navigate('/');
+    const { userEmail, userPassword } = errorLogin;
 
     const { state, dispatch } = useContext(Context);
     const { lang, registr, email, password, userValid } = state;
 
-    console.log(userValid);
+    const navigate = useNavigate();
+    const goBack = () => navigate('/');
 
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
@@ -38,18 +37,18 @@ const Login = () => {
     const textValid = langUa ? ua.textUserValid : langRu ? ru.textUserValid : en.textUserValid;
     const textPassword = langUa ? ua.textPasswordInvalid : langRu ? ru.textPasswordInvalid : en.textPasswordInvalid;
     const textMessage = userEmail ? textEmail : userPassword ? textPassword : textValid;
+    const text = langUa ? ua.alreadyLogin : langRu ? ru.alreadyLogin : en.alreadyLogin;
 
     useEffect(() => {
         dispatch(handleAuthClick(
             state.fnAuth = () => {
-                console.log(email, password);
                 signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
-                    setErrorLogin({ ...errorLogin, styleMessage: true });
+                    const { uid } = user;
                     dispatch(userValidStatus(true));
-                    console.log(user);
+                    console.log(uid);
                 })
                 .catch((error) => {
                     const errorMessage = error.message;
@@ -62,38 +61,19 @@ const Login = () => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            if(userEmail || userPassword) {
-                setErrorLogin({ 
-                    ...errorLogin, 
-                    styleMessage: false,
-                });
-            };
-        }, 5000);
-        return () => clearTimeout(timer);
-      }, [userEmail, userPassword, userValid]);
-
-      useEffect(() => {
-        const timer = setTimeout(() => {
-            if(userEmail || userPassword) {
+            if(userValid) {
                 setErrorLogin({ 
                     ...errorLogin, 
                     userEmail: false,
                     userPassword: false,
                 });
-            };
-        }, 6000);
-        return () => clearTimeout(timer);
-      }, [userEmail, userPassword]);
-
-      useEffect(() => {
-            const timer = setTimeout(() => {
-            if(userValid) {
                 dispatch(emailInput(''));
                 dispatch(passwordInput(''));
-                setLogin(true);
+                setLogin(false);
+                setModal(false);
                 goBack();
             };
-        }, 6000);
+        }, 3000);
         return () => clearTimeout(timer);
       }, [userValid]);
 
@@ -103,15 +83,9 @@ const Login = () => {
                 <h3 className={styles.title}>{title}</h3>
                 <Form btn1={btnRegester} />
                 {(userEmail || userPassword || userValid) && (
-                    <p className={styleMessage ? styles.showMessage : styles.hideMessage}>
-                        {textMessage}
-                    </p>
+                    <Modal active={modal} setActive={setModal}>{textMessage}</Modal>
                 )}
-                <p className={styles.text}>
-                    {langUa ? ua.alreadyLogin :
-                    langRu ? ru.alreadyLogin :
-                    en.alreadyLogin} 
-                </p>
+                <p className={styles.text}>{text}</p>
                 <Link to="/register">
                     <p className={styles.link}>{link}</p>
                 </Link>

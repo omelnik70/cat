@@ -11,7 +11,7 @@ import styles from './styles.module.scss';
 
 function Header () {
     const { state, dataLangs } = useContext(Context);
-    const { lang, header } = state;
+    const { lang, header, userValid } = state;
     const [currentWidth, setCurrentWidth] = useState(window.screen.width);
 
     window.addEventListener('resize', () => setCurrentWidth(window.screen.width));
@@ -33,13 +33,13 @@ function Header () {
                 <ul className={styles.lang}>
                     <Lang data={dataLangs} />
                 </ul>
-                <Link to="/login">
+                <Link to={userValid ?  "/" : "/login"}>
                     <Account className={styles.account} />
                 </Link>
             </>) :
             (<>
                 <Link to="/">
-                <h1 className={styles.titleSite}>{title}</h1>
+                    <h1 className={styles.titleSite}>{title}</h1>
                 </Link>
                 <div className={styles.navigation}>
                     <Navigation />

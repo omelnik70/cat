@@ -10,6 +10,44 @@ input {
     @include input;
 }
 
+.email, 
+.password {
+    position: relative;
+    & label {
+        position: absolute;
+        left: 0;
+        text-align: center;
+        width: 100%;
+        background-color: $border-menu;
+        color: $background-white;
+        padding: 5px;
+    }
+}
+
+.email {
+    & label {
+        top: -38px;
+    }
+}
+
+.password {
+    & label {
+        top: 30px;
+    }
+}
+
+.checkbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0 0 0;
+    & label {
+        font-size: $font-size-small;
+        margin: 0 0 0 2px;
+    }
+}
+
 .inputBlock {
     position: relative;
     display: flex;
@@ -26,4 +64,11 @@ input {
 
 .reset {
     margin-top: 0;
+}
+
+.disabled {
+    background-color: $color-background-light;
+    box-shadow: 2px 2px 5px $color-background;
+    color: $color-link;
+    cursor: default;
 }

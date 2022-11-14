@@ -2,12 +2,14 @@ import graphql, { GraphQLList } from "graphql";
 
 //mongoDB models
 import Lang from "../models/lang.js";
+import User from "../models/user.js";
 import Article from "../models/article.js";
 import Category from "../models/category.js";
 import Content from "../models/content.js";
 
 import { 
     LangType,
+    UserType,
     CategoryType,
     ArticleType, 
     ContentType,
@@ -91,6 +93,24 @@ const {
             type: new GraphQLList(ContentType),
             resolve(parent, args) {
                 return Content.find({});
+            },
+
+        },
+        
+        //User
+        user: {
+            type: UserType,
+            args: {id: { type: GraphQLID } },
+            resolve(parent, {id}) {
+                return User.findById(id);
+            },
+
+        },
+
+        users: {
+            type: new GraphQLList(UserType),
+            resolve(parent, args) {
+                return User.find({});
             },
 
         },

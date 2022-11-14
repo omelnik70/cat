@@ -2,6 +2,7 @@ import graphql from "graphql";
 
 //mongoDB models
 import Lang from "../models/lang.js";
+import User from "../models/user.js";
 import Article from "../models/article.js";
 import Category from "../models/category.js";
 import Content from "../models/content.js";
@@ -9,6 +10,7 @@ import Content from "../models/content.js";
 //graphql types
 import { 
     LangType,
+    UserType,
     CategoryType,
     ArticleType, 
     ContentType,
@@ -222,6 +224,54 @@ const {
                 return Lang.findByIdAndUpdate(
                     id, 
                     { $set: { country, name } },
+                    { new: true },
+                );
+            },
+        },
+
+        //User
+        addUser: {
+            type: UserType,
+            args: {
+                id: { type: GraphQLID },
+                uid: { type: new GraphQLNonNull(GraphQLString) },
+                avatar: { type: GraphQLString },
+                login: { type: GraphQLString },
+                email: { type: new GraphQLNonNull(GraphQLString) },
+                password: { type: new GraphQLNonNull(GraphQLString) },
+            },
+            resolve(parent, { id, uid, avatar, login, email, password }) {
+                const user = new User({
+                    id, 
+                    uid,
+                    avatar, 
+                    login, 
+                    email, 
+                    password,
+                });
+                return user.save();
+            },
+        },
+
+        deleteUser: {
+            type: UserType,
+            args: { id: { type: GraphQLID } },
+            resolve(parent, {id}) {
+                return User.findByIdAndRemove(id);
+            },
+        },
+
+        updateUser: {
+            type: UserType,
+            args: {
+                id: { type: GraphQLID },
+                avatar: { type: GraphQLString },
+                login: { type: GraphQLString },
+            },
+            resolve(parent, { id, avatar, login }) {
+                return User.findByIdAndUpdate(
+                    id, 
+                    { $set: { avatar, login } },
                     { new: true },
                 );
             },

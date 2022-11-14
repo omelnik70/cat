@@ -1,9 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useMutation, useQuery } from '@apollo/client';
 
-import { handleAuthClick, userValidStatus } from "../../../data/actions";
+import Loading from "../../../components/Loading";
+import { ADD_USER_MUTATION } from "../../../apollo/mutations";
+import { USERS_QUERY } from "../../../apollo/queries";
+import { handleAuthClick, emailInput, passwordInput, userValidStatus } from "../../../data/actions";
 import Context from "../../../Context";
 import Form from "..";
 import Modal from "../../../components/Modal";
@@ -11,11 +15,24 @@ import styles from "./styles.module.scss";
 
 const Register = () => {
     const [register, setRegister] = useState(true);
-    const [errorRegistr, setErrorRegistr] = useState({
-        styleMessage: true,
+    const [modal, setModal] = useState(true);
+    const { loading } = useQuery(USERS_QUERY);
+    const [addUser] = useMutation(ADD_USER_MUTATION, {
+
+        //обновление кэша без запроса на сервер 
+        update(cache, { data: { newUser } }) {
+            const { users } = cache.readQuery({ query: USERS_QUERY });
+            cache.writeQuery({ 
+                query: USERS_QUERY,
+                data: {
+                    users: [...users, newUser]
+                },
+            });
+        },
     });
 
-    const { styleMessage } = errorRegistr;
+    const navigate = useNavigate();
+    const goBack = () => navigate('/');
     const { state, dispatch } = useContext(Context);
     const { lang, registr, email, password, userValid } = state;
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
@@ -25,7 +42,7 @@ const Register = () => {
     let title = langUa ? ua.registration : langRu ? ru.registration : en.registration;
     let link = langUa ? ua.signIn : langRu ? ru.signIn : en.signIn;
     let text = langUa ? ua.alreadyRegistered : langRu ? ru.alreadyRegistered : en.alreadyRegistered;
-    let textMessage = langUa ? ua.userValid : langRu ? ru.userValid : en.userValid;
+    let textMessage = langUa ? ua.textRegistered : langRu ? ru.textRegistered : en.textRegistered;
 
     useEffect(() => {
         dispatch(handleAuthClick(
@@ -35,7 +52,16 @@ const Register = () => {
                     // Signed in 
                     const user = userCredential.user;
                     dispatch(userValidStatus(true));
-                    console.log(user);
+                    const { uid } = user;
+                    addUser({
+                        variables: {
+                            uid,
+                            avatar: '',
+                            login: '',
+                            email,
+                            password,
+                        },
+                    });
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -46,17 +72,20 @@ const Register = () => {
             }));
     }, [email, password]);
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
+      useEffect(() => {
+            const timer = setTimeout(() => {
             if(userValid) {
-                setErrorRegistr({ 
-                    ...errorRegistr, 
-                    styleMessage: false,
-                });
+                dispatch(emailInput(''));
+                dispatch(passwordInput(''));
+                setModal(false);
+                setRegister(true);
+                goBack();
             };
-        }, 5000);
+        }, 4000);
         return () => clearTimeout(timer);
       }, [userValid]);
+      
+    if (loading) return <Loading />;
 
     return (
         <Modal active={register} setActive={setRegister} >
@@ -64,9 +93,7 @@ const Register = () => {
                 <h3 className={styles.title}>{title}</h3>
                 <Form btn1={btnRegester} />
                 {userValid && (
-                    <p className={styleMessage ? styles.showMessage : styles.hideMessage}>
-                        {textMessage}
-                    </p>
+                    <Modal active={modal} setActive={setModal}>{textMessage}</Modal>
                 )}
                 <p className={styles.text}>
                     {text} 

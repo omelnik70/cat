@@ -2,6 +2,7 @@ import graphql, { GraphQLList } from "graphql";
 
 //mongoDB models
 import Lang from "../models/lang.js";
+//import User from "../models/user.js";
 import Article from "../models/article.js";
 import Category from "../models/category.js";
 import Content from "../models/content.js";
@@ -99,9 +100,22 @@ const {
     }),
  });
 
+ const UserType = new GraphQLObjectType({
+    name: "User",
+    fields: () => ({
+        id: { type: GraphQLID },
+        uid: { type: new GraphQLNonNull(GraphQLString) },
+        avatar: { type: GraphQLString },
+        login: { type: GraphQLString },
+        email: { type: new GraphQLNonNull(GraphQLString) },
+        password: { type: new GraphQLNonNull(GraphQLString) },
+    }),
+ });
+
  export {
     LangType,
     CategoryType,
     ArticleType,
     ContentType,
+    UserType,
 };

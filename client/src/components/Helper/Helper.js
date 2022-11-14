@@ -42,7 +42,7 @@ export const transliter = ( str ) => {
  
   n_str = [],
   length = str.length;
-  str = str.replace(/[ъь]+/g, '').toLowerCase();
+  str = str.replace(/[ъь]+.,%?()"'/g, '').replace(/[-]/g, 'and').toLowerCase();
  
   for ( let i = 0; i < length; ++i ) {
      n_str.push(cyrillic[ str[i] ]);

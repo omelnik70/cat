@@ -47,6 +47,9 @@ const DATA = {
           textPasswordInvalid: 'Невірний пароль!',
           textRegistered: 'Дякую за реєстрацію. Тепер Ви можете залишати коментарі до статей!',
           textUserValid: 'Вітаю! Ви успішно залогінились.',
+          passwordText: 'Пароль повинен містити більше 5 символів!',
+          emailText: 'Email введено некоректно!',
+          autocomplete: 'Дозволити збереження даних',
       },
       en: {
           registration: 'Registration',
@@ -61,6 +64,9 @@ const DATA = {
           textPasswordInvalid: 'Invalid password!',
           textRegistered: 'Thanks for signing up. Now you can leave comments on articles!',
           textUserValid: 'Congratulations! You have successfully logged in.',
+          passwordText: 'The password must contain more than 5 characters!',
+          emailText: 'The email was entered incorrectly!',
+          autocomplete: 'Enable data saving',
       },
       ru: {
           registration: 'Регистрация',
@@ -75,6 +81,9 @@ const DATA = {
           textPasswordInvalid: 'Не верный пароль!',
           textRegistered: 'Спасибо за регистацию. Теперь Вы можете оставлять комментарии к статьям!',
           textUserValid: 'Поздравляем! Вы успешно залогинились.',
+          passwordText: 'Пароль должен содержать более 5 символов!',
+          emailText: 'Email введен некорректно!',
+          autocomplete: 'Разрешить сохранение данных',
       },
     },
 

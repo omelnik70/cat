@@ -103,6 +103,30 @@ const ARTICLE_QUERY = gql`
     }
 `;
 
+const USER_QUERY = gql`
+    query($id: ID) {
+        user(id: $id) {
+            id
+            uid
+    		avatar
+            login
+            email
+            password
+        }
+    }
+`;
+
+const USERS_QUERY = gql`
+    query {
+        id
+        uid
+    	avatar
+        login
+        email
+        password
+    }
+`;
+
 const LANGS_QUERY = gql`
     query {
         langs {
@@ -123,4 +147,6 @@ export {
     ARTICLE_QUERY,
     CATEGORIES_QUERY,
     CONTENTS_QUERY,
+    USER_QUERY,
+    USERS_QUERY,
 };

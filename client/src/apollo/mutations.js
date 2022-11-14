@@ -41,6 +41,16 @@ const UPDATE_ARTICLE_MUTATION = gql`
     }
 `;
 
+const UPDATE_USER_MUTATION = gql`
+    mutation UpdateUser ($id: ID, $avatar: String!, $login: String!) {
+        updateUser(id: $id, avatar: $avatar, login: $login) {
+            id
+            avatar
+            login
+        },
+    }
+`;
+
 const ADD_CATEGORY_MUTATION = gql`
     mutation AddCategory ($name: String!, $link: String!, $langId: ID){
         newCategory: addCategory(name: $name, link: $link, langId: $langId) {
@@ -50,6 +60,19 @@ const ADD_CATEGORY_MUTATION = gql`
             lang {
               id
             }
+        },
+    }
+`;
+
+const ADD_USER_MUTATION = gql`
+    mutation AddUser ($id: ID!, $uid: String, $avatar: String, $login: String, $email: String!, $password: String!){
+        newUser: addUser(id: $id, uid: $uid, avatar: $avatar, login: $login, email: $email, password: $password) {
+            id
+            uid
+            avatar
+            login
+            email
+            password
         },
     }
 `;
@@ -99,6 +122,16 @@ const REMOVE_CATEGORY_MUTATION = gql`
     }
 `;
 
+
+
+const REMOVE_USER_MUTATION = gql`
+    mutation($id: ID) {
+        deleteuSER(id: $id) {
+            id
+        }
+    }
+`;
+
 const REMOVE_CONTENT_MUTATION = gql`
     mutation($id: ID) {
         deleteContent(id: $id) {
@@ -119,10 +152,13 @@ export {
     ADD_ARTICLE_MUTATION,
     ADD_CATEGORY_MUTATION,
     ADD_CONTENT_MUTATION,
+    ADD_USER_MUTATION,
     UPDATE_ARTICLE_MUTATION,
     UPDATE_CATEGORY_MUTATION,
     UPDATE_CONTENT_MUTATION,
+    UPDATE_USER_MUTATION,
     REMOVE_ARTICLE_MUTATION,
     REMOVE_CATEGORY_MUTATION,
     REMOVE_CONTENT_MUTATION,
+    REMOVE_USER_MUTATION,
  };
