@@ -8,7 +8,7 @@ import { useMutation } from '@apollo/client';
 
 import Context from '../../../../../Context';
 import { ADD_ARTICLE_MUTATION } from '../../../../../apollo/mutations';
-import { ARTICLES_QUERY } from '../../../../../apollo/queries';
+import { CATEGORIES_QUERY } from '../../../../../apollo/queries';
 import { currentCat } from '../../../../../data/actions';
 import { createLink } from '../../../../../components/Helper/Helper';
 
@@ -36,12 +36,12 @@ function AddArticle() {
         // ],
 
         //обновление кэша без запроса на сервер 
-        update(cache, { data: { newArticle } }) {
-            const { articles } = cache.readQuery({ query: ARTICLES_QUERY });
+        update(cache, { data: { newCategory } }) {
+            const { categories } = cache.readQuery({ query: CATEGORIES_QUERY });
             cache.writeQuery({ 
-                query: ARTICLES_QUERY,
+                query: CATEGORIES_QUERY,
                 data: {
-                    articles: [...articles, newArticle]
+                    categories: [...categories, newCategory]
                 },
             });
         },

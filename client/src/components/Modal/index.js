@@ -7,17 +7,17 @@ import { emailInput, passwordInput } from '../../data/actions';
 import styles from './styles.module.scss';
 
 
-function Modal ({ active, setActive, children }) {
+function Modal ({ active, setActive, link, children }) {
     const { dispatch } = useContext(Context);
 
     const navigate = useNavigate();
-    const goBack = () => navigate('/');
+    const goBack = () => navigate(link = '/');
 
     const handleClick = () => {
         setActive(false);
         dispatch(emailInput(''));
         dispatch(passwordInput(''));
-        goBack();
+        goBack(link);
     };
 
     return (

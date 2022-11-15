@@ -112,18 +112,22 @@ const USER_QUERY = gql`
             login
             email
             password
+            pin
         }
     }
 `;
 
 const USERS_QUERY = gql`
     query {
-        id
-        uid
-    	avatar
-        login
-        email
-        password
+        users {
+            id
+            uid
+            avatar
+            login
+            email
+            password
+            pin
+        }
     }
 `;
 

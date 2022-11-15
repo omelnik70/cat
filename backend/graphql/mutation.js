@@ -239,8 +239,9 @@ const {
                 login: { type: GraphQLString },
                 email: { type: new GraphQLNonNull(GraphQLString) },
                 password: { type: new GraphQLNonNull(GraphQLString) },
+                pin: { type: GraphQLInt },
             },
-            resolve(parent, { id, uid, avatar, login, email, password }) {
+            resolve(parent, { id, uid, avatar, login, email, password, pin }) {
                 const user = new User({
                     id, 
                     uid,
@@ -248,6 +249,7 @@ const {
                     login, 
                     email, 
                     password,
+                    pin,
                 });
                 return user.save();
             },
@@ -267,11 +269,12 @@ const {
                 id: { type: GraphQLID },
                 avatar: { type: GraphQLString },
                 login: { type: GraphQLString },
+                pin: { type: GraphQLInt },
             },
-            resolve(parent, { id, avatar, login }) {
+            resolve(parent, { id, avatar, login, pin }) {
                 return User.findByIdAndUpdate(
                     id, 
-                    { $set: { avatar, login } },
+                    { $set: { avatar, login, pin } },
                     { new: true },
                 );
             },

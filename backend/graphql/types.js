@@ -109,6 +109,7 @@ const {
         login: { type: GraphQLString },
         email: { type: new GraphQLNonNull(GraphQLString) },
         password: { type: new GraphQLNonNull(GraphQLString) },
+        pin: { type: GraphQLInt },
     }),
  });
 

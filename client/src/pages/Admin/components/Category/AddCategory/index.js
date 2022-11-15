@@ -14,7 +14,7 @@ function AddCategory() {
         link: "",
         langId: lang,
     });
-
+//
     const [AddCategory, { error }] = useMutation(ADD_CATEGORY_MUTATION, {
         //новый запрос всего списка с сервера 
         // refetchQueries: [

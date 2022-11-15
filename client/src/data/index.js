@@ -16,6 +16,7 @@ const DATA = {
     //регистрация / вход
     email: '',
     password: '',
+    pin: '',
     fnAuth: () => {},
 
     //текущий список статей при пагинации
@@ -49,6 +50,10 @@ const DATA = {
           textUserValid: 'Вітаю! Ви успішно залогінились.',
           passwordText: 'Пароль повинен містити більше 5 символів!',
           emailText: 'Email введено некоректно!',
+          userText: 'Користувач із таким Email вже існує!',
+          userCheckPin: 'Не вірний пін!',
+          pinTextMessage: 'Пінкод має містити 4 цифри!',
+          pinInputText: 'Придумайте пін 4 цифри',
           autocomplete: 'Дозволити збереження даних',
       },
       en: {
@@ -66,6 +71,10 @@ const DATA = {
           textUserValid: 'Congratulations! You have successfully logged in.',
           passwordText: 'The password must contain more than 5 characters!',
           emailText: 'The email was entered incorrectly!',
+          userText: 'User with this Email already exists!',
+          userCheckPin: 'Invalid pin!',
+          pinTextMessage: 'Pincode must contain 4 digits!',
+          pinInputText: 'Come up with a 4 digit pin',
           autocomplete: 'Enable data saving',
       },
       ru: {
@@ -83,6 +92,10 @@ const DATA = {
           textUserValid: 'Поздравляем! Вы успешно залогинились.',
           passwordText: 'Пароль должен содержать более 5 символов!',
           emailText: 'Email введен некорректно!',
+          userText: 'Пользователь с таким Email уже существует!',
+          userCheckPin: 'Не верный пин!',
+          pinTextMessage: 'Пинкод должен содержать 4 цифры!',
+          pinInputText: 'Придумайте пин 4 цифры',
           autocomplete: 'Разрешить сохранение данных',
       },
     },

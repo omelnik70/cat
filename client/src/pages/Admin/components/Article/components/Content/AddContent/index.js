@@ -10,7 +10,7 @@ import { storage } from '../../../../../../../firebase';
 import { ref, uploadBytes, getDownloadURL, uploadBytesResumable, deleteObject } from "firebase/storage";
 import Context from '../../../../../../../Context';
 import { ADD_CONTENT_MUTATION } from '../../../../../../../apollo/mutations';
-import { CONTENTS_QUERY } from '../../../../../../../apollo/queries';
+import { CATEGORIES_QUERY } from '../../../../../../../apollo/queries';
 import { currentArt, currentCat } from '../../../../../../../data/actions';
 
 import styles from './styles.module.scss';
@@ -55,12 +55,12 @@ function AddContent() {
         // ],
 
         //обновление кэша без запроса на сервер 
-        update(cache, { data: { newContent } }) {
-            const { contents } = cache.readQuery({ query: CONTENTS_QUERY });
+        update(cache, { data: { newCategory } }) {
+            const { categories } = cache.readQuery({ query: CATEGORIES_QUERY });
             cache.writeQuery({ 
-                query: CONTENTS_QUERY,
+                query: CATEGORIES_QUERY,
                 data: {
-                    contents: [...contents, newContent]
+                    categories: [...categories, newCategory]
                 },
             });
         },

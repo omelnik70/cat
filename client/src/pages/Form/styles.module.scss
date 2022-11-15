@@ -11,10 +11,11 @@ input {
 }
 
 .email, 
-.password {
-    position: relative;
+.password,
+.pin {
     & label {
         position: absolute;
+        top: 0;
         left: 0;
         text-align: center;
         width: 100%;
@@ -24,16 +25,19 @@ input {
     }
 }
 
-.email {
-    & label {
-        top: -38px;
-    }
-}
-
 .password {
+    position: relative;
     & label {
         top: 30px;
     }
+}
+
+.visibil {
+    height: 20px;
+    width: auto;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
 }
 
 .checkbox {
@@ -49,17 +53,8 @@ input {
 }
 
 .inputBlock {
-    position: relative;
     display: flex;
     flex-direction: column;
-}
-
-.visibil {
-    height: 20px;
-    width: auto;
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
 }
 
 .reset {

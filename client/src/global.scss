@@ -146,7 +146,7 @@ $font-weight-bolder: 700px;
     //border-radius: 10px;
     //margin: 10px;
 	&:focus {
-		background-color: $color-background-focus;
+		border: 1px solid $border-menu;
 	}
 }
 

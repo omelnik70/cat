@@ -8,14 +8,14 @@ import Context from '../../Context';
 import Navbar from './Navbar';
 import Category from './Category';
 import Post from './Category/Post';
+import User from '../../pages/User';
 
 import styles from './styles.module.scss';
-
 
 function Content () {
     const { state, dataCat } = useContext(Context);
     const { lang, search, postText } = state;
-    const { category, post } = useParams();
+    const { category, post, id } = useParams();
 
     const cat = dataCat.categories.filter(cat => cat.lang.id === lang);
     const articlesCurrent = cat.filter(item => item.link === category)[0];
@@ -36,13 +36,16 @@ function Content () {
             (<Post articles={articleCurrent} lang={lang} text={postText} />) :
             (<div className={styles.contentBox}>
                 <Search />
-                <SearchResult />
-                {!search && (<Faq article={cat} />)}
+                {search && (<SearchResult />)}
+                {!search && !id && (<Faq article={cat} />)}
+                {!search && id && (<User />)}
             </div>)}
             </>) :
             (<div className={styles.contentBox}>
                 <Search />
-                {!search && (<Faq article={cat} />)}
+                {search && (<SearchResult />)}
+                {!search && !id && (<Faq article={cat} />)}
+                {!search && id && (<User />)}
             </div>
             )}
         </div>

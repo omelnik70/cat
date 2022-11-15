@@ -9,6 +9,7 @@ const EMAILINPUT = "emailInput";
 const PASSWORDINPUT = "passwordInput";
 const HANDLEAUTHCLICK = "handleAuthClick";
 const USERVALIDSTATUS = "userValidStatus";
+const USERPIN = "userPin";
 
 export { 
     CURRENTCAT,
@@ -20,5 +21,6 @@ export {
     EMAILINPUT,
     PASSWORDINPUT,
     HANDLEAUTHCLICK,
-    USERVALIDSTATUS
+    USERVALIDSTATUS,
+    USERPIN
 };

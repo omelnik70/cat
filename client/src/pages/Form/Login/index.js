@@ -25,7 +25,7 @@ const Login = () => {
     const { lang, registr, email, password, userValid } = state;
 
     const navigate = useNavigate();
-    const goBack = () => navigate('/');
+    const goBack = () => navigate(userValid ? userValid : '/register');
 
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
@@ -47,8 +47,7 @@ const Login = () => {
                     // Signed in 
                     const user = userCredential.user;
                     const { uid } = user;
-                    dispatch(userValidStatus(true));
-                    console.log(uid);
+                    dispatch(userValidStatus(`/users/${uid}`));
                 })
                 .catch((error) => {
                     const errorMessage = error.message;
@@ -81,7 +80,7 @@ const Login = () => {
         <Modal active={login} setActive={setLogin} >
             <div className={styles.container}>
                 <h3 className={styles.title}>{title}</h3>
-                <Form btn1={btnRegester} />
+                <Form btn1={btnRegester} valid={false} />
                 {(userEmail || userPassword || userValid) && (
                     <Modal active={modal} setActive={setModal}>{textMessage}</Modal>
                 )}

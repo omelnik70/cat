@@ -8,7 +8,8 @@ import {
     EMAILINPUT,
     PASSWORDINPUT,
     HANDLEAUTHCLICK,
-    USERVALIDSTATUS
+    USERVALIDSTATUS,
+    USERPIN
 } from "./boilerplate";
 
 //создаем action генераторы
@@ -62,6 +63,11 @@ const userValidStatus = (payload) => ({
     payload,
 });
 
+const userPin = (payload) => ({
+    type: USERPIN,
+    payload,
+});
+
 export { 
     currentCat,
     currentArt,
@@ -72,5 +78,6 @@ export {
     emailInput,
     passwordInput,
     handleAuthClick,
-    userValidStatus
+    userValidStatus,
+    userPin
 };

@@ -33,7 +33,7 @@ function Header () {
                 <ul className={styles.lang}>
                     <Lang data={dataLangs} />
                 </ul>
-                <Link to={userValid ?  "/" : "/login"}>
+                <Link to={userValid ?  userValid : "/login"}>
                     <Account className={styles.account} />
                 </Link>
             </>) :

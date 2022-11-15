@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import Context from '../../Context';
 
-import { LANGS_QUERY, CATEGORIES_QUERY} from '../../apollo/queries';
+import { LANGS_QUERY, USERS_QUERY, CATEGORIES_QUERY} from '../../apollo/queries';
 import Header from '../Header';
 import Content from '../Content';
 import Footer from '../Footer';
@@ -19,8 +19,9 @@ import styles from './styles.module.scss';
 
 function App() {
   const [state, dispatch] = useReducer(reducer, DATA);
-  const { loading: loadCat, error: errorCat, data: dataCat } = useQuery(CATEGORIES_QUERY);
   const { loading, error, data: dataLangs } = useQuery(LANGS_QUERY);
+  const { loading: loadCat, error: errorCat, data: dataCat } = useQuery(CATEGORIES_QUERY);
+  const { loading: loadUser, error: errorUser, data: dataUsers } = useQuery(USERS_QUERY);
   const { lang, header } = state;
   const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
   const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
@@ -28,8 +29,8 @@ function App() {
   const description = langUa ? ua.description : langRu ? ru.description : en.description;
   const title = langUa ? ua.logo : langRu ? ru.logo : en.logo;
 
-  if (loading || loadCat ) return <Loading />;
-  if (error || errorCat ) return `Error! ${error.message} ${errorCat.message}`;
+  if (loading || loadCat || loadUser ) return <Loading />;
+  if (error || errorCat || errorUser ) return `Error! ${error.message} ${errorCat.message}`;
 
   const head = document.querySelector('title');
   const metaDiscription = document.getElementsByName("description")[0];
@@ -42,6 +43,7 @@ function App() {
     dispatch,
     dataLangs,
     dataCat,
+    dataUsers,
   };
 
   return (
@@ -55,6 +57,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/:category" element={<Content />} />
             <Route path="/:category/:post" element={<Content />} />
+            <Route path="/users/:id" element={<Content />} />
             <Route path="*" element={<Error />} />
           </Routes>
         <div className={styles.footer}><Footer /></div>
