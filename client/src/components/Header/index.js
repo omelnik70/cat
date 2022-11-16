@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as Account } from '../../assets/icons/account.svg';
+import { ReactComponent as Avatar } from '../../assets/icons/avatar.svg';
 import Navigation from './Navigation';
 import Context from '../../Context';
 import Lang from './Lang';
@@ -34,7 +35,10 @@ function Header () {
                     <Lang data={dataLangs} />
                 </ul>
                 <Link to={userValid ?  userValid : "/login"}>
-                    <Account className={styles.account} />
+                    {
+                        userValid ? (<Avatar className={styles.account} />) : 
+                        (<Account className={styles.account} />)
+                    }
                 </Link>
             </>) :
             (<>

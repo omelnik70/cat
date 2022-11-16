@@ -30,19 +30,10 @@ const Register = () => {
         },
     });
     const { state, dispatch } = useContext(Context);
-    const { lang, registr, email, password, userValid, pin } = state;
+    const { lang, registr, email, password, userValid } = state;
 
     const navigate = useNavigate();
     const goBack = () => navigate(userValid ? userValid : '/login');
-    const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
-    const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
-    const { ua, en, ru } = registr;
-    let btnRegester = langUa ? ua.register : langRu ? ru.register : en.register;
-    let title = langUa ? ua.registration : langRu ? ru.registration : en.registration;
-    let link = langUa ? ua.signIn : langRu ? ru.signIn : en.signIn;
-    let text = langUa ? ua.alreadyRegistered : langRu ? ru.alreadyRegistered : en.alreadyRegistered;
-    let textMessage = langUa ? ua.textRegistered : langRu ? ru.textRegistered : en.textRegistered;
-    const textUser = langUa ? ua.userText : langRu ? ru.userText : en.userText;
 
     useEffect(() => {
         dispatch(handleAuthClick(
@@ -59,7 +50,6 @@ const Register = () => {
                             login: '',
                             email,
                             password,
-                            pin: +pin,
                         },
                     });
                     dispatch(userValidStatus(`/users/${uid}`));
@@ -83,6 +73,16 @@ const Register = () => {
             return () => clearTimeout(timer);
         };
       }, [userValid, userCheck]);
+      
+    const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
+    const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
+    const { ua, en, ru } = registr;
+    let btnRegester = langUa ? ua.register : langRu ? ru.register : en.register;
+    let title = langUa ? ua.registration : langRu ? ru.registration : en.registration;
+    let link = langUa ? ua.signIn : langRu ? ru.signIn : en.signIn;
+    let text = langUa ? ua.alreadyRegistered : langRu ? ru.alreadyRegistered : en.alreadyRegistered;
+    let textMessage = langUa ? ua.textRegistered : langRu ? ru.textRegistered : en.textRegistered;
+    const textUser = langUa ? ua.userText : langRu ? ru.userText : en.userText;
 
     return (
         <Modal active={register} setActive={setRegister}>

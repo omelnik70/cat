@@ -1,6 +1,6 @@
 import React, { useState, useRef, useContext } from 'react';
 
-import { emailInput, passwordInput, userPin } from "../../data/actions";
+import { emailInput, passwordInput } from "../../data/actions";
 import Context from "../../Context";
 import assets from "../../assets";
 import styles from "./styles.module.scss";
@@ -11,18 +11,15 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
         autoComplete: "on",
         emailCheck: false,
         passwordCheck: false,
-        pinCheck: false,
         emailFocus: false,
         passwordFocus: false,
-        pinFocus: false,
     });
-    const { visibil, autoComplete, emailCheck, passwordCheck, emailFocus, passwordFocus, pinFocus, pinCheck } = form;
+    const { visibil, autoComplete, emailCheck, passwordCheck, emailFocus, passwordFocus } = form;
     const { state, dispatch, dataUsers } = useContext(Context);
-    const { lang, registr, email, password, fnAuth, pin } = state;
+    const { lang, registr, email, password, fnAuth, userValid } = state;
     const { users } = dataUsers;
     const filterUsersEmail = users.filter(item => item.email === email)[0];
     const filterUsersPassword = users.filter(item => item.password === password)[0];
-    //const filterUsersPin = users.filter(item => item.pin === pin)[0];
 
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
@@ -35,8 +32,6 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
     const textCheckEmail = langUa ? ua.textEmailInvalid : langRu ? ru.textEmailInvalid : en.textEmailInvalid;
     const textCheckPassword = langUa ? ua.textPasswordInvalid : langRu ? ru.textPasswordInvalid : en.textPasswordInvalid;
     const textUser = langUa ? ua.userText : langRu ? ru.userText : en.userText;
-    const textPinMessage = langUa ? ua.pinTextMessage : langRu ? ru.pinTextMessage : en.pinTextMessage;
-    const pinTextInput = langUa ? ua.pinInputText : langRu ? ru.pinInputText : en.pinInputText;
     const passwordRef = useRef();
 
 
@@ -52,7 +47,6 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
     const handleResetClick = () => {
         dispatch(emailInput(''));
         dispatch(passwordInput(''));
-        dispatch(userPin(''));
     };
 
     const checked = (e) => {
@@ -83,16 +77,6 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
         });
     };
 
-    const handlePinChange = (e) => {
-        dispatch(userPin(e.target.value));
-        setForm({
-            ...form, 
-            pinCheck:  
-            e.target.value.length === 4 ?
-            true : false
-        });
-    };
-
     const handleKey = (e) => {
         if (e.key === "Enter") fnAuth();
     };
@@ -115,7 +99,7 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
                     />
                     {(!valid && emailFocus && !filterUsersEmail) && (
                         <label htmlFor="email">
-                            {textCheckEmail}
+                            {userValid ? '' : textCheckEmail}
                         </label>
                     )}
                     {((valid && emailFocus && !emailCheck) || filterUsersEmail) && (
@@ -154,22 +138,6 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
                         src={visibil ? VISIBILITY : VISIBILITYOFF} alt="" 
                     />
                 </div>
-                {valid && 
-                    (<div className={styles.pin}>
-                        <input 
-                            onFocus={() => setForm({ ...form, pinFocus: false })}
-                            onBlur={() => setForm({ ...form, pinFocus: true })}
-                            id="pin"
-                            onChange={(e) => handlePinChange(e)}
-                            type="text" 
-                            autoComplete={autoComplete}
-                            disabled={emailCheck && passwordCheck ? false : true}
-                            placeholder={pinTextInput}
-                            value={pin}
-                            tabIndex='3'
-                        />
-                        {pinFocus && !pinCheck && (<label htmlFor="pin">{textPinMessage}</label>)}
-                    </div>)}
             </div>
             <div className={styles.checkbox}>
                 <input 
@@ -177,31 +145,31 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
                     onChange={(e) => checked(e)}
                     checked={autoComplete === 'on' ? true : false}
                     type="checkbox" 
-                    tabIndex='4'
+                    tabIndex='3'
                 />
                 <label htmlFor="autocomplete">{textAutocomplete}</label>
             </div>
             <button 
                 className={
                     valid ?
-                    emailCheck && passwordCheck && pinCheck && !filterUsersEmail ? '' : `${styles.disabled}` : 
+                    emailCheck && passwordCheck && !filterUsersEmail ? '' : `${styles.disabled}` : 
                     filterUsersEmail && passwordCheck ? '' : `${styles.disabled}`
                 } 
                 onClick={fnAuth} 
                 onKeyPress={handleKey}
                 disabled={
                     valid ?
-                    emailCheck && passwordCheck && pinCheck ? '' : `${styles.disabled}` : 
+                    emailCheck && passwordCheck ? '' : `${styles.disabled}` : 
                     filterUsersEmail && passwordCheck ? '' : `${styles.disabled}`
                 }
-                tabIndex='5'
+                tabIndex='4'
             >
                 {btn1}
             </button>
             <button 
                 onClick={handleResetClick} 
                 className={styles.reset}
-                tabIndex='6'
+                tabIndex='5'
             >
                 {clearForm}
             </button>

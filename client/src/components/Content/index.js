@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import Search from './Search';
 import Faq from './Faq';
@@ -13,13 +13,21 @@ import User from '../../pages/User';
 import styles from './styles.module.scss';
 
 function Content () {
-    const { state, dataCat } = useContext(Context);
-    const { lang, search, postText } = state;
+    const { state, dataCat, dataUsers } = useContext(Context);
+    const { lang, search, postText, userValid } = state;
     const { category, post, id } = useParams();
+    const navigate = useNavigate();
+    const goBack = () => navigate(userValid && user ? userValid : '/');
 
+    const { users } = dataUsers;
+    const user = users.filter(item => id === item.uid)[0];
     const cat = dataCat.categories.filter(cat => cat.lang.id === lang);
     const articlesCurrent = cat.filter(item => item.link === category)[0];
     const articleCurrent = post ? articlesCurrent.article.filter(item => post === item.link)[0] : {};
+
+    useEffect(() => {
+        goBack();
+    }, [user, userValid]);
 
     const [screenWidth, setScreenWidth] = useState(window.screen.width);
     window.addEventListener('resize', () => setScreenWidth(window.screen.width));
@@ -38,14 +46,14 @@ function Content () {
                 <Search />
                 {search && (<SearchResult />)}
                 {!search && !id && (<Faq article={cat} />)}
-                {!search && id && (<User />)}
+                {!search && id && user && (<User id={id} user={user} />)}
             </div>)}
             </>) :
             (<div className={styles.contentBox}>
                 <Search />
                 {search && (<SearchResult />)}
                 {!search && !id && (<Faq article={cat} />)}
-                {!search && id && (<User />)}
+                {!search && id && user && (<User id={id} user={user} />)}
             </div>
             )}
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged  } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../../firebase";
 
@@ -26,18 +26,6 @@ const Login = () => {
 
     const navigate = useNavigate();
     const goBack = () => navigate(userValid ? userValid : '/register');
-
-    const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
-    const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
-    const { ua, en, ru } = registr;
-    const btnRegester = langUa ? ua.signIn : langRu ? ru.signIn : en.signIn;
-    const title = langUa ? ua.login : langRu ? ru.login : en.login;
-    const link = langUa ? ua.register : langRu ? ru.register : en.register;
-    const textEmail = langUa ? ua.textEmailInvalid : langRu ? ru.textEmailInvalid : en.textEmailInvalid;
-    const textValid = langUa ? ua.textUserValid : langRu ? ru.textUserValid : en.textUserValid;
-    const textPassword = langUa ? ua.textPasswordInvalid : langRu ? ru.textPasswordInvalid : en.textPasswordInvalid;
-    const textMessage = userEmail ? textEmail : userPassword ? textPassword : textValid;
-    const text = langUa ? ua.alreadyLogin : langRu ? ru.alreadyLogin : en.alreadyLogin;
 
     useEffect(() => {
         dispatch(handleAuthClick(
@@ -75,6 +63,18 @@ const Login = () => {
         }, 3000);
         return () => clearTimeout(timer);
       }, [userValid]);
+
+    const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
+    const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
+    const { ua, en, ru } = registr;
+    const btnRegester = langUa ? ua.signIn : langRu ? ru.signIn : en.signIn;
+    const title = langUa ? ua.login : langRu ? ru.login : en.login;
+    const link = langUa ? ua.register : langRu ? ru.register : en.register;
+    const textEmail = langUa ? ua.textEmailInvalid : langRu ? ru.textEmailInvalid : en.textEmailInvalid;
+    const textValid = langUa ? ua.textUserValid : langRu ? ru.textUserValid : en.textUserValid;
+    const textPassword = langUa ? ua.textPasswordInvalid : langRu ? ru.textPasswordInvalid : en.textPasswordInvalid;
+    const textMessage = userEmail ? textEmail : userPassword ? textPassword : textValid;
+    const text = langUa ? ua.alreadyLogin : langRu ? ru.alreadyLogin : en.alreadyLogin;
 
     return (
         <Modal active={login} setActive={setLogin} >

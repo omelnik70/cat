@@ -18,6 +18,9 @@ import FIRSTPAGE from "./icons/firstPage.svg";
 import LASTPAGE from "./icons/lastPage.svg";
 import NEXTPAGE from "./icons/nextPage.svg";
 import PREVPAGE from "./icons/prevPage.svg";
+import AVATAR from "./icons/avatar.svg";
+import NOPHOTO from "./icons/nophoto.svg";
+import ADDPHOTO from "./icons/addphoto.svg";
 
 const ICONS = {
     ACCOUNT,
@@ -39,6 +42,9 @@ const ICONS = {
     LASTPAGE,
     NEXTPAGE,
     PREVPAGE,
+    AVATAR,
+    NOPHOTO,
+    ADDPHOTO,
 };
 
 const IMAGES = {

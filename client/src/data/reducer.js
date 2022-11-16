@@ -9,7 +9,6 @@ import {
     PASSWORDINPUT,
     HANDLEAUTHCLICK,
     USERVALIDSTATUS,
-    USERPIN
 } from "./boilerplate";
 
 //создаем кейсы по изменению состояния
@@ -75,12 +74,6 @@ const reducer = (state, action) => {
         return {
             ...state,
             userValid: action.payload,
-        };
-
-        case USERPIN: 
-        return {
-            ...state,
-            pin: action.payload,
         };
         
 

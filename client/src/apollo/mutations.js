@@ -42,12 +42,11 @@ const UPDATE_ARTICLE_MUTATION = gql`
 `;
 
 const UPDATE_USER_MUTATION = gql`
-    mutation UpdateUser ($id: ID, $avatar: String, $login: String, $pin: Int) {
-        updateUser(id: $id, avatar: $avatar, login: $login, pin: $pin) {
+    mutation UpdateUser ($id: ID, $avatar: String, $login: String) {
+        updateUser(id: $id, avatar: $avatar, login: $login) {
             id
             avatar
             login
-            pin
         },
     }
 `;
@@ -66,15 +65,14 @@ const ADD_CATEGORY_MUTATION = gql`
 `;
 
 const ADD_USER_MUTATION = gql`
-    mutation AddUser ($id: ID, $uid: String!, $avatar: String, $login: String, $email: String!, $password: String!, $pin: Int){
-        newUser: addUser(id: $id, uid: $uid, avatar: $avatar, login: $login, email: $email, password: $password, pin: $pin) {
+    mutation AddUser ($id: ID, $uid: String!, $avatar: String, $login: String, $email: String!, $password: String!){
+        newUser: addUser(id: $id, uid: $uid, avatar: $avatar, login: $login, email: $email, password: $password) {
             id
             uid
             avatar
             login
             email
             password
-            pin
         },
     }
 `;

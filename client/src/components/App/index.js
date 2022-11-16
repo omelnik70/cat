@@ -1,8 +1,11 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import Context from '../../Context';
+import { onAuthStateChanged  } from "firebase/auth";
 
+import { userValidStatus } from '../../data/actions';
+import { auth } from '../../firebase';
 import { LANGS_QUERY, USERS_QUERY, CATEGORIES_QUERY} from '../../apollo/queries';
 import Header from '../Header';
 import Content from '../Content';
@@ -28,6 +31,15 @@ function App() {
   const { ua, en, ru } = header;
   const description = langUa ? ua.description : langRu ? ru.description : en.description;
   const title = langUa ? ua.logo : langRu ? ru.logo : en.logo;
+
+  useEffect(() => {
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        const { uid } = user;
+        dispatch(userValidStatus(`/users/${uid}`));
+      };
+    });
+  }, []);
 
   if (loading || loadCat || loadUser ) return <Loading />;
   if (error || errorCat || errorUser ) return `Error! ${error.message} ${errorCat.message}`;

@@ -1,3 +1,52 @@
 @import '../../global.scss';
 
-//.container {}
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.photo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 50%;
+    & img {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+input[type="file"] {
+    display: none;
+}
+
+label {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    & h4 {
+        margin: 0 5px 0 0;
+    }
+}
+
+.line {
+    height: 10px;
+    width: 100%;
+    color: black;
+    border-color: black;
+}

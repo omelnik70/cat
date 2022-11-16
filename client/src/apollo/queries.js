@@ -112,7 +112,6 @@ const USER_QUERY = gql`
             login
             email
             password
-            pin
         }
     }
 `;
@@ -126,7 +125,6 @@ const USERS_QUERY = gql`
             login
             email
             password
-            pin
         }
     }
 `;
