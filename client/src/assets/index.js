@@ -21,6 +21,7 @@ import PREVPAGE from "./icons/prevPage.svg";
 import AVATAR from "./icons/avatar.svg";
 import NOPHOTO from "./icons/nophoto.svg";
 import ADDPHOTO from "./icons/addphoto.svg";
+import DELETE from "./icons/delete.svg";
 
 const ICONS = {
     ACCOUNT,
@@ -45,6 +46,7 @@ const ICONS = {
     AVATAR,
     NOPHOTO,
     ADDPHOTO,
+    DELETE,
 };
 
 const IMAGES = {

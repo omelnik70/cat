@@ -236,15 +236,17 @@ const {
                 id: { type: GraphQLID },
                 uid: { type: new GraphQLNonNull(GraphQLString) },
                 avatar: { type: GraphQLString },
+                avatarDeleteLink: { type: GraphQLString },
                 login: { type: GraphQLString },
                 email: { type: new GraphQLNonNull(GraphQLString) },
                 password: { type: new GraphQLNonNull(GraphQLString) },
             },
-            resolve(parent, { id, uid, avatar, login, email, password }) {
+            resolve(parent, { id, uid, avatar, avatarDeleteLink, login, email, password }) {
                 const user = new User({
                     id, 
                     uid,
-                    avatar, 
+                    avatar,
+                    avatarDeleteLink, 
                     login, 
                     email, 
                     password,
@@ -267,11 +269,12 @@ const {
                 id: { type: GraphQLID },
                 avatar: { type: GraphQLString },
                 login: { type: GraphQLString },
+                avatarDeleteLink: { type: GraphQLString },
             },
-            resolve(parent, { id, avatar, login }) {
+            resolve(parent, { id, avatar, avatarDeleteLink, login }) {
                 return User.findByIdAndUpdate(
                     id, 
-                    { $set: { avatar, login } },
+                    { $set: { avatar, avatarDeleteLink, login } },
                     { new: true },
                 );
             },

@@ -47,6 +47,7 @@ const Register = () => {
                         variables: {
                             uid,
                             avatar: '',
+                            avatarDeleteLink: '',
                             login: '',
                             email,
                             password,

@@ -109,6 +109,7 @@ const USER_QUERY = gql`
             id
             uid
     		avatar
+            avatarDeleteLink
             login
             email
             password
@@ -122,6 +123,7 @@ const USERS_QUERY = gql`
             id
             uid
             avatar
+            avatarDeleteLink
             login
             email
             password

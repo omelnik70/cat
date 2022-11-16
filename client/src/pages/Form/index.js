@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext, useEffect } from 'react';
 
 import { emailInput, passwordInput } from "../../data/actions";
 import Context from "../../Context";
@@ -6,6 +6,8 @@ import assets from "../../assets";
 import styles from "./styles.module.scss";
 
 const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
+    const { state, dispatch, dataUsers } = useContext(Context);
+    const { lang, registr, email, password, fnAuth, userValid } = state;
     const [form, setForm] = useState({
         visibil: false,
         autoComplete: "on",
@@ -14,12 +16,32 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
         emailFocus: false,
         passwordFocus: false,
     });
+
+    useEffect(() => {
+        if(email) {
+        setForm({
+            ...form, 
+            emailCheck:
+            email.includes('@') && 
+            email.includes('.') && 
+            email.length >= 8 ?
+            true : false
+        })};
+        if(password) {
+        setForm({
+            ...form, 
+            passwordCheck:
+            password.length >= 6 ?
+            true : false
+        })};
+    }, [email, password]);
+
     const { visibil, autoComplete, emailCheck, passwordCheck, emailFocus, passwordFocus } = form;
-    const { state, dispatch, dataUsers } = useContext(Context);
-    const { lang, registr, email, password, fnAuth, userValid } = state;
     const { users } = dataUsers;
     const filterUsersEmail = users.filter(item => item.email === email)[0];
     const filterUsersPassword = users.filter(item => item.password === password)[0];
+
+    console.log(email, valid);
 
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
@@ -55,28 +77,6 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
         setForm({ ...form, autoComplete: 'off' });
     };
 
-    const handleEmailChange = (e) => {
-        dispatch(emailInput(e.target.value));
-        setForm({
-            ...form, 
-            emailCheck:
-            e.target.value.includes('@') && 
-            e.target.value.includes('.') && 
-            e.target.value.length >= 8 ?
-            true : false
-        });
-    };
-
-    const handlePasswordChange = (e) => {
-        dispatch(passwordInput(e.target.value));
-        setForm({
-            ...form, 
-            passwordCheck:
-            e.target.value.length >= 6 ?
-            true : false
-        });
-    };
-
     const handleKey = (e) => {
         if (e.key === "Enter") fnAuth();
     };
@@ -89,7 +89,7 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
                         onFocus={() => setForm({ ...form, emailFocus: false })}
                         onBlur={() => setForm({ ...form, emailFocus: true })}
                         id="email"
-                        onChange={(e) => handleEmailChange(e)}
+                        onChange={(e) => dispatch(emailInput(e.target.value))}
                         type="email" 
                         autoComplete={autoComplete}
                         placeholder={emailPlaceholder}
@@ -114,7 +114,7 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
                         onBlur={() => setForm({ ...form, passwordFocus: true })}
                         id="password"
                         ref={passwordRef}
-                        onChange={(e) => handlePasswordChange(e)}
+                        onChange={(e) => dispatch(passwordInput(e.target.value))}
                         type="password" 
                         autoComplete={autoComplete}
                         placeholder={pass}

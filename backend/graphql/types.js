@@ -106,10 +106,10 @@ const {
         id: { type: GraphQLID },
         uid: { type: new GraphQLNonNull(GraphQLString) },
         avatar: { type: GraphQLString },
+        avatarDeleteLink: { type: GraphQLString },
         login: { type: GraphQLString },
         email: { type: new GraphQLNonNull(GraphQLString) },
         password: { type: new GraphQLNonNull(GraphQLString) },
-        pin: { type: GraphQLInt },
     }),
  });
 
