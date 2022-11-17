@@ -20,8 +20,6 @@ function Modal ({ active, setActive, link, children }) {
         goBack(link);
     };
 
-    console.log(link);
-
     return (
         <div 
             onClick={handleClick}

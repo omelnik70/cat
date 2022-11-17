@@ -34,6 +34,7 @@
         border-radius: 50%;
         width: 50px;
         height: 50px;
+        cursor: pointer;
     }
 }
 
@@ -44,10 +45,12 @@
     border-color: $border-menu;
 }
 
-.delete {
+.editBlock {
     position: absolute;
+    top: -25px;
+    right: -25px;
+    border-color: $border-menu;
     z-index: 1;
-
 }
 
 input[type="file"] {
@@ -62,7 +65,8 @@ input[type="file"] {
 }
 
 .warning,
-.message {
+.message,
+.editMessage {
     position: absolute;
     top: 160px;
     left: 50%;
@@ -79,6 +83,14 @@ input[type="file"] {
     }
 }
 
+.editMessage {
+    top: 10px;
+    left: -40px;
+    padding: 5px;
+    background-color: $border-menu;
+    border-radius: 0;
+}
+
 .message {
     top: 70px;
     padding: 5px;
@@ -87,15 +99,21 @@ input[type="file"] {
 }
 
 .border {
+    position: relative;
     background-color: $color-text-button;
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgb(92, 92, 92);
 }
 
-.borderBold {
+.borderBold,
+.loginBlock {
     border: 2px dashed $border-menu;
     margin: 3px;
     border-radius: 5px;
+}
+
+.loginBlock {
+    cursor: pointer;
 }
 
 .block {
@@ -120,6 +138,9 @@ input[type="file"] {
             margin: 0 0 10px 0;
         }
     }
+    & input {
+        margin: 10px 0 0 0;
+    }
 }
 
 .preventionWarning {
@@ -142,4 +163,11 @@ input[type="file"] {
     width: 100%;
     color: black;
     border-color: black;
+}
+
+.disabled {
+    background-color: $color-background-light;
+    box-shadow: 2px 2px 5px $color-background;
+    color: $color-link;
+    cursor: default;
 }

@@ -41,8 +41,6 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
     const filterUsersEmail = users.filter(item => item.email === email)[0];
     const filterUsersPassword = users.filter(item => item.password === password)[0];
 
-    console.log(email, valid);
-
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
     const { ua, en, ru } = registr;
@@ -90,6 +88,7 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
                         onBlur={() => setForm({ ...form, emailFocus: true })}
                         id="email"
                         onChange={(e) => dispatch(emailInput(e.target.value))}
+                        onKeyPress={(e) => handleKey(e)}
                         type="email" 
                         autoComplete={autoComplete}
                         placeholder={emailPlaceholder}
@@ -115,6 +114,7 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
                         id="password"
                         ref={passwordRef}
                         onChange={(e) => dispatch(passwordInput(e.target.value))}
+                        onKeyPress={(e) => handleKey(e)}
                         type="password" 
                         autoComplete={autoComplete}
                         placeholder={pass}
@@ -156,11 +156,10 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
                     filterUsersEmail && passwordCheck ? '' : `${styles.disabled}`
                 } 
                 onClick={fnAuth} 
-                onKeyPress={handleKey}
                 disabled={
                     valid ?
-                    emailCheck && passwordCheck ? '' : `${styles.disabled}` : 
-                    filterUsersEmail && passwordCheck ? '' : `${styles.disabled}`
+                    emailCheck && passwordCheck ? false : true : 
+                    filterUsersEmail && passwordCheck ? false : true
                 }
                 tabIndex='4'
             >
