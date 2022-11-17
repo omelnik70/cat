@@ -11,7 +11,7 @@ function Modal ({ active, setActive, link, children }) {
     const { dispatch } = useContext(Context);
 
     const navigate = useNavigate();
-    const goBack = () => navigate(link = '/');
+    const goBack = () => navigate(link ? link : '/');
 
     const handleClick = () => {
         setActive(false);
@@ -19,6 +19,8 @@ function Modal ({ active, setActive, link, children }) {
         dispatch(passwordInput(''));
         goBack(link);
     };
+
+    console.log(link);
 
     return (
         <div 
@@ -31,7 +33,7 @@ function Modal ({ active, setActive, link, children }) {
                 className={active ?
                 `${styles.window} ${styles.open}`:
                 `${styles.window}`}>
-                    <Link to='/'>
+                    <Link to={link}>
                         <div 
                             onClick={handleClick}
                             className={styles.close}>

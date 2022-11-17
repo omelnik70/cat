@@ -84,9 +84,9 @@ $font-size-big: 24px;
 
 /*--- --- Font weight --- ---*/
 
-$font-weight-lighter: 200px;
-$font-weight-normal: 400px;
-$font-weight-bolder: 700px;
+$font-weight-lighter: 200;
+$font-weight-normal: 400;
+$font-weight-bolder: 700;
 /*--------------------*/
 
 /*--- --- @mixins --- ---*/
@@ -249,6 +249,7 @@ h3 {
 
 h4 {
 	font-size: $font-size-normal;
+	font-weight: $font-weight-bolder;
 	color: $color-link;
 	line-height: 2;
 }

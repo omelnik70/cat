@@ -22,6 +22,7 @@ import AVATAR from "./icons/avatar.svg";
 import NOPHOTO from "./icons/nophoto.svg";
 import ADDPHOTO from "./icons/addphoto.svg";
 import DELETE from "./icons/delete.svg";
+import INFO from "./icons/info.svg";
 
 const ICONS = {
     ACCOUNT,
@@ -47,6 +48,7 @@ const ICONS = {
     NOPHOTO,
     ADDPHOTO,
     DELETE,
+    INFO
 };
 
 const IMAGES = {

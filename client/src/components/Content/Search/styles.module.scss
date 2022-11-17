@@ -39,6 +39,9 @@
     background: #d1d1d1;
     padding: 5px;
     height: 20px;
+    &:focus {
+        border: none;
+    }
 }
 /* tablets */
 

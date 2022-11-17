@@ -5,10 +5,22 @@
     flex-direction: column;
 }
 
+.title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    & p {
+        margin: 0 0 0 5px;
+        font-size: $font-size-average;
+        color: $border-menu;
+    }
+}
+
 .info {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin: 15px;
 }
 
 .photo {
@@ -29,7 +41,7 @@
     position: absolute;
     top: -10px;
     right: -10px;
-    border-color: rgb(255, 228, 196);
+    border-color: $border-menu;
 }
 
 .delete {
@@ -49,22 +61,80 @@ input[type="file"] {
     background-color: transparent;
 }
 
+.warning,
 .message {
     position: absolute;
-    top: 50px;
-    right: -30px;
+    top: 160px;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
     width: max-content;
+    padding: 15px;
+    color: white;
+    text-align: center;
+    background-color: $color-text;
+    border-radius: 5px;
+    & > p {
+        margin: 0 0 5px 0;
+    }
+}
+
+.message {
+    top: 70px;
     padding: 5px;
-    background-color: bisque;
+    background-color: $border-menu;
+    border-radius: 0;
+}
+
+.border {
+    background-color: $color-text-button;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px rgb(92, 92, 92);
+}
+
+.borderBold {
+    border: 2px dashed $border-menu;
+    margin: 3px;
+    border-radius: 5px;
 }
 
 .block {
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding: 10px;
+    color: $border-menu;
     & h4 {
         margin: 0 5px 0 0;
     }
+}
+
+.prevention {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    & p {
+        margin: 5px 0;
+        &:nth-child(2) {
+            margin: 0 0 10px 0;
+        }
+    }
+}
+
+.preventionWarning {
+    color: $border-menu;
+    padding: 5px;
+    border: 2px dashed $border-menu;
+    text-align: center;
+}
+
+.svg {
+    fill: $border-menu;
+}
+
+.warningSvg {
+    fill: white;
 }
 
 .line {

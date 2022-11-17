@@ -46,14 +46,14 @@ function Content () {
                 <Search />
                 {search && (<SearchResult />)}
                 {!search && !id && (<Faq article={cat} />)}
-                {!search && id && user && (<User id={id} user={user} />)}
+                {!search && id && user && (<User id={id} user={user} link={userValid} />)}
             </div>)}
             </>) :
             (<div className={styles.contentBox}>
                 <Search />
                 {search && (<SearchResult />)}
                 {!search && !id && (<Faq article={cat} />)}
-                {!search && id && user && (<User id={id} user={user} />)}
+                {!search && id && user && (<User id={id} user={user} link={userValid} />)}
             </div>
             )}
         </div>
