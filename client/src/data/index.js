@@ -14,8 +14,10 @@ const DATA = {
     search: '',
 
     //регистрация / вход
+    uid: '',
     email: '',
     password: '',
+    avatar: '',
     fnAuth: () => {},
 
     //текущий список статей при пагинации
@@ -25,7 +27,7 @@ const DATA = {
     resultSearchArt: [],
 
     //статус пользователя
-    userValid: false,
+    userValid: "/login",
 
     //размер экрана для мобильных настроек
     global: {

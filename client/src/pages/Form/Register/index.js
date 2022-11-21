@@ -6,7 +6,7 @@ import { useMutation } from '@apollo/client';
 
 import { ADD_USER_MUTATION } from "../../../apollo/mutations";
 import { USERS_QUERY } from "../../../apollo/queries";
-import { handleAuthClick, emailInput, passwordInput, userValidStatus } from "../../../data/actions";
+import { handleAuthClick, emailInput, passwordInput, userValidStatus, currentAvatar } from "../../../data/actions";
 import Context from "../../../Context";
 import Form from "..";
 import Modal from "../../../components/Modal";
@@ -33,7 +33,6 @@ const Register = () => {
     const { lang, registr, email, password, userValid } = state;
 
     const navigate = useNavigate();
-    const goBack = () => navigate(userValid ? userValid : '/login');
 
     useEffect(() => {
         dispatch(handleAuthClick(
@@ -43,17 +42,20 @@ const Register = () => {
                     // Signed in 
                     const user = userCredential.user;
                     const { uid } = user;
+                    const at = email.indexOf("@");
+                    const loginDefault = email.substring(0, at).trim();
                     AddUser({
                         variables: {
                             uid,
                             avatar: '',
                             avatarDeleteLink: '',
-                            login: '',
+                            login: loginDefault,
                             email,
                             password,
                         },
                     });
                     dispatch(userValidStatus(`/users/${uid}`));
+                    dispatch(currentAvatar(''));
                 })
                 .catch((error) => {
                     const errorMessage = error.message;
@@ -63,13 +65,13 @@ const Register = () => {
     }, [email, password]);
 
       useEffect(() => {
-        if((userValid || userCheck)) {
+        if((userValid !== "/login" || userCheck)) {
             const timer = setTimeout(() => {
                 dispatch(emailInput(''));
                 dispatch(passwordInput(''));
                 setModal(false);
                 setRegister(false);
-                goBack();
+                navigate(userValid);
             }, 4000);
             return () => clearTimeout(timer);
         };
@@ -90,8 +92,8 @@ const Register = () => {
             <div className={styles.container}>
                 <h3 className={styles.title}>{title}</h3>
                 <Form btn1={btnRegester} valid={true} />
-                {(userValid || userCheck) && (
-                    <Modal active={modal} setActive={setModal}>{userValid ? textMessage : textUser}</Modal>
+                {(userValid !== "/login" || userCheck) && (
+                    <Modal active={modal} setActive={setModal}>{userValid !== "/login" ? textMessage : textUser}</Modal>
                 )}
                 <p className={styles.text}>
                     {text} 

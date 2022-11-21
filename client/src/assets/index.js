@@ -24,6 +24,7 @@ import ADDPHOTO from "./icons/addphoto.svg";
 import DELETE from "./icons/delete.svg";
 import INFO from "./icons/info.svg";
 import EDIT from "./icons/edit.svg";
+import LOGOUT from "./icons/logout.svg";
 
 const ICONS = {
     ACCOUNT,
@@ -50,7 +51,8 @@ const ICONS = {
     ADDPHOTO,
     DELETE,
     INFO,
-    EDIT
+    EDIT,
+    LOGOUT
 };
 
 const IMAGES = {

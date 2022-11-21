@@ -26,6 +26,15 @@
     fill: $text-onBlack;
 }
 
+
+.avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 0 0 5px;
+}
+
 li::after {
     content: '|';
     padding: 0 5px;

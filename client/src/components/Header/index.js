@@ -11,8 +11,8 @@ import styles from './styles.module.scss';
 
 
 function Header () {
-    const { state, dataLangs } = useContext(Context);
-    const { lang, header, userValid } = state;
+    const { state, dataLangs, dataUsers } = useContext(Context);
+    const { lang, header, userValid, uid, avatar } = state;
     const [currentWidth, setCurrentWidth] = useState(window.screen.width);
 
     window.addEventListener('resize', () => setCurrentWidth(window.screen.width));
@@ -20,6 +20,8 @@ function Header () {
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
     const { ua, en, ru } = header;
     const title = langUa ? ua.logo : langRu ? ru.logo : en.logo;
+    //const avatar = uid ? dataUsers.users.filter(item => item.uid === uid)[0].avatar : '';
+    
 
     return (
         <div className={styles.container}>
@@ -34,11 +36,10 @@ function Header () {
                 <ul className={styles.lang}>
                     <Lang data={dataLangs} />
                 </ul>
-                <Link to={userValid ?  userValid : "/login"}>
-                    {
-                        userValid ? (<Avatar className={styles.account} />) : 
-                        (<Account className={styles.account} />)
-                    }
+                <Link to={userValid}>
+                        {(userValid !== "/login" && !avatar) && (<Avatar className={styles.account} />)}
+                        {(userValid !== "/login" && avatar) && (<img className={styles.avatar} src={avatar} alt=''></img>)}
+                        {userValid === "/login" && (<Account className={styles.account} />)}
                 </Link>
             </>) :
             (<>

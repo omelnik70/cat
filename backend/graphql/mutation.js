@@ -270,11 +270,13 @@ const {
                 avatar: { type: GraphQLString },
                 login: { type: GraphQLString },
                 avatarDeleteLink: { type: GraphQLString },
+                email: { type: GraphQLString },
+                password: { type: GraphQLString },
             },
-            resolve(parent, { id, avatar, avatarDeleteLink, login }) {
+            resolve(parent, { id, avatar, avatarDeleteLink, login, email, password }) {
                 return User.findByIdAndUpdate(
                     id, 
-                    { $set: { avatar, avatarDeleteLink, login } },
+                    { $set: { avatar, avatarDeleteLink, login, email, password } },
                     { new: true },
                 );
             },

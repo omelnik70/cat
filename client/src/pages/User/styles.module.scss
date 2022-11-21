@@ -1,19 +1,27 @@
 @import '../../global.scss';
 
 .container {
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
-.title {
+.title,
+.titleLogin {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     & p {
         margin: 0 0 0 5px;
         font-size: $font-size-average;
         color: $border-menu;
     }
+}
+
+.titleLogin {
+    justify-content: space-between;
 }
 
 .info {
@@ -83,12 +91,36 @@ input[type="file"] {
     }
 }
 
-.editMessage {
+.logoutBlock,
+.deleteBlock {
+    position: relative;
+    cursor: pointer;
+}
+
+.deleteBlock {
+    display: flex;
+    justify-content: end;
+}
+
+.editMessage,
+.logoutMessage,
+.deleteMessage {
     top: 10px;
     left: -40px;
     padding: 5px;
     background-color: $border-menu;
     border-radius: 0;
+}
+
+.deleteIcon {
+    position: relative;
+}
+
+.logoutMessage,
+.deleteMessage {
+    position: absolute;
+    top: 0;
+    left: -65px;
 }
 
 .message {
@@ -106,13 +138,17 @@ input[type="file"] {
 }
 
 .borderBold,
-.loginBlock {
+.loginBlock,
+.emailBlock,
+.passwordBlock {
     border: 2px dashed $border-menu;
     margin: 3px;
     border-radius: 5px;
 }
 
-.loginBlock {
+.loginBlock,
+.emailBlock,
+.passwordBlock {
     cursor: pointer;
 }
 
@@ -170,4 +206,10 @@ input[type="file"] {
     box-shadow: 2px 2px 5px $color-background;
     color: $color-link;
     cursor: default;
+}
+
+.listComments {
+    flex: 1 1 auto;
+    text-align: center;
+    color: $color-text;
 }

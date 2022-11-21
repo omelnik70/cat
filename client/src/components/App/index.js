@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import Context from '../../Context';
 import { onAuthStateChanged  } from "firebase/auth";
 
-import { userValidStatus } from '../../data/actions';
+import { userValidStatus, currentUid } from '../../data/actions';
 import { auth } from '../../firebase';
 import { LANGS_QUERY, USERS_QUERY, CATEGORIES_QUERY} from '../../apollo/queries';
 import Header from '../Header';
@@ -37,12 +37,13 @@ function App() {
       if (user) {
         const { uid } = user;
         dispatch(userValidStatus(`/users/${uid}`));
+        dispatch(currentUid(uid));
       };
     });
   }, []);
 
   if (loading || loadCat || loadUser ) return <Loading />;
-  if (error || errorCat || errorUser ) return `Error! ${error.message} ${errorCat.message}`;
+  if (error || errorCat || errorUser ) return `Error! ${error} ${errorCat} ${errorUser}`;
 
   const head = document.querySelector('title');
   const metaDiscription = document.getElementsByName("description")[0];

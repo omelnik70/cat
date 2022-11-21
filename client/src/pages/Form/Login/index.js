@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { signInWithEmailAndPassword, onAuthStateChanged  } from "firebase/auth";
+import { signInWithEmailAndPassword  } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../../firebase";
 
@@ -25,7 +25,6 @@ const Login = () => {
     const { lang, registr, email, password, userValid } = state;
 
     const navigate = useNavigate();
-    const goBack = () => navigate(userValid ? userValid : '/register');
 
     useEffect(() => {
         dispatch(handleAuthClick(
@@ -48,7 +47,7 @@ const Login = () => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            if(userValid) {
+            if(userValid !== "/login") {
                 setErrorLogin({ 
                     ...errorLogin, 
                     userEmail: false,
@@ -58,7 +57,7 @@ const Login = () => {
                 dispatch(passwordInput(''));
                 setLogin(false);
                 setModal(false);
-                goBack();
+                navigate(userValid);
             };
         }, 3000);
         return () => clearTimeout(timer);
@@ -81,7 +80,7 @@ const Login = () => {
             <div className={styles.container}>
                 <h3 className={styles.title}>{title}</h3>
                 <Form btn1={btnRegester} valid={false} />
-                {(userEmail || userPassword || userValid) && (
+                {(userEmail || userPassword || userValid !== "/login") && (
                     <Modal active={modal} setActive={setModal}>{textMessage}</Modal>
                 )}
                 <p className={styles.text}>{text}</p>

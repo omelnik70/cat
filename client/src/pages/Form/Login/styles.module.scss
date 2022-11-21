@@ -21,3 +21,10 @@
     @include link;
     text-align: center;
 }
+
+.disabled {
+    background-color: $color-background-light;
+    box-shadow: 2px 2px 5px $color-background;
+    color: $color-link;
+    cursor: default;
+}

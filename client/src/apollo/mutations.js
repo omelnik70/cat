@@ -42,12 +42,14 @@ const UPDATE_ARTICLE_MUTATION = gql`
 `;
 
 const UPDATE_USER_MUTATION = gql`
-    mutation UpdateUser ($id: ID, $avatar: String, $avatarDeleteLink: String, $login: String) {
-        updateUser(id: $id, avatar: $avatar, avatarDeleteLink: $avatarDeleteLink, login: $login) {
+    mutation UpdateUser ($id: ID, $avatar: String, $avatarDeleteLink: String, $login: String, $email: String, $password: String) {
+        updateUser(id: $id, avatar: $avatar, avatarDeleteLink: $avatarDeleteLink, login: $login, email: $email, password: $password) {
             id
             avatar
             avatarDeleteLink
             login
+            email
+            password
         },
     }
 `;

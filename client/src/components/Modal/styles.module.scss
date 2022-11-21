@@ -9,7 +9,7 @@
 .overlay.open {
     opacity: 1;
     z-index: 1;
-    animation: show 1s linear forwards;
+    animation: show .5s linear forwards;
 }
 
 .window {
@@ -20,7 +20,7 @@
 .window.open {
     opacity: 1;
     z-index: 1;
-    animation: show 1s linear forwards;
+    animation: show 0.5s linear forwards;
 }
 
 .overlay {

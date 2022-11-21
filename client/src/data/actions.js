@@ -9,6 +9,8 @@ import {
     PASSWORDINPUT,
     HANDLEAUTHCLICK,
     USERVALIDSTATUS,
+    CURRENTAVATAR,
+    CURRENTUID
 } from "./boilerplate";
 
 //создаем action генераторы
@@ -62,6 +64,16 @@ const userValidStatus = (payload) => ({
     payload,
 });
 
+const currentAvatar = (payload) => ({
+    type: CURRENTAVATAR,
+    payload,
+});
+
+const currentUid = (payload) => ({
+    type: CURRENTUID,
+    payload,
+});
+
 export { 
     currentCat,
     currentArt,
@@ -73,4 +85,6 @@ export {
     passwordInput,
     handleAuthClick,
     userValidStatus,
+    currentAvatar,
+    currentUid
 };

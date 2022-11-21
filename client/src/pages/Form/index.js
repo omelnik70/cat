@@ -7,7 +7,7 @@ import styles from "./styles.module.scss";
 
 const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
     const { state, dispatch, dataUsers } = useContext(Context);
-    const { lang, registr, email, password, fnAuth, userValid } = state;
+    const { lang, registr, email, password, fnAuth } = state;
     const [form, setForm] = useState({
         visibil: false,
         autoComplete: "on",
@@ -84,8 +84,8 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
             <div className={styles.inputBlock}>
                 <div className={styles.email}>
                     <input 
-                        onFocus={() => setForm({ ...form, emailFocus: false })}
-                        onBlur={() => setForm({ ...form, emailFocus: true })}
+                        onMouseEnter={() => setForm({ ...form, emailFocus: false })} 
+                        onMouseLeave={() => setForm({ ...form, emailFocus: true })}
                         id="email"
                         onChange={(e) => dispatch(emailInput(e.target.value))}
                         onKeyPress={(e) => handleKey(e)}
@@ -96,12 +96,12 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
                         checked
                         tabIndex='1'
                     />
-                    {(!valid && emailFocus && !filterUsersEmail) && (
+                    {(!valid && emailFocus && Boolean(!filterUsersEmail)) && (
                         <label htmlFor="email">
-                            {userValid ? '' : textCheckEmail}
+                            {textCheckEmail}
                         </label>
                     )}
-                    {((valid && emailFocus && !emailCheck) || filterUsersEmail) && (
+                    {(valid && emailFocus && !emailCheck) && (
                         <label htmlFor="email">
                             {filterUsersEmail ? textUser : textEmail}
                         </label>
@@ -109,8 +109,8 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
                 </div>
                 <div className={styles.password}>
                     <input 
-                        onFocus={() => setForm({ ...form, passwordFocus: false })}
-                        onBlur={() => setForm({ ...form, passwordFocus: true })}
+                        onMouseEnter={() => setForm({ ...form, passwordFocus: false })} 
+                        onMouseLeave={() => setForm({ ...form, passwordFocus: true })}
                         id="password"
                         ref={passwordRef}
                         onChange={(e) => dispatch(passwordInput(e.target.value))}
@@ -122,7 +122,7 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
                         value={password}
                         tabIndex='2'
                     />
-                    {(!valid && passwordFocus && !filterUsersPassword) && (
+                    {((!valid && passwordFocus) && Boolean(!filterUsersPassword)) && (
                         <label htmlFor="email">
                             {textCheckPassword}
                         </label>
@@ -153,13 +153,13 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
                 className={
                     valid ?
                     emailCheck && passwordCheck && !filterUsersEmail ? '' : `${styles.disabled}` : 
-                    filterUsersEmail && passwordCheck ? '' : `${styles.disabled}`
+                    filterUsersEmail && passwordCheck && filterUsersPassword ? '' : `${styles.disabled}`
                 } 
                 onClick={fnAuth} 
                 disabled={
                     valid ?
-                    emailCheck && passwordCheck ? false : true : 
-                    filterUsersEmail && passwordCheck ? false : true
+                    emailCheck && passwordCheck && !filterUsersEmail ? false : true : 
+                    filterUsersEmail && passwordCheck && filterUsersPassword ? false : true
                 }
                 tabIndex='4'
             >
