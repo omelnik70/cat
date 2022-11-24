@@ -1,0 +1,33 @@
+{
+    "data": {
+      "users": [
+        {
+          "id": "63778aba6bcb9e510c363524",
+          "uid": "qaHsrwfzVgTZCNKhh6D9IHPj25A2",
+          "avatar": "https://firebasestorage.googleapis.com/v0/b/alihelper-8a62d.appspot.com/o/users%2F%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80.webp?alt=media&token=9849ddb7-f86c-494a-8623-211ece4c7601",
+          "avatarDeleteLink": "аватар.webp",
+          "login": "",
+          "email": "admin@aliexpress.in.ua",
+          "password": "111111"
+        },
+        {
+          "id": "637b7a4a9ce302dee9b692fc",
+          "uid": "FcbakcoF1levzJKOPn58NtKgxa73",
+          "avatar": "https://firebasestorage.googleapis.com/v0/b/alihelper-8a62d.appspot.com/o/users%2Favatar_50_50.webp?alt=media&token=53d25aab-071d-4894-bfbf-f2ee44f65eac",
+          "avatarDeleteLink": "avatar_50_50.webp",
+          "login": "test",
+          "email": "test@gmail.com",
+          "password": "123456"
+        },
+        {
+          "id": "637c5883cd2b61c42a43cc31",
+          "uid": "hT95fBMwtabilW2weIXpaFtYBWl2",
+          "avatar": "",
+          "avatarDeleteLink": "",
+          "login": "omelnik70",
+          "email": "omelnik70@gmail.com",
+          "password": "123456"
+        }
+      ]
+    }
+  }

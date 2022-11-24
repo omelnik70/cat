@@ -23,7 +23,7 @@ function Faq ({ article }) {
         return (a, b) => a[field] < b[field] ? 1 : -1;
     };
 
-    const articles = article.map(item => item.article.map(i => i)).flat().sort(byField('rating'));
+    const articles = article && article.map(item => item.article.map(i => i)).flat().sort(byField('rating'));
 
     return (
         <div className={styles.container}>

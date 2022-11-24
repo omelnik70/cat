@@ -12,6 +12,7 @@ function Lang ({ data }) {
     const { lang } = state;
     const { ICONS } = assets;
     const { RU, UA, GB } = ICONS;
+    const { langs } = data;
 
     return (
         <div className={styles.activeLang}>
@@ -22,7 +23,7 @@ function Lang ({ data }) {
                 alt=""
             />
             <ul className={styles.list}>
-            {data.langs.map(item => (
+            {langs.map(item => (
                 <li key={item.id} onClick={() => dispatch(currentLang(item.id))} className={styles.img}>
                     <img src={
                         item.country === "RU" ? RU :

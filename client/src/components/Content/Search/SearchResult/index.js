@@ -11,9 +11,9 @@ import styles from './styles.module.scss';
 
 
 function SearchResult () {
-    const { dataCat, state, dispatch } = useContext(Context);
+    const { data, state, dispatch } = useContext(Context);
     const { lang, search, currentListArt, resultSearchArt, searchTexts } = state;
-    const articleLang = dataCat.categories.filter(item => lang === item.lang.id);
+    const articleLang = data.categories.filter(item => lang === item.lang.id);
     const articles = articleLang.map(item => item.article.map(i => i)).flat();
     const LIMITART = 5;
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;

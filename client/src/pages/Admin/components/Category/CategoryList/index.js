@@ -9,7 +9,7 @@ import { UPDATE_CATEGORY_MUTATION, REMOVE_CATEGORY_MUTATION } from '../../../../
 import styles from './styles.module.scss';
 
 function CategoryList({ setActive }) {
-    const { state, dataCat } = useContext(Context);
+    const { state, data } = useContext(Context);
     const { lang } = state;
     const [updateCategory] = useMutation(UPDATE_CATEGORY_MUTATION);
     const [removeCategory] = useMutation(REMOVE_CATEGORY_MUTATION, {
@@ -33,7 +33,7 @@ function CategoryList({ setActive }) {
                 &times;
             </div>
             <AddCategory />
-            {dataCat.categories.filter(cat => cat.lang.id === lang)
+            {data.categories.filter(cat => cat.lang.id === lang)
             .map(category => (
                 <CategoryItem 
                     key={category.id}

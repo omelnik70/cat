@@ -6,11 +6,12 @@ import { currentListArticles } from '../../data/actions';
 
 import styles from "./styles.module.scss";
 
-function Pagination ({ artConstant = null, artChangeable = null, limit }) {
+function Pagination ({ artConstant, artChangeable, limit }) {
+
     const [currentPage, setCurrentPege] = useState(1);
     const [articlesPerPage] = useState(limit);
     const { dispatch, state } = useContext(Context);
-    const { cat, lang } = state;
+    const { lang } = state;
     const { ICONS } = assets;
     const { FIRSTPAGE, LASTPAGE, NEXTPAGE, PREVPAGE } = ICONS;
 
@@ -20,10 +21,10 @@ function Pagination ({ artConstant = null, artChangeable = null, limit }) {
     const totalNumberPages = Math.ceil(totalArticles / articlesPerPage);
 
     useEffect(() => {
-        artConstant ? 
-        dispatch(currentListArticles(artConstant.slice(firstArticleIndex, lastArticleIndex))) :
-        dispatch(currentListArticles(artChangeable.slice(firstArticleIndex, lastArticleIndex)));
-    }, [firstArticleIndex, lastArticleIndex, artChangeable, cat, lang]);
+            artConstant ? 
+            dispatch(currentListArticles(artConstant.slice(firstArticleIndex, lastArticleIndex))) :
+            dispatch(currentListArticles(artChangeable.slice(firstArticleIndex, lastArticleIndex)));
+    }, [lang, firstArticleIndex, lastArticleIndex, artChangeable]);
 
     const pageNumbers = [];
 
@@ -39,8 +40,6 @@ function Pagination ({ artConstant = null, artChangeable = null, limit }) {
     const prevPage = () => setCurrentPege(prev => prev !== 1 ? prev - 1 : prev);
     const lastPage = () => setCurrentPege(totalNumberPages);
     const firstPage = () => setCurrentPege(1);
-
-    //console.log(artPage.length, artSearch, limit);
 
     if ((artConstant && artConstant.length <= limit) || (artChangeable && artChangeable.length <= limit)) return;
 

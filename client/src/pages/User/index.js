@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { signOut, deleteUser, updateEmail, updatePassword } from "firebase/auth";
-import { useMutation } from '@apollo/client';
+//import { useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router';
 
 import { currentAvatar, userValidStatus } from '../../data/actions';
 import { auth } from '../../firebase';
 import Modal from '../../components/Modal';
-import { UPDATE_USER_MUTATION, REMOVE_USER_MUTATION } from '../../apollo/mutations';
+//import { UPDATE_USER_MUTATION, REMOVE_USER_MUTATION } from '../../apollo/mutations';
 import { storage } from '../../firebase';
 import { ReactComponent as Nophoto } from '../../assets/icons/nophoto.svg';
 import { ReactComponent as Addphoto } from '../../assets/icons/addphoto.svg';
@@ -17,7 +17,7 @@ import { ReactComponent as Edit } from '../../assets/icons/edit.svg';
 import { ReactComponent as Logout } from '../../assets/icons/logout.svg';
 import styles from "./styles.module.scss";
 
-function User ({ data, user, link, dispatch }) {
+function User ({ data, user, link, dispatch, lang, usersPage }) {
     const [focus, setFocus] = useState(false);
     const [editLoginFocus, setEditLoginFocus] = useState(false);
     const [editEmailFocus, setEditEmailFocus] = useState(false);
@@ -28,6 +28,9 @@ function User ({ data, user, link, dispatch }) {
     const [modalLogin, setModalLogin] = useState(true);
     const [modalEmail, setModalEmail] = useState(true);
     const [modalPassword, setModalPassword] = useState(true);
+    const [modalUser, setModalUser] = useState(true);
+    const [modalEmailInfo, setModalEmailInfo] = useState(true);
+    const [modalPasswordInfo, setModalPasswordInfo] = useState(true);
     const [prevent, setPrevent] = useState({
         prevention: false,
         editLogin: false,
@@ -41,6 +44,9 @@ function User ({ data, user, link, dispatch }) {
         checkPassword: true,
         validLogin: false,
         validEmail: false,
+        changeEmailInfo: false,
+        changePasswordInfo: false,
+        deleteUserInfo: false,
     });
     const { 
         prevention, 
@@ -54,12 +60,28 @@ function User ({ data, user, link, dispatch }) {
         checkEmail, 
         checkPassword,  
         validLogin, 
-        validEmail 
+        validEmail,
+        changeEmailInfo,
+        changePasswordInfo,
+        deleteUserInfo,
     } = prevent;
+
+    let searchLogin, searchEmail;
+
+    useEffect(() => {
+        searchLogin = data.filter(item => item.login === inputLogin).length;
+        searchEmail = data.filter(item => item.email === inputEmail).length;
+    }, []);
+
     const lengthInput = inputLogin.length;
-    const searchLogin = data.filter(item => item.login === inputLogin).length;
-    const searchEmail = data.filter(item => item.email === inputEmail).length;
     const novigate = useNavigate();
+    const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
+    const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
+    const { ua, en, ru } = usersPage;
+    const title = langUa ? ua.title : langRu ? ru.title : en.title;
+    const logout = langUa ? ua.logout : langRu ? ru.logout : en.logout;
+    const change = langUa ? ua.change : langRu ? ru.change : en.change;
+    const warningImgOne = langUa ? ua.warningImgOne : langRu ? ru.warningImgOne : en.warningImgOne;
 
     useEffect(() => {
         setPrevent({...prevent, 
@@ -69,22 +91,22 @@ function User ({ data, user, link, dispatch }) {
             validLogin: searchLogin ? true : false,
             validEmail: searchEmail ? true : false
         });
-    }, [inputLogin, inputEmail, inputPassword, data]);
+    }, [inputLogin, inputEmail, inputPassword]);
 
-    const [updateUser] = useMutation(UPDATE_USER_MUTATION);
-    const [removeUser] = useMutation(REMOVE_USER_MUTATION, {
-        update(cache, { data: { deleteUser } }) {
-            cache.modify({
-                fields: {
-                    users(currentUsers = []) {
-                        return currentUsers.filter(user => user.__ref !== `User:${deleteUser.id}`)
-                    },
-                },
-            });
-        },
-    });
+    // const [updateUser] = useMutation(UPDATE_USER_MUTATION);
+    // const [removeUser] = useMutation(REMOVE_USER_MUTATION, {
+    //     update(cache, { data: { deleteUser } }) {
+    //         cache.modify({
+    //             fields: {
+    //                 users(currentUsers = []) {
+    //                     return currentUsers.filter(user => user.__ref !== `User:${deleteUser.id}`)
+    //                 },
+    //             },
+    //         });
+    //     },
+    // });
 
-    const { avatar, email, login, password, id, avatarDeleteLink } = user;
+    const { avatar, email, login, password, avatarDeleteLink } = user;
 
     const at = email.indexOf("@");
     const loginDefault = email.substring(0, at).trim();
@@ -100,13 +122,13 @@ function User ({ data, user, link, dispatch }) {
                 (error) => {}, 
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                        updateUser({
-                            variables: {
-                                id,
-                                avatar: downloadURL,
-                                avatarDeleteLink: name,
-                            },
-                        });     
+                        // updateUser({
+                        //     variables: {
+                        //         id,
+                        //         avatar: downloadURL,
+                        //         avatarDeleteLink: name,
+                        //     },
+                        // });     
                         dispatch(currentAvatar(downloadURL));
                     });
                 }
@@ -120,13 +142,13 @@ function User ({ data, user, link, dispatch }) {
     const handleClickDeleteAvatar = () => {
         const desertRef = ref(storage, `users/${avatarDeleteLink}`);
         deleteObject(desertRef).then(() => {
-            updateUser({
-                variables: {
-                    id,
-                    avatar: "",
-                    avatarDeleteLink: "",
-                },
-            });
+            // updateUser({
+            //     variables: {
+            //         id,
+            //         avatar: "",
+            //         avatarDeleteLink: "",
+            //     },
+            // });
             dispatch(currentAvatar(''));
         }).catch((error) => {
         });
@@ -148,12 +170,12 @@ function User ({ data, user, link, dispatch }) {
     };
 
     const handleClickLogin = () => {
-        updateUser({
-            variables: {
-                id,
-                login: inputLogin,
-            },
-        });
+        // updateUser({
+        //     variables: {
+        //         id,
+        //         login: inputLogin,
+        //     },
+        // });
         setPrevent({...prevent, inputLogin: ''});
         setModalLogin(false);
     };
@@ -161,16 +183,26 @@ function User ({ data, user, link, dispatch }) {
     const handleClickEmail = () => {
         updateEmail(auth.currentUser, inputEmail).then(() => {
             console.log('Email updated!');
-            updateUser({
-                variables: {
-                    id,
-                    email: inputEmail,
-                },
+            // updateUser({
+            //     variables: {
+            //         id,
+            //         email: inputEmail,
+            //     },
+            // });
+            setPrevent({
+                ...prevent, 
+                inputEmail: '',
+                changeEmailInfo: false,
             });
-            setPrevent({...prevent, inputEmail: ''});
             setModalEmail(false);
           }).catch((error) => {
             console.log('An error occurred');
+            setPrevent({
+                ...prevent, 
+                changeEmailInfo: true,
+            });
+            setModalEmail(false);
+            setModalEmailInfo(true);
           });
     };
 
@@ -178,16 +210,26 @@ function User ({ data, user, link, dispatch }) {
         const user = auth.currentUser;
         updatePassword(user, inputPassword).then(() => {
             console.log('Password updated!');
-            updateUser({
-                variables: {
-                    id,
-                    password: inputPassword,
-                },
+            // updateUser({
+            //     variables: {
+            //         id,
+            //         password: inputPassword,
+            //     },
+            // });
+            setPrevent({
+                ...prevent, 
+                inputPassword: '',
+                changePasswordInfo: false,
             });
-            setPrevent({...prevent, inputPassword: ''});
             setModalPassword(false);
           }).catch((error) => {
             console.log('An error occurred');
+            setPrevent({
+                ...prevent, 
+                changePasswordInfo: true,
+            });
+            setModalPassword(false);
+            setModalPasswordInfo(true);
           });
     };
 
@@ -205,19 +247,27 @@ function User ({ data, user, link, dispatch }) {
     };
 
     const handleClickDeleteUser = () => {
-
         const user = auth.currentUser;
         deleteUser(user).then(() => {
             console.log('User deleted.');
-            removeUser({
-                variables: {
-                    id,
-                },
-            });
+            // removeUser({
+            //     variables: {
+            //         id,
+            //     },
+            // });
             dispatch(userValidStatus("/login"));
+            setPrevent({
+                ...prevent, 
+                deleteUserInfo: false,
+            });
             novigate('/');
         }).catch((error) => {
             console.log('An error ocurred');
+            setPrevent({
+                ...prevent, 
+                deleteUserInfo: true,
+            });
+            setModalUser(true);
         });
     };
 
@@ -225,7 +275,7 @@ function User ({ data, user, link, dispatch }) {
         <div className={styles.container}>
             <div className={styles.title}>
                 <div className={styles.titleLogin}>
-                    <h2>Пользователь:</h2>
+                    <h2>{title}</h2>
                     {login ? (<p>{`@_${login}:`}</p>) : (<p>{`@_${loginDefault}`}</p>)}
                 </div>
                 <div 
@@ -236,7 +286,7 @@ function User ({ data, user, link, dispatch }) {
                 >
                     <Logout />
                     {logoutFocus && (
-                        <span className={styles.logoutMessage}>Выйти</span>
+                        <span className={styles.logoutMessage}>{logout}</span>
                     )}
                 </div>
             </div>
@@ -250,7 +300,7 @@ function User ({ data, user, link, dispatch }) {
                     {(!avatar && focus) && (
                         <>
                             <label className={styles.file} htmlFor="file">
-                                <span className={styles.message}>Изменить</span>
+                                <span className={styles.message}>{change}</span>
                                 <Addphoto />
                                 <input 
                                     id="file"
@@ -261,8 +311,7 @@ function User ({ data, user, link, dispatch }) {
                             </label>
                             <div className={styles.warning}>
                                 <Info className={styles.warningSvg} />
-                                <p>Рекомендуемый размер: 100 x 100 px;</p>
-                                <p>Максимальный объем: 2 киллобайта.</p>
+                                {warningImgOne.map((item, index) => (<p key={index}>{item}</p>))}
                             </div>
                         </>
                     )}
@@ -292,7 +341,7 @@ function User ({ data, user, link, dispatch }) {
                         {editLoginFocus && (
                             <>
                                 <Edit />
-                                <span className={styles.editMessage}>Изменить</span>
+                                <span className={styles.editMessage}>{change}</span>
                             </>
                         )}
                     </div>
@@ -313,7 +362,7 @@ function User ({ data, user, link, dispatch }) {
                         {editEmailFocus && (
                             <>
                                 <Edit />
-                                <span className={styles.editMessage}>Изменить</span>
+                                <span className={styles.editMessage}>{change}</span>
                             </>
                         )}
                     </div>
@@ -333,7 +382,7 @@ function User ({ data, user, link, dispatch }) {
                         {editPasswordFocus && (
                             <>
                                 <Edit />
-                                <span className={styles.editMessage}>Изменить</span>
+                                <span className={styles.editMessage}>{change}</span>
                             </>
                         )}
                     </div>
@@ -366,6 +415,48 @@ function User ({ data, user, link, dispatch }) {
                             <p>Максимальный объем: 2 киллобайта.</p>
                         </div>
                         <button onClick={() => setModal(false)}>Понятно</button>
+                    </div>
+                </Modal>
+            )}
+            {changeEmailInfo && (
+                <Modal active={modalEmailInfo} setActive={setModalEmailInfo} link={link}>
+                    <div className={styles.prevention}>
+                        <div className={styles.preventionWarning}>
+                            <Info className={styles.svg} />
+                            <p>Чтобы изменить email:</p>
+                            <p>1. Выйдите из аккаунта.</p>
+                            <p>2. Зайдите снова в аккаунт.</p>
+                            <p>3. Нажмите "Изменить email".</p>
+                        </div>
+                        <button onClick={() => setModalEmailInfo(false)}>Понятно</button>
+                    </div>
+                </Modal>
+            )}
+            {changePasswordInfo && (
+                <Modal active={modalPasswordInfo} setActive={setModalPasswordInfo} link={link}>
+                    <div className={styles.prevention}>
+                        <div className={styles.preventionWarning}>
+                            <Info className={styles.svg} />
+                            <p>Чтобы изменить пароль:</p>
+                            <p>1. Выйдите из аккаунта.</p>
+                            <p>2. Зайдите снова в аккаунт.</p>
+                            <p>3. Нажмите "Изменить пароль".</p>
+                        </div>
+                        <button onClick={() => setModalPasswordInfo(false)}>Понятно</button>
+                    </div>
+                </Modal>
+            )}
+            {deleteUserInfo && (
+                <Modal active={modalUser} setActive={setModalUser} link={link}>
+                    <div className={styles.prevention}>
+                        <div className={styles.preventionWarning}>
+                            <Info className={styles.svg} />
+                            <p>Чтобы удалить аккаунт:</p>
+                            <p>1. Выйдите из аккаунта.</p>
+                            <p>2. Зайдите снова в аккаунт.</p>
+                            <p>3. Нажмите "Удалить аккаунт".</p>
+                        </div>
+                        <button onClick={() => setModalUser(false)}>Понятно</button>
                     </div>
                 </Modal>
             )}
@@ -431,7 +522,8 @@ function User ({ data, user, link, dispatch }) {
                     <div className={styles.prevention}>
                         {checkPassword && (<div className={styles.preventionWarning}>
                             <Info className={styles.svg} />
-                            <p>Пароль должен содержать более 5 символов!</p>
+                            <p>Пароль должен содержать</p>
+                            <p>более 5 символов!</p>
                         </div>)}
                         <input 
                             onChange={(e) => setPrevent({...prevent, inputPassword: e.target.value})}

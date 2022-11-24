@@ -1,12 +1,11 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
 import Context from '../../Context';
 import { onAuthStateChanged  } from "firebase/auth";
+import { ref, onValue } from "firebase/database";
 
 import { userValidStatus, currentUid } from '../../data/actions';
-import { auth } from '../../firebase';
-import { LANGS_QUERY, USERS_QUERY, CATEGORIES_QUERY} from '../../apollo/queries';
+import { auth, database } from '../../firebase';
 import Header from '../Header';
 import Content from '../Content';
 import Footer from '../Footer';
@@ -22,15 +21,19 @@ import styles from './styles.module.scss';
 
 function App() {
   const [state, dispatch] = useReducer(reducer, DATA);
-  const { loading, error, data: dataLangs } = useQuery(LANGS_QUERY);
-  const { loading: loadCat, error: errorCat, data: dataCat } = useQuery(CATEGORIES_QUERY);
-  const { loading: loadUser, error: errorUser, data: dataUsers } = useQuery(USERS_QUERY);
-  const { lang, header } = state;
-  const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
-  const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
-  const { ua, en, ru } = header;
-  const description = langUa ? ua.description : langRu ? ru.description : en.description;
-  const title = langUa ? ua.logo : langRu ? ru.logo : en.logo;
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState();
+  //const [value, setValue] = useState({ state, dispatch });
+
+  ///////////////////
+  useEffect(()=>{
+    const allContent = ref(database, '/data');
+    onValue(allContent, (snapshot) => {
+      const data = snapshot.val();
+      setData(data);
+      setIsLoading(false);
+    });
+  }, []);
 
   useEffect(() => {
     onAuthStateChanged(auth, user => {
@@ -42,22 +45,22 @@ function App() {
     });
   }, []);
 
-  if (loading || loadCat || loadUser ) return <Loading />;
-  if (error || errorCat || errorUser ) return `Error! ${error} ${errorCat} ${errorUser}`;
+  if(isLoading) return <Loading />;
 
+
+  const { lang, header } = state;
+  const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
+  const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
+  const { ua, en, ru } = header;
+  const description = langUa ? ua.description : langRu ? ru.description : en.description;
+  const title = langUa ? ua.logo : langRu ? ru.logo : en.logo;
   const head = document.querySelector('title');
   const metaDiscription = document.getElementsByName("description")[0];
-  const metaContent = dataCat.categories.filter(lan => lan.lang.id === lang).map(meta => `${meta.name} AliExpress`).join(', ');
-  head.textContent = `${title} | ${description}`;
+  const metaContent = data.categories.filter(lan => lan.lang.id === lang).map(meta => `${meta.name} AliExpress`).join(', ');
   metaDiscription.content = `${metaContent}`;
+  head.textContent = `${title} | ${description}`;
 
-  const value = {
-    state, 
-    dispatch,
-    dataLangs,
-    dataCat,
-    dataUsers,
-  };
+  const value = { state, dispatch, data };
 
   return (
     <Context.Provider value={value}>

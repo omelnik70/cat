@@ -6,7 +6,7 @@ import assets from "../../assets";
 import styles from "./styles.module.scss";
 
 const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
-    const { state, dispatch, dataUsers } = useContext(Context);
+    const { state, dispatch, data } = useContext(Context);
     const { lang, registr, email, password, fnAuth } = state;
     const [form, setForm] = useState({
         visibil: false,
@@ -37,7 +37,7 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
     }, [email, password]);
 
     const { visibil, autoComplete, emailCheck, passwordCheck, emailFocus, passwordFocus } = form;
-    const { users } = dataUsers;
+    const { users } = data;
     const filterUsersEmail = users.filter(item => item.email === email)[0];
     const filterUsersPassword = users.filter(item => item.password === password)[0];
 
@@ -122,12 +122,12 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
                         value={password}
                         tabIndex='2'
                     />
-                    {((!valid && passwordFocus) && Boolean(!filterUsersPassword)) && (
+                    {((!valid && passwordFocus && Boolean(filterUsersEmail)) && Boolean(!filterUsersPassword)) && (
                         <label htmlFor="email">
                             {textCheckPassword}
                         </label>
                     )}
-                    {valid && passwordFocus && !passwordCheck && (
+                    {(valid && passwordFocus && emailCheck) && !passwordCheck && (
                         <label htmlFor="email">
                             {textPassword}
                         </label>

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { UPDATE_ARTICLE_MUTATION } from '../../../../apollo/mutations';
 import { wilsonScore } from '../../../Helper/Helper';
 import Separator from '../../../Separator';
 
@@ -25,16 +23,16 @@ function Post ({ articles, lang, text }) {
     const likeText = langUa ? ua.like : langRu ? ru.like : en.like;
     const dislikeText = langUa ? ua.dislike : langRu ? ru.dislike : en.dislike;
 
-    const [updateArticle] = useMutation(UPDATE_ARTICLE_MUTATION);
+    //const [updateArticle] = useMutation(UPDATE_ARTICLE_MUTATION);
 
-    useEffect(() => {
-            updateArticle({
-                variables: {
-                    id,
-                    previews: previews + 1,
-                },
-            });
-    }, []);
+    // useEffect(() => {
+    //         updateArticle({
+    //             variables: {
+    //                 id,
+    //                 previews: previews + 1,
+    //             },
+    //         });
+    // }, []);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -48,14 +46,14 @@ function Post ({ articles, lang, text }) {
 
     const handleLike = () => {
         const likeSum = like + 1;
-        const rate = wilsonScore(likeSum, dislike);
-        updateArticle({
-            variables: {
-                id,
-                like: likeSum,
-                rating: rate,
-            },
-        });
+        //const rate = wilsonScore(likeSum, dislike);
+        // updateArticle({
+        //     variables: {
+        //         id,
+        //         like: likeSum,
+        //         rating: rate,
+        //     },
+        // });
         setPropertiesArt({ 
             ...propertiesArt, 
             likeHide: true,
@@ -66,13 +64,13 @@ function Post ({ articles, lang, text }) {
     const handleDislike = () => {
         const dislikeSum = dislike + 1;
         const rate = wilsonScore(like, dislikeSum);
-        updateArticle({
-            variables: {
-                id,
-                dislike: dislikeSum,
-                rating: rate,
-            },
-        });
+        // updateArticle({
+        //     variables: {
+        //         id,
+        //         dislike: dislikeSum,
+        //         rating: rate,
+        //     },
+        // });
         setPropertiesArt({ 
             ...propertiesArt, 
             likeHide: true,

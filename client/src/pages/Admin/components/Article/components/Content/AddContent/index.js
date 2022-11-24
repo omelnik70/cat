@@ -17,9 +17,9 @@ import styles from './styles.module.scss';
 
 function AddContent() {
     
-    const { dataCat, state, dispatch } = useContext(Context);
+    const { data, state, dispatch } = useContext(Context);
     const { lang, cat } = state;
-    const catCurrent = dataCat.categories.filter(cat => cat.lang.id === lang);
+    const catCurrent = data.categories.filter(cat => cat.lang.id === lang);
     const artCurrent = catCurrent.filter(art => art.id === cat)[0];
     const {article} = artCurrent ? artCurrent : [];
 

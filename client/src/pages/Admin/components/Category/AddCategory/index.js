@@ -7,7 +7,7 @@ import { CATEGORIES_QUERY } from '../../../../../apollo/queries';
 import styles from './styles.module.scss';
 
 function AddCategory() {
-    const { dataLangs, lang } = useContext(Context);
+    const { data, lang } = useContext(Context);
 
     const [inputs, setInputs] = useState({
         name: "",
@@ -72,7 +72,7 @@ function AddCategory() {
                     value={inputs.link}
                 />
                 <div className={styles.lang}>
-                    {dataLangs.langs.map(lang => (
+                    {data.langs.map(lang => (
                         <p key={lang.id}>
                             <input 
                                 onChange={(e) => setInputs({...inputs, langId: e.target.value})}

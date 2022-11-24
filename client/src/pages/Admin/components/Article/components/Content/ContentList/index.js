@@ -9,7 +9,7 @@ import { UPDATE_CONTENT_MUTATION, REMOVE_CONTENT_MUTATION } from '../../../../..
 import styles from './styles.module.scss';
 
 function ContentList({ setActive }) {
-    const { dataCat, state } = useContext(Context);
+    const { data, state } = useContext(Context);
     const { art, lang, cat } = state;
     const [updateContent] = useMutation(UPDATE_CONTENT_MUTATION);
     const [removeContent] = useMutation(REMOVE_CONTENT_MUTATION, {
@@ -24,7 +24,7 @@ function ContentList({ setActive }) {
         },
     });
 
-    const currentCatLang = dataCat && lang ? dataCat.categories.filter(item => item.lang.id === lang) : [];
+    const currentCatLang = data && lang ? data.categories.filter(item => item.lang.id === lang) : [];
     const currentArticles = cat && currentCatLang ? currentCatLang.filter(item => item.id === cat)[0] : {};
     const {article} = currentArticles ? currentArticles : [];
     const selectArticle = art && article ? article.filter(item => item.id === art)[0] : {};

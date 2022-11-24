@@ -11,8 +11,8 @@ import styles from './styles.module.scss';
 
 
 function Header () {
-    const { state, dataLangs, dataUsers } = useContext(Context);
-    const { lang, header, userValid, uid, avatar } = state;
+    const { state, data } = useContext(Context);
+    const { lang, header, userValid, avatar } = state;
     const [currentWidth, setCurrentWidth] = useState(window.screen.width);
 
     window.addEventListener('resize', () => setCurrentWidth(window.screen.width));
@@ -20,8 +20,6 @@ function Header () {
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
     const { ua, en, ru } = header;
     const title = langUa ? ua.logo : langRu ? ru.logo : en.logo;
-    //const avatar = uid ? dataUsers.users.filter(item => item.uid === uid)[0].avatar : '';
-    
 
     return (
         <div className={styles.container}>
@@ -34,7 +32,7 @@ function Header () {
                     <Navigation />
                 </div>
                 <ul className={styles.lang}>
-                    <Lang data={dataLangs} />
+                    <Lang data={data} />
                 </ul>
                 <Link to={userValid}>
                         {(userValid !== "/login" && !avatar) && (<Avatar className={styles.account} />)}

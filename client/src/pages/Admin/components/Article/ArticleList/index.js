@@ -9,9 +9,9 @@ import { UPDATE_ARTICLE_MUTATION, REMOVE_ARTICLE_MUTATION } from '../../../../..
 import styles from './styles.module.scss';
 
 function ArticleList({ setActive }) {
-    const { dataCat, state } = useContext(Context);
+    const { data, state } = useContext(Context);
     const { cat, lang } = state;
-    const currentCategoriesLang = dataCat.categories.filter(item => item.lang.id === lang);
+    const currentCategoriesLang = data.categories.filter(item => item.lang.id === lang);
     const selectCategory = currentCategoriesLang ? currentCategoriesLang.filter(item => item.id === cat)[0] : {};
     const {article} = selectCategory ? selectCategory : [];
     const [updateArticle] = useMutation(UPDATE_ARTICLE_MUTATION);
