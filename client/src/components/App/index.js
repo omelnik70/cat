@@ -23,13 +23,13 @@ function App() {
   const [state, dispatch] = useReducer(reducer, DATA);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
-  //const [value, setValue] = useState({ state, dispatch });
 
   ///////////////////
   useEffect(()=>{
     const allContent = ref(database, '/data');
     onValue(allContent, (snapshot) => {
       const data = snapshot.val();
+      console.log(data);
       setData(data);
       setIsLoading(false);
     });

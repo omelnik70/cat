@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { ref, update, child } from "firebase/database";
+
+import { database } from '../../../../firebase';
 import { wilsonScore } from '../../../Helper/Helper';
 import Separator from '../../../Separator';
 
@@ -13,7 +16,7 @@ function Post ({ articles, lang, text }) {
         styleMessage: true,
     });
 
-    const { id, like, dislike, previews, content, title } = articles;
+    const { id, title, like, dislike, previews, category, content } = articles;
     const { likeHide, dislikeHide, styleMessage } = propertiesArt;
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
@@ -34,6 +37,8 @@ function Post ({ articles, lang, text }) {
     //         });
     // }, []);
 
+    console.log(articles);
+
     useEffect(() => {
         const timer = setTimeout(() => {
             setPropertiesArt({ 
@@ -46,18 +51,28 @@ function Post ({ articles, lang, text }) {
 
     const handleLike = () => {
         const likeSum = like + 1;
-        //const rate = wilsonScore(likeSum, dislike);
-        // updateArticle({
-        //     variables: {
-        //         id,
-        //         like: likeSum,
-        //         rating: rate,
-        //     },
-        // });
+        const rate = wilsonScore(likeSum, dislike);
+        
+        // const updateLike = {
+        //     like: likeSum,
+        //     rating: rate,
+        // };
+
+        //const updates = [`${id}`];
+        //updates[`${id}`] = updateLike;
+        
         setPropertiesArt({ 
             ...propertiesArt, 
             likeHide: true,
             dislikeHide: true,
+        });
+        const likeRef = ref(database, `data/categories/0/article/0`);
+        // console.log(likeRef, {
+        //     like: likeSum,
+        //     rating: rate,
+        // });
+        update(likeRef, {
+            like: likeSum,
         });
     };
 
