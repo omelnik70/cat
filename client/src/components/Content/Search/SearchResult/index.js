@@ -26,7 +26,7 @@ function SearchResult () {
         dispatch(resultSearchArticles(articles.filter(art => {
             return art.title.toLowerCase().includes(search.toLowerCase());
         })))
-    }, [search]);
+    }, [search, lang]);
 
     return (
         <div className={search ? styles.container : styles.hide}>

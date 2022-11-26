@@ -37,9 +37,11 @@ const Form = ({ emailPlaceholder = 'Email', btn1, valid }) => {
     }, [email, password]);
 
     const { visibil, autoComplete, emailCheck, passwordCheck, emailFocus, passwordFocus } = form;
+
     const { users } = data;
-    const filterUsersEmail = users.filter(item => item.email === email)[0];
-    const filterUsersPassword = users.filter(item => item.password === password)[0];
+
+    const filterUsersEmail = users && Object.values(users).filter(item => item.email === email)[0];
+    const filterUsersPassword = users && Object.values(users).filter(item => item.password === password)[0];
 
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;

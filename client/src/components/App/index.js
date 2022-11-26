@@ -4,7 +4,7 @@ import Context from '../../Context';
 import { onAuthStateChanged  } from "firebase/auth";
 import { ref, onValue } from "firebase/database";
 
-import { userValidStatus, currentUid } from '../../data/actions';
+import { userValidStatus, currentUid, currentAvatar, emailInput } from '../../data/actions';
 import { auth, database } from '../../firebase';
 import Header from '../Header';
 import Content from '../Content';
@@ -24,12 +24,10 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
 
-  ///////////////////
   useEffect(()=>{
     const allContent = ref(database, '/data');
     onValue(allContent, (snapshot) => {
       const data = snapshot.val();
-      console.log(data);
       setData(data);
       setIsLoading(false);
     });
@@ -38,9 +36,12 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, user => {
       if (user) {
-        const { uid } = user;
+        const { uid, photoURL, email } = user;
+        console.log(user);
         dispatch(userValidStatus(`/users/${uid}`));
         dispatch(currentUid(uid));
+        dispatch(currentAvatar(photoURL));
+        dispatch(emailInput(email));
       };
     });
   }, []);

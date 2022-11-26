@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ref, update, child } from "firebase/database";
+import { ref, update } from "firebase/database";
 
 import { database } from '../../../../firebase';
 import { wilsonScore } from '../../../Helper/Helper';
@@ -8,15 +8,14 @@ import Separator from '../../../Separator';
 
 import styles from "./styles.module.scss";
 
-function Post ({ articles, lang, text }) {
-
+function Post ({ articles, lang, text, data }) {
+    const { id, title, like, dislike, previews, category, content } = articles;
     const [propertiesArt, setPropertiesArt] = useState({
         likeHide: false,
         dislikeHide: false,
         styleMessage: true,
     });
 
-    const { id, title, like, dislike, previews, category, content } = articles;
     const { likeHide, dislikeHide, styleMessage } = propertiesArt;
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
@@ -25,19 +24,9 @@ function Post ({ articles, lang, text }) {
     const helpfulInfo = langUa ? ua.helpful : langRu ? ru.helpful : en.helpful;
     const likeText = langUa ? ua.like : langRu ? ru.like : en.like;
     const dislikeText = langUa ? ua.dislike : langRu ? ru.dislike : en.dislike;
-
-    //const [updateArticle] = useMutation(UPDATE_ARTICLE_MUTATION);
-
-    // useEffect(() => {
-    //         updateArticle({
-    //             variables: {
-    //                 id,
-    //                 previews: previews + 1,
-    //             },
-    //         });
-    // }, []);
-
-    console.log(articles);
+    const iCat = data.map((item) => item.link === category.link ? item.lang.id : '').findIndex(item => item === lang);
+    const iArt = data[iCat].article.findIndex(item => item.id === id);
+    const linkRef = `data/categories/${iCat}/article/${iArt}`;
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -45,51 +34,48 @@ function Post ({ articles, lang, text }) {
                 ...propertiesArt, 
                 styleMessage: false,
             });
-        }, 5000);
+        }, 4000);
         return () => clearTimeout(timer);
       }, [likeHide, dislikeHide]);
+    
+    useEffect(() => {
+        const likeRef = ref(database, linkRef);
+        update(likeRef, {
+            previews: previews + 1
+        });
+    }, []);
 
     const handleLike = () => {
         const likeSum = like + 1;
         const rate = wilsonScore(likeSum, dislike);
-        
-        // const updateLike = {
-        //     like: likeSum,
-        //     rating: rate,
-        // };
-
-        //const updates = [`${id}`];
-        //updates[`${id}`] = updateLike;
         
         setPropertiesArt({ 
             ...propertiesArt, 
             likeHide: true,
             dislikeHide: true,
         });
-        const likeRef = ref(database, `data/categories/0/article/0`);
-        // console.log(likeRef, {
-        //     like: likeSum,
-        //     rating: rate,
-        // });
+
+        const likeRef = ref(database, linkRef);
         update(likeRef, {
             like: likeSum,
+            rating: rate,
         });
     };
 
     const handleDislike = () => {
         const dislikeSum = dislike + 1;
         const rate = wilsonScore(like, dislikeSum);
-        // updateArticle({
-        //     variables: {
-        //         id,
-        //         dislike: dislikeSum,
-        //         rating: rate,
-        //     },
-        // });
+
         setPropertiesArt({ 
             ...propertiesArt, 
             likeHide: true,
             dislikeHide: true,
+        });
+
+        const likeRef = ref(database, linkRef);
+        update(likeRef, {
+            dislike: dislikeSum,
+            rating: rate,
         });
     };
 

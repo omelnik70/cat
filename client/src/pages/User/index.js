@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
-import { signOut, deleteUser, updateEmail, updatePassword } from "firebase/auth";
-//import { useMutation } from '@apollo/client';
+import { signOut, deleteUser, updateEmail, updatePassword, updateProfile } from "firebase/auth";
+import { ref as refData, update, remove } from "firebase/database";
 import { useNavigate } from 'react-router';
 
+import { database } from '../../firebase';
 import { currentAvatar, userValidStatus } from '../../data/actions';
 import { auth } from '../../firebase';
 import Modal from '../../components/Modal';
-//import { UPDATE_USER_MUTATION, REMOVE_USER_MUTATION } from '../../apollo/mutations';
 import { storage } from '../../firebase';
 import { ReactComponent as Nophoto } from '../../assets/icons/nophoto.svg';
 import { ReactComponent as Addphoto } from '../../assets/icons/addphoto.svg';
@@ -17,15 +17,14 @@ import { ReactComponent as Edit } from '../../assets/icons/edit.svg';
 import { ReactComponent as Logout } from '../../assets/icons/logout.svg';
 import styles from "./styles.module.scss";
 
-function User ({ data, user, link, dispatch, lang, usersPage }) {
+function User ({ user, link, dispatch, lang, usersPage, avatar }) {
     const [focus, setFocus] = useState(false);
-    const [editLoginFocus, setEditLoginFocus] = useState(false);
     const [editEmailFocus, setEditEmailFocus] = useState(false);
     const [editPasswordFocus, setEditPasswordFocus] = useState(false);
     const [logoutFocus, setLogoutFocus] = useState(false);
+    const [loginFocus, setLoginFocus] = useState(false);
     const [deleteFocus, setDeleteFocus] = useState(false);
     const [modal, setModal] = useState(true);
-    const [modalLogin, setModalLogin] = useState(true);
     const [modalEmail, setModalEmail] = useState(true);
     const [modalPassword, setModalPassword] = useState(true);
     const [modalUser, setModalUser] = useState(true);
@@ -33,16 +32,12 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
     const [modalPasswordInfo, setModalPasswordInfo] = useState(true);
     const [prevent, setPrevent] = useState({
         prevention: false,
-        editLogin: false,
         editEmail: false,
         editPassword: false,
-        inputLogin: '',
         inputEmail: '',
         inputPassword: '',
-        checkLogin: true,
         checkEmail: true,
         checkPassword: true,
-        validLogin: false,
         validEmail: false,
         changeEmailInfo: false,
         changePasswordInfo: false,
@@ -50,30 +45,28 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
     });
     const { 
         prevention, 
-        editLogin, 
         editEmail, 
         editPassword,
-        inputLogin, 
         inputEmail, 
         inputPassword,
-        checkLogin, 
         checkEmail, 
-        checkPassword,  
-        validLogin, 
+        checkPassword, 
         validEmail,
         changeEmailInfo,
         changePasswordInfo,
         deleteUserInfo,
     } = prevent;
 
-    let searchLogin, searchEmail;
+    const { email, password, uid, avatar: avatarDelete } = user;
 
-    useEffect(() => {
-        searchLogin = data.filter(item => item.login === inputLogin).length;
-        searchEmail = data.filter(item => item.email === inputEmail).length;
-    }, []);
+    let searchEmail;
 
-    const lengthInput = inputLogin.length;
+    console.log(email, password, uid, avatarDelete);
+
+    // useEffect(() => {
+    //     searchEmail = data.filter(item => item.email === inputEmail).length;
+    // }, []);
+
     const novigate = useNavigate();
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
@@ -81,32 +74,31 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
     const title = langUa ? ua.title : langRu ? ru.title : en.title;
     const logout = langUa ? ua.logout : langRu ? ru.logout : en.logout;
     const change = langUa ? ua.change : langRu ? ru.change : en.change;
+    const remove = langUa ? ua.remove : langRu ? ru.remove : en.remove;
+    const comments = langUa ? ua.comments : langRu ? ru.comments : en.comments;
+    const confirm = langUa ? ua.confirm : langRu ? ru.confirm : en.confirm;
+    const understand = langUa ? ua.understand : langRu ? ru.understand : en.understand;
+    const warningEmailOne = langUa ? ua.warningEmailOne : langRu ? ru.warningEmailOne : en.warningEmailOne;
+    const warningEmailTwo = langUa ? ua.warningEmailTwo : langRu ? ru.warningEmailTwo : en.warningEmailTwo;
+    const commentsText = langUa ? ua.commentsText : langRu ? ru.commentsText : en.commentsText;
+    const passwordName = langUa ? ua.passwordName : langRu ? ru.passwordName : en.passwordName;
     const warningImgOne = langUa ? ua.warningImgOne : langRu ? ru.warningImgOne : en.warningImgOne;
+    const warningImgTwo = langUa ? ua.warningImgTwo : langRu ? ru.warningImgTwo : en.warningImgTwo;
+    const warningEmail = langUa ? ua.warningEmail : langRu ? ru.warningEmail : en.warningEmail;
+    const warningPasswordOne = langUa ? ua.warningPasswordOne : langRu ? ru.warningPasswordOne : en.warningPasswordOne;
+    const warningPasswordTwo = langUa ? ua.warningPasswordTwo : langRu ? ru.warningPasswordTwo : en.warningPasswordTwo;
+    const warningUserDelete = langUa ? ua.warningUserDelete : langRu ? ru.warningUserDelete : en.warningUserDelete;
+    const warningLogin = langUa ? ua.warningLogin : langRu ? ru.warningLogin : en.warningLogin;
+    const linkRef = `data/users/${uid}`;
+    const userRef = refData(database, linkRef);
 
     useEffect(() => {
         setPrevent({...prevent, 
-            checkLogin: (lengthInput > 2 && lengthInput < 11) ? false : true,
             checkEmail: (inputEmail.includes('@') && inputEmail.includes('.') && inputEmail.length >= 8) ? false : true,
             checkPassword: inputPassword.length >= 6 ? false : true,
-            validLogin: searchLogin ? true : false,
             validEmail: searchEmail ? true : false
         });
-    }, [inputLogin, inputEmail, inputPassword]);
-
-    // const [updateUser] = useMutation(UPDATE_USER_MUTATION);
-    // const [removeUser] = useMutation(REMOVE_USER_MUTATION, {
-    //     update(cache, { data: { deleteUser } }) {
-    //         cache.modify({
-    //             fields: {
-    //                 users(currentUsers = []) {
-    //                     return currentUsers.filter(user => user.__ref !== `User:${deleteUser.id}`)
-    //                 },
-    //             },
-    //         });
-    //     },
-    // });
-
-    const { avatar, email, login, password, avatarDeleteLink } = user;
+    }, [inputEmail, inputPassword]);
 
     const at = email.indexOf("@");
     const loginDefault = email.substring(0, at).trim();
@@ -121,42 +113,39 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
                 (snapshot) => {}, 
                 (error) => {}, 
                 () => {
-                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                        // updateUser({
-                        //     variables: {
-                        //         id,
-                        //         avatar: downloadURL,
-                        //         avatarDeleteLink: name,
-                        //     },
-                        // });     
+                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => { 
+                        updateProfile(auth.currentUser, {
+                            photoURL: downloadURL
+                        }).then(() => {
+                            const user = auth.currentUser;
+                            console.log('Profile updated!', user);
+                            // ...
+                        }).catch((error) => {
+                            console.log('An error occurred');
+                            // ...
+                        }); 
+                        update(userRef, {
+                            avatar: name
+                        });
                         dispatch(currentAvatar(downloadURL));
                     });
                 }
             );
-        } else {
-            setPrevent({ ...prevent, prevention: true });
-            setModal(true);
-        }
+        };
+        setPrevent({ ...prevent, prevention: true });
     };
 
     const handleClickDeleteAvatar = () => {
-        const desertRef = ref(storage, `users/${avatarDeleteLink}`);
+        const desertRef = ref(storage, `users/${avatarDelete}`);
         deleteObject(desertRef).then(() => {
-            // updateUser({
-            //     variables: {
-            //         id,
-            //         avatar: "",
-            //         avatarDeleteLink: "",
-            //     },
-            // });
+            update(userRef, {
+                avatar: ''
+            });
+            updateProfile(auth.currentUser, {
+                photoURL: ''
+              }).then(() => {}).catch((error) => {});
             dispatch(currentAvatar(''));
-        }).catch((error) => {
-        });
-    };
-
-    const handleClickEditLogin = () => {
-        setPrevent({ ...prevent, editLogin: true });
-        setModalLogin(true);
+        }).catch((error) => {});
     };
 
     const handleClickEditEmail = () => {
@@ -169,26 +158,12 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
         setModalPassword(true);
     };
 
-    const handleClickLogin = () => {
-        // updateUser({
-        //     variables: {
-        //         id,
-        //         login: inputLogin,
-        //     },
-        // });
-        setPrevent({...prevent, inputLogin: ''});
-        setModalLogin(false);
-    };
-
     const handleClickEmail = () => {
         updateEmail(auth.currentUser, inputEmail).then(() => {
+            update(userRef, {
+                email: inputEmail
+            });
             console.log('Email updated!');
-            // updateUser({
-            //     variables: {
-            //         id,
-            //         email: inputEmail,
-            //     },
-            // });
             setPrevent({
                 ...prevent, 
                 inputEmail: '',
@@ -209,13 +184,10 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
     const handleClickPassword = () => {
         const user = auth.currentUser;
         updatePassword(user, inputPassword).then(() => {
+            update(userRef, {
+                password: inputPassword
+            });
             console.log('Password updated!');
-            // updateUser({
-            //     variables: {
-            //         id,
-            //         password: inputPassword,
-            //     },
-            // });
             setPrevent({
                 ...prevent, 
                 inputPassword: '',
@@ -233,10 +205,6 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
           });
     };
 
-    const handleKey = (e) => {
-        if (e.key === "Enter") handleClickLogin();
-    };
-
     const handleClickLogout = () => {
         signOut(auth).then(() => {
             console.log('Sign-out successful.');
@@ -244,17 +212,14 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
             console.log('An error happened.')
           });
           dispatch(userValidStatus("/login"));
+          novigate('/');
     };
 
     const handleClickDeleteUser = () => {
         const user = auth.currentUser;
         deleteUser(user).then(() => {
+            remove(userRef);
             console.log('User deleted.');
-            // removeUser({
-            //     variables: {
-            //         id,
-            //     },
-            // });
             dispatch(userValidStatus("/login"));
             setPrevent({
                 ...prevent, 
@@ -271,12 +236,27 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
         });
     };
 
+    const handleKey = (e) => {
+        if (e.key === "Enter" && prevention) setModal(false);
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.title}>
                 <div className={styles.titleLogin}>
                     <h2>{title}</h2>
-                    {login ? (<p>{`@_${login}:`}</p>) : (<p>{`@_${loginDefault}`}</p>)}
+                    {<p
+                        className={styles.nameLogin}
+                        onPointerEnter={() => setLoginFocus(true)} 
+                        onPointerLeave={() => setLoginFocus(false)}
+                    >
+                        {`@_${loginDefault}`}
+                    </p>}
+                    
+                    {loginFocus && (<div className={styles.warning}>
+                        <Info className={styles.warningSvg} />
+                        {warningLogin.map((item, index) => (<p key={index}>{item}</p>))}
+                    </div>)}
                 </div>
                 <div 
                     className={styles.logoutBlock}
@@ -318,33 +298,12 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
                     {(avatar && !focus) && (<img src={avatar} alt="" />)}
                     {(avatar && focus) && (
                         <>
-                            <label htmlFor="avatar"><span  className={styles.message}>Удалить</span>
+                            <label htmlFor="avatar"><span  className={styles.message}>{remove}</span>
                                 <img onClick={handleClickDeleteAvatar} id="avatar" src={avatar} alt="" />
                                 <Delete className={styles.delete} />
                             </label>
                         </>
                     )}
-                </div>
-                <div   
-                    onPointerEnter={() => setEditLoginFocus(true)} 
-                    onPointerLeave={() => setEditLoginFocus(false)}
-                    onClick={handleClickEditLogin}
-                    className={styles.border}
-                >
-                    <div className={styles.loginBlock}>
-                        <div className={styles.block}>
-                            <h4>Логин:</h4>
-                            {login ? (<p>{`@_${login}`}</p>) : (<p>{`@_${loginDefault}`}</p>)}
-                        </div>
-                    </div>
-                    <div className={styles.editBlock}>
-                        {editLoginFocus && (
-                            <>
-                                <Edit />
-                                <span className={styles.editMessage}>{change}</span>
-                            </>
-                        )}
-                    </div>
                 </div>
                 <div 
                     onPointerEnter={() => setEditEmailFocus(true)} 
@@ -374,7 +333,7 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
                     className={styles.border}>
                     <div className={styles.passwordBlock}>
                         <div className={styles.block}>
-                            <h4>Пароль:</h4>
+                            <h4>{passwordName}</h4>
                             {!editPasswordFocus ? (<p>*******</p>) : (<p>{password}</p>)}
                         </div>
                     </div>
@@ -388,8 +347,8 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
                     </div>
                 </div>
             </div>
-            <h3>Комментарии (0):</h3>
-            <p className={styles.listComments}>-- Вы пока ничего не комментировали --</p>
+            <h3>{comments} (0):</h3>
+            <p className={styles.listComments}>{commentsText}</p>
             <div 
                 className={styles.deleteBlock}
                 onPointerEnter={() => setDeleteFocus(true)} 
@@ -400,21 +359,19 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
                     className={styles.deleteIcon}>
                     <Delete />
                     {deleteFocus && (
-                        <span className={styles.deleteMessage}>Удалить</span>
+                        <span className={styles.deleteMessage}>{remove}</span>
                     )}
                 </div>   
             </div>
             {prevention && (
                 <Modal active={modal} setActive={setModal} link={link}>
                     <div className={styles.prevention}>
-                        <p>Размер Вашего автар превышает лимит 2 киллобайта.</p>
-                        <p>Пожалуйста выберите другой.</p>
+                        {warningImgTwo.map((item, index) => (<p key={index}>{item}</p>))}
                         <div className={styles.preventionWarning}>
                             <Info className={styles.svg} />
-                            <p>Рекомендуемый размер: 100 x 100 px;</p>
-                            <p>Максимальный объем: 2 киллобайта.</p>
+                            {warningImgOne.map((item, index) => (<p key={index}>{item}</p>))}
                         </div>
-                        <button onClick={() => setModal(false)}>Понятно</button>
+                        <button onClick={() => setModal(false)}>{understand}</button>
                     </div>
                 </Modal>
             )}
@@ -423,12 +380,9 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
                     <div className={styles.prevention}>
                         <div className={styles.preventionWarning}>
                             <Info className={styles.svg} />
-                            <p>Чтобы изменить email:</p>
-                            <p>1. Выйдите из аккаунта.</p>
-                            <p>2. Зайдите снова в аккаунт.</p>
-                            <p>3. Нажмите "Изменить email".</p>
+                            {warningEmail.map((item, index) => (<p key={index}>{item}</p>))}
                         </div>
-                        <button onClick={() => setModalEmailInfo(false)}>Понятно</button>
+                        <button onClick={() => setModalEmailInfo(false)}>{understand}</button>
                     </div>
                 </Modal>
             )}
@@ -437,12 +391,9 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
                     <div className={styles.prevention}>
                         <div className={styles.preventionWarning}>
                             <Info className={styles.svg} />
-                            <p>Чтобы изменить пароль:</p>
-                            <p>1. Выйдите из аккаунта.</p>
-                            <p>2. Зайдите снова в аккаунт.</p>
-                            <p>3. Нажмите "Изменить пароль".</p>
+                            {warningPasswordOne.map((item, index) => (<p key={index}>{item}</p>))}
                         </div>
-                        <button onClick={() => setModalPasswordInfo(false)}>Понятно</button>
+                        <button onClick={() => setModalPasswordInfo(false)}>{understand}</button>
                     </div>
                 </Modal>
             )}
@@ -451,41 +402,9 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
                     <div className={styles.prevention}>
                         <div className={styles.preventionWarning}>
                             <Info className={styles.svg} />
-                            <p>Чтобы удалить аккаунт:</p>
-                            <p>1. Выйдите из аккаунта.</p>
-                            <p>2. Зайдите снова в аккаунт.</p>
-                            <p>3. Нажмите "Удалить аккаунт".</p>
+                            {warningUserDelete.map((item, index) => (<p key={index}>{item}</p>))}
                         </div>
-                        <button onClick={() => setModalUser(false)}>Понятно</button>
-                    </div>
-                </Modal>
-            )}
-            {editLogin && (
-                <Modal active={modalLogin} setActive={setModalLogin} link={link}>
-                    <div className={styles.prevention}>
-                        {checkLogin && !validLogin && (<div className={styles.preventionWarning}>
-                            <Info className={styles.svg} />
-                            <p>Логин должен содержать</p>
-                            <p>от 3-х до 10-ти символов.</p>
-                        </div>)}
-                        {validLogin && ((<div className={styles.preventionWarning}>
-                            <Info className={styles.svg} />
-                            <p>Такой логин уже есть!</p>
-                        </div>))}
-                        <input 
-                            onChange={(e) => setPrevent({...prevent, inputLogin: e.target.value})}
-                            type="text" 
-                            placeholder='Ведите Ваш логин'
-                            onKeyPress={(e) => handleKey(e)}
-                            value={inputLogin}
-                        />
-                        <button 
-                            className={(!checkLogin && !validLogin) ? '' : `${styles.disabled}`}
-                            onClick={handleClickLogin}
-                            disabled={(!checkLogin && !validLogin) ? false : true}
-                        >
-                            Подтвердить
-                        </button>
+                        <button onClick={() => setModalUser(false)}>{understand}</button>
                     </div>
                 </Modal>
             )}
@@ -494,17 +413,17 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
                     <div className={styles.prevention}>
                         {checkEmail && !validEmail && (<div className={styles.preventionWarning}>
                             <Info className={styles.svg} />
-                            <p>Email введен некорректно!</p>
+                            <p>{warningEmailOne}</p>
                         </div>)}
                         {validEmail && ((<div className={styles.preventionWarning}>
                             <Info className={styles.svg} />
-                            <p>Такой email уже есть!</p>
+                            <p>{warningEmailTwo}</p>
                         </div>))}
                         <input 
                             onChange={(e) => setPrevent({...prevent, inputEmail: e.target.value})}
                             type="text" 
                             placeholder='Ведите Ваш Email'
-                            onKeyPress={(e) => handleKey(e)}
+                            //onKeyPress={(e) => handleKey(e)}
                             value={inputEmail}
                         />
                         <button 
@@ -512,7 +431,7 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
                             onClick={handleClickEmail}
                             disabled={(!checkEmail && !validEmail) ? false : true}
                         >
-                            Подтвердить
+                            {confirm}
                         </button>
                     </div>
                 </Modal>
@@ -522,14 +441,13 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
                     <div className={styles.prevention}>
                         {checkPassword && (<div className={styles.preventionWarning}>
                             <Info className={styles.svg} />
-                            <p>Пароль должен содержать</p>
-                            <p>более 5 символов!</p>
+                            {warningPasswordTwo.map((item, index) => (<p key={index}>{item}</p>))}
                         </div>)}
                         <input 
                             onChange={(e) => setPrevent({...prevent, inputPassword: e.target.value})}
                             type="text" 
                             placeholder='Ведите Ваш пароль'
-                            onKeyPress={(e) => handleKey(e)}
+                            //onKeyPress={(e) => handleKey(e)}
                             value={inputPassword}
                         />
                         <button 
@@ -537,7 +455,7 @@ function User ({ data, user, link, dispatch, lang, usersPage }) {
                             onClick={handleClickPassword}
                             disabled={!checkPassword ? false : true}
                         >
-                            Подтвердить
+                            {confirm}
                         </button>
                     </div>
                 </Modal>

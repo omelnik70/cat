@@ -13,14 +13,16 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    & p {
-        margin: 0 0 0 5px;
-        font-size: $font-size-average;
-        color: $border-menu;
-    }
+}
+
+.nameLogin {
+    margin: 0 0 0 5px;
+    font-size: $font-size-average;
+    color: $border-menu;
 }
 
 .titleLogin {
+    position: relative;
     justify-content: space-between;
 }
 
@@ -109,6 +111,7 @@ input[type="file"] {
     left: -40px;
     padding: 5px;
     background-color: $border-menu;
+    color: white;
     border-radius: 0;
 }
 
@@ -120,7 +123,7 @@ input[type="file"] {
 .deleteMessage {
     position: absolute;
     top: 0;
-    left: -65px;
+    left: -75px;
 }
 
 .message {

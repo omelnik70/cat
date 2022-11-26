@@ -1,11 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../firebase";
+import { ref, set } from "firebase/database";
+import { auth, database } from "../../../firebase";
 import { Link, useNavigate } from "react-router-dom";
-import { useMutation } from '@apollo/client';
 
-import { ADD_USER_MUTATION } from "../../../apollo/mutations";
-import { USERS_QUERY } from "../../../apollo/queries";
 import { handleAuthClick, emailInput, passwordInput, userValidStatus, currentAvatar } from "../../../data/actions";
 import Context from "../../../Context";
 import Form from "..";
@@ -16,19 +14,6 @@ const Register = () => {
     const [register, setRegister] = useState(true);
     const [modal, setModal] = useState(true);
     const [userCheck, setUserCheck] = useState(false);
-    const [AddUser] = useMutation(ADD_USER_MUTATION, {
-
-        //обновление кэша без запроса на сервер 
-        update(cache, { data: { newUser } }) {
-            const { users } = cache.readQuery({ query: USERS_QUERY });
-            cache.writeQuery({ 
-                query: USERS_QUERY,
-                data: {
-                    users: [...users, newUser]
-                },
-            });
-        },
-    });
     const { state, dispatch } = useContext(Context);
     const { lang, registr, email, password, userValid } = state;
 
@@ -42,20 +27,13 @@ const Register = () => {
                     // Signed in 
                     const user = userCredential.user;
                     const { uid } = user;
-                    const at = email.indexOf("@");
-                    const loginDefault = email.substring(0, at).trim();
-                    AddUser({
-                        variables: {
-                            uid,
-                            avatar: '',
-                            avatarDeleteLink: '',
-                            login: loginDefault,
-                            email,
-                            password,
-                        },
-                    });
                     dispatch(userValidStatus(`/users/${uid}`));
                     dispatch(currentAvatar(''));
+                    set(ref(database, 'data/users/' + uid), {
+                        uid,
+                        password,
+                        email,
+                    });
                 })
                 .catch((error) => {
                     const errorMessage = error.message;
