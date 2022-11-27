@@ -64,3 +64,28 @@ export const wilsonScore = (up, down) => {
   const rate = Math.round((phat+z*z/(2*n)-z*Math.sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n)*1000000000)
 	return rate;
 };
+    
+export const formatDate = (date) => {
+    // добавить ведущие нули к единственной цифре дню/месяцу/часам/минутам
+    let d = date;
+    d = [
+      '0' + d.getDate(),
+      '0' + (d.getMonth() + 1),
+      '' + d.getFullYear()
+    //].map(component => component.slice(-4)); // взять последние 2 цифры из каждой компоненты
+].map((component, i) => i < 2 ? component.slice(-2) : component);
+    // соединить компоненты в дату
+    return d.slice(0, 3).join('.');
+  };
+  
+  export const formatTime = (date) => {
+    // добавить ведущие нули к единственной цифре дню/месяцу/часам/минутам
+    let d = date;
+    d = [
+      '0' + d.getHours(),
+      '0' + d.getMinutes()
+    ].map(component => component.slice(-2)); // взять последние 2 цифры из каждой компоненты
+  
+    // соединить компоненты в дату
+    return d.slice(0, 3).join('.') + ' ' + d.slice(3).join(':');
+  };

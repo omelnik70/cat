@@ -241,6 +241,25 @@ const DATA = {
       },
     },
 
+    //комментарии
+    commentsList: {
+      ua: {
+        loginTitle: 'Логін',
+        dateTtitle: 'Дата',
+        timeTitle: 'Час',
+      },
+      en: {
+        loginTitle: 'Login:',
+        dateTtitle: 'Date:',
+        timeTitle: 'Time:',
+      },
+      ru: {
+        loginTitle: 'Логин:',
+        dateTtitle: 'Дата:',
+        timeTitle: 'Время:',
+      },
+    },
+
     //поиск и результаты поиска
     searchTexts: {
       ua: {

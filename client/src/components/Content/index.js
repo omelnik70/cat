@@ -14,7 +14,7 @@ import styles from './styles.module.scss';
 
 function Content () {
     const { state, data, dispatch } = useContext(Context);
-    const { lang, search, postText, userValid, usersPage, avatar, uid, isUser } = state;
+    const { lang, search, postText, userValid, usersPage, avatar, email, uid, isUser } = state;
     const { category, post, id } = useParams();
     const navigate = useNavigate();
 
@@ -48,6 +48,9 @@ function Content () {
                 isUser={isUser}
                 text={postText} 
                 data={categories} 
+                userId={uid}
+                avatar={avatar}
+                email={email}
             />) :
             (<div className={styles.contentBox}>
                 <Search />

@@ -9,7 +9,7 @@ import Separator from '../../../Separator';
 
 import styles from "./styles.module.scss";
 
-function Post ({ articles, lang, text, data, isUser }) {
+function Post ({ articles, lang, text, data, isUser, userId, avatar, email }) {
     const { id, title, like, dislike, previews, category, content } = articles;
     const [propertiesArt, setPropertiesArt] = useState({
         likeHide: false,
@@ -124,7 +124,7 @@ function Post ({ articles, lang, text, data, isUser }) {
                             <span>{dislike}</span>
                     </button>
                 </div>
-            <CommentList isUser={isUser} />
+            <CommentList isUser={isUser} articleId={id} userId={userId} avatar={avatar} email={email} />
             </div>
         </div>
     );

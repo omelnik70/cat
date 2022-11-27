@@ -1,15 +1,21 @@
 import React, { useContext } from 'react';
 
+import Context from '../../../../../../Context';
 import { ReactComponent as Nophoto } from '../../../../../../assets/icons/nophoto.svg';
-import { ReactComponent as Like } from '../../../../../../assets/icons/dislike.svg';
-import { ReactComponent as DisLike } from '../../../../../../assets/icons/like.svg';
-import Context from "../../../../../../Context";
+import { ReactComponent as Like } from '../../../../../../assets/icons/like.svg';
+import { ReactComponent as DisLike } from '../../../../../../assets/icons/dislike.svg';
 import styles from "./styles.module.scss";
 
-function Comment ({ isUser }) {
+function Comment ({ avatar, login, date, time, text, like, dislike }) {
     const { state } = useContext(Context);
-    const { avatar } = state;
-
+    const { commentsList, lang } = state;
+    const { ua, en, ru } = commentsList;
+    const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
+    const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
+    const loginTitle = langUa ? ua.loginTitle : langRu ? ru.loginTitle : en.loginTitle;
+    const dateTtitle = langUa ? ua.dateTtitle : langRu ? ru.dateTtitle : en.dateTtitle;
+    const timeTitle = langUa ? ua.timeTitle : langRu ? ru.timeTitle : en.timeTitle;
+    
     return (
         <div className={styles.container}>
             <div className={styles.avatar}>
@@ -18,29 +24,29 @@ function Comment ({ isUser }) {
             <div className={styles.info}>
                 <div className={styles.user}>
                     <div className={styles.login}>
-                        <h4>Логин: </h4>
-                        <p>@_hhhhhhhhhhh</p>
+                        <h4>{loginTitle}</h4>
+                        <p>{login}</p>
                     </div>
                     <div className={styles.date}>
-                        <h4>Дата: </h4>
-                        <p>27.11.2022</p>
+                        <h4>{dateTtitle}</h4>
+                        <p>{date}</p>
                     </div>
                     <div className={styles.time}>
-                        <h4>Время: </h4>
-                        <p>16.26</p>
+                        <h4>{timeTitle}</h4>
+                        <p>{time}</p>
                     </div>
                 </div>
                 <div className={styles.text}>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure fuga architecto voluptates harum eos repudiandae tempore molestias voluptas atque voluptate voluptatibus pariatur laudantium ducimus, nobis id quidem perspiciatis sunt asperiores.</p>
+                    <p>{text}</p>
                 </div>
                 <div className={styles.rate}>
                     <div className={styles.like}>
                         <Like className={styles.likeImg} />
-                        <p>15</p>
+                        <p>{like}</p>
                     </div>
                     <div className={styles.disLike}>
                         <DisLike className={styles.likeImg} />
-                        <p>15</p>
+                        <p>{dislike}</p>
                     </div>
                 </div>
             </div>
