@@ -15,7 +15,7 @@ const Register = () => {
     const [modal, setModal] = useState(true);
     const [userCheck, setUserCheck] = useState(false);
     const { state, dispatch } = useContext(Context);
-    const { lang, registr, email, password, userValid } = state;
+    const { lang, registr, email, password, userValid, isUser } = state;
 
     const navigate = useNavigate();
 
@@ -43,7 +43,7 @@ const Register = () => {
     }, [email, password]);
 
       useEffect(() => {
-        if((userValid !== "/login" || userCheck)) {
+        if((isUser || userCheck)) {
             const timer = setTimeout(() => {
                 dispatch(emailInput(''));
                 dispatch(passwordInput(''));
@@ -70,8 +70,8 @@ const Register = () => {
             <div className={styles.container}>
                 <h3 className={styles.title}>{title}</h3>
                 <Form btn1={btnRegester} valid={true} />
-                {(userValid !== "/login" || userCheck) && (
-                    <Modal active={modal} setActive={setModal}>{userValid !== "/login" ? textMessage : textUser}</Modal>
+                {(isUser || userCheck) && (
+                    <Modal active={modal} setActive={setModal}>{isUser ? textMessage : textUser}</Modal>
                 )}
                 <p className={styles.text}>
                     {text} 

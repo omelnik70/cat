@@ -14,6 +14,7 @@ const DATA = {
     search: '',
 
     //регистрация / вход
+    isUser: false,
     uid: '',
     email: '',
     password: '',
@@ -52,9 +53,6 @@ const DATA = {
           passwordText: 'Пароль повинен містити більше 5 символів!',
           emailText: 'Email введено некоректно!',
           userText: 'Користувач із таким Email вже існує!',
-          userCheckPin: 'Не вірний пін!',
-          pinTextMessage: 'Пінкод має містити 4 цифри!',
-          pinInputText: 'Придумайте пін 4 цифри',
           autocomplete: 'Дозволити збереження даних',
       },
       en: {
@@ -73,9 +71,6 @@ const DATA = {
           passwordText: 'The password must contain more than 5 characters!',
           emailText: 'The email was entered incorrectly!',
           userText: 'User with this Email already exists!',
-          userCheckPin: 'Invalid pin!',
-          pinTextMessage: 'Pincode must contain 4 digits!',
-          pinInputText: 'Come up with a 4 digit pin',
           autocomplete: 'Enable data saving',
       },
       ru: {
@@ -94,9 +89,6 @@ const DATA = {
           passwordText: 'Пароль должен содержать более 5 символов!',
           emailText: 'Email введен некорректно!',
           userText: 'Пользователь с таким Email уже существует!',
-          userCheckPin: 'Не верный пин!',
-          pinTextMessage: 'Пинкод должен содержать 4 цифры!',
-          pinInputText: 'Придумайте пин 4 цифры',
           autocomplete: 'Разрешить сохранение данных',
       },
     },
@@ -108,6 +100,7 @@ const DATA = {
         logout: 'Вийти',
         change: 'Змінити',
         understand: 'Я розумію',
+        password: 'Пароль',
         warningImgTwo: [
           'Розмір Вашого автора перевищує ліміт',
           '2 кБ. Будь ласка, виберіть інший.',
@@ -155,6 +148,7 @@ const DATA = {
         logout: 'Log out',
         change: 'Change',
         understand: 'I understand',
+        password: 'Password',
         warningImgTwo: [
           'The size of your avtar exceeds the limit',
           ' of 2 kB. Please choose another.',
@@ -202,6 +196,7 @@ const DATA = {
         logout: 'Выйти',
         change: 'Изменить',
         understand: 'Я понимаю',
+        password: 'Пароль',
         warningImgTwo: [
           'Размер Вашего автар превышает лимит',
           '2 кБ. Пожалуйста выберите другой.',

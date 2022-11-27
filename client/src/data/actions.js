@@ -10,7 +10,8 @@ import {
     HANDLEAUTHCLICK,
     USERVALIDSTATUS,
     CURRENTAVATAR,
-    CURRENTUID
+    CURRENTUID,
+    ISUSER
 } from "./boilerplate";
 
 //создаем action генераторы
@@ -74,7 +75,13 @@ const currentUid = (payload) => ({
     payload,
 });
 
+const isUser = (payload) => ({
+    type: ISUSER,
+    payload,
+});
+
 export { 
+    isUser,
     currentCat,
     currentArt,
     currentLang,

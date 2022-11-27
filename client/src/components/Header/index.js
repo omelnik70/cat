@@ -12,7 +12,7 @@ import styles from './styles.module.scss';
 
 function Header () {
     const { state, data } = useContext(Context);
-    const { lang, header, userValid, avatar } = state;
+    const { lang, header, isUser, userValid, avatar } = state;
     const [currentWidth, setCurrentWidth] = useState(window.screen.width);
 
     window.addEventListener('resize', () => setCurrentWidth(window.screen.width));
@@ -35,9 +35,9 @@ function Header () {
                     <Lang data={data} />
                 </ul>
                 <Link to={userValid}>
-                        {(userValid !== "/login" && !avatar) && (<Avatar className={styles.account} />)}
-                        {(userValid !== "/login" && avatar) && (<img className={styles.avatar} src={avatar} alt=''></img>)}
-                        {userValid === "/login" && (<Account className={styles.account} />)}
+                        {(isUser && !avatar) && (<Avatar className={styles.account} />)}
+                        {(isUser && avatar) && (<img className={styles.avatar} src={avatar} alt=''></img>)}
+                        {!isUser && (<Account className={styles.account} />)}
                 </Link>
             </>) :
             (<>

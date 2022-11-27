@@ -10,7 +10,8 @@ import {
     HANDLEAUTHCLICK,
     USERVALIDSTATUS,
     CURRENTAVATAR,
-    CURRENTUID
+    CURRENTUID,
+    ISUSER
 } from "./boilerplate";
 
 //создаем кейсы по изменению состояния
@@ -88,6 +89,12 @@ const reducer = (state, action) => {
         return {
             ...state,
             uid: action.payload,
+        };
+
+        case ISUSER: 
+        return {
+            ...state,
+            isUser: action.payload,
         };
 
         //по умолчанию 

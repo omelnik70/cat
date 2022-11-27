@@ -11,6 +11,7 @@ const HANDLEAUTHCLICK = "handleAuthClick";
 const USERVALIDSTATUS = "userValidStatus";
 const CURRENTAVATAR = "currentAvatar";
 const CURRENTUID = "currentUid";
+const ISUSER = "isUser";
 
 export { 
     CURRENTCAT,
@@ -24,5 +25,6 @@ export {
     HANDLEAUTHCLICK,
     USERVALIDSTATUS,
     CURRENTAVATAR,
-    CURRENTUID
+    CURRENTUID,
+    ISUSER
 };

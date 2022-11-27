@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ref, update } from "firebase/database";
 
+import CommentList from './components/commentsList';
 import { database } from '../../../../firebase';
 import { wilsonScore } from '../../../Helper/Helper';
 import Separator from '../../../Separator';
 
 import styles from "./styles.module.scss";
 
-function Post ({ articles, lang, text, data }) {
+function Post ({ articles, lang, text, data, isUser }) {
     const { id, title, like, dislike, previews, category, content } = articles;
     const [propertiesArt, setPropertiesArt] = useState({
         likeHide: false,
@@ -123,6 +124,7 @@ function Post ({ articles, lang, text, data }) {
                             <span>{dislike}</span>
                     </button>
                 </div>
+            <CommentList isUser={isUser} />
             </div>
         </div>
     );

@@ -61,20 +61,16 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
 
     let searchEmail;
 
-    console.log(email, password, uid, avatarDelete);
-
-    // useEffect(() => {
-    //     searchEmail = data.filter(item => item.email === inputEmail).length;
-    // }, []);
-
     const novigate = useNavigate();
+
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
     const { ua, en, ru } = usersPage;
+    const pass = langUa ? ua.password : langRu ? ru.password : en.password;
     const title = langUa ? ua.title : langRu ? ru.title : en.title;
     const logout = langUa ? ua.logout : langRu ? ru.logout : en.logout;
     const change = langUa ? ua.change : langRu ? ru.change : en.change;
-    const remove = langUa ? ua.remove : langRu ? ru.remove : en.remove;
+    const removeText = langUa ? ua.remove : langRu ? ru.remove : en.remove;
     const comments = langUa ? ua.comments : langRu ? ru.comments : en.comments;
     const confirm = langUa ? ua.confirm : langRu ? ru.confirm : en.confirm;
     const understand = langUa ? ua.understand : langRu ? ru.understand : en.understand;
@@ -118,12 +114,7 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
                             photoURL: downloadURL
                         }).then(() => {
                             const user = auth.currentUser;
-                            console.log('Profile updated!', user);
-                            // ...
-                        }).catch((error) => {
-                            console.log('An error occurred');
-                            // ...
-                        }); 
+                        }).catch((error) => {}); 
                         update(userRef, {
                             avatar: name
                         });
@@ -131,8 +122,9 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
                     });
                 }
             );
+        } else {
+            setPrevent({ ...prevent, prevention: true });
         };
-        setPrevent({ ...prevent, prevention: true });
     };
 
     const handleClickDeleteAvatar = () => {
@@ -163,7 +155,6 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
             update(userRef, {
                 email: inputEmail
             });
-            console.log('Email updated!');
             setPrevent({
                 ...prevent, 
                 inputEmail: '',
@@ -171,7 +162,6 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
             });
             setModalEmail(false);
           }).catch((error) => {
-            console.log('An error occurred');
             setPrevent({
                 ...prevent, 
                 changeEmailInfo: true,
@@ -187,7 +177,6 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
             update(userRef, {
                 password: inputPassword
             });
-            console.log('Password updated!');
             setPrevent({
                 ...prevent, 
                 inputPassword: '',
@@ -195,7 +184,6 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
             });
             setModalPassword(false);
           }).catch((error) => {
-            console.log('An error occurred');
             setPrevent({
                 ...prevent, 
                 changePasswordInfo: true,
@@ -206,11 +194,7 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
     };
 
     const handleClickLogout = () => {
-        signOut(auth).then(() => {
-            console.log('Sign-out successful.');
-          }).catch((error) => {
-            console.log('An error happened.')
-          });
+        signOut(auth).then(() => {}).catch((error) => {});
           dispatch(userValidStatus("/login"));
           novigate('/');
     };
@@ -219,7 +203,6 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
         const user = auth.currentUser;
         deleteUser(user).then(() => {
             remove(userRef);
-            console.log('User deleted.');
             dispatch(userValidStatus("/login"));
             setPrevent({
                 ...prevent, 
@@ -227,7 +210,6 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
             });
             novigate('/');
         }).catch((error) => {
-            console.log('An error ocurred');
             setPrevent({
                 ...prevent, 
                 deleteUserInfo: true,
@@ -298,7 +280,7 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
                     {(avatar && !focus) && (<img src={avatar} alt="" />)}
                     {(avatar && focus) && (
                         <>
-                            <label htmlFor="avatar"><span  className={styles.message}>{remove}</span>
+                            <label htmlFor="avatar"><span  className={styles.message}>{removeText}</span>
                                 <img onClick={handleClickDeleteAvatar} id="avatar" src={avatar} alt="" />
                                 <Delete className={styles.delete} />
                             </label>
@@ -359,7 +341,7 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
                     className={styles.deleteIcon}>
                     <Delete />
                     {deleteFocus && (
-                        <span className={styles.deleteMessage}>{remove}</span>
+                        <span className={styles.deleteMessage}>{removeText}</span>
                     )}
                 </div>   
             </div>
@@ -422,7 +404,7 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
                         <input 
                             onChange={(e) => setPrevent({...prevent, inputEmail: e.target.value})}
                             type="text" 
-                            placeholder='Ведите Ваш Email'
+                            placeholder='Email'
                             //onKeyPress={(e) => handleKey(e)}
                             value={inputEmail}
                         />
@@ -446,7 +428,7 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
                         <input 
                             onChange={(e) => setPrevent({...prevent, inputPassword: e.target.value})}
                             type="text" 
-                            placeholder='Ведите Ваш пароль'
+                            placeholder={pass}
                             //onKeyPress={(e) => handleKey(e)}
                             value={inputPassword}
                         />

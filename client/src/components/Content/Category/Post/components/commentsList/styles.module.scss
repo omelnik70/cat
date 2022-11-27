@@ -1,0 +1,39 @@
+@import '../../../../../../global.scss';
+
+.container {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.loginMessageBox {
+    color: $color-text;
+    margin: 0 0 10px 0;
+    & span {
+        padding: 0 5px;
+    }
+}
+
+.commentBox {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    justify-content: center;
+}
+
+textarea {
+    background-color: $color-background;
+    border-radius: 5px;
+    flex: 1 1 100%;
+    min-height: 100px;
+    padding: 5px;
+    color: $color-text;
+    &:focus {
+        border: 1px solid $color-border;
+        background-color: $background-white;
+    }
+}
+
+button {
+    margin-left: auto;
+}

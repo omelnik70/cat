@@ -22,7 +22,7 @@ const Login = () => {
     const { userEmail, userPassword } = errorLogin;
 
     const { state, dispatch } = useContext(Context);
-    const { lang, registr, email, password, userValid } = state;
+    const { lang, registr, email, password, userValid, isUser } = state;
 
     const navigate = useNavigate();
 
@@ -47,7 +47,7 @@ const Login = () => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            if(userValid !== "/login") {
+            if(isUser) {
                 setErrorLogin({ 
                     ...errorLogin, 
                     userEmail: false,
@@ -80,7 +80,7 @@ const Login = () => {
             <div className={styles.container}>
                 <h3 className={styles.title}>{title}</h3>
                 <Form btn1={btnRegester} valid={false} />
-                {(userEmail || userPassword || userValid !== "/login") && (
+                {(userEmail || userPassword || isUser) && (
                     <Modal active={modal} setActive={setModal}>{textMessage}</Modal>
                 )}
                 <p className={styles.text}>{text}</p>

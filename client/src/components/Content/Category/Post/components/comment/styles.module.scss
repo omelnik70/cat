@@ -1,0 +1,90 @@
+@import '../../../../../../global.scss';
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 1px solid $color-border;
+  padding: 15px 0 0 0;
+}
+
+.avatar {
+  padding: 5px;
+  & img {
+    border-radius: 50%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
+  padding: 5px;
+}
+
+.user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.text {
+  flex: 1 1 100%;
+  & p {
+    color: $color-text;
+    line-height: 1.5;
+    margin: 10px 0;
+  }
+}
+
+.rate,
+.like,
+.disLike {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.rate {
+  margin: 10px 0 0 0;
+}
+
+.like,
+.disLike {
+  cursor: pointer;
+}
+
+.like,
+.disLike {
+  border: 1px solid $color-border;
+  border-radius: 10px;
+  padding: 2px 5px;
+  margin: 0 15px 0 0;
+  background-color: $color-title;
+  color: $color-text-button;
+  font-weight: $font-weight-bolder;
+  & p {
+    padding: 0 0 0 5px;
+  }
+}
+
+.login,
+.date,
+.time {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: $color-text;
+  & h4 {
+    margin: 0 5px 0 0;
+  }
+}
+
+.date {
+  margin: 0 10px;
+}
+
+.likeImg {
+  fill: $color-text-button;
+}
