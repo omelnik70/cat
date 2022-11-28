@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { signOut, deleteUser, updateEmail, updatePassword, updateProfile } from "firebase/auth";
-import { ref as refData, update, remove } from "firebase/database";
+import { ref as refData, update, remove, onValue } from "firebase/database";
 import { useNavigate } from 'react-router';
 
+import Comment from '../../components/Content/Category/Post/components/comment';
 import { database } from '../../firebase';
 import { currentAvatar, userValidStatus } from '../../data/actions';
 import { auth } from '../../firebase';
@@ -30,6 +31,7 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
     const [modalUser, setModalUser] = useState(true);
     const [modalEmailInfo, setModalEmailInfo] = useState(true);
     const [modalPasswordInfo, setModalPasswordInfo] = useState(true);
+    const [commentsData, setCommentsData] = useState([]);
     const [prevent, setPrevent] = useState({
         prevention: false,
         editEmail: false,
@@ -54,7 +56,7 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
         validEmail,
         changeEmailInfo,
         changePasswordInfo,
-        deleteUserInfo,
+        deleteUserInfo
     } = prevent;
 
     const { email, password, uid, avatar: avatarDelete } = user;
@@ -87,6 +89,14 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
     const warningLogin = langUa ? ua.warningLogin : langRu ? ru.warningLogin : en.warningLogin;
     const linkRef = `data/users/${uid}`;
     const userRef = refData(database, linkRef);
+
+    useEffect(() => {
+        const commentsRef = refData(database, `data/comments/${uid}`);
+        onValue(commentsRef, (snapshot) => {
+            const data = snapshot.val();
+            setCommentsData(Object.values(data));
+        });
+    }, []);
 
     useEffect(() => {
         setPrevent({...prevent, 
@@ -329,8 +339,25 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
                     </div>
                 </div>
             </div>
-            <h3>{comments} (0):</h3>
-            <p className={styles.listComments}>{commentsText}</p>
+            <h3>{comments} ({commentsData.length}):</h3>
+            {commentsData && commentsData.map((item, index) => (
+                    <Comment 
+                        key={index} 
+                        avatar={item.avatar} 
+                        login={item.login} 
+                        timestamp={item.timestamp} 
+                        text={item.text} 
+                        like={item.like} 
+                        dislike={item.dislike} 
+                        articleId={item.articleId} 
+                        userId={item.userRef}
+                        articleTitle={item.articleTitle}
+                        articleLink={item.articleLink}
+                        keyId={item.keyId} 
+                        flag={true}
+                    />
+            ))}
+            {!commentsData && (<p className={styles.listComments}>{commentsText}</p>)}
             <div 
                 className={styles.deleteBlock}
                 onPointerEnter={() => setDeleteFocus(true)} 

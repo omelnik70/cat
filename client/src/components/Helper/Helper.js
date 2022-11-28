@@ -65,27 +65,29 @@ export const wilsonScore = (up, down) => {
 	return rate;
 };
     
-export const formatDate = (date) => {
-    // добавить ведущие нули к единственной цифре дню/месяцу/часам/минутам
-    let d = date;
-    d = [
-      '0' + d.getDate(),
-      '0' + (d.getMonth() + 1),
-      '' + d.getFullYear()
-    //].map(component => component.slice(-4)); // взять последние 2 цифры из каждой компоненты
-].map((component, i) => i < 2 ? component.slice(-2) : component);
-    // соединить компоненты в дату
-    return d.slice(0, 3).join('.');
-  };
+export const dateConverter = (timestamp) => {
+  let a = new Date(timestamp);
+  let months = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+  let year = a.getFullYear();
+  let month = months[a.getMonth()];
+  let date = a.getDate();
+  //форматирование
+  date = date < 10 ? `0${date}` : date;
+  //соединяем
+  const time = `${date}.${month}.${year}`;
+  return time;
+};
   
-  export const formatTime = (date) => {
-    // добавить ведущие нули к единственной цифре дню/месяцу/часам/минутам
-    let d = date;
-    d = [
-      '0' + d.getHours(),
-      '0' + d.getMinutes()
-    ].map(component => component.slice(-2)); // взять последние 2 цифры из каждой компоненты
-  
-    // соединить компоненты в дату
-    return d.slice(0, 3).join('.') + ' ' + d.slice(3).join(':');
-  };
+export const timeConverter = (timestamp) => {
+  let a = new Date(timestamp);
+  let hour = a.getHours();
+  let min = a.getMinutes();
+  let sec = a.getSeconds();
+  //форматирование
+  hour = hour < 10 ? `0${hour}` : hour;
+  min = min < 10 ? `0${min}` : min;
+  sec = sec < 10 ? `0${sec}` : sec;
+  //соединяем
+  const time = `${hour}:${min}:${sec}`;
+  return time;
+};

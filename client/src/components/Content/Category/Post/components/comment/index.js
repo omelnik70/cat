@@ -1,12 +1,32 @@
 import React, { useContext } from 'react';
+import { ref, update } from "firebase/database";
+import { Link } from 'react-router-dom';
 
+import { database } from '../../../../../../firebase';
+import { dateConverter, timeConverter } from '../../../../../Helper/Helper';
 import Context from '../../../../../../Context';
 import { ReactComponent as Nophoto } from '../../../../../../assets/icons/nophoto.svg';
 import { ReactComponent as Like } from '../../../../../../assets/icons/like.svg';
 import { ReactComponent as DisLike } from '../../../../../../assets/icons/dislike.svg';
+import { ReactComponent as Update } from '../../../../../../assets/icons/update.svg';
+import { ReactComponent as Editdoc } from '../../../../../../assets/icons/editDoc.svg';
+import { ReactComponent as Delete } from '../../../../../../assets/icons/delete.svg';
 import styles from "./styles.module.scss";
 
-function Comment ({ avatar, login, date, time, text, like, dislike }) {
+function Comment ({ 
+    avatar, 
+    login, 
+    timestamp, 
+    text, 
+    like, 
+    dislike, 
+    articleId, 
+    userId,
+    articleTitle,
+    articleLink,
+    keyId, 
+    flag = false 
+}) {
     const { state } = useContext(Context);
     const { commentsList, lang } = state;
     const { ua, en, ru } = commentsList;
@@ -15,39 +35,109 @@ function Comment ({ avatar, login, date, time, text, like, dislike }) {
     const loginTitle = langUa ? ua.loginTitle : langRu ? ru.loginTitle : en.loginTitle;
     const dateTtitle = langUa ? ua.dateTtitle : langRu ? ru.dateTtitle : en.dateTtitle;
     const timeTitle = langUa ? ua.timeTitle : langRu ? ru.timeTitle : en.timeTitle;
+    const articleRef = ref(database, `data/comments/${articleId}/${keyId}`);
+    const userRef = ref(database, `data/comments/${userId}/${keyId}`);
+
+    const timestampNew = new Date().getTime();
+    const date = dateConverter(timestamp);
+    const time = timeConverter(timestamp);
+
+    const handleClickLikesIncrement = (value) => {
+        if(value) {
+            update((articleRef), {
+                like: like + 1
+            });
+            update((userRef), {
+                like: like + 1
+            });
+        } else {
+            update((articleRef), {
+                dislike: dislike + 1
+            });
+            update((userRef), {
+                dislike: dislike + 1
+            });
+        };
+    };
+
+    const handleClickUpdate = () => {
+        update((articleRef), {
+            timestamp: timestampNew
+        });
+        update((userRef), {
+            timestamp: timestampNew
+        });
+    };
+
+    const handleClickEditdoc = () => {
+
+    };
+
+    const handleClickDeleteCom = () => {
+
+    };
     
     return (
         <div className={styles.container}>
-            <div className={styles.avatar}>
-                {avatar ? (<img src={avatar} alt="avatar" />) : <Nophoto />}
-            </div>
-            <div className={styles.info}>
-                <div className={styles.user}>
-                    <div className={styles.login}>
-                        <h4>{loginTitle}</h4>
-                        <p>{login}</p>
-                    </div>
-                    <div className={styles.date}>
-                        <h4>{dateTtitle}</h4>
-                        <p>{date}</p>
-                    </div>
-                    <div className={styles.time}>
-                        <h4>{timeTitle}</h4>
-                        <p>{time}</p>
-                    </div>
+            {flag && (<Link to={articleLink}><h3>{articleTitle}</h3></Link>)}
+            <div className={styles.articleBox}>
+                <div className={styles.avatar}>
+                    {avatar ? (<img src={avatar} alt="avatar" />) : <Nophoto />}
                 </div>
-                <div className={styles.text}>
-                    <p>{text}</p>
-                </div>
-                <div className={styles.rate}>
-                    <div className={styles.like}>
-                        <Like className={styles.likeImg} />
-                        <p>{like}</p>
+                <div className={styles.info}>
+                    <div className={styles.user}>
+                        <div className={styles.userBox}>
+                            <div className={styles.login}>
+                                <h4>{loginTitle}</h4>
+                                <p>{`@_${login}`}</p>
+                            </div>
+                            <div className={styles.date}>
+                                <h4>{dateTtitle}</h4>
+                                <p>{date}</p>
+                            </div>
+                            <div className={styles.time}>
+                                <h4>{timeTitle}</h4>
+                                <p>{time}</p>
+                            </div>
+                            {flag && (
+                                <>
+                                    <div className={styles.userlike}>
+                                        <Like className={styles.likeImg} />
+                                        <p>{like}</p>
+                                    </div>
+                                    <div className={styles.userdislike}>
+                                        <DisLike className={styles.likeImg} />
+                                        <p>{dislike}</p>
+                                    </div>
+                                </>
+                                
+                            )}
+                        </div>
+                        {flag && (<div className={styles.editBox}>
+                            <Update onClick={handleClickUpdate} className={styles.update} />
+                            <Editdoc onClick={handleClickEditdoc} className={styles.edit} />
+                            <Delete onClick={handleClickDeleteCom} className={styles.deleteCom} />
+                        </div>)}
                     </div>
-                    <div className={styles.disLike}>
-                        <DisLike className={styles.likeImg} />
-                        <p>{dislike}</p>
+                    <div className={styles.text}>
+                        <p>{text}</p>
                     </div>
+                    {!flag &&(<div className={styles.rate}>
+                        <div 
+                            onClick={() => handleClickLikesIncrement(true)}
+                            className={styles.like}
+                        >
+                            <Like className={styles.likeImg} />
+                            <p>{like}</p>
+                        </div>
+                        <div 
+                            onClick={() => handleClickLikesIncrement(false)}
+                            className={styles.disLike}
+                        >
+                            <DisLike className={styles.likeImg} />
+                            <p>{dislike}</p>
+                        </div>
+                    </div>)}
                 </div>
             </div>
         </div>

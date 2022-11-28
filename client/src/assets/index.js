@@ -27,8 +27,12 @@ import EDIT from "./icons/edit.svg";
 import LOGOUT from "./icons/logout.svg";
 import LIKE from "./icons/like.svg";
 import DISLIKE from "./icons/dislike.svg";
+import UPDATE from "./icons/update.svg";
+import EDITDOC from "./icons/editDoc.svg";
 
 const ICONS = {
+    UPDATE,
+    EDITDOC,
     ACCOUNT,
     SEARCH,
     COPYRIGHT,

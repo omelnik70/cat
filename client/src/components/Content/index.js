@@ -30,7 +30,7 @@ function Content () {
     window.addEventListener('resize', () => setScreenWidth(window.screen.width));
 
     useEffect(() => {
-        id && uid === id ? navigate(userValid) : navigate('/');
+        (id && uid === id) && navigate(userValid);
     }, [uid]);
 
     return (

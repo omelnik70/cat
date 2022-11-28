@@ -285,19 +285,16 @@ const DATA = {
     //тексты для статьи
     postText: {
       ua: {
-        message: 'Вашу думку враховано, дякую за участь в опитуванні!',
         helpful: 'Чи була інформація корисною?',
         like: 'Корисно',
         dislike: 'Марно',
       }, 
       en: {
-        message: 'Your opinion is taken into account, thanks for participating in the survey!',
         helpful: 'Was the information helpful?',
         like: 'Like',
         dislike: 'Dislike',
       },
       ru: {
-        message: 'Ваше мнение учтено, спасибо за участие в опросе!',
         helpful: 'Была ли информация полезной?',
         like: 'Нравится',
         dislike: 'Не нравится',

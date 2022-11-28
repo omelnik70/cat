@@ -17,27 +17,16 @@ function Post ({ articles, lang, text, data, isUser, userId, avatar, email }) {
         styleMessage: true,
     });
 
-    const { likeHide, dislikeHide, styleMessage } = propertiesArt;
+    const { likeHide, dislikeHide } = propertiesArt;
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
     const { ua, en, ru } = text;
-    const textMessage = langUa ? ua.message : langRu ? ru.message : en.message;
     const helpfulInfo = langUa ? ua.helpful : langRu ? ru.helpful : en.helpful;
     const likeText = langUa ? ua.like : langRu ? ru.like : en.like;
     const dislikeText = langUa ? ua.dislike : langRu ? ru.dislike : en.dislike;
     const iCat = data.map((item) => item.link === category.link ? item.lang.id : '').findIndex(item => item === lang);
     const iArt = data[iCat].article.findIndex(item => item.id === id);
     const linkRef = `data/categories/${iCat}/article/${iArt}`;
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setPropertiesArt({ 
-                ...propertiesArt, 
-                styleMessage: false,
-            });
-        }, 4000);
-        return () => clearTimeout(timer);
-      }, [likeHide, dislikeHide]);
     
     useEffect(() => {
         const likeRef = ref(database, linkRef);
@@ -105,9 +94,6 @@ function Post ({ articles, lang, text, data, isUser, userId, avatar, email }) {
             <div className={styles.likeContainer}>
                 <h4>{helpfulInfo}</h4>
                 <div  className={styles.likes} disabled={likeHide || dislikeHide}>
-                    {(likeHide || dislikeHide) && (
-                        <p className={styleMessage ? styles.showMessage : styles.hideMessage}>{textMessage}</p>
-                    )}
                     <button 
                         className={(likeHide || dislikeHide) ? `${styles.like} ${styles.btnDisabled}` : styles.like} 
                         onClick={handleLike} 
@@ -124,7 +110,14 @@ function Post ({ articles, lang, text, data, isUser, userId, avatar, email }) {
                             <span>{dislike}</span>
                     </button>
                 </div>
-            <CommentList isUser={isUser} articleId={id} userId={userId} avatar={avatar} email={email} />
+            <CommentList 
+                isUser={isUser} 
+                articleId={id} 
+                userId={userId} 
+                avatar={avatar} 
+                email={email} 
+                articleTitle={title}
+            />
             </div>
         </div>
     );
