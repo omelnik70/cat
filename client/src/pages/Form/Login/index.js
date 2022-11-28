@@ -63,6 +63,8 @@ const Login = () => {
         return () => clearTimeout(timer);
       }, [userValid]);
 
+      console.log(userEmail, userPassword, isUser);
+
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
     const { ua, en, ru } = registr;

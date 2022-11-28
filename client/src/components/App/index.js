@@ -46,6 +46,8 @@ function App() {
         dispatch(currentAvatar(photoURL));
         dispatch(emailInput(email));
         dispatch(isUser(true));
+      } else {
+        dispatch(isUser(false));
       };
     });
   }, []);

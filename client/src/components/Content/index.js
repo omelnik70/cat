@@ -51,6 +51,7 @@ function Content () {
                 userId={uid}
                 avatar={avatar}
                 email={email}
+                uid={uid}
             />) :
             (<div className={styles.contentBox}>
                 <Search />

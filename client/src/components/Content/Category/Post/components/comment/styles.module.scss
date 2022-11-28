@@ -62,7 +62,8 @@
 .like,
 .disLike,
 .userlike,
-.userdislike {
+.userdislike,
+.disabled {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -76,12 +77,20 @@
 .disLike,
 .edit,
 .update,
-.deleteCom {
+.deleteCom,
+.disabled {
   cursor: pointer;
 }
 
+.btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .like,
-.disLike {
+.disLike,
+.disabled {
   border: 1px solid $color-border;
   border-radius: 10px;
   padding: 2px 5px;
@@ -117,4 +126,9 @@
 
 .likeImg {
   fill: $color-text-button;
+}
+
+.disabled {
+  background-color: $background-white;
+  cursor: default;
 }

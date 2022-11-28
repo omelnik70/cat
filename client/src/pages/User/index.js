@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router';
 
 import Comment from '../../components/Content/Category/Post/components/comment';
 import { database } from '../../firebase';
-import { currentAvatar, userValidStatus } from '../../data/actions';
+import { currentAvatar, userValidStatus, currentUid } from '../../data/actions';
 import { auth } from '../../firebase';
 import Modal from '../../components/Modal';
 import { storage } from '../../firebase';
@@ -94,7 +94,8 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
         const commentsRef = refData(database, `data/comments/${uid}`);
         onValue(commentsRef, (snapshot) => {
             const data = snapshot.val();
-            setCommentsData(Object.values(data));
+            data ? setCommentsData(Object.values(data).sort((a, b) => b.timestamp - a.timestamp)) : 
+            setCommentsData([]);
         });
     }, []);
 
@@ -206,6 +207,7 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
     const handleClickLogout = () => {
         signOut(auth).then(() => {}).catch((error) => {});
           dispatch(userValidStatus("/login"));
+          dispatch(currentUid(''));
           novigate('/');
     };
 
@@ -350,7 +352,7 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
                         like={item.like} 
                         dislike={item.dislike} 
                         articleId={item.articleId} 
-                        userId={item.userRef}
+                        userId={item.userId}
                         articleTitle={item.articleTitle}
                         articleLink={item.articleLink}
                         keyId={item.keyId} 

@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ref, onValue, child, push, update } from "firebase/database";
 
+import Pagination from '../../../../../Pagination';
 import { database } from '../../../../../../firebase';
 import Comment from '../comment';
 
 import styles from "./styles.module.scss";
 
-function CommentList ({ isUser, articleId, userId, avatar, email, articleTitle }) {
+function CommentList ({ isUser, articleId, userId, avatar, email, articleTitle, uid }) {
     const [comments, setComments] = useState([]);
     const [text, setText] = useState('');
     const { category, post } = useParams();
@@ -87,10 +88,12 @@ function CommentList ({ isUser, articleId, userId, avatar, email, articleTitle }
                     like={item.like} 
                     dislike={item.dislike} 
                     timestamp={item.timestamp}
-                    articleId={articleId}
-                    userId={userId}
+                    articleId={item.articleId}
+                    userId={item.userId}
+                    uid={uid}
                 />
             ))}
+            {/* <Pagination artConstant={comments} artChangeable={comments} limit={5} /> */}
         </div>
     );
 }

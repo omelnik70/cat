@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { ref, update } from "firebase/database";
+import React, { useContext, useState } from 'react';
+import { ref, update, remove } from "firebase/database";
 import { Link } from 'react-router-dom';
 
 import { database } from '../../../../../../firebase';
@@ -25,8 +25,12 @@ function Comment ({
     articleTitle,
     articleLink,
     keyId, 
-    flag = false 
+    flag = false,
+    uid
 }) {
+    const [input, setInput] = useState(text);
+    const [edit, setEdit] = useState(false);
+    const [disabled, setDisabled] = useState(false);
     const { state } = useContext(Context);
     const { commentsList, lang } = state;
     const { ua, en, ru } = commentsList;
@@ -50,6 +54,7 @@ function Comment ({
             update((userRef), {
                 like: like + 1
             });
+            setDisabled(true);
         } else {
             update((articleRef), {
                 dislike: dislike + 1
@@ -57,6 +62,7 @@ function Comment ({
             update((userRef), {
                 dislike: dislike + 1
             });
+            setDisabled(true);
         };
     };
 
@@ -70,12 +76,29 @@ function Comment ({
     };
 
     const handleClickEditdoc = () => {
+        setEdit(true);
+    };
 
+    const resultEditText = () => {
+        update((articleRef), {
+            text: input
+        });
+        update((userRef), {
+            text: input
+        });
+        setEdit(false);
+    };
+
+    const resetEditText = () => {
+        setEdit(false);
     };
 
     const handleClickDeleteCom = () => {
-
+        remove(articleRef);
+        remove(userRef);
     };
+
+    console.log(uid === userId);
     
     return (
         <div className={styles.container}>
@@ -119,20 +142,25 @@ function Comment ({
                             <Delete onClick={handleClickDeleteCom} className={styles.deleteCom} />
                         </div>)}
                     </div>
-                    <div className={styles.text}>
-                        <p>{text}</p>
-                    </div>
+                    {!edit ? (<div className={styles.text}><p>{text}</p></div>) :
+                    (<>
+                        <textarea onChange={(e) => setInput(e.target.value)} type="text" value={input} />
+                        <div className={styles.btn}>
+                            <button onClick={resultEditText}>Подтвердить</button>
+                            <button onClick={resetEditText}>Отменить</button>
+                        </div>
+                    </>)}
                     {!flag &&(<div className={styles.rate}>
                         <div 
-                            onClick={() => handleClickLikesIncrement(true)}
-                            className={styles.like}
+                            onClick={() => (uid !== userId || !disabled) && handleClickLikesIncrement(true)}
+                            className={(uid === userId || disabled) ? styles.disabled : styles.like}
                         >
                             <Like className={styles.likeImg} />
                             <p>{like}</p>
                         </div>
                         <div 
-                            onClick={() => handleClickLikesIncrement(false)}
-                            className={styles.disLike}
+                            onClick={() => (uid !== userId || !disabled) && handleClickLikesIncrement(false)}
+                            className={(uid === userId || disabled) ? styles.disabled : styles.like}
                         >
                             <DisLike className={styles.likeImg} />
                             <p>{dislike}</p>
