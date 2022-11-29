@@ -1,6 +1,7 @@
 @import '../../../../../../global.scss';
 
 .container {
+    flex: 1 1 auto;
     width: 100%;
     margin: 10px 0;
 }
@@ -20,10 +21,13 @@
     -webkit-flex-direction: column;
     flex-direction: column;
     justify-content: center;
+    & button {
+        margin-left: auto;
+    }
 }
 
 textarea {
-    background-color: $color-background;
+    background-color: $color-background-light;
     border-radius: 5px;
     flex: 1 1 100%;
     min-height: 100px;
@@ -35,6 +39,7 @@ textarea {
     }
 }
 
-button {
-    margin-left: auto;
+.more {
+    display: block;
+    margin: 0 auto;
 }

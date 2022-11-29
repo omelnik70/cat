@@ -2,15 +2,30 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ref, onValue, child, push, update } from "firebase/database";
 
-import Pagination from '../../../../../Pagination';
 import { database } from '../../../../../../firebase';
 import Comment from '../comment';
 
 import styles from "./styles.module.scss";
 
-function CommentList ({ isUser, articleId, userId, avatar, email, articleTitle, uid }) {
+function CommentList ({ 
+    isUser, 
+    articleId, 
+    userId, 
+    avatar, 
+    email, 
+    articleTitle, 
+    uid, 
+    more,
+    info,
+    cancel,
+    confirm,
+    register,
+    loginText,
+    add
+}) {
     const [comments, setComments] = useState([]);
     const [text, setText] = useState('');
+    const [commentsIndex, setCommentsIndex] = useState(5);
     const { category, post } = useParams();
     const at = email.indexOf("@");
     const login = email.substring(0, at).trim();
@@ -56,14 +71,18 @@ function CommentList ({ isUser, articleId, userId, avatar, email, articleTitle, 
         setText('');
     };
 
+    const handleClickMore = () => {
+        setCommentsIndex(commentsIndex + 5);
+    };
+
     return (
         <div className={styles.container}>
             {!isUser && (
                 <p className={styles.loginMessageBox}>
-                    Чтобы оставить комментарий, нужно зарегистрироваться или войти! 
-                    <span><Link to="/register">Зарегистрироваться</Link>
+                    {info}
+                    <span><Link to="/register">{register}</Link>
                     |
-                    <Link to="/login">Войти</Link></span>
+                    <Link to="/login">{loginText}</Link></span>
                 </p>
             )}
             {isUser && (
@@ -75,10 +94,10 @@ function CommentList ({ isUser, articleId, userId, avatar, email, articleTitle, 
                         placeholder='Добавьте комментарий'
                         value={text}
                     ></textarea>
-                    <button onClick={handleClickAddComment}>Добавить</button>
+                    <button onClick={handleClickAddComment}>{add}</button>
                 </div>
             )}
-            {comments && comments.map((item, index) => (
+            {Boolean(comments.length) && comments.map((item, index) => index < commentsIndex && (
                 <Comment 
                     key={index}
                     keyId={item.keyId} 
@@ -91,9 +110,11 @@ function CommentList ({ isUser, articleId, userId, avatar, email, articleTitle, 
                     articleId={item.articleId}
                     userId={item.userId}
                     uid={uid}
+                    confirm={confirm}
+                    cancel={cancel}
                 />
             ))}
-            {/* <Pagination artConstant={comments} artChangeable={comments} limit={5} /> */}
+            {(comments.length > commentsIndex) && (<button className={styles.more} onClick={handleClickMore}>{more}</button>)}
         </div>
     );
 }

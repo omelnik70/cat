@@ -26,7 +26,9 @@ function Comment ({
     articleLink,
     keyId, 
     flag = false,
-    uid
+    uid,
+    confirm,
+    cancel
 }) {
     const [input, setInput] = useState(text);
     const [edit, setEdit] = useState(false);
@@ -97,8 +99,6 @@ function Comment ({
         remove(articleRef);
         remove(userRef);
     };
-
-    console.log(uid === userId);
     
     return (
         <div className={styles.container}>
@@ -146,8 +146,8 @@ function Comment ({
                     (<>
                         <textarea onChange={(e) => setInput(e.target.value)} type="text" value={input} />
                         <div className={styles.btn}>
-                            <button onClick={resultEditText}>Подтвердить</button>
-                            <button onClick={resetEditText}>Отменить</button>
+                            <button onClick={resultEditText}>{confirm}</button>
+                            <button onClick={resetEditText}>{cancel}</button>
                         </div>
                     </>)}
                     {!flag &&(<div className={styles.rate}>

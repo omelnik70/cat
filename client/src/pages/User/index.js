@@ -29,6 +29,7 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
     const [modalEmail, setModalEmail] = useState(true);
     const [modalPassword, setModalPassword] = useState(true);
     const [modalUser, setModalUser] = useState(true);
+    const [modalDeleteUser, setModalDeleteUser] = useState(true);
     const [modalEmailInfo, setModalEmailInfo] = useState(true);
     const [modalPasswordInfo, setModalPasswordInfo] = useState(true);
     const [commentsData, setCommentsData] = useState([]);
@@ -44,6 +45,7 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
         changeEmailInfo: false,
         changePasswordInfo: false,
         deleteUserInfo: false,
+        deleteUserWarning: false,
     });
     const { 
         prevention, 
@@ -56,7 +58,8 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
         validEmail,
         changeEmailInfo,
         changePasswordInfo,
-        deleteUserInfo
+        deleteUserInfo,
+        deleteUserWarning
     } = prevent;
 
     const { email, password, uid, avatar: avatarDelete } = user;
@@ -87,6 +90,8 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
     const warningPasswordTwo = langUa ? ua.warningPasswordTwo : langRu ? ru.warningPasswordTwo : en.warningPasswordTwo;
     const warningUserDelete = langUa ? ua.warningUserDelete : langRu ? ru.warningUserDelete : en.warningUserDelete;
     const warningLogin = langUa ? ua.warningLogin : langRu ? ru.warningLogin : en.warningLogin;
+    const warningdeleteUser = langUa ? ua.deleteUser : langRu ? ru.deleteUser : en.deleteUser;
+    const reset = langUa ? ua.reset : langRu ? ru.reset : en.reset;
     const linkRef = `data/users/${uid}`;
     const userRef = refData(database, linkRef);
 
@@ -211,6 +216,16 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
           novigate('/');
     };
 
+    const handleClickDeleteUserWarning = () => {
+        setPrevent({ ...prevent, deleteUserWarning: true });
+        setModalDeleteUser(true);
+    };
+
+    const handleClickDeleteUserReset = () => {
+        setModalDeleteUser(false);
+        setPrevent({ ...prevent, deleteUserWarning: true });
+    };
+
     const handleClickDeleteUser = () => {
         const user = auth.currentUser;
         deleteUser(user).then(() => {
@@ -219,12 +234,14 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
             setPrevent({
                 ...prevent, 
                 deleteUserInfo: false,
+                deleteUserWarning: false
             });
             novigate('/');
         }).catch((error) => {
             setPrevent({
                 ...prevent, 
                 deleteUserInfo: true,
+                deleteUserWarning: false
             });
             setModalUser(true);
         });
@@ -359,14 +376,14 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
                         flag={true}
                     />
             ))}
-            {!commentsData && (<p className={styles.listComments}>{commentsText}</p>)}
+            {!commentsData.length && (<p className={styles.listComments}>{commentsText}</p>)}
             <div 
                 className={styles.deleteBlock}
                 onPointerEnter={() => setDeleteFocus(true)} 
                 onPointerLeave={() => setDeleteFocus(false)}
             >
                 <div 
-                    onClick={handleClickDeleteUser}
+                    onClick={handleClickDeleteUserWarning}
                     className={styles.deleteIcon}>
                     <Delete />
                     {deleteFocus && (
@@ -383,6 +400,20 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
                             {warningImgOne.map((item, index) => (<p key={index}>{item}</p>))}
                         </div>
                         <button onClick={() => setModal(false)}>{understand}</button>
+                    </div>
+                </Modal>
+            )}
+            {deleteUserWarning && (
+                <Modal active={modalDeleteUser} setActive={setModalDeleteUser} link={link}>
+                    <div className={styles.prevention}>
+                        <div className={styles.preventionWarning}>
+                            <Info className={styles.svg} />
+                            <p>{warningdeleteUser}</p>
+                        </div>
+                        <div className={styles.btn}>
+                            <button onClick={handleClickDeleteUser}>{removeText}</button>
+                            <button onClick={handleClickDeleteUserReset}>{reset}</button>
+                        </div>
                     </div>
                 </Modal>
             )}

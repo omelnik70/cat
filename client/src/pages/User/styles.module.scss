@@ -78,7 +78,7 @@ input[type="file"] {
 .message,
 .editMessage {
     position: absolute;
-    top: 160px;
+    top: 85px;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
@@ -88,6 +88,7 @@ input[type="file"] {
     text-align: center;
     background-color: $color-text;
     border-radius: 5px;
+    z-index: 1;
     & > p {
         margin: 0 0 5px 0;
     }

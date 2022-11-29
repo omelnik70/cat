@@ -24,6 +24,13 @@ function Post ({ articles, lang, text, data, isUser, userId, avatar, email, uid 
     const helpfulInfo = langUa ? ua.helpful : langRu ? ru.helpful : en.helpful;
     const likeText = langUa ? ua.like : langRu ? ru.like : en.like;
     const dislikeText = langUa ? ua.dislike : langRu ? ru.dislike : en.dislike;
+    const more = langUa ? ua.more : langRu ? ru.more : en.more;
+    const confirm = langUa ? ua.confirm : langRu ? ru.confirm : en.confirm;
+    const cancel = langUa ? ua.cancel : langRu ? ru.cancel : en.cancel;
+    const info = langUa ? ua.info : langRu ? ru.info : en.info;
+    const register = langUa ? ua.register : langRu ? ru.register : en.register;
+    const login = langUa ? ua.login : langRu ? ru.login : en.login;
+    const add = langUa ? ua.add : langRu ? ru.add : en.add;
     const iCat = data.map((item) => item.link === category.link ? item.lang.id : '').findIndex(item => item === lang);
     const iArt = data[iCat].article.findIndex(item => item.id === id);
     const linkRef = `data/categories/${iCat}/article/${iArt}`;
@@ -118,6 +125,13 @@ function Post ({ articles, lang, text, data, isUser, userId, avatar, email, uid 
                 email={email} 
                 articleTitle={title}
                 uid={uid}
+                more={more}
+                confirm={confirm}
+                cancel={cancel}
+                info={info}
+                register={register}
+                loginText={login}
+                add={add}
             />
             </div>
         </div>
