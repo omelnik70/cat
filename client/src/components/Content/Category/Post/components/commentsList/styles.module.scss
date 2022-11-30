@@ -43,3 +43,37 @@ textarea {
     display: block;
     margin: 0 auto;
 }
+
+.prevention {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    & p {
+        margin: 5px 0;
+        &:nth-child(2) {
+            margin: 0 0 10px 0;
+        }
+    }
+    & input {
+        margin: 10px 0 0 0;
+    }
+}
+
+.preventionWarning {
+    color: $border-menu;
+    padding: 5px;
+    border: 2px dashed $border-menu;
+    text-align: center;
+}
+
+.svg {
+    fill: $border-menu;
+}
+
+.disabled {
+    background-color: $color-background-light;
+    box-shadow: 2px 2px 5px $color-background;
+    color: $color-link;
+    cursor: default;
+}

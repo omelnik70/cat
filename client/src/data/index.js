@@ -136,6 +136,7 @@ const DATA = {
           'Щоб змінити логін:',
           'Змініть email до "@".',
         ],
+        warningValidComment: 'У коментарі заборонено вказувати посилання!',
         warningEmailOne: 'Email введено некоректно!',
         warningEmailTwo: 'Такий email вже є!',
         confirm: 'Підтвердити',
@@ -186,6 +187,7 @@ const DATA = {
           'To change login:',
           'Change email to "@".',
         ],
+        warningValidComment: 'Links are not allowed in comments!',
         warningEmailOne: 'Email entered incorrectly!',
         warningEmailTwo: 'This email already exists!',
         confirm: 'Confirm',
@@ -236,6 +238,7 @@ const DATA = {
           'Чтобы изменить логин:',
           'Измените email до "@".',
         ],
+        warningValidComment: 'В комментарии запрещено указывать ссылку!',
         warningEmailOne: 'Email введен некорректно!',
         warningEmailTwo: 'Такой email уже есть!',
         confirm: 'Подтвердить',
@@ -649,6 +652,10 @@ const DATA = {
             p: `Усі зареєстровані користувачі отримають персональну сторінку на сайті, де можна буде переглядати своїми коментарями та оцінками з боку інших користувачів. Ви можете редагувати або видаляти свої коментарі. Також доступно: додати аватар або фото (розмір 100*100 px, об'єм до 2kB), змінити email, логін, пароль, вийти з облікового запису або видалити його. Згадайте, що, якщо Ви оновили свій акаунт, не видаливши попередньо свої коментарі, то вони залишаться на сайті, а Ви втратите до нього доступ. Якщо Ви прийшли / зареєструвалися на сайті, то Вам не доведеться знову заходити в свій обліковий запис через час, сайт автоматично Вас дізнається.`,
           },
           {
+            subtitle: '',
+            p: 'Якщо Ваш коментар зрушився сильно вниз свіжішими коментарями, а Вам важливо отримати відгук на нього, не потрібно знову писати такий же, просто оновіть дату цього коментаря, натиснувши на відповідну іконку у своєму акаунті.',
+          },
+          {
             subtitle: 'Про автора.',
             p: 'Автор ідеї сайту та її реалізації – Омельник Сергій, програміст з України. Я працюю з JavaScript React - бібліотекою для створення інтерфейсів користувача. Цей сайт створено за цією технологією. Як хостинг, сервер і база даних використовуються сервіси Firebase.',
           },
@@ -676,6 +683,10 @@ const DATA = {
             p: 'All registered users will have a personal page on the site, where you can follow your comments and ratings from other users. You can edit or delete your comments. Also available: add an avatar or photo (size 100*100 px, size up to 2kB), change email, login, password, log out of the account or delete the ego. Remember that if you delete your account without first deleting your comments, they will remain on the site, and you will lose access to them. If you have entered / registered on the site, you will not have to log in again after a while, the site will automatically recognize you.',
           },
           {
+            subtitle: '',
+            p: 'If your comment has moved down a lot with more recent comments, and it is important for you to get a response to it, you do not need to write the same one again, just update the date of this comment by clicking on the appropriate icon in your account.',
+          },
+          {
             subtitle: 'About the author.',
             p: `The author of the idea of the site and its implementation is Sergey Omelnik, a programmer from Ukraine. I'm working with JavaScript React - a library for creating user interfaces. This site was created using this technology. Firebase services are used as hosting, server and database.`,
           },
@@ -701,6 +712,10 @@ const DATA = {
           {
             subtitle: '',
             p: 'Все зарегистрированные пользователи будут иметь персональную страничку на сайте, где можно следить за своими комментариями и оценками к ним со стороны других пользователей. Вы можете свои комментарии редактировать или удалять.  Также доступно: добавить аватар или фото (размер 100*100 px, объем до 2кБ), изменить email, логин, пароль, выйти из аккаунта или удалить его. Помните, что, если Вы удалите свой аккаунт, не удалив предварительно свои комментарии, то они останутся на сайте, а Вы потеряете к ним доступ. Если Вы вошли / зарегистрировались на сайте, то Вам не придется снова входить в свой аккаунт через время, сайт автоматически Вас опознает.',
+          },
+          {
+            subtitle: '',
+            p: 'Если Ваш комментарий сдвинулся сильно вниз более свежими комментариями, а для Вас важно получить отклик на него, не нужно снова писать такой же, просто обновите дату этого комментария, нажав на соотвествующую иконку в своем аккаунте.',
           },
           {
             subtitle: 'Об авторе.',
