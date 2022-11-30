@@ -1,8 +1,44 @@
 @import '../../global.scss';
 
+.container {
+  display: flex;
+  flex-direction: column;
+  & p {
+    line-height: 1.5;
+    color: $color-text;
+    margin: 0 0 10px 0;
+  }
+}
+
+.contactBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  & p {
+    color: $color-text;
+    font-weight: $font-weight-bolder;
+  }
+  & img {
+    border-radius: 50%;
+  }
+}
+
+.infoBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.linkBox {
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 10px 0;
+}
+
 .title {
   text-align: center;
-  font-size: calc(10px + 2vmin);
-  color: rgb(15, 14, 14);
-  padding: 20px;
 }

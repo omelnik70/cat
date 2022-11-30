@@ -4,7 +4,6 @@ import Context from '../../Context';
 import { onAuthStateChanged  } from "firebase/auth";
 import { ref, onValue } from "firebase/database";
 
-import assets from '../../assets';
 import { userValidStatus, currentUid, currentAvatar, emailInput, isUser } from '../../data/actions';
 import { auth, database } from '../../firebase';
 import Header from '../Header';
@@ -25,8 +24,6 @@ function App() {
   const [state, dispatch] = useReducer(reducer, DATA);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
-
-  const { ICONS } = assets;
 
   useEffect(()=>{
     const allContent = ref(database, '/data');

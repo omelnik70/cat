@@ -1,4 +1,5 @@
 import { browserLangId } from '../components/Helper/Helper';
+import assets from '../assets';
 
 const DATA = {
     //категории статей
@@ -336,7 +337,7 @@ const DATA = {
     },
 
     //страницы подвала
-    pages: {
+    policy: {
       ua: {
         title: 'Політика конфіденційності сайту alihelper.com.',
         contents: [
@@ -621,6 +622,109 @@ const DATA = {
             pTwo: '',
           },
         ],
+      },
+    },
+
+    //страницы подвала
+    about: {
+      ua: {
+        title: 'Про проект.',
+        contacts: 'Для всіх, хто зацікавлений у співпраці зі мною, мої контакти:',
+        bye: 'Дякую всім, хто користується сайтом, усім миру та добра!',
+        contents: [
+          {
+            subtitle: '',
+            p: 'Алі Помічник - це каталог статей з корисною інформацією про взаємодію покупців з популярним світовим торговим майданчиком AliExpress. Мільйони людей роблять покупки на ній щодня і багато хто з них не знає як вирішити проблеми, що виникають при цьому. Ті, хто опинявся в подібних ситуаціях, знають, що найчастіше знайти корисну інформацію в розділі сервіс покупців AliExpress не так просто.',
+          },
+          {
+            subtitle: '',
+            p: 'На сайті Алі Помічник вся інформація доступна у трьох мовних версіях: російська, українська та англійська. Автоматично, при завантаженні сайту, Ви побачите версію сайту тією мовою, яка встановлена у Вашому браузері, як основна (російська — російська версія, українська — українська версія, будь-яка інша — англійська версія). Якщо ви бажаєте змінити мовну версію сайту, то в шапці сайту перемкніть прапорець.',
+          },
+          {
+            subtitle: '',
+            p: 'Пошук за статтями відбувається так швидко, що Ви навіть не помітите, набираючи запит, що результат вже перед Вами. На сайті зібрано близько 200 актуальних статей на тему. Але, якщо з якоїсь причини, Ви не знайшли відповідь на своє запитання, залиште коментар під будь-яку статтю, можливо, хтось з інших відвідувачів сайту підкаже Вам варіант вирішення Вашої проблеми. Для фільтрації спаму залишити коментар можна буде після простої реєстрації. Розміщення посилань у коментарях заборонено!',
+          },
+          {
+            subtitle: '',
+            p: `Усі зареєстровані користувачі отримають персональну сторінку на сайті, де можна буде переглядати своїми коментарями та оцінками з боку інших користувачів. Ви можете редагувати або видаляти свої коментарі. Також доступно: додати аватар або фото (розмір 100*100 px, об'єм до 2kB), змінити email, логін, пароль, вийти з облікового запису або видалити його. Згадайте, що, якщо Ви оновили свій акаунт, не видаливши попередньо свої коментарі, то вони залишаться на сайті, а Ви втратите до нього доступ. Якщо Ви прийшли / зареєструвалися на сайті, то Вам не доведеться знову заходити в свій обліковий запис через час, сайт автоматично Вас дізнається.`,
+          },
+          {
+            subtitle: 'Про автора.',
+            p: 'Автор ідеї сайту та її реалізації – Омельник Сергій, програміст з України. Я працюю з JavaScript React - бібліотекою для створення інтерфейсів користувача. Цей сайт створено за цією технологією. Як хостинг, сервер і база даних використовуються сервіси Firebase.',
+          },
+        ],
+      },
+      en: {
+        title: 'About the project.',
+        contacts: 'For everyone who is interested in cooperation with me, my contacts:',
+        bye: 'Thanks to everyone who uses the site, peace and goodness to all!',
+        contents: [
+          {
+            subtitle: '',
+            p: 'Ali Assistant is a directory of articles with useful information about the interaction of buyers with the popular global marketplace AliExpress. Millions of people make purchases on it every day and many of them do not know how to solve the problems that arise. Those who have been in similar situations know that it is often not so easy to find useful information in the AliExpress Buyer Service section.',
+          },
+          {
+            subtitle: '',
+            p: 'On the Ali Helper website, all information is available in three language versions: Russian, Ukrainian and English. Automatically, when loading the site, you will see the version of the site in the language that is installed in your browser as the main one (Russian - the Russian version, Ukrainian - the Ukrainian version, any other - the English version). If you want to change the language version of the site, then switch the checkbox in the site header.',
+          },
+          {
+            subtitle: '',
+            p: 'The search for articles is so fast that you will not even notice, typing the search query, that the result is already in front of you. About 200 relevant articles on a given topic are collected on the site. But, if for some reason you did not find the answer to your question, leave a comment under any of the articles, perhaps someone from other visitors to the site will tell you a solution to your problem. To filter spam, you can leave a comment after simple registration. Placing links in comments is prohibited!',
+          },
+          {
+            subtitle: '',
+            p: 'All registered users will have a personal page on the site, where you can follow your comments and ratings from other users. You can edit or delete your comments. Also available: add an avatar or photo (size 100*100 px, size up to 2kB), change email, login, password, log out of the account or delete the ego. Remember that if you delete your account without first deleting your comments, they will remain on the site, and you will lose access to them. If you have entered / registered on the site, you will not have to log in again after a while, the site will automatically recognize you.',
+          },
+          {
+            subtitle: 'About the author.',
+            p: `The author of the idea of the site and its implementation is Sergey Omelnik, a programmer from Ukraine. I'm working with JavaScript React - a library for creating user interfaces. This site was created using this technology. Firebase services are used as hosting, server and database.`,
+          },
+        ],
+      },
+      ru: {
+        title: 'О проекте.',
+        contacts: 'Для всех, кто заинтересован в сотрудничестве со мной, мои контакты:',
+        bye: 'Спасибо всем, кто пользуется сайтом, всем мира и добра!',
+        contents: [
+          {
+            subtitle: '',
+            p: 'Али Помощник — это каталог статей с полезной информацией о взаимодействии покупателей с популярной мировой торговой площадкой AliExpress. Миллионы людей совершают покупки на ней ежедневно и многие из них не знают как решить возникающие при этом проблемы. Те, кто оказывался в подобных ситуациях, знают, что зачастую найти полезную информацию в разделе сервис покупателей AliExpress не так уж и просто.',
+          },
+          {
+            subtitle: '',
+            p: 'На сайте Али Помощник вся информация доступна в трех языковых версиях: русская, украинская и английская. Автоматически, при загрузке сайта, Вы увидите версию сайта на том языке, который установлен в Вашем браузере, как основной (русский — русская версия, украинский — украинская версия, любой другой — английская версия). Если Вы хотите изменить языковую версию сайта, то в шапке сайта переключите флажок.',
+          },
+          {
+            subtitle: '',
+            p: 'Поиск по статьям происходит так быстро, что Вы даже не заметите, набирая поисковый запрос, что результат уже перед Вами. На сайте собрано порядка 200 актуальных статей на заданную тему. Но, если по какой-то причине, Вы не нашли ответ на свой вопрос, оставьте комментарий под любой из статей, возможно, кто-то из других посетителей сайта подскажет Вам вариант решения Вашей проблемы. Для фильтрации спама, оставить комментарий можно будет после простой регистрации. Размещение ссылок в комментариях запрещено!',
+          },
+          {
+            subtitle: '',
+            p: 'Все зарегистрированные пользователи будут иметь персональную страничку на сайте, где можно следить за своими комментариями и оценками к ним со стороны других пользователей. Вы можете свои комментарии редактировать или удалять.  Также доступно: добавить аватар или фото (размер 100*100 px, объем до 2кБ), изменить email, логин, пароль, выйти из аккаунта или удалить его. Помните, что, если Вы удалите свой аккаунт, не удалив предварительно свои комментарии, то они останутся на сайте, а Вы потеряете к ним доступ. Если Вы вошли / зарегистрировались на сайте, то Вам не придется снова входить в свой аккаунт через время, сайт автоматически Вас опознает.',
+          },
+          {
+            subtitle: 'Об авторе.',
+            p: 'Автор идеи сайта и ее реализации — Омельник Сергей, программист из Украины. Я работаю с JavaScript React - библиотекой для создания пользовательских интерфейсов. Этот сайт создан по этой технологии. В качестве хостинга, сервера и базы данных используются сервисы Firebase.',
+          },
+        ],
+        socialNetworks: [
+          {
+            link: 'https://github.com/omelnik70',
+            img: assets.ICONS.GITHUB
+          },
+          {
+            link: 'https://www.linkedin.com/in/serhii-omelnik-25717b250/',
+            img: assets.ICONS.LINKEDIN
+          },
+          {
+            link: 'https://t.me/SerhiiOmelnik',
+            img: assets.ICONS.TELEGRAM
+          },
+          {
+            link: 'https://www.facebook.com/sergejomelnik/',
+            img: assets.ICONS.FACEBOOK
+          },
+        ]
       },
     },
 

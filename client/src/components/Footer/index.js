@@ -24,20 +24,26 @@ function Footer() {
 
   return (
     <div className={styles.container}>
-      <Link to="/">
-        <div className={styles.copyrightBox}>
-          <Copyright className={styles.copyrightImg} />
-          <p className={styles.copyrightText}>{`${copyright} 2022`}</p>
+      <div className={styles.infoBox}>
+        <Link to="/">
+          <div className={styles.copyrightBox}>
+            <Copyright className={styles.copyrightImg} />
+            <p className={styles.copyrightText}>{`${copyright} 2022`}</p>
+          </div>
+        </Link>
+        <Menu />
+        <div className={styles.socialLink}>
+          <a href="https://www.facebook.com/groups/ali.ukraine"><Facebook className={styles.socialIcons} /></a>
+          <a href="https://www.instagram.com/ali.in.ua"><Instagram className={styles.socialIcons} /></a>
+          <a href="https://twitter.com/UaAliexpress"><Twitter className={styles.socialIcons} /></a>
+          <a href="https://www.youtube.com/@Ali_Helper"><Youtube className={styles.socialIcons} /></a>
+          <a href="https://www.tiktok.com/@ali.in.ua"><Tiktok className={styles.socialIcons} /></a>
+          <a href="https://www.reddit.com/user/SWSCompany"><Reddit className={styles.socialIcons} /></a>
         </div>
-      </Link>
-      <Menu />
-      <div className={styles.socialLink}>
-        <a href="https://www.facebook.com/groups/ali.ukraine"><Facebook className={styles.socialIcons} /></a>
-        <a href="https://www.instagram.com/ali.in.ua"><Instagram className={styles.socialIcons} /></a>
-        <a href="https://twitter.com/UaAliexpress"><Twitter className={styles.socialIcons} /></a>
-        <a href="https://www.youtube.com/@Ali_Helper"><Youtube className={styles.socialIcons} /></a>
-        <a href="https://www.tiktok.com/@ali.in.ua"><Tiktok className={styles.socialIcons} /></a>
-        <a href="https://www.reddit.com/user/SWSCompany"><Reddit className={styles.socialIcons} /></a>
+      </div>
+      <div className={styles.authorBox}>
+        <p>Creation of React applications for the Web</p>
+        <a href="https://www.facebook.com/sergejomelnik/">Serhii Omelnik</a>
       </div>
     </div>
   );

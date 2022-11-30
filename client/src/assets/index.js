@@ -1,5 +1,6 @@
 import SEARCH from "./icons/search.svg";
 import FAQ from "./images/faq.svg";
+import AUTHOR from "./images/author.webp";
 import COPYRIGHT from "./icons/copyright.svg";
 import FACEBOOK from "./icons/facebook.svg";
 import INSTAGRAM from "./icons/instagram.svg";
@@ -29,8 +30,14 @@ import LIKE from "./icons/like.svg";
 import DISLIKE from "./icons/dislike.svg";
 import UPDATE from "./icons/update.svg";
 import EDITDOC from "./icons/editDoc.svg";
+import GITHUB from "./icons/github.svg";
+import LINKEDIN from "./icons/linkedin.svg";
+import TELEGRAM from "./icons/telegram.svg";
 
 const ICONS = {
+    TELEGRAM,
+    LINKEDIN,
+    GITHUB,
     UPDATE,
     EDITDOC,
     ACCOUNT,
@@ -64,6 +71,7 @@ const ICONS = {
 };
 
 const IMAGES = {
+    AUTHOR,
     FAQ,
 };
 
