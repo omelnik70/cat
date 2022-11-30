@@ -758,6 +758,12 @@ const DATA = {
             link: 'https://s.zbanx.com/r/TGQVIPUQCBbs',
           },
           {
+            text: 'Акційні пропозиції',
+            link: '',
+          },
+        ],
+        submenu: [
+          {
             text: 'Супер пропозиції',
             link: 'https://s.zbanx.com/r/Zb8gipmyEYx2',
           },
@@ -792,6 +798,12 @@ const DATA = {
             link: 'https://s.zbanx.com/r/TGQVIPUQCBbs',
           },
           {
+            text: 'Special offers',
+            link: '',
+          },
+        ],
+        submenu: [
+          {
             text: 'Super deals',
             link: 'https://s.zbanx.com/r/Zb8gipmyEYx2',
           },
@@ -812,7 +824,6 @@ const DATA = {
             link: 'https://s.zbanx.com/r/u1nPpwW6iaaB',
           },
         ],
-
       },
       ru: {
         logo: 'Али Помощник',
@@ -826,6 +837,12 @@ const DATA = {
             text: 'Каталог',
             link: 'https://s.zbanx.com/r/TGQVIPUQCBbs',
           },
+          {
+            text: 'Акционные предложения',
+            link: '',
+          },
+        ],
+        submenu: [
           {
             text: 'Супер предложения',
             link: 'https://s.zbanx.com/r/Zb8gipmyEYx2',

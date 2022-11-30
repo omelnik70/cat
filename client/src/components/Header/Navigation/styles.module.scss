@@ -6,14 +6,25 @@
   margin: 10px 5%;
 }
 
-.nav {
+.nav,
+.subNav {
+  display: flex;
+}
 
-display: flex;
+.subNav {
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .mainMenu {
   @include mainmenu;
+  position: relative;
   display: inline-block;
+}
+
+.subMenu {
+  position: absolute;
+  z-index: 2;
 }
 
 .cont {
