@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import Context from '../../Context';
+import Menu from './Menu';
 import { ReactComponent as Copyright } from '../../assets/icons/copyright.svg';
 import { ReactComponent as Facebook } from '../../assets/icons/facebook.svg';
 import { ReactComponent as Instagram } from '../../assets/icons/instagram.svg';
@@ -29,6 +30,7 @@ function Footer() {
           <p className={styles.copyrightText}>{`${copyright} 2022`}</p>
         </div>
       </Link>
+      <Menu />
       <div className={styles.socialLink}>
         <a href="https://www.facebook.com/groups/ali.ukraine"><Facebook className={styles.socialIcons} /></a>
         <a href="https://www.instagram.com/ali.in.ua"><Instagram className={styles.socialIcons} /></a>

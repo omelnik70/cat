@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import Pagination from '../../Pagination';
 import ShortDescriptionArticle from '../../ShortDescriptionArticle';
@@ -10,10 +10,14 @@ import { currentArt } from '../../../data/actions';
 import styles from "./styles.module.scss";
 
 
-function Category ({ data, href }) {
-    const { dispatch, state } = useContext(Context);
-    const { currentListArt } = state;
-    const { name, article } = data;
+function Category () {
+    const { dispatch, state, data } = useContext(Context);
+    const { category } = useParams();
+    const { currentListArt, lang } = state;
+    const { categories } = data;
+    const cat = categories && categories.filter(cat => cat.lang.id === lang);
+    const articlesCurrent = cat && cat.filter(item => item.link === category)[0];
+    const { name, article } = articlesCurrent;
     const LIMITART = 5;
     
     return (
@@ -25,7 +29,7 @@ function Category ({ data, href }) {
                     <div key={art.id} >
                         <Link 
                             key={art.id} 
-                            to={`/${href}/${art.link}`}
+                            to={`/${category}/${art.link}`}
                         >
                             <h3 onClick={() => dispatch(currentArt(art.id))}>{art.title}</h3>
                         </Link>

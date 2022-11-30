@@ -335,6 +335,295 @@ const DATA = {
       ru: 'Популярные статьи',
     },
 
+    //страницы подвала
+    pages: {
+      ua: {
+        title: 'Політика конфіденційності сайту alihelper.com.',
+        contents: [
+          {
+            subtitle: '',
+            pOne: `Адміністрація сайту www.alihelper.com зобов'язується зберігати вашу конфіденційність в Інтернеті. Ми приділяємо велике значення охороні наданих вами даних. Наша політика конфіденційності ґрунтується на вимогах`,
+            a: {
+              link: 'https://ec.europa.eu/info/law/law-topic/data-protection_en', 
+              text: ' Загального регламенту захисту персональних даних Європейського Союзу (GDPR). '
+            },
+            pTwo: `Цілі, в яких ми збираємо персональні дані: покращення роботи нашого сервісу, здійснення контактів з відвідувачами даного сайту, здійснення послуг, пов'язаних із напрямком діяльності даного сайту, а також для наведених нижче дій.`,
+          },
+          {
+            subtitle: 'Збір та використання персональних даних.',
+            pOne: 'Ми збираємо та використовуємо ваші персональні дані лише у випадку вашої добровільної згоди. За згодою, ви дозволяєте нам збирати та використовувати такі дані: електронна пошта. Збір та обробка ваших даних проводиться відповідно до законів, що діють на території Європейського Союзу та в державі України.',
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: 'Зберігання даних, зміна та видалення.',
+            pOne: `Користувач, який надав свої персональні дані сайту alihelper.com, має право на їх зміну та видалення, а також на відкликання своєї згоди з їх використанням. Термін, протягом якого зберігатимуться ваші персональні дані: час, необхідний для використання даних для основної діяльності сайту. При завершенні використання даних адміністрація сайту видаляє їх. Для доступу до ваших персональних даних ви можете зв'язатися з адміністрацією сайту за наступною адресою: admin@alihelper.com. Ми можемо передавати ваші особисті дані третій стороні тільки з вашої добровільної згоди, якщо вони були передані, то зміни даних в інших організаціях, не пов'язаних з нами, ми не можемо здійснити.`,
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: 'Використання технічних даних під час відвідування сайту.',
+            pOne: 'При відвідуванні вами сайту alihelper.com у базі даних зберігаються записи про вашу IP адресу, час відвідування, налаштування браузера, операційну систему, а також інша технічна інформація, необхідна для коректного відображення вмісту сайту. За цими даними нам неможливо ідентифікувати особу відвідувача.',
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: 'Надання інформації дітьми.',
+            pOne: `Якщо ви є батьком або опікуном, і ви знаєте, що ваші діти надали нам свої особисті дані без вашої згоди, зв'яжіться з нами: admin@alihelper.com. На нашому сервісі заборонено залишати особисті дані неповнолітніх без згоди батьків чи опікунів.`,
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: 'Використання cookies.',
+            pOne: `Для коректного відображення вмісту та зручності використання сайту alihelper.com ми використовуємо cookie файли. Це невеликі файли, які зберігаються на вашому пристрої. Вони допомагають сайту запам'ятати інформацію про вас, наприклад, якою мовою ви переглядаєте сайт і які сторінки ви вже відкривали, ця інформація буде корисна при наступному відвідуванні. Завдяки файлам cookie перегляд сайту стає значно зручнішим. Докладніше про ці файли ви можете`,
+            a: {
+              link: 'https://ru.wikipedia.org/wiki/Cookie', 
+              text: ' прочитати тут. '
+            },
+            pTwo: 'Ви можете налаштувати прийом або блокування cookie у браузері самостійно. Неможливість приймати cookie може обмежити працездатність сайту.',
+          },
+          {
+            subtitle: 'Використання персональних даних іншими сервісами.',
+            pOne: 'На цьому сайті використовуються сторонні інтернет-сервіси, які здійснюють незалежний від нас збір інформації: Google Analytics, Google AdSense. Зібрані ними дані можуть надаватися іншим службам усередині цих організацій, вони можуть використовувати дані для персоналізації реклами своєї рекламної мережі. Ви можете прочитати угоди цих організацій на їхніх сайтах. Там же ви можете відмовитися від збору ними персональних даних, наприклад, блокувальник',
+            a: {
+              link: 'https://tools.google.com/dlpage/gaoptout', 
+              text: ' Google Analytics є тут. '
+            },
+            pTwo: 'Ми не передаємо персональні дані іншим організаціям та службам, не зазначеним у цій політиці конфіденційності. Виняток становить лише передача інформації за законних вимог державних органів, уповноважених здійснювати дані дії.',
+          },
+          {
+            subtitle: 'Посилання на інші сайти',
+            pOne: 'Наш сайт alihelper.com може містити посилання на інші сайти, які не керуються нами. Ми не відповідаємо за їх зміст. Ми рекомендуємо ознайомитися з політикою конфіденційності кожного сайту, який ви відвідуєте, якщо вона там є.',
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: 'Зміни у політиці конфіденційності.',
+            pOne: `Наш сайт alihelper.com може оновлювати нашу політику конфіденційності час від часу. Ми повідомляємо про будь-які зміни, розмістивши нову політику конфіденційності на цій сторінці. Ми відстежуємо зміни законодавства щодо персональних даних у Європейському Союзі та в державі Україна. Якщо ви залишили персональні дані у нас, то ми повідомимо вас про зміну політики конфіденційності. Якщо ваші персональні дані були введені не коректно, ми не зможемо з вами зв'язатися.`,
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: `Зворотній зв'язок, останні положення.`,
+            pOne: `Зв'язатися з адміністрацією сайту alihelper.com з питань, пов'язаних із політикою конфіденційності, можна за адресою: admin@alihelper.com. Якщо ви не погоджуєтесь з даною політикою конфіденційності, ви не можете користуватися послугами сайту alihelper.com, у цьому випадку ви повинні утриматися від відвідування нашого сайту.`,
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+        ],
+      },
+      en: {
+        title: 'Alihelper.com Website Privacy Policy.',
+        contents: [
+          {
+            subtitle: '',
+            pOne: 'The site administration alihelper.com undertakes to maintain your privacy on the Internet. We attach great importance to the protection of the data you provide. Our privacy policy is based on requirements',
+            a: {
+              link: 'https://ec.europa.eu/info/law/law-topic/data-protection_en', 
+              text: ' European Union General Data Protection Regulation (GDPR). '
+            },
+            pTwo: 'The purposes for which we collect personal data are: improving the operation of our service, establishing contacts with visitors to this site, providing services related to the activity of this site, as well as for the following actions.',
+          },
+          {
+            subtitle: 'Collection and use of personal data.',
+            pOne: 'We collect and use your personal data only with your voluntary consent. By agreeing to this, you authorize us to collect and use the following data: email. The collection and processing of your data is carried out in accordance with the laws in force in the territory of the European Union and in the state of Ukraine.',
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: 'Data storage, modification and deletion.',
+            pOne: 'The user who has provided his personal data to the alihelper.com website has the right to change and delete them, as well as to withdraw his consent to their use. The period for which your personal data will be stored: the time necessary for the data to be used for the main activities of the site. At the end of the use of your data, the site administration deletes them. To access your personal data, you can contact the site administration at the following address: admin@alihelper.com. We can transfer your personal data to a third party only with your voluntary consent, if they were transferred, then we cannot change the data in other organizations that are not related to us.',
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: 'Use of technical data when visiting the site.',
+            pOne: `When you visit the alihelper.com website, the database stores records about your IP address, time of visit, browser settings, operating system, as well as other technical information necessary for the correct display of the site's content. Based on this data, it is impossible for us to identify the identity of the visitor.`,
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: 'Providing information to children.',
+            pOne: 'If you are a parent or guardian and you are aware that your children have provided us with their personal information without your consent, please contact us: admin@alihelper.com. On our service it is forbidden to leave personal data of minors without the consent of parents or guardians.',
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: 'Use of cookies.',
+            pOne: 'For the correct display of the content and for the convenience of using the alihelper.com website, we use cookies. These are small files that are stored on your device. They help the site remember information about you, such as what language you are viewing the site in and what pages you have already opened, this information will be useful the next time you visit. Thanks to cookies, browsing the site becomes much more convenient. You can learn more about these files',
+            a: {
+              link: 'https://ru.wikipedia.org/wiki/Cookie', 
+              text: ' read here. '
+            },
+            pTwo: 'You can configure your browser to accept or block cookies on your own. Failure to accept cookies may limit the functionality of the site.',
+          },
+          {
+            subtitle: 'Use of personal data by other services.',
+            pOne: 'This website uses third-party Internet services that collect information independent of us: Google Analytics, Google AdSense. The data they collect may be shared with other services within these organizations, and they may use the data to personalize ads from their own ad network. You can read the user agreements of these organizations on their websites. In the same place, you can refuse the collection of personal data by them, for example, a blocker',
+            a: {
+              link: 'https://tools.google.com/dlpage/gaoptout', 
+              text: ' Google Analytics is here. '
+            },
+            pTwo: 'We do not share personal data with other organizations and services not listed in this privacy policy. The only exception is the transfer of information under the legal requirements of state bodies authorized to carry out these actions.',
+          },
+          {
+            subtitle: 'Links to other sites.',
+            pOne: 'Our website alihelper.com may contain links to other websites that are not operated by us. We are not responsible for their content. We encourage you to read the privacy policy of each site you visit, if available.',
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: 'Changes to the privacy policy.',
+            pOne: 'Our website alihelper.com may update our privacy policy from time to time. We will notify you of any changes by posting the new privacy policy on this page. We monitor changes in legislation relating to personal data in the European Union and in the state of Ukraine. If you have left personal data with us, we will notify you of a change in the privacy policy. If your personal data was entered incorrectly, we will not be able to contact you.',
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: 'Feedback, final provisions.',
+            pOne: 'You can contact the administration of the alihelper.com website for questions related to the privacy policy at: admin@alihelper.com. If you do not agree with this privacy policy, you may not use the services of the alihelper.com website, in which case you should refrain from visiting our website.',
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+        ],
+      },
+      ru: {
+        title: 'Политика Конфиденциальности сайта alihelper.com.',
+        contents: [
+          {
+            subtitle: '',
+            pOne: 'Администрация сайта alihelper.com обязуется сохранять вашу конфиденциальность в Интернете. Мы уделяем большое значение охране предоставленных вами данных. Наша политика конфиденциальности основана на требованиях',
+            a: {
+              link: 'https://ec.europa.eu/info/law/law-topic/data-protection_en', 
+              text: ' Общего регламента о защите персональных данных Европейского Союза (GDPR). '
+            },
+            pTwo: 'Цели, в которых мы собираем персональные данные: улучшение работы нашего сервиса, осуществление контактов с посетителями данного сайта, осуществление услуг, связанных с направлением деятельности данного сайта, а так же для указанных ниже действий.',
+          },
+          {
+            subtitle: 'Сбор и использование персональных данных.',
+            pOne: 'Мы собираем и используем ваши персональные данные только в случае вашего добровольного согласия. При согласии с этим, вы разрешаете нам собирать и использовать следующие данные: электронная почта. Сбор и обработка ваших данных проводится соответствии с законами, действующими на территории Европейского Союза и в государстве Украина.',
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: 'Хранение данных, изменение и удаление.',
+            pOne: 'Пользователь, предоставивший свои персональные данные сайту alihelper.com имеет право на их изменение и удаление, а так же на отзыв своего согласия с их использованием. Срок, в течение которого будут храниться ваши персональные данные: время, необходимое для использования данных для основной деятельности сайта. При завершении использования ваших данных администрация сайта удаляет их. Для доступа к своим персональным данным вы можете связаться с администрацией сайта по следующему адресу: admin@alihelper.com. Мы можем передавать ваши личные данные третьей стороне только с вашего добровольного согласия, если они были переданы, то изменение данных в других организациях, не связанных с нами, мы осуществить не можем.',
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: 'Использование технических данных при посещении сайта.',
+            pOne: 'При посещении вами сайта alihelper.com в базе данных сохраняются записи о вашем IP адресе, времени посещения, настройках браузера, операционной системе, а также другая техническая информация, необходимая для корректного отображения содержимого сайта. По этим данным нам невозможно идентифицировать личность посетителя.',
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: 'Предоставление информации детьми.',
+            pOne: 'Если Вы являетесь родителем или опекуном, и вы знаете, что ваши дети предоставили нам свои личные данные без Вашего согласия, свяжитесь с нами: admin@alihelper.com. На нашем сервисе запрещено оставлять личные данные несовершеннолетних без согласия родителей или опекунов.',
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: 'Использование cookies.',
+            pOne: 'Для корректного отображения содержимого и для удобства использования сайта alihelper.com мы используем cookie файлы. Это небольшие файлы, которые хранятся на вашем устройстве. Они помогают сайту запомнить информацию о вас, например на каком языке вы просматриваете сайт и какие страницы вы уже открывали, эта информация будет полезна при следующем посещении. Благодаря файлам cookie просмотр сайта становится значительно более удобным. Подробнее про эти файлы вы можете',
+            a: {
+              link: 'https://ru.wikipedia.org/wiki/Cookie', 
+              text: ' прочитать здесь. '
+            },
+            pTwo: 'Вы можете настроить прием или блокировку cookie в браузере самостоятельно. Невозможность принимать cookie может ограничить работоспособность сайта.',
+          },
+          {
+            subtitle: 'Использование персональных данных другими сервисами.',
+            pOne: 'На этом сайте используются сторонние интернет-сервисы, осуществляющие независимый от нас сбор информации: Google Analytics, Google AdSense. Собранные ими данные могут предоставляться другим службам внутри этих организаций, они могут использовать данные для персонализации рекламы своей собственной рекламной сети.  Вы можете прочитать пользовательские соглашения этих организаций на их сайтах. Там же вы можете отказаться от сбора ими персональных данных, к примеру блокировщик',
+            a: {
+              link: 'https://tools.google.com/dlpage/gaoptout', 
+              text: ' Google Analytics находится здесь. '
+            },
+            pTwo: 'Мы не передаем персональные данные другим организациям и службам, не указанным в данной политике конфиденциальности. Исключение составляет только передача информации при законных требованиях государственных органов, уполномоченных осуществлять данные действия.',
+          },
+          {
+            subtitle: 'Ссылки на другие сайты.',
+            pOne: 'Наш сайт alihelper.com может содержать ссылки на другие сайты, которые не управляются нами. Мы не несем ответственность за их содержание. Мы рекомендуем вам ознакомиться с политикой конфиденциальности каждого сайта, который вы посещаете, если она там есть.',
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: 'Изменения в политике конфиденциальности.',
+            pOne: 'Наш сайт alihelper.com может обновлять нашу политику конфиденциальности время от времени. Мы сообщаем о любых изменениях, разместив новую политику конфиденциальности на этой странице. Мы отслеживаем изменения законодательства, касающегося персональных данных в Европейском Союзе и в государстве Украина. Если вы оставили персональные данные у нас, то мы оповестим вас об изменении в политике конфиденциальности. Если ваши персональные данные были введены не корректно, то мы не сможем с вами связаться.',
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+          {
+            subtitle: 'Обратная связь, заключительные положения.',
+            pOne: 'Связаться с администрацией сайта alihelper.com по вопросам, связанным с политикой конфиденциальности можно по адресу: admin@alihelper.com. Если вы не согласны с данной политикой конфиденциальности, вы не можете пользоваться услугами сайта alihelper.com, в этом случае вы должны воздержаться от посещения нашего сайта.',
+            a: {
+              link: '', 
+              text: ''
+            },
+            pTwo: '',
+          },
+        ],
+      },
+    },
+
     //шапка сайта
     header: {
       ua: {
@@ -437,6 +726,46 @@ const DATA = {
           {
             text: 'Центр купонов',
             link: 'https://s.zbanx.com/r/u1nPpwW6iaaB',
+          },
+        ],
+      },
+    },
+
+    //подвал сайта
+    footer: {
+      ua: {
+        menu: [
+          {
+            text: 'Про проект',
+            link: '/about',
+          },
+          {
+            text: 'Політика конфіденційності',
+            link: '/privacy_policy',
+          },
+        ],
+      },
+      en: {
+        menu: [
+          {
+            text: 'About the project',
+            link: '/about',
+          },
+          {
+            text: 'Privacy Policy',
+            link: '/privacy_policy',
+          },
+        ],
+      },
+      ru: {
+        menu: [
+          {
+            text: 'О проекте',
+            link: '/about',
+          },
+          {
+            text: 'Политика конфидициальности',
+            link: '/privacy_policy',
           },
         ],
       },

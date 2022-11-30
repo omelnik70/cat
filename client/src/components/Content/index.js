@@ -40,7 +40,7 @@ function Content () {
             <Navbar data={cat} />
 
             {category && !post ? 
-            (<Category data={articlesCurrent} href={category} />) :
+            (<Category />) :
             post ?
             (<Post 
                 articles={articleCurrent} 

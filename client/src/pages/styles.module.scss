@@ -1,0 +1,8 @@
+@import '../global.scss';
+
+.container {
+  @include container;
+  flex-direction: column;
+  background-color: $background-white;
+  flex: 1 1 auto;
+}

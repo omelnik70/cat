@@ -1,0 +1,23 @@
+@import '../../../global.scss';
+
+/* mobile */
+
+.container {
+  margin: 10px 5%;
+  & a {
+    color: rgba(255, 250, 250, 0.8);
+    &:nth-child(1)::after {
+      content: " | ";
+    }
+  }
+}
+
+.nav {
+
+display: flex;
+}
+
+.footerMenu {
+  @include mainmenu;
+  display: inline-block;
+}

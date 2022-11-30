@@ -17,6 +17,7 @@ import Loading from '../Loading';
 import reducer from '../../data/reducer';
 import Login from '../../pages/Form/Login';
 import Register from '../../pages/Form/Register';
+import Pages from '../../pages';
 
 import styles from './styles.module.scss';
 
@@ -26,7 +27,6 @@ function App() {
   const [data, setData] = useState();
 
   const { ICONS } = assets;
-  const { NOPHOTO } = ICONS;
 
   useEffect(()=>{
     const allContent = ref(database, '/data');
@@ -76,6 +76,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Content/>} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/privacy_policy" element={<Pages />} />
+            <Route path="/about" element={<Pages />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/:category" element={<Content />} />
