@@ -6,6 +6,7 @@
     @include container;
     background-color: $background-white;
     flex: 1 1 auto;
+    margin: 70px 0 0 0;
 }
 
 .contentBox {
@@ -17,20 +18,14 @@
 }
 /* tablets */
 
-@media (min-width: 768px) {
-    .container {
-        margin: 0;
-    }
-}
-
 @media (min-width: 1024px) {
     .container {
-        margin: 0 2%;
+        margin: 75px 2% 0;
     }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1280px) {
     .container {
-        margin: 0 10%;
+        margin: 80px 10% 0;
     }
 }

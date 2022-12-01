@@ -12,11 +12,14 @@
 }
 
 .header {
+    position: fixed;
+    width: 100%;
     background-color: black;
     border-bottom: 3px double #FF420E;
 }
 
 .content {
+    margin-top: 90px;
     flex: 1 1 auto;
 }
 
