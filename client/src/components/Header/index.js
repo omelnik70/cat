@@ -12,10 +12,11 @@ import styles from './styles.module.scss';
 
 function Header () {
     const { state, data } = useContext(Context);
-    const { lang, header, isUser, userValid, avatar } = state;
+    const { lang, header, isUser, userValid, avatar, global } = state;
     const [currentWidth, setCurrentWidth] = useState(window.screen.width);
+    const { SCREENWIDTH } = global;
 
-    window.addEventListener('resize', () => setCurrentWidth(window.screen.width));
+    window.addEventListener('resize', () => setCurrentWidth(window.innerWidth));
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
     const { ua, en, ru } = header;
@@ -23,7 +24,7 @@ function Header () {
 
     return (
         <div className={styles.container}>
-            {currentWidth > state.global.SCREENWIDTH ? 
+            {currentWidth > SCREENWIDTH ? 
             (<>
                 <Link to="/">
                 <h1 className={styles.titleSite}>{title}</h1>

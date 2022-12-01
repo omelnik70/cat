@@ -6,7 +6,7 @@ import Navbar from '../../../Content/Navbar';
 import styles from './styles.module.scss';
 
 
-function MobileMenu ({ menu, submenu, cat }) {
+function MobileMenu ({ cat }) {
     const [visible, setVisible] = useState(false);
     const divRef = useRef();
 
@@ -14,8 +14,6 @@ function MobileMenu ({ menu, submenu, cat }) {
         divRef.current.classList.toggle(styles.change);
         setVisible(!visible);
     };
-
-    console.log(menu, submenu);
 
     return (
         <>

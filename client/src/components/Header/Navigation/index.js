@@ -9,7 +9,8 @@ import styles from './styles.module.scss';
 function Navigation () {
     const [focus, setFocus] = useState(false);
     const { state, data } = useContext(Context);
-    const { lang, header } = state;
+    const { lang, header, global } = state;
+    const { SCREENWIDTH } = global;
     const [currentWidth, setCurrentWidth] = useState(window.screen.width);
     const { categories } = data;
     const cat = categories && categories.filter(cat => cat.lang.id === lang);
@@ -19,11 +20,11 @@ function Navigation () {
     const menu = langUa ? ua.menu : langRu ? ru.menu : en.menu;
     const submenu = langUa ? ua.submenu : langRu ? ru.submenu : en.submenu;
 
-    window.addEventListener('resize', () => setCurrentWidth(window.screen.width));
+    window.addEventListener('resize', () => setCurrentWidth(window.innerWidth));
 
     return (
         <nav className={styles.container}>
-            {currentWidth > state.global.SCREENWIDTH ? (<>
+            {currentWidth > SCREENWIDTH ? (<>
             <ul className={styles.nav}>
                 {menu.map((item, index) => index < 2 ? 
                     <li key={index}><a className={styles.mainMenu} href={item.link}>{item.text}</a></li> :
@@ -41,7 +42,7 @@ function Navigation () {
             </ul>
             </>) :
             (
-            <MobileMenu menu={menu} submenu={submenu} cat={cat} />
+            <MobileMenu cat={cat} />
             )}
         </nav>
     );

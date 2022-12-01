@@ -14,10 +14,11 @@ import styles from './styles.module.scss';
 
 function Content () {
     const { state, data, dispatch } = useContext(Context);
-    const { lang, search, postText, userValid, usersPage, avatar, email, uid, isUser } = state;
+    const { lang, search, postText, userValid, usersPage, avatar, email, uid, isUser, global } = state;
     const { category, post, id } = useParams();
     const navigate = useNavigate();
 
+    const { SCREENWIDTH } = global;
     const { users, categories } = data;
 
     const user = users && Object.values(users).filter(item => id === item.uid)[0];
@@ -27,7 +28,7 @@ function Content () {
     const articleCurrent = articlesCurrent && articlesCurrent.article.filter(item => post === item.link)[0];
 
     const [screenWidth, setScreenWidth] = useState(window.screen.width);
-    window.addEventListener('resize', () => setScreenWidth(window.screen.width));
+    window.addEventListener('resize', () => setScreenWidth(window.innerWidth));
 
     useEffect(() => {
         (id && uid === id) && navigate(userValid);
@@ -35,7 +36,7 @@ function Content () {
 
     return (
         <div className={styles.container}>
-            {screenWidth > state.global.SCREENWIDTH ? 
+            {screenWidth > SCREENWIDTH ? 
             (<>
             <Navbar data={cat} />
 
