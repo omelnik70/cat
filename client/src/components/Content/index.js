@@ -1,6 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
+import { currentSearch } from '../../data/actions';
 import Search from './Search';
 import Faq from './Faq';
 import SearchResult from './Search/SearchResult';
@@ -14,69 +15,47 @@ import styles from './styles.module.scss';
 
 function Content () {
     const { state, data, dispatch } = useContext(Context);
-    const { lang, search, postText, userValid, usersPage, avatar, email, uid, isUser, global } = state;
+    const { lang, search, postText, userValid, usersPage, avatar, email, uid, isUser } = state;
     const { category, post, id } = useParams();
     const navigate = useNavigate();
-
-    const { SCREENWIDTH } = global;
     const { users, categories } = data;
-
     const user = users && Object.values(users).filter(item => id === item.uid)[0];
     const cat = categories && categories.filter(cat => cat.lang.id === lang);
-
     const articlesCurrent = cat && cat.filter(item => item.link === category)[0];
     const articleCurrent = articlesCurrent && articlesCurrent.article.filter(item => post === item.link)[0];
-
-    const [screenWidth, setScreenWidth] = useState(window.screen.width);
-    window.addEventListener('resize', () => setScreenWidth(window.innerWidth));
-
+    
     useEffect(() => {
         (id && uid === id) && navigate(userValid);
     }, [uid]);
 
+    const resetSearchResult = () => {
+        dispatch(currentSearch(''));
+    };
+
     return (
         <div className={styles.container}>
-            {screenWidth > SCREENWIDTH ? 
-            (<>
-            <Navbar data={cat} />
-
-            {category && !post ? 
-            (<Category />) :
-            post ?
-            (<Post 
-                articles={articleCurrent} 
-                lang={lang} 
-                isUser={isUser}
-                text={postText} 
-                data={categories} 
-                userId={uid}
-                avatar={avatar}
-                email={email}
-                uid={uid}
-            />) :
-            (<div className={styles.contentBox}>
+            <div className={styles.desctop}>
+                <Navbar data={cat} fn={resetSearchResult} />
+            </div>
+            <div className={styles.contentBox}>
                 <Search />
                 {search && (<SearchResult />)}
-                {!search && !id && (<Faq article={cat} />)}
-                {!search && id && user && (
-                    <User 
-                        id={id} 
-                        user={user} 
-                        link={userValid} 
-                        data={users} 
-                        dispatch={dispatch} 
-                        lang={lang} 
-                        usersPage={usersPage}
-                        avatar={avatar}
-                    />
-                )}
-            </div>)}
-            </>) :
-            (<div className={styles.contentBox}>
-                <Search />
-                {search && (<SearchResult />)}
-                {!search && !id && (<Faq article={cat} />)}
-                {!search && id && user && (
+                {category && !post && (<Category />)}
+                {post && (
+                        <Post 
+                            articles={articleCurrent} 
+                            lang={lang} 
+                            isUser={isUser}
+                            text={postText} 
+                            data={categories} 
+                            userId={uid}
+                            avatar={avatar}
+                            email={email}
+                            uid={uid}
+                        />
+                    )}
+                {!category && !search && !id && (<Faq article={cat} />)}
+                {id && user && !search && !category && !post && (
                     <User 
                         id={id} 
                         user={user} 
@@ -89,7 +68,6 @@ function Content () {
                     />
                 )}
             </div>
-            )}
         </div>
     );
 }

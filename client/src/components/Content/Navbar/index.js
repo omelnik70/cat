@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import styles from './styles.module.scss';
 
-function Navbar ( { data, onClick } ) {
+function Navbar ( { data, fn } ) {
     const { category } = useParams();
 
     return (
@@ -11,11 +11,15 @@ function Navbar ( { data, onClick } ) {
             <ul className={styles.menu}>
                 {data.map(item => 
                     <Link 
-                        onClick={onClick}
+                        onClick={fn}
                         key={item.id} 
                         to={`/${item.link}`}
                     >
-                        <li className={item.link === category ? `${styles.link} ${styles.activ}` : styles.link}>{item.name}</li>
+                        <li
+                            className={item.link === category ? `${styles.link} ${styles.activ}` : styles.link}
+                        >
+                            {item.name}
+                        </li>
                     </Link>
                 )}
             </ul>

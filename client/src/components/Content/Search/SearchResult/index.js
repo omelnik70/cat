@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import ShortDescriptionArticle from '../../../ShortDescriptionArticle';
-import { resultSearchArticles } from '../../../../data/actions';
+import { resultSearchArticles, currentSearch } from '../../../../data/actions';
 import Context from '../../../../Context';
 import Pagination from '../../../Pagination';
 import Separator from '../../../Separator';
@@ -42,7 +42,12 @@ function SearchResult () {
                         <Link 
                             to={`/${art.category.link}/${art.link}`}
                         >
-                            <h3 className={styles.articleTitle}>{art.title}</h3>
+                            <h3 
+                                onClick={() => dispatch(currentSearch(''))}
+                                className={styles.articleTitle}
+                            >
+                                {art.title}
+                            </h3>
                         </Link>
                         <ShortDescriptionArticle item={art} />
                     </div>

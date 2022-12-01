@@ -2,10 +2,19 @@
 
 /* mobile */
 
-.container {
+// .container {
+//     @include container;
+//     align-items: center;
+//     justify-content: space-between;
+// }
+.mobileBox {
     @include container;
     align-items: center;
     justify-content: space-between;
+}
+
+.desctopBox {
+    display: none;
 }
 
 .titleSite {
@@ -57,7 +66,18 @@ li:last-child::after {
 /* tablets */
 
 @media (min-width: 768px) {
-    .container {
+    // .container {
+    //     margin: 0;
+    // }
+
+    .mobileBox {
+        display: none;
+    }
+
+    .desctopBox {
+        @include container;
+        align-items: center;
+        justify-content: space-between;
         margin: 0;
     }
 

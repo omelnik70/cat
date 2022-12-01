@@ -1,17 +1,25 @@
-import React, { useRef, useState } from 'react';
-//import { Link } from 'react-router-dom';
+import React, { useRef, useState, useContext } from 'react';
 
+import Context from '../../../../Context';
+import { currentSearch } from '../../../../data/actions';
 import Navbar from '../../../Content/Navbar';
 
 import styles from './styles.module.scss';
 
 
 function MobileMenu ({ cat }) {
+    const { dispatch } = useContext(Context);
     const [visible, setVisible] = useState(false);
     const divRef = useRef();
 
     function addStyle() {
         divRef.current.classList.toggle(styles.change);
+        setVisible(!visible);
+    };
+
+    const resetSearchResult = () => {
+        divRef.current.classList.toggle(styles.change);
+        dispatch(currentSearch(''));
         setVisible(!visible);
     };
 
@@ -23,7 +31,7 @@ function MobileMenu ({ cat }) {
                 <div className={styles.bar3}></div>
             </div>
             <div className={visible ? styles.menuBox : styles.menuBoxHide}>
-                <Navbar data={cat}  onClick={addStyle} />
+                <Navbar data={cat} fn={resetSearchResult} />
             </div>
         </>
     );

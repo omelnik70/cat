@@ -9,6 +9,10 @@
     margin: 70px 0 0 0;
 }
 
+.desctop {
+    display: none;
+}
+
 .contentBox {
     width: 100%;
     display: flex;
@@ -18,9 +22,19 @@
 }
 /* tablets */
 
+@media (min-width: 768px) {
+    .container {
+        margin-top: 75px;
+    }
+}
+
 @media (min-width: 1024px) {
     .container {
         margin: 75px 2% 0;
+    }
+    .desctop {
+        display: block;
+        flex: 1 1 30%;
     }
 }
 

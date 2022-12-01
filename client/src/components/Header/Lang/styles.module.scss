@@ -15,9 +15,13 @@
 }
 
 .list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    top: -18px;
-    right: 20px;
+    top: 16px;
+    left: 0;
     opacity: 0;
     z-index: 1;
 }
@@ -31,7 +35,7 @@
     cursor: pointer;
 }
 
-.img:nth-child(2) {
-    margin: 4px 0;
-}
+// .img:nth-child(2) {
+//     margin: 4px 0;
+// }
 /* Показать выпадающее меню при наведении курсора */

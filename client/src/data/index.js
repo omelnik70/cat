@@ -838,7 +838,7 @@ const DATA = {
             link: 'https://s.zbanx.com/r/TGQVIPUQCBbs',
           },
           {
-            text: 'Акционные предложения',
+            text: 'Акции',
             link: '',
           },
         ],

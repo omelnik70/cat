@@ -9,9 +9,7 @@ import styles from './styles.module.scss';
 function Navigation () {
     const [focus, setFocus] = useState(false);
     const { state, data } = useContext(Context);
-    const { lang, header, global } = state;
-    const { SCREENWIDTH } = global;
-    const [currentWidth, setCurrentWidth] = useState(window.screen.width);
+    const { lang, header } = state;
     const { categories } = data;
     const cat = categories && categories.filter(cat => cat.lang.id === lang);
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
@@ -20,30 +18,27 @@ function Navigation () {
     const menu = langUa ? ua.menu : langRu ? ru.menu : en.menu;
     const submenu = langUa ? ua.submenu : langRu ? ru.submenu : en.submenu;
 
-    window.addEventListener('resize', () => setCurrentWidth(window.innerWidth));
-
     return (
         <nav className={styles.container}>
-            {currentWidth > SCREENWIDTH ? (<>
             <ul className={styles.nav}>
                 {menu.map((item, index) => index < 2 ? 
                     <li key={index}><a className={styles.mainMenu} href={item.link}>{item.text}</a></li> :
                     <div  
                         className={styles.mainMenu}
                         onMouseEnter={() => setFocus(true)}
+                        onMouseLeave={() => setFocus(false)}
                         key={index}>
                         {item.text}
                         {focus && 
-                        (<ul onMouseLeave={() => setFocus(false)}>
+                        (<ul>
                             {submenu.map((item, index) => <li key={index}><a href={item.link}>{item.text}</a></li>)}
                         </ul>)}
                     </div>
                 )}
             </ul>
-            </>) :
-            (
-            <MobileMenu cat={cat} />
-            )}
+            <div className={styles.mobileMenu}>
+                <MobileMenu cat={cat} />
+            </div>
         </nav>
     );
 }

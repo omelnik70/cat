@@ -19,6 +19,10 @@ function Category () {
     const articlesCurrent = cat && cat.filter(item => item.link === category)[0];
     const { name, article } = articlesCurrent;
     const LIMITART = 5;
+
+    const handleClickArticle = (id) => {
+        dispatch(currentArt(id));
+    };
     
     return (
         <div className={styles.container}>
@@ -31,7 +35,7 @@ function Category () {
                             key={art.id} 
                             to={`/${category}/${art.link}`}
                         >
-                            <h3 onClick={() => dispatch(currentArt(art.id))}>{art.title}</h3>
+                            <h3 onClick={() => handleClickArticle(art.id)}>{art.title}</h3>
                         </Link>
                         <ShortDescriptionArticle item={art} />
                     </div>
