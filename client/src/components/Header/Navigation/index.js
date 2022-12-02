@@ -5,9 +5,8 @@ import Context from '../../../Context';
 
 import styles from './styles.module.scss';
 
-
 function Navigation () {
-    const [focus, setFocus] = useState(false);
+    const [focusClick, setFocusClick] = useState(false);
     const { state, data } = useContext(Context);
     const { lang, header } = state;
     const { categories } = data;
@@ -17,19 +16,22 @@ function Navigation () {
     const { ua, en, ru } = header;
     const menu = langUa ? ua.menu : langRu ? ru.menu : en.menu;
     const submenu = langUa ? ua.submenu : langRu ? ru.submenu : en.submenu;
+    const allMenu = menu.concat(submenu).filter(item => item.link !== '');
 
     return (
         <nav className={styles.container}>
+            <ul className={styles.navMax}>
+                {allMenu.map((item, index) => (<li key={index}><a className={styles.mainMenu} href={item.link}>{item.text}</a></li>))}
+            </ul>
             <ul className={styles.nav}>
                 {menu.map((item, index) => index < 2 ? 
                     <li key={index}><a className={styles.mainMenu} href={item.link}>{item.text}</a></li> :
                     <div  
                         className={styles.mainMenu}
-                        onMouseEnter={() => setFocus(true)}
-                        onMouseLeave={() => setFocus(false)}
+                        onClick={() => setFocusClick(!focusClick)}
                         key={index}>
                         {item.text}
-                        {focus && 
+                        {focusClick && 
                         (<ul>
                             {submenu.map((item, index) => <li key={index}><a href={item.link}>{item.text}</a></li>)}
                         </ul>)}

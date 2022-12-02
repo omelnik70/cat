@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import ShortDescriptionArticle from '../../ShortDescriptionArticle';
@@ -33,22 +33,50 @@ function Faq ({ article }) {
                     <Separator />
                 </div>
                 <div className={styles.faqMenuBox}>
-                    <div className={styles.faqMenu}>
-                        {currentListArt.map(item => (
+                    <div className={styles.desktop}>
+                        <div className={styles.faqMenu}>
+                            {currentListArt.map(item => (
+                                <div key={item.id}>
+                                    <Link to={`/${item.category.link}/${item.link}`}>
+                                        <h3 className={styles.articleTitle}>{item.title}</h3>
+                                    </Link>
+                                    <ShortDescriptionArticle item={item} />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+            
+                    <div className={styles.mobile}>
+                        {articles.map((item, index) => index < 5 ? (
                             <div key={item.id}>
                                 <Link to={`/${item.category.link}/${item.link}`}>
                                     <h3 className={styles.articleTitle}>{item.title}</h3>
                                 </Link>
                                 <ShortDescriptionArticle item={item} />
                             </div>
-                        ))}
+                        ): '')}
                     </div>
+
                     <div className={styles.image}>
                         <img src={assets.IMAGES.FAQ} alt="" />
                     </div>
                 </div>
             </div>
-            <Pagination artConstant={articles} limit={LIMITART} />
+            
+            <div ref={ref} className={styles.mobile}>
+                {articles.map((item, index) => (
+                    <div key={item.id}>
+                    <Link to={`/${item.category.link}/${item.link}`}>
+                        <h3 className={styles.articleTitle}>{item.title}</h3>
+                    </Link>
+                    <ShortDescriptionArticle item={item} />
+                    </div>
+                ))}
+            </div>
+
+            <div className={styles.desktop}>
+                <Pagination artConstant={articles} limit={LIMITART} />
+            </div>
         </div>
     );
 }

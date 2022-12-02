@@ -12,7 +12,21 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-start;
+}
+
+.title {
+    margin-top: 20px;
+}
+
+.titleLogin {
     align-items: center;
+    & h2 {
+        font-size: $font-size-average;
+    }
+    & p {
+        font-size: $font-size-average;
+    }
 }
 
 .nameLogin {
@@ -24,35 +38,41 @@
 .titleLogin {
     position: relative;
     justify-content: space-between;
+    flex-wrap: wrap-reverse;
 }
 
 .info {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin: 15px;
+    flex-wrap: wrap;
 }
 
 .photo {
+    display: none;
+}
+
+.photoMobile {
     position: relative;
     width: inherit;
     height: inherit;
     display: flex;
     align-items: center;
     border-radius: 50%;
+    margin: 0 25px 0 5px;
     & img {
         border-radius: 50%;
         width: 50px;
         height: 50px;
-        cursor: pointer;
     }
 }
 
 .delete {
     position: absolute;
-    top: -10px;
-    right: -10px;
+    top: -15px;
+    right: -15px;
     border-color: $border-menu;
+    cursor: pointer;
 }
 
 .editBlock {
@@ -61,6 +81,11 @@
     right: -25px;
     border-color: $border-menu;
     z-index: 1;
+}
+
+.visibil {
+    width: 25px;
+    cursor: pointer;
 }
 
 input[type="file"] {
@@ -75,8 +100,10 @@ input[type="file"] {
 }
 
 .warning,
+.warningAvatar,
 .message,
-.editMessage {
+.editMessage,
+.warningphotoMobile {
     position: absolute;
     top: 85px;
     left: 50%;
@@ -94,6 +121,14 @@ input[type="file"] {
     }
 }
 
+.warningAvatar {
+    top: 140px;
+}
+
+.warningphotoMobile {
+    left: 100%;
+}
+
 .logoutBlock,
 .deleteBlock {
     position: relative;
@@ -103,7 +138,9 @@ input[type="file"] {
 .deleteBlock {
     display: flex;
     justify-content: flex-end;
+    margin: 5px 0 0 0;
 }
+
 
 .editMessage,
 .logoutMessage,
@@ -139,6 +176,7 @@ input[type="file"] {
     background-color: $color-text-button;
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgb(92, 92, 92);
+    margin: 30px;
 }
 
 .borderBold,
@@ -151,8 +189,8 @@ input[type="file"] {
 }
 
 .loginBlock,
-.emailBlock,
-.passwordBlock {
+.edit,
+.visibility {
     cursor: pointer;
 }
 
@@ -216,4 +254,28 @@ input[type="file"] {
     flex: 1 1 auto;
     text-align: center;
     color: $color-text;
+}
+
+@media (min-width: 768px) {
+    .photo {
+        position: relative;
+        width: inherit;
+        height: inherit;
+        display: flex;
+        align-items: center;
+        border-radius: 50%;
+        & img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    .photoMobile {
+        display: none;
+    }
+
+    .delete {
+        top: 10px;
+    }
 }

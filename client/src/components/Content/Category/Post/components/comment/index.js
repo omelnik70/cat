@@ -14,8 +14,6 @@ import { ReactComponent as Delete } from '../../../../../../assets/icons/delete.
 import styles from "./styles.module.scss";
 
 function Comment ({ 
-    avatar, 
-    login, 
     timestamp, 
     text, 
     like, 
@@ -26,7 +24,6 @@ function Comment ({
     articleLink,
     keyId, 
     flag = false,
-    uid,
     confirm,
     cancel
 }) {
@@ -34,7 +31,9 @@ function Comment ({
     const [edit, setEdit] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const { state } = useContext(Context);
-    const { commentsList, lang } = state;
+    const { commentsList, lang, email, uid, avatar } = state;
+    const at = email.indexOf("@");
+    const login = email.substring(0, at).trim();
     const { ua, en, ru } = commentsList;
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
@@ -102,10 +101,19 @@ function Comment ({
     
     return (
         <div className={styles.container}>
-            {flag && (<Link to={articleLink}><h3>{articleTitle}</h3></Link>)}
+            {flag && (<Link to={articleLink}><h3 className={styles.title}>{articleTitle}</h3></Link>)}
             <div className={styles.articleBox}>
-                <div className={styles.avatar}>
-                    {avatar ? (<img src={avatar} alt="avatar" />) : <Nophoto />}
+                <div className={styles.avatarEditMobile}>
+                    <div className={styles.avatar}>
+                        {avatar ? (<img src={avatar} alt="avatar" />) : <Nophoto />}
+                    </div>
+                    {flag && (
+                        <div className={styles.editBoxMobile}>
+                            <Update onClick={handleClickUpdate} className={styles.update} />
+                            <Editdoc onClick={handleClickEditdoc} className={styles.edit} />
+                            <Delete onClick={handleClickDeleteCom} className={styles.deleteCom} />
+                        </div>
+                    )}
                 </div>
                 <div className={styles.info}>
                     <div className={styles.user}>
@@ -136,11 +144,13 @@ function Comment ({
                                 
                             )}
                         </div>
-                        {flag && (<div className={styles.editBox}>
-                            <Update onClick={handleClickUpdate} className={styles.update} />
-                            <Editdoc onClick={handleClickEditdoc} className={styles.edit} />
-                            <Delete onClick={handleClickDeleteCom} className={styles.deleteCom} />
-                        </div>)}
+                        {flag && (
+                            <div className={styles.editBox}>
+                                <Update onClick={handleClickUpdate} className={styles.update} />
+                                <Editdoc onClick={handleClickEditdoc} className={styles.edit} />
+                                <Delete onClick={handleClickDeleteCom} className={styles.deleteCom} />
+                            </div>
+                        )}
                     </div>
                     {!edit ? (<div className={styles.text}><p>{text}</p></div>) :
                     (<>

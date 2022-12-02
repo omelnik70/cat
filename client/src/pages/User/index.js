@@ -10,7 +10,7 @@ import { currentAvatar, userValidStatus, currentUid } from '../../data/actions';
 import { auth } from '../../firebase';
 import Modal from '../../components/Modal';
 import { storage } from '../../firebase';
-import { ReactComponent as Nophoto } from '../../assets/icons/nophoto.svg';
+import assets from '../../assets';
 import { ReactComponent as Addphoto } from '../../assets/icons/addphoto.svg';
 import { ReactComponent as Delete } from '../../assets/icons/delete.svg';
 import { ReactComponent as Info } from '../../assets/icons/info.svg';
@@ -19,12 +19,9 @@ import { ReactComponent as Logout } from '../../assets/icons/logout.svg';
 import styles from "./styles.module.scss";
 
 function User ({ user, link, dispatch, lang, usersPage, avatar }) {
-    const [focus, setFocus] = useState(false);
-    const [editEmailFocus, setEditEmailFocus] = useState(false);
+
     const [editPasswordFocus, setEditPasswordFocus] = useState(false);
-    const [logoutFocus, setLogoutFocus] = useState(false);
     const [loginFocus, setLoginFocus] = useState(false);
-    const [deleteFocus, setDeleteFocus] = useState(false);
     const [modal, setModal] = useState(true);
     const [modalEmail, setModalEmail] = useState(true);
     const [modalPassword, setModalPassword] = useState(true);
@@ -63,7 +60,8 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
     } = prevent;
 
     const { email, password, uid, avatar: avatarDelete } = user;
-
+    const { ICONS } = assets;
+    const { VISIBILITY, VISIBILITYOFF } = ICONS;
     let searchEmail;
 
     const novigate = useNavigate();
@@ -73,8 +71,6 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
     const { ua, en, ru } = usersPage;
     const pass = langUa ? ua.password : langRu ? ru.password : en.password;
     const title = langUa ? ua.title : langRu ? ru.title : en.title;
-    const logout = langUa ? ua.logout : langRu ? ru.logout : en.logout;
-    const change = langUa ? ua.change : langRu ? ru.change : en.change;
     const removeText = langUa ? ua.remove : langRu ? ru.remove : en.remove;
     const comments = langUa ? ua.comments : langRu ? ru.comments : en.comments;
     const confirm = langUa ? ua.confirm : langRu ? ru.confirm : en.confirm;
@@ -117,6 +113,7 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
 
     const handleChangeImg = (e) => {
         const file = e.target.files[0];
+        console.log(file);
         const { size, name } = file;
         if (size < 2001) {
             const storageRef = ref(storage, `users/${name}`);
@@ -247,10 +244,6 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
         });
     };
 
-    const handleKey = (e) => {
-        if (e.key === "Enter" && prevention) setModal(false);
-    };
-
     return (
         <div className={styles.container}>
             <div className={styles.title}>
@@ -263,35 +256,46 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
                     >
                         {`@_${loginDefault}`}
                     </p>}
+
+                    <div className={styles.photoMobile}>
+                        {!avatar && (
+                            <>
+                                <label for="file"><Addphoto /></label>
+                                <input 
+                                    id="file"
+                                    onChange={(e) => handleChangeImg(e)}
+                                    type="file" 
+                                    name={'+'}
+                                    accept=".jpeg,.png,.webp,.svg,.jpg,.gif"
+                                />
+                            </>
+                        )}
+                        {avatar && (
+                            <>
+                                <img id="avatar" src={avatar} alt="" />
+                                <Delete onClick={handleClickDeleteAvatar} className={styles.delete} />
+                            </>
+                        )}
+                    </div>
                     
                     {loginFocus && (<div className={styles.warning}>
                         <Info className={styles.warningSvg} />
                         {warningLogin.map((item, index) => (<p key={index}>{item}</p>))}
                     </div>)}
                 </div>
+
                 <div 
                     className={styles.logoutBlock}
-                    onPointerEnter={() => setLogoutFocus(true)} 
-                    onPointerLeave={() => setLogoutFocus(false)}
                     onClick={handleClickLogout}
                 >
                     <Logout />
-                    {logoutFocus && (
-                        <span className={styles.logoutMessage}>{logout}</span>
-                    )}
                 </div>
             </div>
             <div className={styles.info}>
-                <div 
-                    onPointerEnter={() => setFocus(true)} 
-                    onPointerLeave={() => setFocus(false)}
-                    className={styles.photo}
-                >
-                    {(!avatar && !focus) && (<Nophoto />)}
-                    {(!avatar && focus) && (
+                <div className={styles.photo}>
+                    {!avatar && (
                         <>
                             <label className={styles.file} htmlFor="file">
-                                <span className={styles.message}>{change}</span>
                                 <Addphoto />
                                 <input 
                                     id="file"
@@ -300,48 +304,25 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
                                     accept=".jpeg,.png,.webp,.svg,.jpg,.gif"
                                 />
                             </label>
-                            <div className={styles.warning}>
-                                <Info className={styles.warningSvg} />
-                                {warningImgOne.map((item, index) => (<p key={index}>{item}</p>))}
-                            </div>
                         </>
                     )}
-                    {(avatar && !focus) && (<img src={avatar} alt="" />)}
-                    {(avatar && focus) && (
+                    {avatar && (
                         <>
-                            <label htmlFor="avatar"><span  className={styles.message}>{removeText}</span>
-                                <img onClick={handleClickDeleteAvatar} id="avatar" src={avatar} alt="" />
-                                <Delete className={styles.delete} />
-                            </label>
+                            <img id="avatar" src={avatar} alt="" />
+                            <Delete onClick={handleClickDeleteAvatar} className={styles.delete} />
                         </>
                     )}
                 </div>
-                <div 
-                    onPointerEnter={() => setEditEmailFocus(true)} 
-                    onPointerLeave={() => setEditEmailFocus(false)}
-                    onClick={handleClickEditEmail}
-                    className={styles.border}
-                >
+                <div className={styles.border}>
                     <div className={styles.emailBlock}>
                         <div className={styles.block}>
                             <h4>Email:</h4>
                             <p>{email}</p>
                         </div>
                     </div>
-                    <div className={styles.editBlock}>
-                        {editEmailFocus && (
-                            <>
-                                <Edit />
-                                <span className={styles.editMessage}>{change}</span>
-                            </>
-                        )}
-                    </div>
+                    <div className={styles.editBlock}><Edit onClick={handleClickEditEmail} className={styles.edit} /></div>
                 </div>
-                <div 
-                    onPointerEnter={() => setEditPasswordFocus(true)} 
-                    onPointerLeave={() => setEditPasswordFocus(false)}
-                    onClick={handleClickEditPassword}
-                    className={styles.border}>
+                <div className={styles.border}>
                     <div className={styles.passwordBlock}>
                         <div className={styles.block}>
                             <h4>{passwordName}</h4>
@@ -349,12 +330,8 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
                         </div>
                     </div>
                     <div className={styles.editBlock}>
-                        {editPasswordFocus && (
-                            <>
-                                <Edit />
-                                <span className={styles.editMessage}>{change}</span>
-                            </>
-                        )}
+                        <img onClick={() => setEditPasswordFocus(!editPasswordFocus)} src={editPasswordFocus ? VISIBILITY : VISIBILITYOFF} alt=""  className={styles.visibil} />
+                        <Edit onClick={handleClickEditPassword} className={styles.edit} />
                     </div>
                 </div>
             </div>
@@ -374,21 +351,16 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
                         articleLink={item.articleLink}
                         keyId={item.keyId} 
                         flag={true}
+                        confirm={confirm}
+                        cancel={reset}
                     />
             ))}
             {!commentsData.length && (<p className={styles.listComments}>{commentsText}</p>)}
-            <div 
-                className={styles.deleteBlock}
-                onPointerEnter={() => setDeleteFocus(true)} 
-                onPointerLeave={() => setDeleteFocus(false)}
-            >
+            <div className={styles.deleteBlock}>
                 <div 
                     onClick={handleClickDeleteUserWarning}
                     className={styles.deleteIcon}>
                     <Delete />
-                    {deleteFocus && (
-                        <span className={styles.deleteMessage}>{removeText}</span>
-                    )}
                 </div>   
             </div>
             {prevention && (

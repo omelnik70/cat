@@ -8,17 +8,34 @@
   padding: 15px 0 0 0;
 }
 
+.title {
+  line-height: 1.2;
+  font-size: $font-size-average;
+}
+
 .articleBox {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
 }
 
 .avatar {
   padding: 5px;
   & img {
+    width: 30px;
     border-radius: 50%;
   }
+}
+
+.editBoxMobile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0 0 0;
+}
+
+.editBox {
+  display: none;
 }
 
 .info {
@@ -26,6 +43,14 @@
   flex-direction: column;
   flex: 1 1 100%;
   padding: 5px;
+  border: 1px solid $color-background-light;
+}
+
+.avatarEditMobile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .user,
@@ -33,15 +58,21 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  & h4, p {
+    font-size: $font-size-little;
+  }
 }
 
 .userBox {
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   justify-content: start;
+  flex-wrap: wrap;
+  border: 1px solid $color-background-light;
 }
 
 .user {
   justify-content: space-between;
+  align-items: center;
 }
 
 .edit {
@@ -133,3 +164,49 @@
   background-color: $background-white;
   cursor: default;
 }
+
+@media (min-width: 480px) {
+  .articleBox {
+    flex-direction: row;
+  }
+
+  .avatar {
+    & img {
+      width: 50px;
+    }
+  }
+  
+  .user,
+  .userBox {
+    & h4, p {
+      font-size: $font-size-normal;
+    }
+  }
+
+  .avatarEditMobile {
+    flex-direction: column;
+  }
+
+  .editBoxMobile {
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .editBoxMobile {
+    display: none;
+  }
+  
+  .articleBox {
+    flex-direction: row;
+  }
+
+  .editBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+

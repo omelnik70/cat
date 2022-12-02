@@ -11,38 +11,33 @@ import Comment from '../comment';
 import styles from "./styles.module.scss";
 
 function CommentList ({ 
-    isUser, 
     articleId, 
     userId, 
-    avatar, 
-    email, 
     articleTitle, 
-    uid, 
     more,
     info,
-    cancel,
-    confirm,
     register,
     loginText,
     add
 }) {
+    const { state } = useContext(Context);
+    const { usersPage, lang, email, uid, avatar, isUser } = state;
     const [comments, setComments] = useState([]);
     const [text, setText] = useState('');
     const [invalidText, setInvalidText] = useState(false);
     const [modal, setModal] = useState(false);
     const [commentsIndex, setCommentsIndex] = useState(5);
-    const { state } = useContext(Context);
     const { category, post } = useParams();
     const at = email.indexOf("@");
     const login = email.substring(0, at).trim();
     const articleLink = `/${category}/${post}`;
     const timestamp = new Date().getTime();
 
-    const { usersPage, lang } = state;
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
     const { ua, en, ru } = usersPage;
     const understand = langUa ? ua.understand : langRu ? ru.understand : en.understand;
+    const addComment = langUa ? ua.addComment : langRu ? ru.addComment : en.addComment;
     const warningValidComment = langUa ? ua.warningValidComment : langRu ? ru.warningValidComment : en.warningValidComment;
 
     useEffect(() => {
@@ -121,7 +116,7 @@ function CommentList ({
                         onChange={(e) => inputValidText(e)}
                         name="comment" 
                         id="comment"
-                        placeholder='Добавьте комментарий'
+                        placeholder={addComment}
                         value={text}
                     ></textarea>
                     <button 
@@ -146,8 +141,6 @@ function CommentList ({
                     articleId={item.articleId}
                     userId={item.userId}
                     uid={uid}
-                    confirm={confirm}
-                    cancel={cancel}
                 />
             ))}
             {invalidText && (

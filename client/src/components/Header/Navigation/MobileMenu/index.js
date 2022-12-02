@@ -6,7 +6,6 @@ import Navbar from '../../../Content/Navbar';
 
 import styles from './styles.module.scss';
 
-
 function MobileMenu ({ cat }) {
     const { dispatch } = useContext(Context);
     const [visible, setVisible] = useState(false);

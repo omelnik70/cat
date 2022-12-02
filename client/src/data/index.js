@@ -31,11 +31,6 @@ const DATA = {
     //статус пользователя
     userValid: "/login",
 
-    //размер экрана для мобильных настроек
-    global: {
-      SCREENWIDTH: 767,
-    },
-
     //форма входа / регистрации
     registr: {
       ua: {
@@ -98,8 +93,6 @@ const DATA = {
     usersPage: {
       ua: {
         title: 'Користувач:',
-        logout: 'Вийти',
-        change: 'Змінити',
         understand: 'Я розумію',
         password: 'Пароль',
         warningImgTwo: [
@@ -140,17 +133,17 @@ const DATA = {
         warningEmailOne: 'Email введено некоректно!',
         warningEmailTwo: 'Такий email вже є!',
         confirm: 'Підтвердити',
+        cancel: 'Відміна',
         remove: 'Bидалити',
         reset: 'Скасування',
         passwordName: 'Пароль',
         comments: 'Коментарі',
         commentsText: '-- Ви поки що нічого не коментували --',
         deleteUser: 'Ви дійсно хочете видалити обліковий запис?',
+        addComment: 'Додати коментар',
       },
       en: {
         title: 'User:',
-        logout: 'Log out',
-        change: 'Change',
         understand: 'I understand',
         password: 'Password',
         warningImgTwo: [
@@ -191,17 +184,17 @@ const DATA = {
         warningEmailOne: 'Email entered incorrectly!',
         warningEmailTwo: 'This email already exists!',
         confirm: 'Confirm',
+        cancel: 'Cancel',
         remove: 'Delete',
         reset: 'Cancel',
         passwordName: 'Password',
         comments: 'Comments',
         commentsText: `-- You haven't commented yet --`,
         deleteUser: 'Are you sure you want to delete your account?',
+        addComment: 'Add a comment',
       },
       ru: {
         title: 'Пользователь:',
-        logout: 'Выйти',
-        change: 'Изменить',
         understand: 'Я понимаю',
         password: 'Пароль',
         warningImgTwo: [
@@ -242,12 +235,14 @@ const DATA = {
         warningEmailOne: 'Email введен некорректно!',
         warningEmailTwo: 'Такой email уже есть!',
         confirm: 'Подтвердить',
+        cancel: 'Отмена',
         remove: 'Удалить',
         reset: 'Отмена',
         passwordName: 'Пароль',
         comments: 'Комментарии',
         commentsText: '-- Вы пока ничего не комментировали --',
         deleteUser: 'Вы действительно хотите удалить аккаунт?',
+        addComment: 'Добавьте комментарий',
       },
     },
 

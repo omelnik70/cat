@@ -10,7 +10,6 @@ import Lang from './Lang';
 
 import styles from './styles.module.scss';
 
-
 function Header () {
     const { state, data, dispatch } = useContext(Context);
     const { lang, header, isUser, userValid, avatar } = state;
@@ -20,32 +19,22 @@ function Header () {
     const title = langUa ? ua.logo : langRu ? ru.logo : en.logo;
 
     return (
-        <>
-            <div className={styles.desctopBox}>
-                <Link to="/">
-                <h1 className={styles.titleSite}>{title}</h1>
-                </Link>
-                <div className={styles.navigation}>
-                    <Navigation />
-                </div>
-                <ul className={styles.lang}>
-                    <Lang data={data} />
-                </ul>
-                <Link onClick={() => dispatch(currentSearch(''))} to={userValid}>
-                        {(isUser && !avatar) && (<Avatar className={styles.account} />)}
-                        {(isUser && avatar) && (<img className={styles.avatar} src={avatar} alt=''></img>)}
-                        {!isUser && (<Account className={styles.account} />)}
-                </Link>
+        <div className={styles.container}>
+            <Link to="/">
+            <h1 className={styles.titleSite}>{title}</h1>
+            </Link>
+            <div className={styles.navigation}>
+                <Navigation />
             </div>
-            <div className={styles.mobileBox}>
-                <Link to="/">
-                    <h1 className={styles.titleSite}>{title}</h1>
-                </Link>
-                <div className={styles.navigation}>
-                    <Navigation />
-                </div>
-            </div>  
-        </>
+            <ul className={styles.lang}>
+                <Lang data={data} />
+            </ul>
+            <Link onClick={() => dispatch(currentSearch(''))} to={userValid}>
+                    {(isUser && !avatar) && (<Avatar className={styles.account} />)}
+                    {(isUser && avatar) && (<img className={styles.avatar} src={avatar} alt=''></img>)}
+                    {!isUser && (<Account className={styles.account} />)}
+            </Link>
+        </div>
     );
 }
 

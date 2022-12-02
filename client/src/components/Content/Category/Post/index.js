@@ -118,13 +118,9 @@ function Post ({ articles, lang, text, data, isUser, userId, avatar, email, uid 
                     </button>
                 </div>
             <CommentList 
-                isUser={isUser} 
                 articleId={id} 
                 userId={userId} 
-                avatar={avatar} 
-                email={email} 
                 articleTitle={title}
-                uid={uid}
                 more={more}
                 confirm={confirm}
                 cancel={cancel}
