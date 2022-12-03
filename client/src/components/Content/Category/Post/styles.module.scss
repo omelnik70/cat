@@ -52,6 +52,7 @@
   align-items: center;
   justify-content: space-evenly;
   & button {
+    @include button;
     min-width: 100px;
     width: auto;
     & span {

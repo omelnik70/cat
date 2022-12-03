@@ -5,4 +5,9 @@
   flex-direction: column;
   background-color: $background-white;
   flex: 1 1 auto;
+  margin-top: 75px;
+  & h2 {
+    font-size: 20px;
+    line-height: 1.5;
+  }
 }
