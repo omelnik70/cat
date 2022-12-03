@@ -1,0 +1,43 @@
+[debug] [2022-12-03T17:31:59.684Z] ----------------------------------------------------------------------
+[debug] [2022-12-03T17:31:59.695Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
+[debug] [2022-12-03T17:31:59.697Z] CLI Version:   11.16.1
+[debug] [2022-12-03T17:31:59.697Z] Platform:      win32
+[debug] [2022-12-03T17:31:59.698Z] Node Version:  v18.7.0
+[debug] [2022-12-03T17:31:59.701Z] Time:          Sat Dec 03 2022 19:31:59 GMT+0200 (Восточная Европа, стандартное время)
+[debug] [2022-12-03T17:31:59.702Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-12-03T17:32:00.714Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-12-03T17:32:00.718Z] > authorizing via signed-in user (omelnik70@gmail.com)
+[info] i  emulators: Starting emulators: hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: hosting"}}
+[debug] [2022-12-03T17:32:00.827Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2022-12-03T17:32:00.827Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2022-12-03T17:32:00.829Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[warn] !  emulators: It seems that you are running multiple instances of the emulator suite for project alihelper-8a62d. This may result in unexpected behavior. 
+[debug] [2022-12-03T17:32:00.860Z] [hub] writing locator at C:\Users\User\AppData\Local\Temp\hub-alihelper-8a62d.json
+[debug] [2022-12-03T17:32:01.128Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/alihelper-8a62d/sites 
+[debug] [2022-12-03T17:32:02.581Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/alihelper-8a62d/sites 200
+[debug] [2022-12-03T17:32:02.583Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/alihelper-8a62d/sites {"sites":[{"name":"projects/alihelper-8a62d/sites/alihelper-8a62d","defaultUrl":"https://alihelper-8a62d.web.app","appId":"1:60154718509:web:a8e716f3cbf2adf2b00ba4","type":"DEFAULT_SITE"}]}
+[debug] [2022-12-03T17:32:02.592Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/alihelper-8a62d/webApps/1:60154718509:web:a8e716f3cbf2adf2b00ba4/config [none]
+[debug] [2022-12-03T17:32:03.732Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/alihelper-8a62d/webApps/1:60154718509:web:a8e716f3cbf2adf2b00ba4/config 200
+[debug] [2022-12-03T17:32:03.733Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/alihelper-8a62d/webApps/1:60154718509:web:a8e716f3cbf2adf2b00ba4/config {"projectId":"alihelper-8a62d","appId":"1:60154718509:web:a8e716f3cbf2adf2b00ba4","databaseURL":"https://alihelper-8a62d-default-rtdb.europe-west1.firebasedatabase.app","storageBucket":"alihelper-8a62d.appspot.com","locationId":"europe-west","apiKey":"AIzaSyBuk71HV6bulm8ec-63C4osAONHRLMMhR0","authDomain":"alihelper-8a62d.firebaseapp.com","messagingSenderId":"60154718509","measurementId":"G-3FQKHGGCFV"}
+[debug] [2022-12-03T17:32:03.752Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/alihelper-8a62d [none]
+[debug] [2022-12-03T17:32:04.196Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/alihelper-8a62d 200
+[debug] [2022-12-03T17:32:04.197Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/alihelper-8a62d {"projectId":"alihelper-8a62d","projectNumber":"60154718509","displayName":"AliHelper","name":"projects/alihelper-8a62d","resources":{"hostingSite":"alihelper-8a62d","realtimeDatabaseInstance":"alihelper-8a62d-default-rtdb","storageBucket":"alihelper-8a62d.appspot.com","locationId":"europe-west"},"state":"ACTIVE","etag":"1_b9a77672-c2c4-4f60-a95c-c4e537d97351"}
+[info] i  hosting[alihelper-8a62d]: Serving hosting files from: build {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mbuild\u001b[22m"}}
+[info] +  hosting[alihelper-8a62d]: Local server: http://127.0.0.1:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://127.0.0.1:5000\u001b[22m\u001b[24m"}}
+[warn] !  emulators: The Emulator UI is not starting, either because none of the emulated products have an interaction layer in Emulator UI or it cannot determine the Project ID. Pass the --project flag to specify a project. {"metadata":{"emulator":{"name":"hub"},"message":"The Emulator UI is not starting, either because none of the emulated products have an interaction layer in Emulator UI or it cannot determine the Project ID. Pass the --project flag to specify a project."}}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+└─────────────────────────────────────────────────────────────┘
+
+┌──────────┬────────────────┐
+│ Emulator │ Host:Port      │
+├──────────┼────────────────┤
+│ Hosting  │ 127.0.0.1:5000 │
+└──────────┴────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
