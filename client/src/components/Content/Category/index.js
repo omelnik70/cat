@@ -24,8 +24,6 @@ function Category () {
     const handleClickArticle = (id) => {
         dispatch(currentArt(id));
     };
-
-    console.log(data);
     
     return (
         <div className={styles.container}>

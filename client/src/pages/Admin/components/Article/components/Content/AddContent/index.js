@@ -101,11 +101,7 @@ function AddContent() {
     const handleCloseImg = (index) => {
         const desertRef = ref(storage, `images/${file.name}`);
         (uploaded &&
-        deleteObject(desertRef).then(() => {
-            //console.log('File deleted successfully');
-          }).catch((error) => {
-            //console.log('Uh-oh, an error occurred!', error)
-          }));
+        deleteObject(desertRef).then(() => {}).catch((error) => {}));
         arrImg.splice(index, 1);
         setInputs({
             ...inputs, 
@@ -120,27 +116,10 @@ function AddContent() {
     const handleUploadImg = () => {
         const storageRef = ref(storage, `images/${file.name}`);
         const uploadTask = uploadBytesResumable(storageRef, file);
-        uploadBytes(storageRef, file).then((snapshot) => {
-            //console.log('Uploaded a blob or file!');
-        });
+        uploadBytes(storageRef, file).then((snapshot) => {});
         uploadTask.on('state_changed', 
-            (snapshot) => {
-                // Observe state change events such as progress, pause, and resume
-                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                // const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                // console.log('Upload is ' + progress + '% done');
-                // switch (snapshot.state) {
-                // case 'paused':
-                //     //console.log('Upload is paused');
-                //     break;
-                // case 'running':
-                //     //console.log('Upload is running');
-                //     break;
-                // }
-            }, 
-            (error) => {
-                //console.log('error', error);
-            }, 
+            (snapshot) => {}, 
+            (error) => {}, 
             () => {
                 // Handle successful uploads on complete
                 // For instance, get the download URL: https://firebasestorage.googleapis.com/...
@@ -150,7 +129,6 @@ function AddContent() {
                         imgSrc: downloadURL,
                         uploaded: true,
                     });
-                    //console.log('File available at', imgSrc);
                 });
             }
         );

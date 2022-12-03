@@ -37,7 +37,6 @@ function App() {
     onAuthStateChanged(auth, user => {
       if (user) {
         const { uid, photoURL, email } = user;
-        console.log(uid, photoURL, email);
         dispatch(userValidStatus(`/users/${uid}`));
         dispatch(currentUid(uid));
         dispatch(currentAvatar(photoURL));

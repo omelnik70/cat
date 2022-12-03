@@ -101,8 +101,6 @@ function CommentList ({
         setModal(false);
     };
 
-    console.log(comments);
-
     return (
         <div className={styles.container}>
             {!isUser && (

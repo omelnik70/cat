@@ -116,7 +116,6 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
 
     const handleChangeImg = (e) => {
         const file = e.target.files[0];
-        console.log(file);
         const { size, name } = file;
         if (size < 2001) {
             const storageRef = ref(storage, `users/${name}`);
