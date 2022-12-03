@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
+import LazyLoad from '../../LazyLoad';
 import Pagination from '../../Pagination';
 import ShortDescriptionArticle from '../../ShortDescriptionArticle';
 import Context from '../../../Context';
@@ -23,25 +24,37 @@ function Category () {
     const handleClickArticle = (id) => {
         dispatch(currentArt(id));
     };
+
+    console.log(data);
     
     return (
         <div className={styles.container}>
             <div className={styles.contentBox}>
                 <h2 className={styles.categoryTitle}>{name}</h2>
                 <Separator />
-                {currentListArt.map(art => (
-                    <div key={art.id} >
-                        <Link 
-                            key={art.id} 
-                            to={`/${category}/${art.link}`}
-                        >
-                            <h3 onClick={() => handleClickArticle(art.id)}>{art.title}</h3>
-                        </Link>
-                        <ShortDescriptionArticle item={art} />
-                    </div>
-                ))}
+
+                <div className={styles.desktop}>
+                    {currentListArt.map(art => (
+                        <div key={art.id} >
+                            <Link 
+                                key={art.id} 
+                                to={`/${category}/${art.link}`}
+                            >
+                                <h3 onClick={() => handleClickArticle(art.id)}>{art.title}</h3>
+                            </Link>
+                            <ShortDescriptionArticle item={art} />
+                        </div>
+                    ))}
+                </div>
+
+                <LazyLoad arr={article} int={10} lang={lang} flag={'art'} />
+
             </div>
-            <Pagination artChangeable={article} limit={LIMITART} />
+
+            <div className={styles.desktop}>
+                <Pagination artChangeable={article} limit={LIMITART} />
+            </div>
+
         </div>
     );
 }

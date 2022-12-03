@@ -23,10 +23,10 @@ function Content () {
     const cat = categories && categories.filter(cat => cat.lang.id === lang);
     const articlesCurrent = cat && cat.filter(item => item.link === category)[0];
     const articleCurrent = articlesCurrent && articlesCurrent.article.filter(item => post === item.link)[0];
-    
+
     useEffect(() => {
-        (id && uid === id) && navigate(userValid);
-    }, [uid]);
+        (isUser && uid === id) ? navigate(userValid) : navigate('/');
+    }, [isUser]);
 
     const resetSearchResult = () => {
         dispatch(currentSearch(''));

@@ -8,7 +8,15 @@
     justify-content: space-between;
 }
 
+.searchText {
+    text-align: center;
+}
+
 .hide {
+    display: none;
+}
+
+.desktop {
     display: none;
 }
 
@@ -25,8 +33,7 @@
 /* tablets */
 
 @media (min-width: 768px) {
-    // .container {
-    //     display: flex;
-    //     flex-direction: row;
-    // }
+    .desktop {
+        display: block;
+    }
 }

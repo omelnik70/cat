@@ -24,11 +24,9 @@
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
-    "dev": "npm run dev --prefix ../backend",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "web": "concurrently \"npm run dev\" \"npm run start\""
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

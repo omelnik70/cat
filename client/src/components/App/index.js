@@ -71,18 +71,18 @@ function App() {
     <Context.Provider value={value}>
       <div className={styles.container}>
         <div className={styles.header}><Header /></div>
-          <Routes>
-            <Route path="/" element={<Content/>} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/privacy_policy" element={<Pages />} />
-            <Route path="/about" element={<Pages />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/:category" element={<Content />} />
-            <Route path="/:category/:post" element={<Content />} />
-            <Route path="/users/:id" element={<Content />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
+            <Routes>
+              <Route path='*' element={<Error />} />
+              <Route path="/" element={<Content/>} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/privacy_policy" element={<Pages />} />
+              <Route path="/about" element={<Pages />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/:category" element={<Content />} />
+              <Route path="/:category/:post" element={<Content />} />
+              <Route path="/users/:id" element={<Content />} />
+            </Routes>
         <div className={styles.footer}><Footer /></div>
       </div>
     </Context.Provider>

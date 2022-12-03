@@ -141,6 +141,7 @@ const DATA = {
         commentsText: '-- Ви поки що нічого не коментували --',
         deleteUser: 'Ви дійсно хочете видалити обліковий запис?',
         addComment: 'Додати коментар',
+        more: 'Дивитися ще...',
       },
       en: {
         title: 'User:',
@@ -192,6 +193,7 @@ const DATA = {
         commentsText: `-- You haven't commented yet --`,
         deleteUser: 'Are you sure you want to delete your account?',
         addComment: 'Add a comment',
+        more: 'See more...',
       },
       ru: {
         title: 'Пользователь:',
@@ -243,6 +245,7 @@ const DATA = {
         commentsText: '-- Вы пока ничего не комментировали --',
         deleteUser: 'Вы действительно хотите удалить аккаунт?',
         addComment: 'Добавьте комментарий',
+        more: 'Смотреть еще...',
       },
     },
 

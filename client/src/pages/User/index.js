@@ -4,6 +4,7 @@ import { signOut, deleteUser, updateEmail, updatePassword, updateProfile } from 
 import { ref as refData, update, remove, onValue } from "firebase/database";
 import { useNavigate } from 'react-router';
 
+import LazyLoad from '../../components/LazyLoad';
 import Comment from '../../components/Content/Category/Post/components/comment';
 import { database } from '../../firebase';
 import { currentAvatar, userValidStatus, currentUid } from '../../data/actions';
@@ -24,6 +25,7 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
     const [loginFocus, setLoginFocus] = useState(false);
     const [modal, setModal] = useState(true);
     const [modalEmail, setModalEmail] = useState(true);
+    const [commentsIndex, setCommentsIndex] = useState(5);
     const [modalPassword, setModalPassword] = useState(true);
     const [modalUser, setModalUser] = useState(true);
     const [modalDeleteUser, setModalDeleteUser] = useState(true);
@@ -81,6 +83,7 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
     const passwordName = langUa ? ua.passwordName : langRu ? ru.passwordName : en.passwordName;
     const warningImgOne = langUa ? ua.warningImgOne : langRu ? ru.warningImgOne : en.warningImgOne;
     const warningImgTwo = langUa ? ua.warningImgTwo : langRu ? ru.warningImgTwo : en.warningImgTwo;
+    const more = langUa ? ua.more : langRu ? ru.more : en.more;
     const warningEmail = langUa ? ua.warningEmail : langRu ? ru.warningEmail : en.warningEmail;
     const warningPasswordOne = langUa ? ua.warningPasswordOne : langRu ? ru.warningPasswordOne : en.warningPasswordOne;
     const warningPasswordTwo = langUa ? ua.warningPasswordTwo : langRu ? ru.warningPasswordTwo : en.warningPasswordTwo;
@@ -244,6 +247,10 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
         });
     };
 
+    const handleClickMore = () => {
+        setCommentsIndex(commentsIndex + 5);
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.title}>
@@ -260,7 +267,7 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
                     <div className={styles.photoMobile}>
                         {!avatar && (
                             <>
-                                <label for="file"><Addphoto /></label>
+                                <label htmlFor="file"><Addphoto /></label>
                                 <input 
                                     id="file"
                                     onChange={(e) => handleChangeImg(e)}
@@ -336,26 +343,37 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
                 </div>
             </div>
             <h3>{comments} ({commentsData.length}):</h3>
-            {commentsData && commentsData.map((item, index) => (
-                    <Comment 
-                        key={index} 
-                        avatar={item.avatar} 
-                        login={item.login} 
-                        timestamp={item.timestamp} 
-                        text={item.text} 
-                        like={item.like} 
-                        dislike={item.dislike} 
-                        articleId={item.articleId} 
-                        userId={item.userId}
-                        articleTitle={item.articleTitle}
-                        articleLink={item.articleLink}
-                        keyId={item.keyId} 
-                        flag={true}
-                        confirm={confirm}
-                        cancel={reset}
-                    />
-            ))}
+
+            <div className={styles.desktop}>
+                {commentsData && commentsData.map((item, index) => index < commentsIndex && (
+                        <Comment 
+                            key={index} 
+                            avatar={item.avatar} 
+                            login={item.login} 
+                            timestamp={item.timestamp} 
+                            text={item.text} 
+                            like={item.like} 
+                            dislike={item.dislike} 
+                            articleId={item.articleId} 
+                            userId={item.userId}
+                            articleTitle={item.articleTitle}
+                            articleLink={item.articleLink}
+                            keyId={item.keyId} 
+                            flag={true}
+                            confirm={confirm}
+                            cancel={reset}
+                        />
+                ))}
+            </div>
+
+            <LazyLoad arr={commentsData} int={5} lang={lang} flag={'user'} uid={uid} confirm={confirm} reset={reset} />
+
             {!commentsData.length && (<p className={styles.listComments}>{commentsText}</p>)}
+
+            <div className={styles.desktop}>
+                {(commentsData.length > commentsIndex) && (<p className={styles.more} onClick={handleClickMore}>{more}</p>)}
+            </div>
+
             <div className={styles.deleteBlock}>
                 <div 
                     onClick={handleClickDeleteUserWarning}

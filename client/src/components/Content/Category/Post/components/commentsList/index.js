@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ref, onValue, child, push, update } from "firebase/database";
 
+import LazyLoad from '../../../../../LazyLoad';
 import Context from '../../../../../../Context';
 import Modal from '../../../../../Modal';
 import { database } from '../../../../../../firebase';
@@ -100,6 +101,8 @@ function CommentList ({
         setModal(false);
     };
 
+    console.log(comments);
+
     return (
         <div className={styles.container}>
             {!isUser && (
@@ -128,21 +131,27 @@ function CommentList ({
                     </button>
                 </div>
             )}
-            {Boolean(comments.length) && comments.map((item, index) => index < commentsIndex && (
-                <Comment 
-                    key={index}
-                    keyId={item.keyId} 
-                    avatar={item.avatar} 
-                    login={item.login} 
-                    text={item.text} 
-                    like={item.like} 
-                    dislike={item.dislike} 
-                    timestamp={item.timestamp}
-                    articleId={item.articleId}
-                    userId={item.userId}
-                    uid={uid}
-                />
-            ))}
+
+            <div className={styles.desktop}>
+                {Boolean(comments.length) && comments.map((item, index) => index < commentsIndex && (
+                    <Comment 
+                        key={index}
+                        keyId={item.keyId} 
+                        avatar={item.avatar} 
+                        login={item.login} 
+                        text={item.text} 
+                        like={item.like} 
+                        dislike={item.dislike} 
+                        timestamp={item.timestamp}
+                        articleId={item.articleId}
+                        userId={item.userId}
+                        uid={uid}
+                    />
+                ))}
+            </div>
+
+            <LazyLoad arr={comments} int={5} lang={lang} flag={'com'} uid={uid} />
+
             {invalidText && (
                 <Modal active={modal} setActive={setModal} link={articleLink}>
                 <div className={styles.prevention}>
@@ -154,7 +163,11 @@ function CommentList ({
                 </div>
                 </Modal>
             )}
-            {(comments.length > commentsIndex) && !invalidText && (<button className={styles.more} onClick={handleClickMore}>{more}</button>)}
+
+            <div className={styles.desktop}>
+                {(comments.length > commentsIndex) && !invalidText && (<p className={styles.more} onClick={handleClickMore}>{more}</p>)}
+            </div>
+
         </div>
     );
 }

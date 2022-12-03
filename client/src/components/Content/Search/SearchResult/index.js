@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import LazyLoad from '../../../LazyLoad';
 import ShortDescriptionArticle from '../../../ShortDescriptionArticle';
 import { resultSearchArticles, currentSearch } from '../../../../data/actions';
 import Context from '../../../../Context';
@@ -37,30 +38,39 @@ function SearchResult () {
                         <Separator />
                     </>
                 )}
-                {search && currentListArt.map(art => (
-                    <div key={art.id} >
-                        <Link 
-                            to={`/${art.category.link}/${art.link}`}
-                        >
-                            <h3 
-                                onClick={() => dispatch(currentSearch(''))}
-                                className={styles.articleTitle}
+
+                <div className={styles.desktop}>
+                    {search && currentListArt.map(art => (
+                        <div key={art.id} >
+                            <Link 
+                                to={`/${art.category.link}/${art.link}`}
                             >
-                                {art.title}
-                            </h3>
-                        </Link>
-                        <ShortDescriptionArticle item={art} />
-                    </div>
-                ))}
+                                <h3 
+                                    onClick={() => dispatch(currentSearch(''))}
+                                    className={styles.articleTitle}
+                                >
+                                    {art.title}
+                                </h3>
+                            </Link>
+                            <ShortDescriptionArticle item={art} />
+                        </div>
+                    ))}
+                </div>
+
+                <LazyLoad arr={resultSearchArt} int={10} lang={lang} flag={'art'} />
+
                 {!currentListArt.length && (
                     <>
                         <h2 className={styles.searchTitle}>{title}</h2>
                         <Separator />
-                        <p>{text}</p>
+                        <p className={styles.searchText}>{text}</p>
                     </>
                 )}
             </div>
-            {search && (<Pagination artChangeable={resultSearchArt} limit={LIMITART} />)}
+
+            <div className={styles.desktop}>
+                {search && (<Pagination artChangeable={resultSearchArt} limit={LIMITART} />)}
+            </div>
         </div>
     );
 }

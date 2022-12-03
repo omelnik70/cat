@@ -40,8 +40,8 @@ textarea {
 }
 
 .more {
-    display: block;
-    margin: 0 auto;
+    text-align: center;
+    margin: 10px 0 0 0;
 }
 
 .prevention {
@@ -76,4 +76,14 @@ textarea {
     box-shadow: 2px 2px 5px $color-background;
     color: $color-link;
     cursor: default;
+}
+
+.desktop {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .desktop {
+        display: block;
+    }
 }

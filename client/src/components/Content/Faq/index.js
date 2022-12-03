@@ -1,6 +1,7 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
+import LazyLoad from '../../LazyLoad';
 import ShortDescriptionArticle from '../../ShortDescriptionArticle';
 import Context from '../../../Context';
 import Pagination from '../../Pagination';
@@ -46,32 +47,12 @@ function Faq ({ article }) {
                         </div>
                     </div>
             
-                    <div className={styles.mobile}>
-                        {articles.map((item, index) => index < 5 ? (
-                            <div key={item.id}>
-                                <Link to={`/${item.category.link}/${item.link}`}>
-                                    <h3 className={styles.articleTitle}>{item.title}</h3>
-                                </Link>
-                                <ShortDescriptionArticle item={item} />
-                            </div>
-                        ): '')}
-                    </div>
+                    <LazyLoad arr={articles} int={10} lang={lang} flag={'art'} />
 
                     <div className={styles.image}>
                         <img src={assets.IMAGES.FAQ} alt="" />
                     </div>
                 </div>
-            </div>
-            
-            <div ref={ref} className={styles.mobile}>
-                {articles.map((item, index) => (
-                    <div key={item.id}>
-                    <Link to={`/${item.category.link}/${item.link}`}>
-                        <h3 className={styles.articleTitle}>{item.title}</h3>
-                    </Link>
-                    <ShortDescriptionArticle item={item} />
-                    </div>
-                ))}
             </div>
 
             <div className={styles.desktop}>
