@@ -11,7 +11,7 @@ import { currentArt } from '../../../data/actions';
 import styles from "./styles.module.scss";
 
 
-function Category () {
+function Category ({ fn }) {
     const { dispatch, state, data } = useContext(Context);
     const { category } = useParams();
     const { currentListArt, lang } = state;
@@ -23,6 +23,7 @@ function Category () {
 
     const handleClickArticle = (id) => {
         dispatch(currentArt(id));
+        fn();
     };
     
     return (
@@ -45,7 +46,7 @@ function Category () {
                     ))}
                 </div>
 
-                <LazyLoad arr={article} int={10} lang={lang} flag={'art'} />
+                <LazyLoad arr={article} int={10} lang={lang} flag={'art'} fn={fn} />
 
             </div>
 

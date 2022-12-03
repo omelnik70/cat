@@ -79,24 +79,26 @@ function Post ({ articles, lang, text, data, isUser, userId, avatar, email, uid 
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>{title}</h2>
-            {content.map((item, index) => (
-                <div className={styles.text} key={index}>
-                    {item.text_1 && item.text_1}
-                    {item.imgSrc && (<div className={styles.containerImg}><img src={item.imgSrc} alt="" title={item.imgTitle} /><span>{item.imgTitle}</span></div>)}
-                    {(item.strong && !(item.li_1 || item.li_2)) && (<strong>{item.strong}</strong>)}
-                    {(item.aHref && !(item.li_1 || item.li_2)) && (item.aHref.indexOf('http') ? <Link to={item.aHref}>{item.aText}</Link> : <a href={item.aHref}>{item.aText}</a>)}
-                    {item.text_2 && item.text_2}
-                    {(item.li_1 || item.li_2) && (
-                        <ul>
-                            <li>{item.li_1 && item.li_1}
-                                {item.strong && (<strong>{item.strong}</strong>)}
-                                {item.aHref && (item.aHref.indexOf('http') ? <Link to={item.aHref}>{item.aText}</Link> : <a href={item.aHref}>{item.aText}</a>)}
-                                {item.li_2 && item.li_2}
-                            </li>
-                        </ul>
-                    )}
-                </div>
-            ))}
+            <div className={styles.textBox}>
+                {content.map((item, index) => (
+                    <div className={styles.text} key={index}>
+                        {item.text_1 && item.text_1}
+                        {item.imgSrc && (<div className={styles.containerImg}><img src={item.imgSrc} alt="" title={item.imgTitle} /><span>{item.imgTitle}</span></div>)}
+                        {(item.strong && !(item.li_1 || item.li_2)) && (<strong>{item.strong}</strong>)}
+                        {(item.aHref && !(item.li_1 || item.li_2)) && (item.aHref.indexOf('http') ? <Link to={item.aHref}>{item.aText}</Link> : <a href={item.aHref}>{item.aText}</a>)}
+                        {item.text_2 && item.text_2}
+                        {(item.li_1 || item.li_2) && (
+                            <ul>
+                                <li>{item.li_1 && item.li_1}
+                                    {item.strong && (<strong>{item.strong}</strong>)}
+                                    {item.aHref && (item.aHref.indexOf('http') ? <Link to={item.aHref}>{item.aText}</Link> : <a href={item.aHref}>{item.aText}</a>)}
+                                    {item.li_2 && item.li_2}
+                                </li>
+                            </ul>
+                        )}
+                    </div>
+                ))}
+            </div>
             <Separator />
             <div className={styles.likeContainer}>
                 <h4>{helpfulInfo}</h4>

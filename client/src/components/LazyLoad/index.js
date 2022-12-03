@@ -7,7 +7,7 @@ import Comment from '../Content/Category/Post/components/comment';
 import styles from "./styles.module.scss";
 
 
-function LazyLoad ({ arr, int, lang, flag, uid, confirm, reset }) {
+function LazyLoad ({ arr, int, lang, flag, uid, confirm, reset, fn }) {
     //динамическая пагинация
     const[currentArr, setCurrentArr] = useState([]); //текущий массив
     const[currentCountElement, setCurrentCountElement] = useState(int); //количество выводимых элементов массива изначально
@@ -51,7 +51,7 @@ function LazyLoad ({ arr, int, lang, flag, uid, confirm, reset }) {
             {currentArr.map(item => (
                 flag === 'art' && (<div key={item.id}>
                     <Link to={`/${item.category.link}/${item.link}`}>
-                        <h3 className={styles.articleTitle}>{item.title}</h3>
+                        <h3 onClick={fn} className={styles.articleTitle}>{item.title}</h3>
                     </Link>
                     <ShortDescriptionArticle item={item} />
                 </div>)

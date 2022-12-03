@@ -40,8 +40,8 @@ function Content () {
             <div className={styles.contentBox}>
                 <Search />
                 {search && (<SearchResult />)}
-                {category && !post && !search && (<Category />)}
-                {post && (
+                {category && !post && !search && (<Category fn={resetSearchResult} />)}
+                {post && !search && (
                         <Post 
                             articles={articleCurrent} 
                             lang={lang} 

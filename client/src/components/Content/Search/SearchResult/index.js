@@ -29,6 +29,11 @@ function SearchResult () {
         })))
     }, [search, lang]);
 
+    
+    const handleClickArticle = () => {
+        dispatch(currentSearch(''));
+    };
+
     return (
         <div className={search ? styles.container : styles.hide}>
             <div className={styles.contentBox}>
@@ -46,7 +51,7 @@ function SearchResult () {
                                 to={`/${art.category.link}/${art.link}`}
                             >
                                 <h3 
-                                    onClick={() => dispatch(currentSearch(''))}
+                                    onClick={handleClickArticle}
                                     className={styles.articleTitle}
                                 >
                                     {art.title}
@@ -57,7 +62,7 @@ function SearchResult () {
                     ))}
                 </div>
 
-                <LazyLoad arr={resultSearchArt} int={10} lang={lang} flag={'art'} />
+                <LazyLoad arr={resultSearchArt} int={10} lang={lang} flag={'art'} fn={handleClickArticle} />
 
                 {!currentListArt.length && (
                     <>
