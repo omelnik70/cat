@@ -4,13 +4,10 @@ import React, {
     useRef, 
     useEffect 
 } from 'react';
-import { useMutation } from '@apollo/client';
 
 import { storage } from '../../../../../../../firebase';
 import { ref, uploadBytes, getDownloadURL, uploadBytesResumable, deleteObject } from "firebase/storage";
 import Context from '../../../../../../../Context';
-import { ADD_CONTENT_MUTATION } from '../../../../../../../apollo/mutations';
-import { CATEGORIES_QUERY } from '../../../../../../../apollo/queries';
 import { currentArt, currentCat } from '../../../../../../../data/actions';
 
 import styles from './styles.module.scss';
@@ -48,39 +45,7 @@ function AddContent() {
         //dispatch(currentCat(categoryRef.current.value));
     }, [lang, cat, dispatch]);
 
-    const [addContent, { error }] = useMutation(ADD_CONTENT_MUTATION, {
-        //новый запрос всего списка с сервера 
-        // refetchQueries: [
-        //     { query: CONTENTS_QUERY }
-        // ],
-
-        //обновление кэша без запроса на сервер 
-        update(cache, { data: { newCategory } }) {
-            const { categories } = cache.readQuery({ query: CATEGORIES_QUERY });
-            cache.writeQuery({ 
-                query: CATEGORIES_QUERY,
-                data: {
-                    categories: [...categories, newCategory]
-                },
-            });
-        },
-    });
-
     const handleAddContent = () => {
-        addContent({
-            variables: {
-                text_1: inputs.text_1,
-                text_2: inputs.text_2,
-                li_1: inputs.li_1,
-                li_2: inputs.li_2,
-                strong: inputs.strong,
-                imgSrc: inputs.imgSrc,
-                imgTitle: inputs.imgTitle,
-                aHref: inputs.aHref,
-                aText: inputs.aText,
-                articleId: state.art
-            },
-        });
         setInputs({
             ...inputs,
             text_1: "",
@@ -103,8 +68,6 @@ function AddContent() {
     const handleKey = (e) => {
         if (e.key === "Enter") handleAddContent();
     };
-
-    if (error) return `Error! ${error.message}`;
 
     const changeArticle = (e) => dispatch(currentArt(e.target.value));
     const changeCat = (e) => dispatch(currentCat(e.target.value));

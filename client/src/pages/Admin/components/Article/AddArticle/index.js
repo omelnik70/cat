@@ -4,13 +4,9 @@ import React, {
     useRef,
     useEffect,
 } from 'react';
-import { useMutation } from '@apollo/client';
 
 import Context from '../../../../../Context';
-import { ADD_ARTICLE_MUTATION } from '../../../../../apollo/mutations';
-import { CATEGORIES_QUERY } from '../../../../../apollo/queries';
 import { currentCat } from '../../../../../data/actions';
-import { createLink } from '../../../../../components/Helper/Helper';
 
 import styles from './styles.module.scss';
 
@@ -28,37 +24,8 @@ function AddArticle() {
     useEffect(() => {
         dispatch(currentCat(categoryRef.current.value));
     }, [lang, dispatch]);
-    
-    const [addArticle, { error }] = useMutation(ADD_ARTICLE_MUTATION, {
-        //новый запрос всего списка с сервера 
-        // refetchQueries: [
-        //     { query: MENUS_QUERY }
-        // ],
-
-        //обновление кэша без запроса на сервер 
-        update(cache, { data: { newCategory } }) {
-            const { categories } = cache.readQuery({ query: CATEGORIES_QUERY });
-            cache.writeQuery({ 
-                query: CATEGORIES_QUERY,
-                data: {
-                    categories: [...categories, newCategory]
-                },
-            });
-        },
-    });
 
     const handleAddArticle = () => {
-        addArticle({
-            variables: {
-                title: inputs.title,
-                link: createLink(inputs.link),
-                rating: 0,
-                previews: 0,
-                like: 0,
-                dislike: 0,
-                categoryId: cat
-            },
-        });
         setInputs({
             ...inputs,
             title: "",
@@ -69,8 +36,6 @@ function AddArticle() {
     const handleKey = (e) => {
         if (e.key === "Enter") handleAddArticle();
     };
-
-    if (error) return `Error! ${error.message}`;
 
     return (
         <div className={styles.container}>

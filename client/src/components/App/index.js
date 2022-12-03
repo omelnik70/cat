@@ -9,7 +9,6 @@ import { auth, database } from '../../firebase';
 import Header from '../Header';
 import Content from '../Content';
 import Footer from '../Footer';
-import Admin from '../../pages/Admin';
 import Error from '../../pages/Error';
 import DATA from '../../data';
 import Loading from '../Loading';
@@ -72,9 +71,7 @@ function App() {
       <div className={styles.container}>
         <div className={styles.header}><Header /></div>
             <Routes>
-              <Route path='*' element={<Error />} />
               <Route path="/" element={<Content/>} />
-              <Route path="/admin" element={<Admin />} />
               <Route path="/privacy_policy" element={<Pages />} />
               <Route path="/about" element={<Pages />} />
               <Route path="/login" element={<Login />} />
@@ -82,6 +79,7 @@ function App() {
               <Route path="/:category" element={<Content />} />
               <Route path="/:category/:post" element={<Content />} />
               <Route path="/users/:id" element={<Content />} />
+              <Route path='*' element={<Error />} />
             </Routes>
         <div className={styles.footer}><Footer /></div>
       </div>
