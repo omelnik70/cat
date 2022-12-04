@@ -142,6 +142,9 @@ const DATA = {
         deleteUser: 'Ви дійсно хочете видалити обліковий запис?',
         addComment: 'Додати коментар',
         more: 'Дивитися ще...',
+        text: `Для перегляду цієї сторінки Ви повинні авторизуватись або зареєструватися!`,
+        register: `Зареєструватись`,
+        login: `Авторизуватися`,
       },
       en: {
         title: 'User:',
@@ -194,6 +197,9 @@ const DATA = {
         deleteUser: 'Are you sure you want to delete your account?',
         addComment: 'Add a comment',
         more: 'See more...',
+        text: `You must log in or register to view this page!`,
+        register: `Register`,
+        login: `Log in`,
       },
       ru: {
         title: 'Пользователь:',
@@ -246,6 +252,9 @@ const DATA = {
         deleteUser: 'Вы действительно хотите удалить аккаунт?',
         addComment: 'Добавьте комментарий',
         more: 'Смотреть еще...',
+        text: `Для просмотра этой страницы Вы должны авторизоваться или зарегистрироваться!`,
+        register: `Зарегистрироваться`,
+        login: `Авторизоваться`,
       },
     },
 

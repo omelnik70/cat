@@ -9,6 +9,23 @@
     margin: 70px 0 0 0;
 }
 
+.warningBox {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    & p {
+        margin: 0 0 10px 0;
+    }
+}
+
+.linkBox:nth-child(1) {
+    & a {
+        padding: 0 5px 0 0;
+    }
+}
+
 .desctop {
     display: none;
 }

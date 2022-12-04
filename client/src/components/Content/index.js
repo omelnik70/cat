@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 
 import { currentSearch } from '../../data/actions';
 import Search from './Search';
@@ -23,6 +23,12 @@ function Content () {
     const cat = categories && categories.filter(cat => cat.lang.id === lang);
     const articlesCurrent = cat && cat.filter(item => item.link === category)[0];
     const articleCurrent = articlesCurrent && articlesCurrent.article.filter(item => post === item.link)[0];
+    const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
+    const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
+    const { ua, en, ru } = usersPage;
+    const text = langUa ? ua.text : langRu ? ru.text : en.text;
+    const register = langUa ? ua.register : langRu ? ru.register : en.register;
+    const login = langUa ? ua.login : langRu ? ru.login : en.login;
 
     useEffect(() => {
         if(isUser && uid === id) navigate(userValid);
@@ -51,8 +57,8 @@ function Content () {
                         />
                     )}
                 {!category && !search && !id && (<Faq article={cat} />)}
-                {isUser && !search && !category && !post && (
-                    <User 
+                {(isUser && !search && !category && !post) ? 
+                    (<User 
                         id={id} 
                         user={user} 
                         link={userValid} 
@@ -61,8 +67,16 @@ function Content () {
                         lang={lang} 
                         usersPage={usersPage} 
                         avatar={avatar}
-                    />
-                )}
+                    />) : 
+                    (<div className={styles.warningBox}>
+                        <p>{text}</p>
+                        <div className={styles.linkBox}>
+                            <Link to="/register">{register}</Link>
+                                <span>{" | "}</span>
+                            <Link to="/login">{login}</Link>
+                        </div>
+                    </div>)
+                }
             </div>
         </div>
     );
