@@ -9,7 +9,7 @@ import Separator from '../../../Separator';
 
 import styles from "./styles.module.scss";
 
-function Post ({ articles, lang, text, data, isUser, userId, avatar, email, uid }) {
+function Post ({ articles, lang, text, data, userId }) {
     const { id, title, like, dislike, previews, category, content } = articles;
     const [propertiesArt, setPropertiesArt] = useState({
         likeHide: false,

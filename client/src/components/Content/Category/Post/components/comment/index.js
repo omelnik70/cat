@@ -30,8 +30,14 @@ function Comment ({
     const [input, setInput] = useState(text);
     const [edit, setEdit] = useState(false);
     const [disabled, setDisabled] = useState(false);
-    const { state } = useContext(Context);
-    const { commentsList, lang, email, uid, avatar } = state;
+    const { state, data } = useContext(Context);
+    const { users } = data;
+
+    const { commentsList, lang, uid } = state;
+    const userArr = Object.values(users);
+    const userOne = userArr.filter(item => userId === item.uid)[0];
+    const { email, avatarUrl } = userOne;
+
     const at = email.indexOf("@");
     const login = email.substring(0, at).trim();
     const { ua, en, ru } = commentsList;
@@ -105,7 +111,7 @@ function Comment ({
             <div className={styles.articleBox}>
                 <div className={styles.avatarEditMobile}>
                     <div className={styles.avatar}>
-                        {avatar ? (<img src={avatar} alt="avatar" />) : <Nophoto />}
+                        {avatarUrl ? (<img src={avatarUrl} alt="avatar" />) : <Nophoto />}
                     </div>
                     {flag && (
                         <div className={styles.editBoxMobile}>

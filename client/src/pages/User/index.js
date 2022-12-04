@@ -19,7 +19,7 @@ import { ReactComponent as Edit } from '../../assets/icons/edit.svg';
 import { ReactComponent as Logout } from '../../assets/icons/logout.svg';
 import styles from "./styles.module.scss";
 
-function User ({ user, link, dispatch, lang, usersPage, avatar }) {
+function User ({ user = {}, link, dispatch, lang, usersPage, avatar }) {
 
     const [editPasswordFocus, setEditPasswordFocus] = useState(false);
     const [loginFocus, setLoginFocus] = useState(false);
@@ -111,8 +111,8 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
         });
     }, [inputEmail, inputPassword]);
 
-    const at = email.indexOf("@");
-    const loginDefault = email.substring(0, at).trim();
+    const at = email && email.indexOf("@");
+    const loginDefault = email && email.substring(0, at).trim();
 
     const handleChangeImg = (e) => {
         const file = e.target.files[0];
@@ -131,7 +131,8 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
                             const user = auth.currentUser;
                         }).catch((error) => {}); 
                         update(userRef, {
-                            avatar: name
+                            avatar: name,
+                            avatarUrl: downloadURL
                         });
                         dispatch(currentAvatar(downloadURL));
                     });
@@ -146,7 +147,8 @@ function User ({ user, link, dispatch, lang, usersPage, avatar }) {
         const desertRef = ref(storage, `users/${avatarDelete}`);
         deleteObject(desertRef).then(() => {
             update(userRef, {
-                avatar: ''
+                avatar: '',
+                avatarUrl: ''
             });
             updateProfile(auth.currentUser, {
                 photoURL: ''

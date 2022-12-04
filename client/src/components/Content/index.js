@@ -19,13 +19,13 @@ function Content () {
     const { category, post, id } = useParams();
     const navigate = useNavigate();
     const { users, categories } = data;
-    const user = users && Object.values(users).filter(item => id === item.uid)[0];
+    const user = users && id && Object.values(users).filter(item => id === item.uid)[0];
     const cat = categories && categories.filter(cat => cat.lang.id === lang);
     const articlesCurrent = cat && cat.filter(item => item.link === category)[0];
     const articleCurrent = articlesCurrent && articlesCurrent.article.filter(item => post === item.link)[0];
 
     useEffect(() => {
-        (isUser && uid === id) ? navigate(userValid) : navigate('/');
+        if(isUser && uid === id) navigate(userValid);
     }, [isUser]);
 
     const resetSearchResult = () => {
@@ -45,17 +45,13 @@ function Content () {
                         <Post 
                             articles={articleCurrent} 
                             lang={lang} 
-                            isUser={isUser}
                             text={postText} 
                             data={categories} 
                             userId={uid}
-                            avatar={avatar}
-                            email={email}
-                            uid={uid}
                         />
                     )}
                 {!category && !search && !id && (<Faq article={cat} />)}
-                {id && user && !search && !category && !post && (
+                {isUser && !search && !category && !post && (
                     <User 
                         id={id} 
                         user={user} 
