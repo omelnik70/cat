@@ -57,7 +57,7 @@ function Content () {
                         />
                     )}
                 {!category && !search && !id && (<Faq article={cat} />)}
-                {(isUser && !search && !category && !post) ? 
+                {(isUser && !search && !category && !post) &&
                     (<User 
                         id={id} 
                         user={user} 
@@ -67,16 +67,17 @@ function Content () {
                         lang={lang} 
                         usersPage={usersPage} 
                         avatar={avatar}
-                    />) : 
-                    (<div className={styles.warningBox}>
-                        <p>{text}</p>
-                        <div className={styles.linkBox}>
-                            <Link to="/register">{register}</Link>
-                                <span>{" | "}</span>
-                            <Link to="/login">{login}</Link>
+                    />)}
+                    {(!isUser && !search && !category && !post) && 
+                        (<div className={styles.warningBox}>
+                            <p>{text}</p>
+                            <div className={styles.linkBox}>
+                                <Link to="/register">{register}</Link>
+                                    <span>{" | "}</span>
+                                <Link to="/login">{login}</Link>
+                            </div>
                         </div>
-                    </div>)
-                }
+                    )}
             </div>
         </div>
     );
