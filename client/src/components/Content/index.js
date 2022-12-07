@@ -17,6 +17,7 @@ function Content () {
     const { state, data, dispatch } = useContext(Context);
     const { lang, search, postText, userValid, usersPage, avatar, email, uid, isUser } = state;
     const { category, post, id } = useParams();
+
     const navigate = useNavigate();
     const { users, categories } = data;
     const user = users && id && Object.values(users).filter(item => id === item.uid)[0];
@@ -57,7 +58,7 @@ function Content () {
                         />
                     )}
                 {!category && !search && !id && (<Faq article={cat} />)}
-                {(isUser && !search && !category && !post) &&
+                {(isUser && id && !search && !category && !post) &&
                     (<User 
                         id={id} 
                         user={user} 
@@ -68,7 +69,7 @@ function Content () {
                         usersPage={usersPage} 
                         avatar={avatar}
                     />)}
-                    {(!isUser && !search && !category && !post) && 
+                    {(!isUser && id && !search && !category && !post) && 
                         (<div className={styles.warningBox}>
                             <p>{text}</p>
                             <div className={styles.linkBox}>

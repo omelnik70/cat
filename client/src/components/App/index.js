@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useReducer } from 'react';
-import { Routes, Route } from 'react-router-dom';
 import Context from '../../Context';
 import { onAuthStateChanged  } from "firebase/auth";
 import { ref, onValue } from "firebase/database";
@@ -7,15 +6,11 @@ import { ref, onValue } from "firebase/database";
 import { userValidStatus, currentUid, currentAvatar, emailInput, isUser } from '../../data/actions';
 import { auth, database } from '../../firebase';
 import Header from '../Header';
-import Content from '../Content';
 import Footer from '../Footer';
-import Error from '../../pages/Error';
 import DATA from '../../data';
 import Loading from '../Loading';
 import reducer from '../../data/reducer';
-import Login from '../../pages/Form/Login';
-import Register from '../../pages/Form/Register';
-import Pages from '../../pages';
+import Routing from '../../Routing';
 
 import styles from './styles.module.scss';
 
@@ -69,17 +64,7 @@ function App() {
     <Context.Provider value={value}>
       <div className={styles.container}>
         <div className={styles.header}><Header /></div>
-            <Routes>
-              <Route path="/" element={<Content/>} />
-              <Route path="/privacy_policy" element={<Pages />} />
-              <Route path="/about" element={<Pages />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/:category" element={<Content />} />
-              <Route path="/:category/:post" element={<Content />} />
-              <Route path="/users/:id" element={<Content />} />
-              <Route path='*' element={<Error />} />
-            </Routes>
+            <Routing />
         <div className={styles.footer}><Footer /></div>
       </div>
     </Context.Provider>
