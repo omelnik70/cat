@@ -21,6 +21,9 @@ function Footer() {
   const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
   const { ua, en, ru } = header;
   const copyright = langUa ? ua.logo : langRu ? ru.logo : en.logo;
+  const menu = langUa ? ua.menu : langRu ? ru.menu : en.menu;
+  const submenu = langUa ? ua.submenu : langRu ? ru.submenu : en.submenu;
+  const allMenu = menu.concat(submenu).filter(item => item.link !== '');
 
   return (
     <div className={styles.container}>
@@ -41,6 +44,9 @@ function Footer() {
           <a href="https://www.reddit.com/user/SWSCompany"><Reddit className={styles.socialIcons} /></a>
         </div>
       </div>
+      <ul className={styles.navMax}>
+        {allMenu.map((item, index) => (<li key={index}><a className={styles.mainMenu} href={item.link}>{item.text}</a></li>))}
+      </ul>
       <div className={styles.authorBox}>
         <p>Creation of React applications for the Web</p>
         <a href="https://www.facebook.com/sergejomelnik/">Serhii Omelnik</a>

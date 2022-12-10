@@ -2,9 +2,10 @@ import React, { useEffect, useState, useReducer } from 'react';
 import Context from '../../Context';
 import { onAuthStateChanged  } from "firebase/auth";
 import { ref, onValue } from "firebase/database";
+import { logEvent } from "firebase/analytics";
 
 import { userValidStatus, currentUid, currentAvatar, emailInput, isUser } from '../../data/actions';
-import { auth, database } from '../../firebase';
+import { auth, database, analytics } from '../../firebase';
 import Header from '../Header';
 import Footer from '../Footer';
 import DATA from '../../data';
@@ -59,6 +60,8 @@ function App() {
   head.textContent = `${title} | ${description}`;
 
   const value = { state, dispatch, data };
+  
+  logEvent(analytics, 'notification_received');
 
   return (
     <Context.Provider value={value}>

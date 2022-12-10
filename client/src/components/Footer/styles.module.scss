@@ -17,6 +17,22 @@
     justify-content: space-between;
 }
 
+.navMax {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 0 10px 0;
+    color: $color-text;
+    & li {
+        & a {
+            color: $color-text;
+            font-size: $font-size-small;
+        }
+    }
+}
+
 .authorBox {
     display: flex;
     flex-direction: row;
@@ -84,6 +100,14 @@
     }
     .infoBox {
         flex-direction: row;
+    }
+    
+    .navMax {
+        & li {
+            & a {
+                font-size: $font-size-little;
+            }
+        }
     }
 
     .authorBox {

@@ -6,6 +6,40 @@
           http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
   >
     <url>
+      <loc>https://alihelper.top/</loc>
+      <lastmod>2022-12-09T13:50:17.310Z</lastmod>
+    </url>
+      <loc>https://alihelper.top/delivery</loc>
+      <lastmod>2022-12-09T13:50:17.310Z</lastmod>
+    </url>
+      <loc>https://alihelper.top/product_problems</loc>
+      <lastmod>2022-12-09T13:50:17.310Z</lastmod>
+    </url>
+      <loc>https://alihelper.top/return</loc>
+      <lastmod>2022-12-09T13:50:17.310Z</lastmod>
+    </url>
+      <loc>https://alihelper.top/order_and_payment</loc>
+      <lastmod>2022-12-09T13:50:17.310Z</lastmod>
+    </url>
+      <loc>https://alihelper.top/profile</loc>
+      <lastmod>2022-12-09T13:50:17.310Z</lastmod>
+    </url>
+      <loc>https://alihelper.top/promotions</loc>
+      <lastmod>2022-12-09T13:50:17.310Z</lastmod>
+    </url>
+      <loc>https://alihelper.top/search_and_selection_of_goods</loc>
+      <lastmod>2022-12-09T13:50:17.310Z</lastmod>
+    </url>
+      <loc>https://alihelper.top/review</loc>
+      <lastmod>2022-12-09T13:50:17.310Z</lastmod>
+    </url>
+      <loc>https://alihelper.top/connection</loc>
+      <lastmod>2022-12-09T13:50:17.310Z</lastmod>
+    </url>
+      <loc>https://alihelper.top/guarantee</loc>
+      <lastmod>2022-12-09T13:50:17.310Z</lastmod>
+    </url>
+    <url>
       <loc>https://alihelper.top/delivery/order_processing_time_may_be_delayed_by_approximately_5_days_during_international_labor_day</loc>
       <lastmod>2022-12-09T13:50:17.310Z</lastmod>
     </url>
@@ -658,6 +692,12 @@
     </url>
     <url>
       <loc>https://alihelper.top/guarantee/warranty_service_for_buyers_from_russia_and_ukraine</loc>
+      <lastmod>2022-12-09T13:50:17.311Z</lastmod>
+    </url>
+      <loc>https://alihelper.top/about</loc>
+      <lastmod>2022-12-09T13:50:17.311Z</lastmod>
+    </url>
+      <loc>https://alihelper.top/privacy_policy</loc>
       <lastmod>2022-12-09T13:50:17.311Z</lastmod>
     </url>
   </urlset>
