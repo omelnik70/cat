@@ -2,10 +2,9 @@ import React, { useEffect, useState, useReducer } from 'react';
 import Context from '../../Context';
 import { onAuthStateChanged  } from "firebase/auth";
 import { ref, onValue } from "firebase/database";
-import { logEvent } from "firebase/analytics";
 
 import { userValidStatus, currentUid, currentAvatar, emailInput, isUser } from '../../data/actions';
-import { auth, database, analytics } from '../../firebase';
+import { auth, database } from '../../firebase';
 import Header from '../Header';
 import Footer from '../Footer';
 import DATA from '../../data';
@@ -55,13 +54,13 @@ function App() {
   const title = langUa ? ua.logo : langRu ? ru.logo : en.logo;
   const head = document.querySelector('title');
   const metaDiscription = document.getElementsByName("description")[0];
+  const metaKeywords = document.getElementsByName("keywords")[0];
   const metaContent = data.categories.filter(lan => lan.lang.id === lang).map(meta => `${meta.name} AliExpress`).join(', ');
-  metaDiscription.content = `${metaContent}`;
+  metaKeywords.content = `${metaContent}`;
+  metaDiscription.content = `${title} - ${description}`;
   head.textContent = `${title} | ${description}`;
 
   const value = { state, dispatch, data };
-  
-  logEvent(analytics, 'notification_received');
 
   return (
     <Context.Provider value={value}>
