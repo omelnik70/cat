@@ -913,6 +913,44 @@ const DATA = {
         ],
       },
     },
+    aboutAli: {
+      ru: {
+        title: `Коротко об AliExpress`,
+        text: [
+          `AliExpress — это глобальная торговая площадка, на которой можно приобрести товары, производимые в КНР, Европе, Турции и других странах, имеющих возможность торговать на AliExpress. Продажа товаров ведется в розницу и мелким оптом.`,
+          `AliExpress в настоящее время доступен на девяти языках - русском, английском, испанском, нидерландском, французском, итальянском, польском, арабском и португальском (перевод машинный, поэтому ингода не точный). Для клиентов, чей язык не представлен в этом списке, автоматически предоставляется английская версия.`,
+          `Сайт входит в перечень сорока самых посещаемых веб-ресурсов в мире по версии Alexa.`,
+          `AliExpress стал доступен для покупок в 2010 году, как интернет магазин китайских товаров в другие страны.`,
+          `Владельцем интернет магазина AliExpress является Alibaba Group, она же владеет такими популярными китайскими ресурсами, как Alibaba.com, Taobao.com и другие.`,
+          `С ноября 2018 года на AliExpress появились товары из Турецкии с площадки Trendyol, которую приобрела Alibaba Group.`,
+          `В 2019 году Alibaba Group открыла крупный магазин в торговом центре Барселоны.`
+        ],
+      },
+      ua: {
+        title: `Коротко про AliExpress`,
+        text: [
+          `AliExpress — це глобальний торговий майданчик, на якому можна придбати товари, які виробляються в КНР, Європі, Туреччині та інших країнах, які мають можливість торгувати на AliExpress. Продаж товарів ведеться в роздріб та дрібним оптом.`,
+          `AliExpress в даний час доступний дев'ятьма мовами - російською, англійською, іспанською, нідерландською, французькою, італійською, польською, арабською та португальською (переклад машинний, тому інгода не точний). Для клієнтів, чия мова не представлена у цьому списку, автоматично надається англійська версія.`,
+          `Сайт входить до переліку сорока найбільш відвідуваних веб-ресурсів у світі за версією Alexa.`,
+          `AliExpress став доступним для покупок у 2010 році, як інтернет магазин китайських товарів в інші країни.`,
+          `Власником інтернет магазину AliExpress є Alibaba Group, вона володіє такими популярними китайськими ресурсами, як Alibaba.com, Taobao.com та інші.`,
+          `С ноября 2018 года на AliExpress появились товары из Турецкии с площадки Trendyol, которую приобрела Alibaba Group.`,
+          `З листопада 2018 року на AliExpress з'явилися товари з Турецької з майданчика Trendyol, яку придбала Alibaba Group.`
+        ],
+      },
+      en: {
+        title: `Briefly about AliExpress`,
+        text: [
+          `AliExpress is a global marketplace where you can buy goods made in China, Europe, Turkey and other countries that can trade on AliExpress. Sale of goods is carried out at retail and small wholesale.`,
+          `AliExpress is currently available in nine languages - Russian, English, Spanish, Dutch, French, Italian, Polish, Arabic and Portuguese (machine translation, so sometimes not accurate). For customers whose language is not included in this list, the English version is automatically provided.`,
+          `The site is included in the list of the forty most visited web resources in the world according to Alexa.`,
+          `AliExpress стал доступен для покупок в 2010 году, как интернет магазин китайских товаров в другие страны.`,
+          `AliExpress became available for purchases in 2010 as an online store of Chinese goods to other countries.`,
+          `The AliExpress online store is owned by Alibaba Group, which also owns such popular Chinese resources as Alibaba.com, Taobao.com and others.`,
+          `Since November 2018, goods from Turkey have appeared on AliExpress from the Trendyol site, which was acquired by Alibaba Group.`
+        ],
+      },
+    },
   };
 
 export default DATA;

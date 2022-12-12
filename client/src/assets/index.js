@@ -33,8 +33,15 @@ import EDITDOC from "./icons/editDoc.svg";
 import GITHUB from "./icons/github.svg";
 import LINKEDIN from "./icons/linkedin.svg";
 import TELEGRAM from "./icons/telegram.svg";
+import README from "./icons/readme.svg";
+import BASKET from "./icons/basket.svg";
+import CHECK from "./icons/check.svg";
+
 
 const ICONS = {
+    README,
+    BASKET,
+    CHECK,
     TELEGRAM,
     LINKEDIN,
     GITHUB,

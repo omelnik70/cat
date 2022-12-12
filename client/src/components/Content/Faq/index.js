@@ -7,6 +7,7 @@ import Context from '../../../Context';
 import Pagination from '../../Pagination';
 import assets from '../../../assets';
 import Separator from '../../Separator';
+import AboutAli from '../AboutAli';
 
 import styles from './styles.module.scss';
 
@@ -20,6 +21,9 @@ function Faq ({ article }) {
     const { ua, en, ru } = popularArticles;
     const title = langUa ? ua : langRu ? ru : en;
 
+    const { ICONS } = assets;
+    const { README } = ICONS;
+
     const byField = (field) => {
         return (a, b) => a[field] < b[field] ? 1 : -1;
     };
@@ -28,10 +32,12 @@ function Faq ({ article }) {
 
     return (
         <div className={styles.container}>
+            <AboutAli />
+            <Separator />
             <div className={styles.contentBox}>
                 <div className={styles.titleBox}>
+                    <img src={README} alt="readme" />
                     <h2 className={styles.faqTitle}>{title}</h2>
-                    <Separator />
                 </div>
                 <div className={styles.faqMenuBox}>
                     <div className={styles.desktop}>

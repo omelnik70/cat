@@ -1,0 +1,32 @@
+@import '../../../global.scss';
+
+/* mobile */
+
+.titleBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    & img {
+        height: 20px;
+        margin: 0 10px 0 0;
+    }
+    & h2 {
+        @include subtitle;
+        text-align: center;
+        text-transform: none;
+    }
+}
+
+.textBox {
+    & p {
+        font-size: $font-size-normal;
+        color: $color-text;
+        line-height: 1.5;
+        margin: 0 0 10px 0;
+    }
+}
+
+/* tablets */
+
+@media (min-width: 768px) {}
