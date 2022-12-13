@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
 import LazyLoad from '../../LazyLoad';
 import Pagination from '../../Pagination';
@@ -14,10 +14,11 @@ import styles from "./styles.module.scss";
 function Category ({ fn }) {
     const { dispatch, state, data } = useContext(Context);
     const { category } = useParams();
+    const navigate = useNavigate();
     const { currentListArt, lang } = state;
     const { categories } = data;
     const cat = categories && categories.filter(cat => cat.lang.id === lang);
-    const articlesCurrent = cat && cat.filter(item => item.link === category)[0];
+    const articlesCurrent = cat.filter(item => item.link === category)[0];
     const { name, article } = articlesCurrent;
     const LIMITART = 5;
 

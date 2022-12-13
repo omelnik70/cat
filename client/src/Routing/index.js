@@ -1,12 +1,27 @@
-import { Routes, Route } from 'react-router-dom';
+import { useContext } from 'react';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 
+import Context from '../Context';
 import Content from '../components/Content';
-import Error from '../pages/Error';
 import Login from '../pages/Form/Login';
 import Register from '../pages/Form/Register';
 import Pages from '../pages';
 
 const Routing = () => {
+    const { state, data } = useContext(Context);
+    const { pathname } = useLocation();
+    const link = pathname.slice(1);
+    const { lang, isUser } = state;
+    const { categories, users } = data;
+    const cat = categories && categories.filter(cat => cat.lang.id === lang);
+    const arrCategoryLink = cat.map(item => item.link);
+    const arrCategories = cat.map(item => item.article);
+    const arrArticles = arrCategories.flat();
+    const arrUsers = Object.values(users);
+    const isCategory = arrCategoryLink.filter(item => item === link).length;
+    const isPost = arrArticles.filter(item => `${item.category.link}/${item.link}` === link).length;
+    const isLinkUser = arrUsers.filter(item => `users/${item.uid}` === link).length;
+
     return (
         <Routes>
             <Route path="/" element={<Content/>} />
@@ -14,10 +29,9 @@ const Routing = () => {
             <Route path="/about" element={<Pages />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/:category" element={<Content />} />
-            <Route path="/:category/:post" element={<Content />} />
-            <Route path="/users/:id" element={<Content />} />
-            <Route path='*' element={<Error />} />
+            <Route path="/:category" element={ isCategory ? (<Content />) : (<Navigate replace to="/" />)} />
+            <Route path="/:category/:post" element={ isPost ? (<Content />) : (<Navigate replace to="/" />)} />
+            <Route path="/users/:id" element={ isLinkUser && isUser ? (<Content />) : (<Navigate replace to="/" />)} />
         </Routes>
     );
 };
