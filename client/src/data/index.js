@@ -922,7 +922,7 @@ const DATA = {
           `Сайт входит в перечень сорока самых посещаемых веб-ресурсов в мире по версии Alexa.`,
           `AliExpress стал доступен для покупок в 2010 году, как интернет магазин китайских товаров в другие страны.`,
           `Владельцем интернет магазина AliExpress является Alibaba Group, она же владеет такими популярными китайскими ресурсами, как Alibaba.com, Taobao.com и другие.`,
-          `С ноября 2018 года на AliExpress появились товары из Турецкии с площадки Trendyol, которую приобрела Alibaba Group.`,
+          `С ноября 2018 года на AliExpress появились товары из Турции с площадки Trendyol, которую приобрела Alibaba Group.`,
           `В 2019 году Alibaba Group открыла крупный магазин в торговом центре Барселоны.`
         ],
       },
@@ -934,8 +934,8 @@ const DATA = {
           `Сайт входить до переліку сорока найбільш відвідуваних веб-ресурсів у світі за версією Alexa.`,
           `AliExpress став доступним для покупок у 2010 році, як інтернет магазин китайських товарів в інші країни.`,
           `Власником інтернет магазину AliExpress є Alibaba Group, вона володіє такими популярними китайськими ресурсами, як Alibaba.com, Taobao.com та інші.`,
-          `С ноября 2018 года на AliExpress появились товары из Турецкии с площадки Trendyol, которую приобрела Alibaba Group.`,
-          `З листопада 2018 року на AliExpress з'явилися товари з Турецької з майданчика Trendyol, яку придбала Alibaba Group.`
+          `З листопада 2018 року на AliExpress з'явилися товари з Туреччини з майданчика Trendyol, яку придбала Alibaba Group.`,
+          `У 2019 році Alibaba Group відкрила великий магазин у торговому центрі Барселони.`
         ],
       },
       en: {
@@ -944,10 +944,10 @@ const DATA = {
           `AliExpress is a global marketplace where you can buy goods made in China, Europe, Turkey and other countries that can trade on AliExpress. Sale of goods is carried out at retail and small wholesale.`,
           `AliExpress is currently available in nine languages - Russian, English, Spanish, Dutch, French, Italian, Polish, Arabic and Portuguese (machine translation, so sometimes not accurate). For customers whose language is not included in this list, the English version is automatically provided.`,
           `The site is included in the list of the forty most visited web resources in the world according to Alexa.`,
-          `AliExpress стал доступен для покупок в 2010 году, как интернет магазин китайских товаров в другие страны.`,
           `AliExpress became available for purchases in 2010 as an online store of Chinese goods to other countries.`,
           `The AliExpress online store is owned by Alibaba Group, which also owns such popular Chinese resources as Alibaba.com, Taobao.com and others.`,
-          `Since November 2018, goods from Turkey have appeared on AliExpress from the Trendyol site, which was acquired by Alibaba Group.`
+          `Since November 2018, goods from Turkey have appeared on AliExpress from the Trendyol site, which was acquired by Alibaba Group.`,
+          `In 2019, Alibaba Group opened a large store in a Barcelona mall.`
         ],
       },
     },
