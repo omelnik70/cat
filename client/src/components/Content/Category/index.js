@@ -20,7 +20,7 @@ function Category ({ fn }) {
     const cat = categories && categories.filter(cat => cat.lang.id === lang);
     const articlesCurrent = cat.filter(item => item.link === category)[0];
     const { name, article } = articlesCurrent;
-    const LIMITART = 5;
+    const LIMITART = 10;
 
     const handleClickArticle = (id) => {
         dispatch(currentArt(id));
