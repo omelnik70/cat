@@ -1,0 +1,33 @@
+@import '../../../global.scss';
+
+/* mobile */
+
+.navbar {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        border: 1px solid $border-menu;
+        border-radius: 5px;
+        & a {
+            flex: 1 1 18%;
+            height: 50px;
+            margin: 10px;
+            padding: 10px;
+            background-color: $color-background;
+            border-radius: 5px;
+            text-align: center;
+            color: $color-title;
+        }
+    }
+}
+
+@media (min-width: 1600px) {
+    .navbar a {
+        height: 50px;
+    }
+}

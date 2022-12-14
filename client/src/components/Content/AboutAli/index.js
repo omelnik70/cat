@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 
 import Context from '../../../Context';
 import assets from '../../../assets';
+import Separator from '../../Separator';
 
 import styles from './styles.module.scss';
 
@@ -17,12 +18,17 @@ function AboutAli () {
     const { ICONS } = assets;
     const { BASKET } = ICONS;
 
+    const style = {
+        backgroundColor: `#F98866`
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.titleBox}>
                 <img src={BASKET} alt="basket" />
                 <h2>{title}</h2>
             </div>
+            <Separator style={style} />
             <div className={styles.textBox}>
                 {text.map((item, index) => (
                     <p key={index}>{item}</p>

@@ -7,7 +7,6 @@ import Context from '../../../Context';
 import Pagination from '../../Pagination';
 import assets from '../../../assets';
 import Separator from '../../Separator';
-import AboutAli from '../AboutAli';
 
 import styles from './styles.module.scss';
 
@@ -15,7 +14,7 @@ import styles from './styles.module.scss';
 function Faq ({ article }) {
     const { state } = useContext(Context);
     const { currentListArt, popularArticles, lang } = state;
-    const LIMITART = 4;
+    const LIMITART = 10;
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
     const { ua, en, ru } = popularArticles;
@@ -32,13 +31,12 @@ function Faq ({ article }) {
 
     return (
         <div className={styles.container}>
-            <AboutAli />
-            <Separator />
             <div className={styles.contentBox}>
                 <div className={styles.titleBox}>
                     <img src={README} alt="readme" />
                     <h2 className={styles.faqTitle}>{title}</h2>
                 </div>
+                <Separator />
                 <div className={styles.faqMenuBox}>
                     <div className={styles.desktop}>
                         <div className={styles.faqMenu}>
@@ -55,9 +53,9 @@ function Faq ({ article }) {
             
                     <LazyLoad arr={articles} int={10} lang={lang} flag={'art'} />
 
-                    <div className={styles.image}>
+                    {/* <div className={styles.image}>
                         <img src={assets.IMAGES.FAQ} alt="" />
-                    </div>
+                    </div> */}
                 </div>
             </div>
 

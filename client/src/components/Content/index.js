@@ -10,6 +10,8 @@ import Navbar from './Navbar';
 import Category from './Category';
 import Post from './Category/Post';
 import User from '../../pages/User';
+import ContentMenu from './ContentMenu';
+import AboutAli from '../Content/AboutAli';
 
 import styles from './styles.module.scss';
 
@@ -43,9 +45,11 @@ function Content () {
         <div className={styles.container}>
             <div className={styles.desctop}>
                 <Navbar data={cat} fn={resetSearchResult} />
+                <AboutAli />
             </div>
             <div className={styles.contentBox}>
                 <Search />
+                <ContentMenu data={cat} fn={resetSearchResult} />
                 {search && (<SearchResult />)}
                 {category && !post && !search && (<Category fn={resetSearchResult} />)}
                 {post && !search && (

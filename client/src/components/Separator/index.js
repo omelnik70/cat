@@ -3,13 +3,13 @@ import React from 'react';
 import styles from "./styles.module.scss";
 
 
-function Separator () {
+function Separator ({ style }) {
 
     return (
             <div className={styles.lines}>
-                <div className={styles.line1}></div>
-                <div className={styles.line2}></div>
-                <div className={styles.line3}></div>
+                <div className={styles.line1} style={style}></div>
+                <div className={styles.line2} style={style}></div>
+                <div className={styles.line3} style={style}></div>
             </div>
     );
 }

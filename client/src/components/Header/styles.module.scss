@@ -66,12 +66,12 @@ li:last-child::after {
 
 @media (min-width: 1024px) {
     .container {
-        margin: 0 10%;
+        margin: 0 2%;
     }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1280px) {
     .container {
-        margin: 0 1%;
+        margin: 0 10%;
     }
 }
