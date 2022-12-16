@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 import LazyLoad from '../../LazyLoad';
 import Pagination from '../../Pagination';
@@ -14,13 +14,16 @@ import styles from "./styles.module.scss";
 function Category ({ fn }) {
     const { dispatch, state, data } = useContext(Context);
     const { category } = useParams();
-    const navigate = useNavigate();
     const { currentListArt, lang } = state;
     const { categories } = data;
     const cat = categories && categories.filter(cat => cat.lang.id === lang);
     const articlesCurrent = cat.filter(item => item.link === category)[0];
     const { name, article } = articlesCurrent;
     const LIMITART = 10;
+    const metaDiscription = document.getElementsByName("description")[0];
+    const metaKeywords = document.getElementsByName("keywords")[0];
+    metaKeywords.content = article.map(meta => `${meta.title}`).join(', ');
+    metaDiscription.content = `${name} 'AliExpress'`;
 
     const handleClickArticle = (id) => {
         dispatch(currentArt(id));

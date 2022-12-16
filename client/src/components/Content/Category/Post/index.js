@@ -16,6 +16,15 @@ function Post ({ articles, lang, text, data, userId }) {
         dislikeHide: false,
         styleMessage: true,
     });
+    
+    const { link } = category;
+    const cat = data.filter(cat => cat.lang.id === lang);
+    const currentCat = cat.filter(item => item.link === link)[0];
+    const { name } = currentCat;
+    const metaDiscription = document.getElementsByName("description")[0];
+    const metaKeywords = document.getElementsByName("keywords")[0];
+    metaKeywords.content = `${name} 'AliExpress'`;
+    metaDiscription.content = `'AliExpress' - ${title}`;
 
     const { likeHide, dislikeHide } = propertiesArt;
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
