@@ -9,7 +9,7 @@ import Separator from '../../../Separator';
 
 import styles from "./styles.module.scss";
 
-function Post ({ articles, lang, text, data, userId }) {
+function Post ({ articles, lang, text, data, userId, titleSite }) {
     const { id, title, like, dislike, previews, category, content } = articles;
     const [propertiesArt, setPropertiesArt] = useState({
         likeHide: false,
@@ -23,8 +23,10 @@ function Post ({ articles, lang, text, data, userId }) {
     const { name } = currentCat;
     const metaDiscription = document.getElementsByName("description")[0];
     const metaKeywords = document.getElementsByName("keywords")[0];
-    metaKeywords.content = `${name} 'AliExpress'`;
-    metaDiscription.content = `'AliExpress' - ${title}`;
+    const head = document.querySelector('title');
+    head.textContent = `${title} | ${titleSite}`;
+    metaKeywords.content = `${name} AliExpress`;
+    metaDiscription.content = `AliExpress - ${title}`;
 
     const { likeHide, dislikeHide } = propertiesArt;
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;

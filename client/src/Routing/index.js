@@ -7,7 +7,7 @@ import Login from '../pages/Form/Login';
 import Register from '../pages/Form/Register';
 import Pages from '../pages';
 
-const Routing = () => {
+const Routing = ({ title }) => {
     const { state, data } = useContext(Context);
     const { pathname } = useLocation();
     const link = pathname.slice(1);
@@ -29,8 +29,8 @@ const Routing = () => {
             <Route path="/about" element={<Pages />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/:category" element={ isCategory ? (<Content />) : (<Navigate replace to="/" />)} />
-            <Route path="/:category/:post" element={ isPost ? (<Content />) : (<Navigate replace to="/" />)} />
+            <Route path="/:category" element={ isCategory ? (<Content title={title} />) : (<Navigate replace to="/" />)} />
+            <Route path="/:category/:post" element={ isPost ? (<Content title={title} />) : (<Navigate replace to="/" />)} />
             <Route path="/users/:id" element={ isLinkUser && isUser ? (<Content />) : (<Navigate replace to="/" />)} />
         </Routes>
     );

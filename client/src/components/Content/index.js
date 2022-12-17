@@ -15,9 +15,9 @@ import AboutAli from '../Content/AboutAli';
 
 import styles from './styles.module.scss';
 
-function Content () {
+function Content ({ title }) {
     const { state, data, dispatch } = useContext(Context);
-    const { lang, search, postText, userValid, usersPage, avatar, email, uid, isUser } = state;
+    const { lang, search, postText, userValid, usersPage, avatar, uid, isUser } = state;
     const { category, post, id } = useParams();
 
     const navigate = useNavigate();
@@ -51,7 +51,7 @@ function Content () {
                 <Search />
                 <ContentMenu data={cat} fn={resetSearchResult} />
                 {search && (<SearchResult />)}
-                {category && !post && !search && (<Category fn={resetSearchResult} />)}
+                {category && !post && !search && (<Category fn={resetSearchResult} title={title} />)}
                 {post && !search && (
                         <Post 
                             articles={articleCurrent} 
@@ -59,6 +59,7 @@ function Content () {
                             text={postText} 
                             data={categories} 
                             userId={uid}
+                            titleSite={title}
                         />
                     )}
                 {!category && !search && !id && (<Faq article={cat} />)}
