@@ -25,8 +25,8 @@ const Routing = ({ title }) => {
     return (
         <Routes>
             <Route path="/" element={<Content/>} />
-            <Route path="/privacy_policy" element={<Pages />} />
-            <Route path="/about" element={<Pages />} />
+            <Route path="/privacy_policy" element={<Pages name={title} />} />
+            <Route path="/about" element={<Pages name={title} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/:category" element={ isCategory ? (<Content title={title} />) : (<Navigate replace to="/" />)} />

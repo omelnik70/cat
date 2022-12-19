@@ -349,7 +349,7 @@ const DATA = {
     //страницы подвала
     policy: {
       ua: {
-        title: 'Політика конфіденційності сайту alihelper.com.',
+        title: 'Політика конфіденційності сайту alihelper.top',
         contents: [
           {
             subtitle: '',
@@ -444,7 +444,7 @@ const DATA = {
         ],
       },
       en: {
-        title: 'Alihelper.com Website Privacy Policy.',
+        title: 'Alihelper.top Website Privacy Policy',
         contents: [
           {
             subtitle: '',
@@ -539,7 +539,7 @@ const DATA = {
         ],
       },
       ru: {
-        title: 'Политика Конфиденциальности сайта alihelper.com.',
+        title: 'Политика Конфиденциальности сайта alihelper.top',
         contents: [
           {
             subtitle: '',
@@ -638,7 +638,7 @@ const DATA = {
     //страницы подвала
     about: {
       ua: {
-        title: 'Про проект.',
+        title: 'Про проект',
         contacts: 'Для всіх, хто зацікавлений у співпраці зі мною, мої контакти:',
         bye: 'Дякую всім, хто користується сайтом, усім миру та добра!',
         contents: [
@@ -669,7 +669,7 @@ const DATA = {
         ],
       },
       en: {
-        title: 'About the project.',
+        title: 'About the project',
         contacts: 'For everyone who is interested in cooperation with me, my contacts:',
         bye: 'Thanks to everyone who uses the site, peace and goodness to all!',
         contents: [
@@ -700,7 +700,7 @@ const DATA = {
         ],
       },
       ru: {
-        title: 'О проекте.',
+        title: 'О проекте',
         contacts: 'Для всех, кто заинтересован в сотрудничестве со мной, мои контакты:',
         bye: 'Спасибо всем, кто пользуется сайтом, всем мира и добра!',
         contents: [

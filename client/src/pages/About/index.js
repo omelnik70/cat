@@ -4,7 +4,7 @@ import assets from '../../assets';
 import Context from '../../Context';
 import styles from './styles.module.scss';
 
-function About() {
+function About({ name }) {
   const { state } = useContext(Context);
   const { about, lang } = state;
   const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
@@ -15,6 +15,8 @@ function About() {
   const contacts = langUa ? ua.contacts : langRu ? ru.contacts : en.contacts;
   const bye = langUa ? ua.bye : langRu ? ru.bye : en.bye;
   const socialNetworks = ru.socialNetworks;
+  const head = document.querySelector('title');
+  head.textContent = `${title} | ${name}`;
 
   return (
     <>

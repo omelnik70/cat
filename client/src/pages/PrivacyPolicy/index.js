@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import Context from '../../Context';
 import styles from './styles.module.scss';
 
-function PrivacyPolicy() {
+function PrivacyPolicy({ name }) {
   const { state } = useContext(Context);
   const { policy, lang } = state;
   const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
@@ -11,6 +11,8 @@ function PrivacyPolicy() {
   const { ua, en, ru  } = policy;
   const title = langUa ? ua.title : langRu ? ru.title : en.title;
   const contents = langUa ? ua.contents : langRu ? ru.contents : en.contents;
+  const head = document.querySelector('title');
+  head.textContent = `${title} | ${name}`;
 
   return (
     <>
