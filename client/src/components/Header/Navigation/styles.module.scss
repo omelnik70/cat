@@ -10,85 +10,32 @@
   justify-content: flex-end;
 }
 
-.nav {
-  display: none;
-}
-
-.navMax {
-  display: none;
-}
-
-.mainMenu {
+.menuDesctop {
   @include mainmenu;
-  position: relative;
-  display: inline-block;
-  & ul {
-    width: max-content;
-    position: absolute;
-    top: 110px;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    & li {
-      background-color: $background-white;
-      border: 2px solid $border-menu;
-      border-radius: 10px;
-      padding: 5px 0 5px 5px;
-      margin: 0 0 2px 0;
-      &::after {
-        content: '';
-      }
-      &:last-child {
-        padding: 5px;
-      }
-      & a {
-        color: $border-menu;
-        &:hover {
-          color: $color-title;
-        }
-      }
-    }
-  }
+  display: none;
 }
 
-.subMenu {
-  position: absolute;
-  z-index: 2;
+.mobileMenu {
+  display: flex;
 }
 
 @media (min-width: 1024px) {
   .container {
-    justify-content: space-between;
+    justify-content: flex-start;
   }
 
-  .mainMenu {
-    & ul {
-      top: 52px;
-      flex-direction: row;
-      & li {
-        margin: 0 2px;
-      }
-    }
+.menuDesctop {
+  display: inline-block;
+  margin: 0 10px;
+  &:first-child {
+  margin: 0 10px 0 0;
   }
-
-  .nav {
-    display: flex;
-  }
-
-  .mobileMenu {
-    display: none;
+  &:last-child {
+    margin: 0 0 0 10px;
   }
 }
 
-@media (min-width: 1440px) {
-  .navMax {
-    display: flex;
-  }
-
-  .nav {
+  .mobileMenu {
     display: none;
   }
 }

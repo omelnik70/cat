@@ -12,6 +12,8 @@ import Post from './Category/Post';
 import User from '../../pages/User';
 import ContentMenu from './ContentMenu';
 import AboutAli from '../Content/AboutAli';
+import Adds from '../Content/Adds';
+import VideoAdds from './VideoAdds';
 
 import styles from './styles.module.scss';
 
@@ -45,9 +47,11 @@ function Content ({ title }) {
         <div className={styles.container}>
             <div className={styles.desctop}>
                 <Navbar data={cat} fn={resetSearchResult} />
+                <VideoAdds />
                 <AboutAli />
             </div>
             <div className={styles.contentBox}>
+                <Adds />
                 <Search />
                 <ContentMenu data={cat} fn={resetSearchResult} />
                 {search && (<SearchResult />)}

@@ -22,8 +22,6 @@ function Footer() {
   const { ua, en, ru } = header;
   const copyright = langUa ? ua.logo : langRu ? ru.logo : en.logo;
   const menu = langUa ? ua.menu : langRu ? ru.menu : en.menu;
-  const submenu = langUa ? ua.submenu : langRu ? ru.submenu : en.submenu;
-  const allMenu = menu.concat(submenu).filter(item => item.link !== '');
 
   return (
     <div className={styles.container}>
@@ -45,7 +43,7 @@ function Footer() {
         </div>
       </div>
       <ul className={styles.navMax}>
-        {allMenu.map((item, index) => (<li key={index}><a className={styles.mainMenu} href={item.link}>{item.text}</a></li>))}
+        {menu.map((item, index) => (<li key={index}><a className={styles.mainMenu} href={item.link}>{item.text}</a></li>))}
       </ul>
       <div className={styles.authorBox}>
         <p>Creation of React applications for the Web</p>

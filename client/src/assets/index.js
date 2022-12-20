@@ -36,6 +36,18 @@ import TELEGRAM from "./icons/telegram.svg";
 import README from "./icons/readme.svg";
 import BASKET from "./icons/basket.svg";
 import CHECK from "./icons/check.svg";
+import PLAY from "./icons/play.svg";
+import PAUSE from "./icons/pause.svg";
+import VOLUMEFULL from "./icons/volumeFull.svg";
+import VOLUMEMUTE from "./icons/volumeMute.svg";
+import FRESHFINDS from './images/freshFinds.webp';
+import GREATVALUEDEALS from './images/greatValueDeals.webp';
+import SUPERBRANDS from './images/superBrands.webp';
+import WEEKLYDEALS from './images/weeklyDeals.webp';
+import ENLETYSHOPS from './video/enLetyshops.mp4';
+import RULETYSHOPS from './video/ruLetyshops.mp4';
+import UALETYSHOPS from './video/uaLetyshops.mp4';
+import LETYSHOPSLOGO from './images/letyshopsLogo.webp';
 
 
 const ICONS = {
@@ -74,17 +86,37 @@ const ICONS = {
     EDIT,
     LOGOUT,
     LIKE,
-    DISLIKE
+    DISLIKE,
+    PLAY,
+    PAUSE,
+    VOLUMEFULL,
+    VOLUMEMUTE,
 };
 
 const IMAGES = {
     AUTHOR,
     FAQ,
+    LETYSHOPSLOGO,
+};
+
+const VIDEO = {
+    ENLETYSHOPS,
+    RULETYSHOPS,
+    UALETYSHOPS,
+};
+
+const ADDS = {
+    FRESHFINDS,
+    GREATVALUEDEALS,
+    SUPERBRANDS,
+    WEEKLYDEALS,
 };
 
 const IMG = { 
     ICONS, 
     IMAGES, 
+    ADDS,
+    VIDEO,
 }
 
 export default IMG;

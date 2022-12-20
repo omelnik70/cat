@@ -1,0 +1,27 @@
+@import '../../../global.scss';
+
+.mobile {
+  display: block;
+}
+
+.desctop {
+  display: none;
+}
+
+.slide {
+  & img {
+    width: 100%;
+  }
+}
+
+/* tablets */
+
+@media (min-width: 1024px) {
+  .mobile {
+    display: none;
+  }
+  
+  .desctop {
+    display: block;
+  }
+}

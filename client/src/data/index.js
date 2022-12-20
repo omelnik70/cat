@@ -780,15 +780,15 @@ const DATA = {
           },
           {
             text: 'Топ бренди',
-            link: 'https://s.zbanx.com/r/chxbcRcuYP3g',
+            link: 'https://s.zbanx.com/r/wKLRRZJeuB0K',
           },
           {
             text: 'Бестселери',
-            link: 'https://s.zbanx.com/r/DjzfyY8cd9rK',
+            link: 'https://s.zbanx.com/r/NonHlDmuBqCf',
           },
           {
             text: 'Центр купонів',
-            link: 'https://s.zbanx.com/r/u1nPpwW6iaaB',
+            link: 'https://s.zbanx.com/r/PMfpzvM3xWIl',
           },
         ],
       },
@@ -820,15 +820,15 @@ const DATA = {
           },
           {
             text: 'Top brands',
-            link: 'https://s.zbanx.com/r/chxbcRcuYP3g',
+            link: 'https://s.zbanx.com/r/wKLRRZJeuB0K',
           },
           {
             text: 'Bestsellers',
-            link: 'https://s.zbanx.com/r/DjzfyY8cd9rK',
+            link: 'https://s.zbanx.com/r/NonHlDmuBqCf',
           },
           {
             text: 'Coupon center',
-            link: 'https://s.zbanx.com/r/u1nPpwW6iaaB',
+            link: 'https://s.zbanx.com/r/PMfpzvM3xWIl',
           },
         ],
       },
@@ -845,30 +845,16 @@ const DATA = {
             link: 'https://s.zbanx.com/r/TGQVIPUQCBbs',
           },
           {
-            text: 'Акции',
-            link: '',
-          },
-        ],
-        submenu: [
-          {
-            text: 'Супер предложения',
-            link: 'https://s.zbanx.com/r/Zb8gipmyEYx2',
+            text: 'Рейтинги',
+            link: 'https://s.zbanx.com/r/CawqGTJbIewo',
           },
           {
-            text: 'Новым покупателям',
-            link: 'https://s.zbanx.com/r/4Y971JOIRIlN',
+            text: 'Купоны',
+            link: 'https://s.zbanx.com/r/PMfpzvM3xWIl',
           },
           {
-            text: 'Топ бренды',
-            link: 'https://s.zbanx.com/r/chxbcRcuYP3g',
-          },
-          {
-            text: 'Бестселлеры',
-            link: 'https://s.zbanx.com/r/DjzfyY8cd9rK',
-          },
-          {
-            text: 'Центр купонов',
-            link: 'https://s.zbanx.com/r/u1nPpwW6iaaB',
+            text: 'Скидки',
+            link: 'https://s.zbanx.com/r/p4qTgsNsWeaa',
           },
         ],
       },
@@ -951,6 +937,24 @@ const DATA = {
         ],
       },
     },
+    slider: [
+      {
+        slide: assets.ADDS.FRESHFINDS, 
+        link: 'https://s.zbanx.com/r/CcgMNAoUZxMF',
+      },
+      {
+        slide: assets.ADDS.WEEKLYDEALS, 
+        link: 'https://s.zbanx.com/r/8Lhk27EHsjv1',
+      },
+      {
+        slide: assets.ADDS.GREATVALUEDEALS, 
+        link: 'https://s.zbanx.com/r/NonHlDmuBqCf',
+      },
+      {
+        slide: assets.ADDS.SUPERBRANDS, 
+        link: 'https://s.zbanx.com/r/wKLRRZJeuB0K',
+      },
+    ],
   };
 
 export default DATA;
