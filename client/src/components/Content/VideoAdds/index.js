@@ -24,7 +24,7 @@ function VideoPlayer({ video, poster, add }) {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        {!isPlaying && (<h2 className={styles.tagline}>{tagline}</h2>)}
+        {!progress && (<h2 className={styles.tagline}>{tagline}</h2>)}
         <div className={styles.text}>
           <a href={link}>{text}</a>
         </div>
