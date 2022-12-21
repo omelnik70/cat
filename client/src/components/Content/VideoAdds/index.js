@@ -21,6 +21,8 @@ function VideoPlayer({ video, poster, add }) {
   } = useVideoPlayer(videoElement);
   const { progress, isPlaying, speed, isMuted } = playerState;
 
+  console.log(progress, isPlaying, speed, isMuted);
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -47,7 +49,7 @@ function VideoPlayer({ video, poster, add }) {
           </div>
           <input
             type="range"
-            value={progress}
+            value={!progress ? 0 : progress}
             onChange={(e) => handleVideoProgress(e)}
           />
           <select

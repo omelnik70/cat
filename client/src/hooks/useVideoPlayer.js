@@ -4,7 +4,7 @@ import screenfull from 'screenfull';
 const useVideoPlayer = (videoElement) => {
   const [playerState, setPlayerState] = useState({
     isPlaying: false,
-    progress: '0',
+    progress: 0,
     speed: 1,
     isMuted: false,
   });
