@@ -14,12 +14,47 @@ video {
 
 .wrapper {
   width: 100%;
-  max-width: 700px;
   position: relative;
   display: flex;
   justify-content: center;
   overflow: hidden;
   border-radius: 10px;
+}
+
+.tagline {
+	font-family:Arial, Helvetica, sans-serif;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.wrapper:hover .text {
+  transform: translateY(0%);
+}
+
+.text {
+  position: absolute;
+  top: 0;
+  right: 3px;
+  transform: translateY(-150%);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  padding: 1px;
+  background-color: $border-menu;
+  border: thick double $border-menu;
+  border-radius: 5px;
+  &:hover {
+    background-color: $background-white;
+    & a {
+      color: $border-menu;
+    }
+  }
+  & a {
+    color: $background-white;
+  }
+  z-index: 1;
 }
 
 .wrapper:hover .controls {
@@ -31,8 +66,8 @@ video {
   align-items: center;
   justify-content: space-evenly;
   position: absolute;
-  bottom: 10px;
-  padding: 14px;
+  bottom: 0;
+  padding: 5px;
   width: 100%;
   max-width: 500px;
   background: rgba(255, 255, 255, 0.25);
@@ -43,6 +78,9 @@ video {
   border: 1px solid rgba(255, 255, 255, 0.18);
   transform: translateY(150%);
   transition: all 0.3s ease-in-out;
+  & button {
+    margin: 0;
+  }
 }
 
 .actions button {
@@ -52,22 +90,16 @@ video {
   cursor: pointer;
 }
 
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none !important;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  height: 4px;
-  width: 350px;
+input[type="range"] {
+  cursor: pointer;
 }
 
 input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none !important;
   cursor: pointer;
-  height: 6px;
 }
 
 input[type="range"]::-moz-range-progress {
-  background: white;
+  cursor: pointer;
 }
 
 .velocity {
@@ -78,11 +110,25 @@ input[type="range"]::-moz-range-progress {
   text-align: center;
   padding: 5px;
   font-size: 14px;
+  cursor: pointer;
 }
 
-.muteBtn {
+.muteBtn, 
+.screenBtn {
   background: none;
   border: none;
   outline: none;
   cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .tagline {
+    font-size: $font-size-normal;
+  }
+}
+
+@media (min-width: 1440px) {
+  .tagline {
+    font-size: $font-size-average;
+  }
 }

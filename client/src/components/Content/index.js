@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
 import { currentSearch } from '../../data/actions';
+import assets from '../../assets';
 import Search from './Search';
 import Faq from './Faq';
 import SearchResult from './Search/SearchResult';
@@ -13,7 +14,7 @@ import User from '../../pages/User';
 import ContentMenu from './ContentMenu';
 import AboutAli from '../Content/AboutAli';
 import Adds from '../Content/Adds';
-import VideoAdds from './VideoAdds';
+import VideoPlayer from './VideoAdds';
 
 import styles from './styles.module.scss';
 
@@ -24,6 +25,9 @@ function Content ({ title }) {
 
     const navigate = useNavigate();
     const { users, categories } = data;
+    const { VIDEO, IMAGES } = assets;
+    const { ENLETYSHOPS, RULETYSHOPS, UALETYSHOPS } = VIDEO;
+    const { LETYSHOPSLOGO } = IMAGES;
     const user = users && id && Object.values(users).filter(item => id === item.uid)[0];
     const cat = categories && categories.filter(cat => cat.lang.id === lang);
     const articlesCurrent = cat && cat.filter(item => item.link === category)[0];
@@ -32,8 +36,11 @@ function Content ({ title }) {
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
     const { ua, en, ru } = usersPage;
     const text = langUa ? ua.text : langRu ? ru.text : en.text;
+    const letyshops = langUa ? ua.letyshops : langRu ? ru.letyshops : en.letyshops;
     const register = langUa ? ua.register : langRu ? ru.register : en.register;
     const login = langUa ? ua.login : langRu ? ru.login : en.login;
+    const video = langRu ? RULETYSHOPS : langUa ? UALETYSHOPS : ENLETYSHOPS;
+  
 
     useEffect(() => {
         if(isUser && uid === id) navigate(userValid);
@@ -47,7 +54,7 @@ function Content ({ title }) {
         <div className={styles.container}>
             <div className={styles.desctop}>
                 <Navbar data={cat} fn={resetSearchResult} />
-                <VideoAdds />
+                <VideoPlayer video={video} poster={LETYSHOPSLOGO} add={letyshops} />
                 <AboutAli />
             </div>
             <div className={styles.contentBox}>

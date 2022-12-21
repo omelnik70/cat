@@ -40,6 +40,7 @@ import PLAY from "./icons/play.svg";
 import PAUSE from "./icons/pause.svg";
 import VOLUMEFULL from "./icons/volumeFull.svg";
 import VOLUMEMUTE from "./icons/volumeMute.svg";
+import FULLSCREEN from "./icons/fullscreen.svg";
 import FRESHFINDS from './images/freshFinds.webp';
 import GREATVALUEDEALS from './images/greatValueDeals.webp';
 import SUPERBRANDS from './images/superBrands.webp';
@@ -91,6 +92,7 @@ const ICONS = {
     PAUSE,
     VOLUMEFULL,
     VOLUMEMUTE,
+    FULLSCREEN,
 };
 
 const IMAGES = {

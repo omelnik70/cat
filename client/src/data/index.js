@@ -95,6 +95,12 @@ const DATA = {
         title: 'Користувач:',
         understand: 'Я розумію',
         password: 'Пароль',
+        letyshops: 'Кешбек сервіс – поверни своє!',
+        letyshops: {
+          text: 'Зареєструватись',
+          link: 'https://letyshops.com/ua/winwin?ww=7718084',
+          tagline: 'Кешбек сервіс – поверни своє!',
+        },
         warningImgTwo: [
           'Розмір Вашого автора перевищує ліміт',
           '2 кБ. Будь ласка, виберіть інший.',
@@ -150,6 +156,11 @@ const DATA = {
         title: 'User:',
         understand: 'I understand',
         password: 'Password',
+        letyshops: {
+          text: 'Register',
+          link: 'https://letyshops.com/ua/winwin?ww=7718084',
+          tagline: 'Cashback service - get yours back!',
+        },
         warningImgTwo: [
           'The size of your avtar exceeds the limit',
           ' of 2 kB. Please choose another.',
@@ -205,6 +216,11 @@ const DATA = {
         title: 'Пользователь:',
         understand: 'Я понимаю',
         password: 'Пароль',
+        letyshops: {
+          text: 'Зарегистрироваться',
+          link: 'https://letyshops.com/ua/winwin?ww=7718084',
+          tagline: 'Кешбек сервис - верни свое!',
+        },
         warningImgTwo: [
           'Размер Вашего автар превышает лимит',
           '2 кБ. Пожалуйста выберите другой.',

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import screenfull from 'screenfull';
 
 const useVideoPlayer = (videoElement) => {
   const [playerState, setPlayerState] = useState({
@@ -8,6 +9,8 @@ const useVideoPlayer = (videoElement) => {
     isMuted: false,
   });
 
+  const { isPlaying, isMuted } = playerState;
+
   const togglePlay = () => {
     setPlayerState({
       ...playerState,
@@ -16,10 +19,10 @@ const useVideoPlayer = (videoElement) => {
   };
 
   useEffect(() => {
-    playerState.isPlaying
+    isPlaying
       ? videoElement.current.play()
       : videoElement.current.pause();
-  }, [playerState.isPlaying, videoElement]);
+  }, [isPlaying, videoElement]);
 
   const handleOnTimeUpdate = () => {
     const progress = (videoElement.current.currentTime / videoElement.current.duration) * 100;
@@ -54,11 +57,15 @@ const useVideoPlayer = (videoElement) => {
     });
   };
 
+  const toggleScreen = () => {
+    screenfull.toggle(videoElement.current);
+  };
+
   useEffect(() => {
-    playerState.isMuted
+    isMuted
       ? (videoElement.current.muted = true)
       : (videoElement.current.muted = false);
-  }, [playerState.isMuted, videoElement]);
+  }, [isMuted, videoElement]);
 
   return {
     playerState,
@@ -67,6 +74,7 @@ const useVideoPlayer = (videoElement) => {
     handleVideoProgress,
     handleVideoSpeed,
     toggleMute,
+    toggleScreen,
   };
 };
 
