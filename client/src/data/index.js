@@ -773,7 +773,7 @@ const DATA = {
         description: 'Не знаєте як купувати на АліЕкспрес - запитайте у АліПомічника',
         menu: [
           {
-            text: 'Крамниця',
+            text: 'Магазин',
             link: 'https://s.zbanx.com/r/DAujDHRTt8P9',
           },
           {
@@ -781,30 +781,16 @@ const DATA = {
             link: 'https://s.zbanx.com/r/TGQVIPUQCBbs',
           },
           {
-            text: 'Акційні пропозиції',
-            link: '',
-          },
-        ],
-        submenu: [
-          {
-            text: 'Супер пропозиції',
-            link: 'https://s.zbanx.com/r/Zb8gipmyEYx2',
+            text: 'Рейтинги',
+            link: 'https://s.zbanx.com/r/CawqGTJbIewo',
           },
           {
-            text: 'Новим покупцям',
-            link: 'https://s.zbanx.com/r/4Y971JOIRIlN',
-          },
-          {
-            text: 'Топ бренди',
-            link: 'https://s.zbanx.com/r/wKLRRZJeuB0K',
-          },
-          {
-            text: 'Бестселери',
-            link: 'https://s.zbanx.com/r/NonHlDmuBqCf',
-          },
-          {
-            text: 'Центр купонів',
+            text: 'Купони',
             link: 'https://s.zbanx.com/r/PMfpzvM3xWIl',
+          },
+          {
+            text: 'Знижки',
+            link: 'https://s.zbanx.com/r/p4qTgsNsWeaa',
           },
         ],
       },
@@ -817,34 +803,20 @@ const DATA = {
             link: 'https://s.zbanx.com/r/DAujDHRTt8P9',
           },
           {
-            text: 'Catalogue',
+            text: 'Catalog',
             link: 'https://s.zbanx.com/r/TGQVIPUQCBbs',
           },
           {
-            text: 'Special offers',
-            link: '',
-          },
-        ],
-        submenu: [
-          {
-            text: 'Super deals',
-            link: 'https://s.zbanx.com/r/Zb8gipmyEYx2',
+            text: 'Ratings',
+            link: 'https://s.zbanx.com/r/CawqGTJbIewo',
           },
           {
-            text: 'New buyers',
-            link: 'https://s.zbanx.com/r/4Y971JOIRIlN',
-          },
-          {
-            text: 'Top brands',
-            link: 'https://s.zbanx.com/r/wKLRRZJeuB0K',
-          },
-          {
-            text: 'Bestsellers',
-            link: 'https://s.zbanx.com/r/NonHlDmuBqCf',
-          },
-          {
-            text: 'Coupon center',
+            text: 'Coupons',
             link: 'https://s.zbanx.com/r/PMfpzvM3xWIl',
+          },
+          {
+            text: 'Discounts',
+            link: 'https://s.zbanx.com/r/p4qTgsNsWeaa',
           },
         ],
       },
