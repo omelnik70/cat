@@ -21,8 +21,6 @@ function VideoPlayer({ video, poster, add }) {
   } = useVideoPlayer(videoElement);
   const { progress, isPlaying, speed, isMuted } = playerState;
 
-  console.log(progress, isPlaying, speed, isMuted);
-
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
