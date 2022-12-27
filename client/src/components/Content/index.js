@@ -37,6 +37,7 @@ function Content ({ title }) {
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
     const { ua, en, ru } = usersPage;
     const text = langUa ? ua.text : langRu ? ru.text : en.text;
+    const newUsers = langUa ? ua.newUsers : langRu ? ru.newUsers : en.newUsers;
     const letyshops = langUa ? ua.letyshops : langRu ? ru.letyshops : en.letyshops;
     const register = langUa ? ua.register : langRu ? ru.register : en.register;
     const login = langUa ? ua.login : langRu ? ru.login : en.login;
@@ -62,7 +63,7 @@ function Content ({ title }) {
                 <Adds />
                 <Search />
                 {/* <ContentMenu data={cat} fn={resetSearchResult} /> */}
-                <NewUsers />
+                <NewUsers texts={newUsers} />
                 {search && (<SearchResult />)}
                 {category && !post && !search && (<Category fn={resetSearchResult} title={title} />)}
                 {post && !search && (

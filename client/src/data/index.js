@@ -96,6 +96,12 @@ const DATA = {
         understand: 'Я розумію',
         password: 'Пароль',
         letyshops: 'Кешбек сервіс – поверни своє!',
+        newUsers: {
+          title: `AliExpress для нових користувачів`,
+          gift: `Подарунки`,
+          coupon: `Купони`,
+          price: `Ексклюзивна ціна`,
+        },
         letyshops: {
           text: 'Зареєструватись',
           link: 'https://letyshops.com/ua/winwin?ww=7718084',
@@ -161,6 +167,12 @@ const DATA = {
           link: 'https://letyshops.com/ua/winwin?ww=7718084',
           tagline: 'Cashback service - get yours back!',
         },
+        newUsers: {
+          title: `AliExpress for new users`,
+          gift: `Present`,
+          coupon: `Coupons`,
+          price: `Exclusive price`,
+        },
         warningImgTwo: [
           'The size of your avtar exceeds the limit',
           ' of 2 kB. Please choose another.',
@@ -220,6 +232,12 @@ const DATA = {
           text: 'Зарегистрироваться',
           link: 'https://letyshops.com/ua/winwin?ww=7718084',
           tagline: 'Кешбек сервис - верни свое!',
+        },
+        newUsers: {
+          title: `AliExpress для новых пользователей`,
+          gift: `Подарки`,
+          coupon: `Купоны`,
+          price: `Эксклюзивная цена`,
         },
         warningImgTwo: [
           'Размер Вашего автар превышает лимит',
