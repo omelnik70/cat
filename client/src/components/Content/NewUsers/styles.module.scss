@@ -1,0 +1,44 @@
+@import '../../../global.scss';
+
+/* mobile */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: red;
+    & h2 {
+        font-size: $font-size-average;
+        text-align: center;
+        color: white;
+    }
+}
+
+.imagesBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 1024px) {
+    .imagesBox img {
+        width: 100px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .container h2 {
+        font-size: $font-size-big;
+    }
+
+    .imagesBox img {
+        width: 120px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .imagesBox img {
+        width: 130px;
+    }
+}

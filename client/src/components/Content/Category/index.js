@@ -19,7 +19,7 @@ function Category ({ fn, title }) {
     const cat = categories && categories.filter(cat => cat.lang.id === lang);
     const articlesCurrent = cat.filter(item => item.link === category)[0];
     const { name, article } = articlesCurrent;
-    const LIMITART = 10;
+    const LIMITART = 12;
     const metaDiscription = document.getElementsByName("description")[0];
     const metaKeywords = document.getElementsByName("keywords")[0];
     const head = document.querySelector('title');

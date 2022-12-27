@@ -11,7 +11,8 @@ import Navbar from './Navbar';
 import Category from './Category';
 import Post from './Category/Post';
 import User from '../../pages/User';
-import ContentMenu from './ContentMenu';
+import NewUsers from './NewUsers';
+//import ContentMenu from './ContentMenu';
 import AboutAli from '../Content/AboutAli';
 import Adds from '../Content/Adds';
 import VideoPlayer from './VideoAdds';
@@ -60,7 +61,8 @@ function Content ({ title }) {
             <div className={styles.contentBox}>
                 <Adds />
                 <Search />
-                <ContentMenu data={cat} fn={resetSearchResult} />
+                {/* <ContentMenu data={cat} fn={resetSearchResult} /> */}
+                <NewUsers />
                 {search && (<SearchResult />)}
                 {category && !post && !search && (<Category fn={resetSearchResult} title={title} />)}
                 {post && !search && (

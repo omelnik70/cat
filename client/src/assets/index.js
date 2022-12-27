@@ -49,6 +49,9 @@ import ENLETYSHOPS from './video/enLetyshops.mp4';
 import RULETYSHOPS from './video/ruLetyshops.mp4';
 import UALETYSHOPS from './video/uaLetyshops.mp4';
 import LETYSHOPSLOGO from './images/letyshopsLogo.webp';
+import NEWUSERS_1 from './images/newUsers_1.webp';
+import NEWUSERS_2 from './images/newUsers_2.gif';
+import NEWUSERS_3 from './images/newUsers_3.gif';
 
 
 const ICONS = {
@@ -99,6 +102,9 @@ const IMAGES = {
     AUTHOR,
     FAQ,
     LETYSHOPSLOGO,
+    NEWUSERS_1,
+    NEWUSERS_2,
+    NEWUSERS_3
 };
 
 const VIDEO = {

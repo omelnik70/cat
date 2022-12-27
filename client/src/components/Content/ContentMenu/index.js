@@ -9,6 +9,7 @@ function ContentMenu ( { data, fn } ) {
     return (
         <nav className={styles.navbar}>
             {data.map(item => 
+            <div className={styles.linkBox}>
                 <Link 
                     onClick={fn}
                     key={item.id} 
@@ -16,6 +17,7 @@ function ContentMenu ( { data, fn } ) {
                 >
                     {item.name}
                 </Link>
+            </div>
             )}
         </nav>
     );

@@ -16,7 +16,7 @@ function SearchResult () {
     const { lang, search, currentListArt, resultSearchArt, searchTexts } = state;
     const articleLang = data.categories.filter(item => lang === item.lang.id);
     const articles = articleLang.map(item => item.article.map(i => i)).flat();
-    const LIMITART = 10;
+    const LIMITART = 12;
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
     const { ua, en, ru } = searchTexts;

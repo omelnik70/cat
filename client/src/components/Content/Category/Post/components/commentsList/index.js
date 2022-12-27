@@ -107,7 +107,7 @@ function CommentList ({
                 <p className={styles.loginMessageBox}>
                     {info}
                     <span><Link to="/register">{register}</Link>
-                    |
+                    {` | `}
                     <Link to="/login">{loginText}</Link></span>
                 </p>
             )}

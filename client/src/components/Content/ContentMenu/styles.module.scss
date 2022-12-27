@@ -13,9 +13,17 @@
         flex-wrap: wrap;
         border: 1px solid $border-menu;
         border-radius: 5px;
+    }
+
+    .linkBox {
+        flex: 1 1 25%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
         & a {
-            flex: 1 1 18%;
-            height: 50px;
+            flex: 1 1 100%;
             margin: 10px;
             padding: 10px;
             background-color: $color-background;
@@ -27,7 +35,7 @@
 }
 
 @media (min-width: 1600px) {
-    .navbar a {
-        height: 50px;
-    }
+    // .navbar a {
+    //     height: 50px;
+    // }
 }
