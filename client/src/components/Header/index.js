@@ -18,8 +18,6 @@ function Header () {
     const { ua, en, ru } = header;
     const title = langUa ? ua.logo : langRu ? ru.logo : en.logo;
 
-    console.log(userValid);
-
     return (
         <div className={styles.container}>
             <Link to="/">

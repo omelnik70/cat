@@ -35,10 +35,6 @@ function Post ({ articles, lang, text, data, userId, titleSite }) {
     linkUa.href = `ua/${pathname.slice(4)}`;
     linkEn.href = `en/${pathname.slice(4)}`;
 
-    
-
-    console.log(pathname.slice(3));
-
     const { likeHide, dislikeHide } = propertiesArt;
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
     const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
