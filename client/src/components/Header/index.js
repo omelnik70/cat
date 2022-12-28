@@ -18,6 +18,8 @@ function Header () {
     const { ua, en, ru } = header;
     const title = langUa ? ua.logo : langRu ? ru.logo : en.logo;
 
+    console.log(userValid);
+
     return (
         <div className={styles.container}>
             <Link to="/">
@@ -29,7 +31,7 @@ function Header () {
             <ul className={styles.lang}>
                 <Lang data={data} />
             </ul>
-            <Link onClick={() => dispatch(currentSearch(''))} to={userValid}>
+            <Link onClick={() => dispatch(currentSearch(''))} to={`${lang === "6311a2434690f0b08bf74075" ? "/ua" : lang === "6311a25b4690f0b08bf74077" ? "/ru" : "/en"}${userValid}`}>
                     {(isUser && !avatar) && (<Avatar className={styles.account} />)}
                     {(isUser && avatar) && (<img className={styles.avatar} src={avatar} alt=''></img>)}
                     {!isUser && (<Account className={styles.account} />)}

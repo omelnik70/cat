@@ -48,7 +48,7 @@ function SearchResult () {
                     {search && currentListArt.map(art => (
                         <div key={art.id} >
                             <Link 
-                                to={`/${art.category.link}/${art.link}`}
+                                to={`/${lang === "6311a2434690f0b08bf74075" ? `ua`: lang === "6311a25b4690f0b08bf74077" ? `ru` : `en`}/${art.category.link}/${art.link}`}
                             >
                                 <h3 
                                     onClick={handleClickArticle}

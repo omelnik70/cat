@@ -1,7 +1,13 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow: /login
-Disallow: /register
-Disallow: /users/
+Disallow: /ru/login
+Disallow: /ua/login
+Disallow: /en/login
+Disallow: /ru/register
+Disallow: /ua/register
+Disallow: /en/register
+Disallow: /ru/users/
+Disallow: /ua/users/
+Disallow: /en/users/
 
 Sitemap: https://alihelper.top/sitemap.xml

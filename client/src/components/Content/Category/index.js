@@ -23,9 +23,15 @@ function Category ({ fn, title }) {
     const metaDiscription = document.getElementsByName("description")[0];
     const metaKeywords = document.getElementsByName("keywords")[0];
     const head = document.querySelector('title');
+    const linkRu = Object.values(document.querySelectorAll('link')).find(i => i.hreflang === "ru");
+    const linkUa = Object.values(document.querySelectorAll('link')).find(i => i.hreflang === "uk");
+    const linkEn = Object.values(document.querySelectorAll('link')).find(i => i.hreflang === "en");
     head.textContent = `${name} AliExpress | ${title}`;
     metaKeywords.content = article.map(meta => `${meta.title}`).join(', ');
     metaDiscription.content = `${name} AliExpress`;
+    linkRu.href = `ru/${category}`;
+    linkUa.href = `ua/${category}`;
+    linkEn.href = `en/${category}`;
 
     const handleClickArticle = (id) => {
         dispatch(currentArt(id));
@@ -43,7 +49,7 @@ function Category ({ fn, title }) {
                         <div key={art.id} >
                             <Link 
                                 key={art.id} 
-                                to={`/${category}/${art.link}`}
+                                to={`/${lang === "6311a2434690f0b08bf74075" ? `ua`: lang === "6311a25b4690f0b08bf74077" ? `ru` : `en`}/${art.category.link}/${art.link}`}
                             >
                                 <h3 onClick={() => handleClickArticle(art.id)}>{art.title}</h3>
                             </Link>

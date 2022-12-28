@@ -17,7 +17,7 @@ function Menu () {
 
     return (
         <nav className={styles.container}>
-                {dataMenu.map((item, index) => <Link key={index} className={styles.fotterMenu} to={item.link}>{item.text}</Link>)}
+                {dataMenu.map((item, index) => <Link key={index} className={styles.fotterMenu} to={`/${lang === "6311a2434690f0b08bf74075" ? `ua`: lang === "6311a25b4690f0b08bf74077" ? `ru` : `en`}${item.link}`}>{item.text}</Link>)}
         </nav>
     );
 }

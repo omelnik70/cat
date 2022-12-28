@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Context from '../../Context';
 import Menu from './Menu';
 import { ReactComponent as Copyright } from '../../assets/icons/copyright.svg';
-import { ReactComponent as Facebook } from '../../assets/icons/facebook.svg';
+//import { ReactComponent as Facebook } from '../../assets/icons/facebook.svg';
 import { ReactComponent as Instagram } from '../../assets/icons/instagram.svg';
 import { ReactComponent as Twitter } from '../../assets/icons/twitter.svg';
 import { ReactComponent as Youtube } from '../../assets/icons/youtube.svg';
@@ -34,7 +34,7 @@ function Footer() {
         </Link>
         <Menu />
         <div className={styles.socialLink}>
-          <a href="https://www.facebook.com/groups/ali.ukraine"><Facebook className={styles.socialIcons} /></a>
+          {/* <a href="https://www.facebook.com/groups/ali.ukraine"><Facebook className={styles.socialIcons} /></a> */}
           <a href="https://www.instagram.com/ali.in.ua"><Instagram className={styles.socialIcons} /></a>
           <a href="https://twitter.com/UaAliexpress"><Twitter className={styles.socialIcons} /></a>
           <a href="https://www.youtube.com/@Ali_Helper"><Youtube className={styles.socialIcons} /></a>

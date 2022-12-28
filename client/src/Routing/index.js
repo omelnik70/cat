@@ -10,7 +10,7 @@ import Pages from '../pages';
 const Routing = ({ title }) => {
     const { state, data } = useContext(Context);
     const { pathname } = useLocation();
-    const link = pathname.slice(1);
+    const link = pathname.slice(4);
     const { lang, isUser } = state;
     const { categories, users } = data;
     const cat = categories && categories.filter(cat => cat.lang.id === lang);
@@ -24,14 +24,15 @@ const Routing = ({ title }) => {
 
     return (
         <Routes>
-            <Route path="/" element={<Content/>} />
-            <Route path="/privacy_policy" element={<Pages name={title} />} />
-            <Route path="/about" element={<Pages name={title} />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/:category" element={ isCategory ? (<Content title={title} />) : (<Navigate replace to="/" />)} />
-            <Route path="/:category/:post" element={ isPost ? (<Content title={title} />) : (<Navigate replace to="/" />)} />
-            <Route path="/users/:id" element={ isLinkUser && isUser ? (<Content />) : (<Navigate replace to="/" />)} />
+            <Route path="/" element={<Navigate replace to={`${lang === "6311a2434690f0b08bf74075" ? "/ua" : lang === "6311a25b4690f0b08bf74077" ? "/ru" : "/en"}`} />} />
+            <Route path="/:lng" element={<Content />} />
+            <Route path="/:lng/privacy_policy" element={<Pages name={title} />} />
+            <Route path="/:lng/about" element={<Pages name={title} />} />
+            <Route path="/:lng/login" element={<Login />} />
+            <Route path="/:lng/register" element={<Register />} />
+            <Route path="/:lng/:category" element={ isCategory ? (<Content title={title} />) : (<Navigate replace to="/" />)} />
+            <Route path="/:lng/:category/:post" element={ isPost ? (<Content title={title} />) : (<Navigate replace to="/" />)} />
+            <Route path="/:lng/users/:id" element={ isLinkUser && isUser ? (<Content />) : (<Navigate replace to="/" />)} />
         </Routes>
     );
 };

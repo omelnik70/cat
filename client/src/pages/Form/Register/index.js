@@ -75,7 +75,7 @@ const Register = () => {
                 )}
                 <p className={styles.text}>
                     {text} 
-                    <Link to="/login">
+                    <Link to={`${lang === "6311a2434690f0b08bf74075" ? "/ua" : lang === "6311a25b4690f0b08bf74077" ? "/ru" : "/en"}/login`}>
                         <span className={styles.link}>{link}</span>
                     </Link>
                 </p>

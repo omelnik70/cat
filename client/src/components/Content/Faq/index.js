@@ -42,7 +42,7 @@ function Faq ({ article }) {
                         <div className={styles.faqMenu}>
                             {currentListArt.map(item => (
                                 <div key={item.id}>
-                                    <Link to={`/${item.category.link}/${item.link}`}>
+                                    <Link to={`/${lang === "6311a2434690f0b08bf74075" ? `ua`: lang === "6311a25b4690f0b08bf74077" ? `ru` : `en`}/${item.category.link}/${item.link}`}>
                                         <h3 className={styles.articleTitle}>{item.title}</h3>
                                     </Link>
                                     <ShortDescriptionArticle item={item} />

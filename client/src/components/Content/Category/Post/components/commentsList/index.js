@@ -106,9 +106,9 @@ function CommentList ({
             {!isUser && (
                 <p className={styles.loginMessageBox}>
                     {info}
-                    <span><Link to="/register">{register}</Link>
+                    <span><Link to={`${lang === "6311a2434690f0b08bf74075" ? "/ua" : lang === "6311a25b4690f0b08bf74077" ? "/ru" : "/en"}/register`}>{register}</Link>
                     {` | `}
-                    <Link to="/login">{loginText}</Link></span>
+                    <Link to={`${lang === "6311a2434690f0b08bf74075" ? "/ua" : lang === "6311a25b4690f0b08bf74077" ? "/ru" : "/en"}/login`}>{loginText}</Link></span>
                 </p>
             )}
             {isUser && (

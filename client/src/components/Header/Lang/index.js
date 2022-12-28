@@ -13,6 +13,7 @@ function Lang ({ data }) {
     const { ICONS } = assets;
     const { RU, UA, GB } = ICONS;
     const { langs } = data;
+    const arrLangs = langs.filter(item => item.id !== lang);
 
     return (
         <div className={styles.activeLang}>
@@ -23,14 +24,15 @@ function Lang ({ data }) {
                 alt=""
             />
             <ul className={styles.list}>
-            {langs.filter(item => item.id !== lang).map(item => (
+            {arrLangs.map(item => (
                 <div key={item.id} onClick={() => dispatch(currentLang(item.id))} className={styles.img}>
-                    <img src={
-                        item.country === "RU" ? RU :
-                        item.country === "UA" ? UA : GB
-                    } 
-                    alt=""
-                />
+                    <img 
+                        src={
+                            item.country === "RU" ? RU :
+                            item.country === "UA" ? UA : GB
+                        } 
+                            alt=""
+                    />
                 </div>
                 ))}
             </ul>

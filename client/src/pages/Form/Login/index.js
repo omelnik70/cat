@@ -84,7 +84,7 @@ const Login = () => {
                     <Modal active={modal} setActive={setModal}>{textMessage}</Modal>
                 )}
                 <p className={styles.text}>{text}</p>
-                <Link to="/register">
+                <Link to={`${lang === "6311a2434690f0b08bf74075" ? "/ua" : lang === "6311a25b4690f0b08bf74077" ? "/ru" : "/en"}/register`}>
                     <p className={styles.link}>{link}</p>
                 </Link>
             </div>

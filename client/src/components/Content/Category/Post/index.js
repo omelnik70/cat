@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ref, update } from "firebase/database";
 
 import CommentList from './components/commentsList';
@@ -16,6 +16,7 @@ function Post ({ articles, lang, text, data, userId, titleSite }) {
         dislikeHide: false,
         styleMessage: true,
     });
+    const { pathname } = useLocation();
     
     const { link } = category;
     const cat = data.filter(cat => cat.lang.id === lang);
@@ -23,10 +24,20 @@ function Post ({ articles, lang, text, data, userId, titleSite }) {
     const { name } = currentCat;
     const metaDiscription = document.getElementsByName("description")[0];
     const metaKeywords = document.getElementsByName("keywords")[0];
+    const linkRu = Object.values(document.querySelectorAll('link')).find(i => i.hreflang === "ru");
+    const linkUa = Object.values(document.querySelectorAll('link')).find(i => i.hreflang === "uk");
+    const linkEn = Object.values(document.querySelectorAll('link')).find(i => i.hreflang === "en");
     const head = document.querySelector('title');
     head.textContent = `${title} | ${titleSite}`;
     metaKeywords.content = `${name} AliExpress`;
     metaDiscription.content = `AliExpress - ${title}`;
+    linkRu.href = `ru/${pathname.slice(4)}`;
+    linkUa.href = `ua/${pathname.slice(4)}`;
+    linkEn.href = `en/${pathname.slice(4)}`;
+
+    
+
+    console.log(pathname.slice(3));
 
     const { likeHide, dislikeHide } = propertiesArt;
     const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
@@ -96,13 +107,13 @@ function Post ({ articles, lang, text, data, userId, titleSite }) {
                         {item.text_1 && item.text_1}
                         {item.imgSrc && (<div className={styles.containerImg}><img src={item.imgSrc} alt="" title={item.imgTitle} /><span>{item.imgTitle}</span></div>)}
                         {(item.strong && !(item.li_1 || item.li_2)) && (<strong>{item.strong}</strong>)}
-                        {(item.aHref && !(item.li_1 || item.li_2)) && (item.aHref.indexOf('http') ? <Link to={item.aHref}>{item.aText}</Link> : <a href={item.aHref}>{item.aText}</a>)}
+                        {(item.aHref && !(item.li_1 || item.li_2)) && (item.aHref.indexOf('http') ? <Link to={`/${lang === "6311a2434690f0b08bf74075" ? `ua`: lang === "6311a25b4690f0b08bf74077" ? `ru` : `en`}${item.aHref}`}>{item.aText}</Link> : <a href={item.aHref}>{item.aText}</a>)}
                         {item.text_2 && item.text_2}
                         {(item.li_1 || item.li_2) && (
                             <ul>
                                 <li>{item.li_1 && item.li_1}
                                     {item.strong && (<strong>{item.strong}</strong>)}
-                                    {item.aHref && (item.aHref.indexOf('http') ? <Link to={item.aHref}>{item.aText}</Link> : <a href={item.aHref}>{item.aText}</a>)}
+                                    {item.aHref && (item.aHref.indexOf('http') ? <Link to={`/${lang === "6311a2434690f0b08bf74075" ? `ua`: lang === "6311a25b4690f0b08bf74077" ? `ru` : `en`}${item.aHref}`}>{item.aText}</Link> : <a href={item.aHref}>{item.aText}</a>)}
                                     {item.li_2 && item.li_2}
                                 </li>
                             </ul>

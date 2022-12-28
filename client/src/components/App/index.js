@@ -45,7 +45,6 @@ function App() {
 
   if(isLoading) return <Loading />;
 
-
   const { lang, header } = state;
   const langUa = lang === '6311a2434690f0b08bf74075' ? true : false;
   const langRu = lang === '6311a25b4690f0b08bf74077' ? true : false;
@@ -53,12 +52,20 @@ function App() {
   const description = langUa ? ua.description : langRu ? ru.description : en.description;
   const title = langUa ? ua.logo : langRu ? ru.logo : en.logo;
   const head = document.querySelector('title');
+  const html = document.getElementsByTagName('html')[0];
+  const linkRu = Object.values(document.querySelectorAll('link')).find(i => i.hreflang === "ru");
+  const linkUa = Object.values(document.querySelectorAll('link')).find(i => i.hreflang === "uk");
+  const linkEn = Object.values(document.querySelectorAll('link')).find(i => i.hreflang === "en");
   const metaDiscription = document.getElementsByName("description")[0];
   const metaKeywords = document.getElementsByName("keywords")[0];
   const metaContent = data.categories.filter(lan => lan.lang.id === lang).map(meta => `${meta.name} AliExpress`).join(', ');
+  html.lang = lang === "6311a2434690f0b08bf74075" ? "ua" : lang === "6311a25b4690f0b08bf74077" ? "ru" : "en";
   metaKeywords.content = `${metaContent}`;
   metaDiscription.content = `${title} - ${description}`;
   head.textContent = `${title} | ${description}`;
+  linkRu.href = `ru`;
+  linkUa.href = `ua`;
+  linkEn.href = `en`;
 
   const value = { state, dispatch, data };
 
