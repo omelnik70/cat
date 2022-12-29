@@ -50,7 +50,7 @@ function LazyLoad ({ arr, int, lang, flag, uid, confirm, reset, fn }) {
         <div className={styles.mobile}>
             {currentArr.map(item => (
                 flag === 'art' && (<div key={item.id}>
-                    <Link to={`/${item.category.link}/${item.link}`}>
+                    <Link to={`/${lang === "6311a2434690f0b08bf74075" ? `ua`: lang === "6311a25b4690f0b08bf74077" ? `ru` : `en`}/${item.category.link}/${item.link}`}>
                         <h3 onClick={fn} className={styles.articleTitle}>{item.title}</h3>
                     </Link>
                     <ShortDescriptionArticle item={item} />

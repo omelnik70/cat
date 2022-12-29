@@ -8,7 +8,7 @@
     align-items: center;
     background-color: red;
     & h2 {
-        font-size: $font-size-average;
+        font-size: $font-size-normal;
         text-align: center;
         color: white;
     }
@@ -19,6 +19,19 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    & img {
+        width: 50px;
+    }
+}
+
+@media (min-width: 768px) {
+    .imagesBox img {
+        width: 75px;
+    }
+
+    .container h2 {
+        font-size: $font-size-normal;
+    }
 }
 
 @media (min-width: 1024px) {
