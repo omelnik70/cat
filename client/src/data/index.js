@@ -95,7 +95,6 @@ const DATA = {
         title: 'Користувач:',
         understand: 'Я розумію',
         password: 'Пароль',
-        letyshops: 'Кешбек сервіс – поверни своє!',
         newUsers: {
           title: `AliExpress для нових користувачів`,
           gift: `Подарунки`,
@@ -789,6 +788,9 @@ const DATA = {
       ua: {
         logo: 'Алі Помічник',
         description: 'Не знаєте як купувати на АліЕкспрес - запитайте у АліПомічника',
+        donat_1: `Підтримати проект можна за `,
+        donat_2: `посиланням`,
+        donat_3: ` або QR-кодом.`,
         menu: [
           {
             text: 'Магазин',
@@ -815,6 +817,9 @@ const DATA = {
       en: {
         logo: 'Ali Helper',
         description: `Don't know how to buy on Aliexpress - ask Ali Assistant`,
+        donat_1: `You can support the project by `,
+        donat_2: `link`,
+        donat_3: ` or QR code.`,
         menu: [
           {
             text: 'Shop',
@@ -841,6 +846,9 @@ const DATA = {
       ru: {
         logo: 'Али Помощник',
         description: 'Не знаете как покупать на АлиЭкспресс - спросите у АлиПомощника',
+        donat_1: `Поддержать проект можно по `,
+        donat_2: `ссылке`,
+        donat_3: ` или QR коду.`,
         menu: [
           {
             text: 'Магазин',

@@ -52,6 +52,7 @@ import LETYSHOPSLOGO from './images/letyshopsLogo.webp';
 import NEWUSERS_1 from './images/newUsers_1.webp';
 import NEWUSERS_2 from './images/newUsers_2.gif';
 import NEWUSERS_3 from './images/newUsers_3.gif';
+import DONAT from './images/donat.webp';
 
 
 const ICONS = {
@@ -104,7 +105,8 @@ const IMAGES = {
     LETYSHOPSLOGO,
     NEWUSERS_1,
     NEWUSERS_2,
-    NEWUSERS_3
+    NEWUSERS_3,
+    DONAT
 };
 
 const VIDEO = {

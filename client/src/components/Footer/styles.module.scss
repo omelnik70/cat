@@ -40,11 +40,31 @@
     align-items: center;
     font-size: $font-size-small;
     margin: 7px 0 0 0;
-    & p {
+    & p  {
         color: $color-text;
     }
     & a {
         margin: 0 5px;
+        color: $border-menu;
+    }
+}
+
+.donat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    & img {
+        position: static;
+        width: 100px;
+    }
+}
+
+.text {
+    color: $color-text;
+    text-align: center;
+    font-size: $font-size-small;
+    & a {
         color: $border-menu;
     }
 }
@@ -92,14 +112,28 @@
             font-size: $font-size-little;
         }
     }
+
+    .text {
+        font-size: $font-size-little;
+    }
 }
 
 @media (min-width: 768px) {
     .container {
+        position: relative;
         margin: 0;
     }
     .infoBox {
         flex-direction: row;
+    }
+
+    .donat {
+        margin: 0 0 10px 0;
+        & img {
+            position: absolute;
+            bottom: 2px;
+            right: 120px;
+        }
     }
     
     .navMax {
@@ -123,10 +157,19 @@
     .container {
         margin: 0 2%;
     }
+
+    .donat img {
+        bottom: 5px;
+        right: 150px;
+    }
 }
 
 @media (min-width: 1440px) {
     .container {
         margin: 0 10%;
+    }
+
+    .donat img {
+        bottom: 10px;
     }
 }
