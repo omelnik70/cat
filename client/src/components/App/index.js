@@ -73,7 +73,7 @@ function App() {
     <Context.Provider value={value}>
       <div className={styles.container}>
         <div className={styles.header}><Header /></div>
-            <Routing title={title} />
+            <Routing title={title} lang={lang} />
         <div className={styles.footer}><Footer /></div>
       </div>
     </Context.Provider>
