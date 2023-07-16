@@ -10,7 +10,7 @@ function NewUsers ({ texts }) {
     const { title, gift, coupon, price } = texts;
 
     return (
-        <a href="https://s.zbanx.com/r/xFhrHj4xgsm8">
+        <a href="">
             <div className={styles.container}>
                     
                         <h2>
