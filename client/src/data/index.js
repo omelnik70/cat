@@ -954,19 +954,19 @@ const DATA = {
     slider: [
       {
         slide: assets.ADDS.FRESHFINDS, 
-        link: '',
+        link: 'https://s.click.aliexpress.com/e/_DcZQNFP',
       },
       {
         slide: assets.ADDS.WEEKLYDEALS, 
-        link: '',
+        link: 'https://s.click.aliexpress.com/e/_DcHTSdB',
       },
       {
         slide: assets.ADDS.GREATVALUEDEALS, 
-        link: '',
+        link: 'https://s.click.aliexpress.com/e/_Dn2lgdn',
       },
       {
         slide: assets.ADDS.SUPERBRANDS, 
-        link: '',
+        link: 'https://s.click.aliexpress.com/e/_DmHlVxr',
       },
     ],
   };

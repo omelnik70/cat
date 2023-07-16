@@ -10,7 +10,7 @@ function NewUsers ({ texts }) {
     const { title, gift, coupon, price } = texts;
 
     return (
-        <a href="">
+        <a href="https://s.click.aliexpress.com/e/_Dd6kPcD">
             <div className={styles.container}>
                     
                         <h2>
