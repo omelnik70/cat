@@ -794,23 +794,23 @@ const DATA = {
         menu: [
           {
             text: 'Магазин',
-            link: 'https://s.zbanx.com/r/DAujDHRTt8P9',
+            link: 'https://s.click.aliexpress.com/e/_DeH5G1B',
           },
           {
             text: 'Каталог',
-            link: 'https://s.zbanx.com/r/TGQVIPUQCBbs',
+            link: 'https://s.click.aliexpress.com/e/_Dlvpdlx',
           },
           {
             text: 'Рейтинги',
-            link: 'https://s.zbanx.com/r/CawqGTJbIewo',
+            link: 'https://s.click.aliexpress.com/e/_DeBknFB',
           },
           {
             text: 'Купони',
-            link: 'https://s.zbanx.com/r/PMfpzvM3xWIl',
+            link: 'https://s.click.aliexpress.com/e/_DcQuUFT',
           },
           {
             text: 'Знижки',
-            link: 'https://s.zbanx.com/r/p4qTgsNsWeaa',
+            link: 'https://s.click.aliexpress.com/e/_Dermn6H',
           },
         ],
       },
@@ -823,23 +823,23 @@ const DATA = {
         menu: [
           {
             text: 'Shop',
-            link: 'https://s.zbanx.com/r/DAujDHRTt8P9',
+            link: 'https://s.click.aliexpress.com/e/_DeH5G1B',
           },
           {
             text: 'Catalog',
-            link: 'https://s.zbanx.com/r/TGQVIPUQCBbs',
+            link: 'https://s.click.aliexpress.com/e/_Dlvpdlx',
           },
           {
             text: 'Ratings',
-            link: 'https://s.zbanx.com/r/CawqGTJbIewo',
+            link: 'https://s.click.aliexpress.com/e/_DeBknFB',
           },
           {
             text: 'Coupons',
-            link: 'https://s.zbanx.com/r/PMfpzvM3xWIl',
+            link: 'https://s.click.aliexpress.com/e/_DcQuUFT',
           },
           {
             text: 'Discounts',
-            link: 'https://s.zbanx.com/r/p4qTgsNsWeaa',
+            link: 'https://s.click.aliexpress.com/e/_Dermn6H',
           },
         ],
       },
@@ -852,23 +852,23 @@ const DATA = {
         menu: [
           {
             text: 'Магазин',
-            link: 'https://s.zbanx.com/r/DAujDHRTt8P9',
+            link: 'https://s.click.aliexpress.com/e/_DeH5G1B',
           },
           {
             text: 'Каталог',
-            link: 'https://s.zbanx.com/r/TGQVIPUQCBbs',
+            link: 'https://s.click.aliexpress.com/e/_Dlvpdlx',
           },
           {
             text: 'Рейтинги',
-            link: 'https://s.zbanx.com/r/CawqGTJbIewo',
+            link: 'https://s.click.aliexpress.com/e/_DeBknFB',
           },
           {
             text: 'Купоны',
-            link: 'https://s.zbanx.com/r/PMfpzvM3xWIl',
+            link: 'https://s.click.aliexpress.com/e/_DcQuUFT',
           },
           {
             text: 'Скидки',
-            link: 'https://s.zbanx.com/r/p4qTgsNsWeaa',
+            link: 'https://s.click.aliexpress.com/e/_Dermn6H',
           },
         ],
       },
@@ -954,19 +954,19 @@ const DATA = {
     slider: [
       {
         slide: assets.ADDS.FRESHFINDS, 
-        link: 'https://s.zbanx.com/r/CcgMNAoUZxMF',
+        link: '',
       },
       {
         slide: assets.ADDS.WEEKLYDEALS, 
-        link: 'https://s.zbanx.com/r/8Lhk27EHsjv1',
+        link: '',
       },
       {
         slide: assets.ADDS.GREATVALUEDEALS, 
-        link: 'https://s.zbanx.com/r/NonHlDmuBqCf',
+        link: '',
       },
       {
         slide: assets.ADDS.SUPERBRANDS, 
-        link: 'https://s.zbanx.com/r/wKLRRZJeuB0K',
+        link: '',
       },
     ],
   };
